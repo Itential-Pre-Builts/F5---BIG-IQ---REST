@@ -40,14 +40,14 @@
       "name": "credentialsFilterValue",
       "type": "string",
       "required": "yes",
-      "description": "Value to use to search for credential used in iHealth task upload. If not performing iHealth task upload, assign value `\"\"`",
+      "description": "Value to use to search for credential used in iHealth task upload. If not performing iHealth task upload, assign value \"\"",
       "exampleValue": "iHealth Credential Name"
     },
     {
       "name": "credentialsFilterProperty",
       "type": "string",
       "required": "yes",
-      "description": "Property to use to search for credential used in iHealth task upload. If not performing iHealth task upload, assign value `\"\"`",
+      "description": "Property to use to search for credential used in iHealth task upload. If not performing iHealth task upload, assign value \"\"",
       "exampleValue": "displayName"
     },
     {
@@ -83,7 +83,7 @@
       "type": "number",
       "required": "yes",
       "description": "The number of days to keep backup file on BIG-IQ",
-      "exampleValue": 30
+      "exampleValue": "30"
     },
     {
       "name": "deviceBackupDescription",
@@ -110,21 +110,21 @@
       "name": "deviceManagementAddress",
       "type": "string",
       "required": "yes",
-      "description": "IP address of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as `\"\"`",
+      "description": "IP address of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as \"\"",
       "exampleValue": "1.2.3.4"
     },
     {
       "name": "deviceManagementPort",
       "type": "string",
       "required": "yes",
-      "description": "Port of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as `\"\"`",
+      "description": "Port of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as \"\"",
       "exampleValue": "443"
     },
     {
       "name": "deviceManagementHostname",
       "type": "string",
       "required": "yes",
-      "description": "Hostname of BIG-IP for license re-activation. If using deviceManagementAddress and deviceManagementPort for license re-activation, leave this value empty as `\"\"`",
+      "description": "Hostname of BIG-IP for license re-activation. If using deviceManagementAddress and deviceManagementPort for license re-activation, leave this value empty as \"\"",
       "exampleValue": "device_hostname"
     },
     {
@@ -152,8 +152,8 @@
       "name": "uploadiHealthTask",
       "type": "boolean",
       "required": "yes",
-      "description": "Value used to determine whether or not to do iHealth upload. If `true`, performs iHealth upload before and after upgrade and if `false`, skips both iHealth upload steps.",
-      "exampleValue": true
+      "description": "Value used to determine whether or not to do iHealth upload. If true, performs iHealth upload before and after upgrade and if false, skips both iHealth upload steps.",
+      "exampleValue": "true"
     }
   ],
   "exampleInputsAndOutputs": [
