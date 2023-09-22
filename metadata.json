@@ -1,0 +1,88 @@
+{
+  "name": "F5 - BIG-IQ - REST",
+  "webName": "F5 BIG-IQ Automations",
+  "type": "Workflow Project",
+  "vendor": "F5",
+  "product": "BIG-IQ",
+  "method": "REST",
+  "osVersions": [
+    "8.3"
+  ],
+  "apiVersions": [
+    ""
+  ],
+  "iapVersions": [
+    "2023.1"
+  ],
+  "domains": [
+    "Security (SASE)"
+  ],
+  "tags": [
+    "Configuration Management"
+  ],
+  "useCases": [
+    "Software Upgrade"
+  ],
+  "deprecated": {
+    "isDeprecated": false,
+    "deprecatedOn": "",
+    "endOfLife": "",
+    "replacedBy": {
+      "name": "",
+      "overview": "",
+      "repoLink": "",
+      "docLink": "",
+      "webLink": "",
+      "isProductFeature": false
+    }
+  },
+  "brokerSince": "",
+  "documentation": {
+    "storeLink": "",
+    "repoLink": "https://gitlab.com/itentialopensource/pre-built-automations/staging/f5-big-iq-rest",
+    "npmLink": "https://www.npmjs.com/package/@itentialopensource/f5-big-iq-rest",
+    "docLink": "",
+    "demoLinks": [],
+    "faqLink": "",
+    "contributeLink": "",
+    "issueLink": "https://itential.atlassian.net/servicedesk/customer/portals",
+    "webLink": "",
+    "vendorLink": "https://www.f5.com/",
+    "productLink": "https://www.f5.com/products/big-ip-services/big-iq",
+    "apiLinks": []
+  },
+  "assets": [
+    {
+      "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
+      "webName": "Upgrade F5 BIG-IP Device over BIG-IQ",
+      "assetType": "Workflow",
+      "overview": "Upgrades BIG-IP device over F5 BIG-IQ",
+      "iapVersions": [
+        "2023.1"
+      ],
+      "exampleInput": "{\n  \"credentialsFilterValue\": \"iHealth Account\",\n  \"credentialsFilterProperty\": \"displayName\",\n  \"machineIdFilterProperty\": \"address\",\n  \"machineIdFilterValue\": \"10.0.0.8\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupFileName\": \"device_backup.ucs\",\n  \"deviceBackupLifeTime\": 1,\n  \"deviceBackupDescription\": \"Backup over for software upgrade\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"iHealth Upload Task for Software Upgrade\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"targetVolume\": \"HD1.2\"\n}\n",
+      "exampleOutput": "{}"
+    }
+  ],
+  "relatedItems": {
+    "adapters": [
+      {
+        "name": "adapter-f5_bigiq",
+        "webName": "F5 BIG-IQ",
+        "overview": "Adapter that integrates with F5 BIG-IQ",
+        "isDependency": true,
+        "repoLink": "https://gitlab.com/itentialopensource/adapters/controller-orchestrator/adapter-f5_bigiq",
+        "docLink": "https://docs.itential.com/opensource/docs/f5-big-iq?highlight=big-iq",
+        "webLink": "https://www.itential.com/adapters/f5-big-iq/",
+        "versions": [
+          "^0.3.3"
+        ]
+      }
+    ],
+    "integrations": [],
+    "ecosystemApplications": [],
+    "workflowProjects": [],
+    "transformationProjects": [],
+    "exampleProjects": []
+  }
+}
