@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "@itentialopensource/f5-big-iq-rest",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.",
     "license": "Apache-2.0",
     "repository": {
@@ -23,8 +23,8 @@
   },
   "manifest": {
     "bundleName": "F5 - BIG-IQ - REST",
-    "fingerprint": "650dc290163eb400c61225ac",
-    "createdEpoch": "1695400592948",
+    "fingerprint": "650dce53163eb400c61225ad",
+    "createdEpoch": "1695403603551",
     "artifacts": [
       {
         "id": "Upgrade BIG-IP Device - F5 - BIG-IQ",
@@ -2322,11 +2322,11 @@
             "variables": {
               "incoming": {
                 "header": "Failed to Create iHealth Upload Task",
-                "message": "Failed to create the iHealth upload task, see error response. Select \"End Job\" to end this job.",
+                "message": "Failed to create the iHealth upload task, see error response. Select \"Retry Task\" to retry uploading iHealth Task or select \"End Job\" to end this job.",
                 "body": "$var.714d.result",
                 "variables": "",
-                "btn_success": "End Job",
-                "btn_failure": ""
+                "btn_success": "Retry Task",
+                "btn_failure": "End Job"
               },
               "outgoing": {}
             },
@@ -2586,8 +2586,12 @@
           },
           "ff7c": {
             "9ea3": {
+              "type": "standard",
+              "state": "failure"
+            },
+            "f70d": {
               "state": "success",
-              "type": "standard"
+              "type": "revert"
             }
           },
           "c704": {
@@ -2744,7 +2748,7 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-20T20:46:50.265Z",
+        "last_updated": "2023-09-22T17:12:03.935Z",
         "created": "2023-09-20T13:19:21.052Z",
         "last_updated_by": {
           "provenance": "local_aaa",
@@ -2977,11 +2981,11 @@
             "variables": {
               "incoming": {
                 "header": "Backup Device Task Failed",
-                "message": "Failed to backup the device, see error response below. Select \"End Job\" to end this job.\n",
+                "message": "Failed to backup the device, see error response below. Select \"Retry Task\" to retry backup of device or select \"End Job\" to end this job.\n\n",
                 "body": "$var.4687.result",
                 "variables": "",
-                "btn_success": "End Job",
-                "btn_failure": ""
+                "btn_success": "Retry Task",
+                "btn_failure": "End Job"
               },
               "outgoing": {}
             },
@@ -3268,8 +3272,12 @@
           },
           "ff7c": {
             "9ea3": {
+              "type": "standard",
+              "state": "failure"
+            },
+            "7edb": {
               "state": "success",
-              "type": "standard"
+              "type": "revert"
             }
           },
           "c704": {
@@ -3451,7 +3459,7 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-20T20:45:15.315Z",
+        "last_updated": "2023-09-22T17:13:35.461Z",
         "created": "2023-09-20T14:28:07.192Z",
         "last_updated_by": {
           "provenance": "local_aaa",
@@ -3603,11 +3611,11 @@
             "variables": {
               "incoming": {
                 "header": "Failure Running Script",
-                "message": "Failed to run script, see error response. Select \"End Job\" to end this job.",
+                "message": "Failed to run script, see error response. Select \"Retry Script\" to retry executing script or select \"End Job\" to end this job.\n\n",
                 "body": "$var.6b06.result",
                 "variables": "",
-                "btn_success": "End Job",
-                "btn_failure": ""
+                "btn_success": "Retry  Script",
+                "btn_failure": "End Job"
               },
               "outgoing": {}
             },
@@ -4081,8 +4089,12 @@
           },
           "ff7c": {
             "9ea3": {
+              "type": "standard",
+              "state": "failure"
+            },
+            "2e0e": {
               "state": "success",
-              "type": "standard"
+              "type": "revert"
             }
           },
           "c704": {
@@ -4368,7 +4380,7 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-20T20:47:51.603Z",
+        "last_updated": "2023-09-22T17:15:05.601Z",
         "created": "2023-09-20T16:53:15.851Z",
         "last_updated_by": {
           "provenance": "local_aaa",
@@ -4574,11 +4586,11 @@
             "variables": {
               "incoming": {
                 "header": "Device Discovery Task Failed",
-                "message": "Failed device discovery, see error response below. Select \"End Job\" to end this job.\n",
-                "body": "$var.62ed.return_value",
+                "message": "Failed device discovery, see error response below. Select \"Retry Task\" to retry discovering device or select \"End Job\" to end this job.\n",
+                "body": "$var.6a9b.result",
                 "variables": "",
-                "btn_success": "End Job",
-                "btn_failure": ""
+                "btn_success": "Retry Task",
+                "btn_failure": "End Job"
               },
               "outgoing": {}
             },
@@ -4879,8 +4891,12 @@
           },
           "ff7c": {
             "9ea3": {
+              "type": "standard",
+              "state": "failure"
+            },
+            "0267": {
               "state": "success",
-              "type": "standard"
+              "type": "revert"
             }
           },
           "c704": {
@@ -5040,7 +5056,7 @@
           "inactive": false
         },
         "canvasVersion": 1.5,
-        "last_updated": "2023-09-21T16:01:46.279Z",
+        "last_updated": "2023-09-22T17:12:28.015Z",
         "created": "2023-09-21T14:50:23.517Z",
         "last_updated_by": {
           "provenance": "local_aaa",
@@ -5272,11 +5288,11 @@
             "variables": {
               "incoming": {
                 "header": "Device Import Task Failed",
-                "message": "Failed device import, see error response below. Select \"End Job\" to end this job.\n",
+                "message": "Failed device import, see error response below. Select \"Retry Task\" to retry importing device or select \"End Job\" to end this job.\n",
                 "body": "$var.1a74.result",
                 "variables": "",
-                "btn_success": "End Job",
-                "btn_failure": ""
+                "btn_success": "Retry Task",
+                "btn_failure": "End Job"
               },
               "outgoing": {}
             },
@@ -5560,9 +5576,13 @@
             }
           },
           "ff7c": {
-            "9ea3": {
+            "2947": {
               "state": "success",
-              "type": "standard"
+              "type": "revert"
+            },
+            "9ea3": {
+              "type": "standard",
+              "state": "failure"
             }
           },
           "c704": {
@@ -5721,7 +5741,7 @@
           "inactive": false
         },
         "canvasVersion": 1.5,
-        "last_updated": "2023-09-21T15:40:18.925Z",
+        "last_updated": "2023-09-22T17:17:49.042Z",
         "created": "2023-09-21T15:13:03.753Z",
         "last_updated_by": {
           "provenance": "local_aaa",
@@ -5835,7 +5855,7 @@
                 "job_id": "$var.job._id",
                 "attemptID": "queryTaskStatus",
                 "minutes": 1,
-                "attempts": 10
+                "attempts": 60
               },
               "outgoing": {
                 "response": ""
@@ -5925,11 +5945,11 @@
             "variables": {
               "incoming": {
                 "header": "Software Upgrade Task Failed",
-                "message": "Failed software upgrade, see error response below. Select \"End Job\" to end this job.\n",
+                "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or select \"End Job\" to end this job.\n\n",
                 "body": "$var.a421.currentSoftwareUpgradeTask",
                 "variables": "",
-                "btn_success": "End Job",
-                "btn_failure": ""
+                "btn_success": "Retry Upgrade",
+                "btn_failure": "End Job"
               },
               "outgoing": {}
             },
@@ -6246,8 +6266,12 @@
           },
           "ff7c": {
             "9ea3": {
+              "type": "standard",
+              "state": "failure"
+            },
+            "a073": {
               "state": "success",
-              "type": "standard"
+              "type": "revert"
             }
           },
           "c704": {
@@ -6441,7 +6465,7 @@
           "inactive": false
         },
         "canvasVersion": 1.5,
-        "last_updated": "2023-09-21T21:15:14.611Z",
+        "last_updated": "2023-09-22T17:16:39.329Z",
         "created": "2023-09-21T16:30:45.577Z",
         "last_updated_by": {
           "provenance": "local_aaa",
