@@ -1,0 +1,1111 @@
+{
+  "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
+  "tasks": {
+    "3166": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Machine Id",
+      "description": "Query machine Id of BIG-IP device to upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "machineId",
+          "obj": "$var.035d.job_details"
+        },
+        "outgoing": {
+          "return_data": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -324,
+        "y": -24
+      }
+    },
+    "6737": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Retrieve iHealth Credentials Id",
+      "description": "Retrieve iHealth credentials Id",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Retrieve iHealth Credentials Id - F5 - BIG-IQ",
+          "variables": {
+            "filterValue": {
+              "task": "job",
+              "value": "credentialsFilterValue"
+            },
+            "filterProperty": {
+              "task": "job",
+              "value": "credentialsFilterProperty"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -24
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "nodeLocation": {
+        "x": -1212,
+        "y": -24
+      },
+      "x": 0,
+      "y": 0.5
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3696,
+        "y": -24
+      },
+      "x": 1,
+      "y": 0.5
+    },
+    "035d": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Retrieve BIG-IP Machine Id",
+      "description": "Retrieve machine Id value of BIG-IP device to upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Retrieve Device MachineId - F5 - BIG-IQ",
+          "variables": {
+            "filterProperty": {
+              "task": "job",
+              "value": "machineIdFilterProperty"
+            },
+            "filterValue": {
+              "task": "job",
+              "value": "machineIdFilterValue"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": -636,
+        "y": -24
+      }
+    },
+    "2d47": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Credentials Id",
+      "description": "Query credentials Id of account to associate upgrade with.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "credentialsId",
+          "obj": "$var.6737.job_details"
+        },
+        "outgoing": {
+          "return_data": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 324,
+        "y": -24
+      }
+    },
+    "93ba": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Create iHealth Upload Task Pre Upgrade",
+      "description": "Create iHealth upload task pre upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Create iHealth Upload Task - F5 - BIG-IQ",
+          "variables": {
+            "credentialsId": {
+              "task": "2d47",
+              "value": "return_data"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "iHealthTaskName": {
+              "task": "c430",
+              "value": "iHealthTaskNamePreUpgrade"
+            },
+            "machineId": {
+              "task": "3166",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 648,
+        "y": -24
+      }
+    },
+    "ffd2": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Backup BIG-IP Device",
+      "description": "Backup BIG-IP device",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Create Device Backup - F5 - BIG-IQ",
+          "variables": {
+            "machineId": {
+              "task": "3166",
+              "value": "return_data"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            },
+            "deviceBackupFileName": {
+              "task": "job",
+              "value": "deviceBackupFileName"
+            },
+            "deviceBackupLifeTime": {
+              "task": "job",
+              "value": "deviceBackupLifeTime"
+            },
+            "deviceBackupDescription": {
+              "task": "job",
+              "value": "deviceBackupDescription"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 960,
+        "y": -24
+      }
+    },
+    "324a": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Get Available Disk Space",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Run Script on BIG-IP Unmasked - F5 - BIG-IQ",
+          "variables": {
+            "scriptTimeout": {
+              "task": "static",
+              "value": 30
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "scriptName": {
+              "task": "static",
+              "value": "Get Available Disk Space"
+            },
+            "scriptDescription": {
+              "task": "static",
+              "value": "Gets available disk space"
+            },
+            "scriptContent": {
+              "task": "static",
+              "value": "vgdisplay --short"
+            },
+            "scriptExecutionName": {
+              "task": "static",
+              "value": "Run Get Available Disk Space"
+            },
+            "machineId": {
+              "task": "3166",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1584,
+        "y": -24
+      }
+    },
+    "2af6": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Re-Activate License",
+      "description": "Displays a message and runtime data to an operator. This can be used to request a decision, or used for acknowledgement only.",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Re-Activate License",
+          "message": "Re-Activation of license is required before proceeding with rest of this job. \n\nUse the link below to navigate to page to re-activate device license. Note this should only be run during a maintenance window as re-activating the license will cause a reboot of the device.\n\nUpon completing re-activation of license, select \"Continue Job\". If error occurred re-activating license, select \"End Job\".\n",
+          "body": "$var.c430.reactivateLicenseLink",
+          "variables": "",
+          "btn_success": "Continue Job",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1272,
+        "y": -24
+      }
+    },
+    "935a": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Create iHealth Upload Task Post Upgrade",
+      "description": "Create iHealth upload task post upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Create iHealth Upload Task - F5 - BIG-IQ",
+          "variables": {
+            "credentialsId": {
+              "task": "2d47",
+              "value": "return_data"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "iHealthTaskName": {
+              "task": "c430",
+              "value": "iHealthTaskNamePostUpgrade"
+            },
+            "machineId": {
+              "task": "3166",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2808,
+        "y": -24
+      }
+    },
+    "d2d0": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Discover BIG-IP Device",
+      "description": "Discover BIG-IP device over BIG-IQ",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Discover BIG-IP Device - F5 - BIG-IQ",
+          "variables": {
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            },
+            "machineId": {
+              "task": "3166",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3120,
+        "y": -24
+      }
+    },
+    "0f89": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Import BIG-IP Device",
+      "description": "Import BIG-IP device over BIG-IQ",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Import BIG-IP Device - F5 - BIG-IQ",
+          "variables": {
+            "machineId": {
+              "task": "3166",
+              "value": "return_data"
+            },
+            "importDeviceTaskName": {
+              "task": "job",
+              "value": "importDeviceTaskName"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3444,
+        "y": -24
+      }
+    },
+    "c430": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create BIG-IP Upgrade Task Names",
+      "description": "Create BIG-IP upgrade task names",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "650c6c6b8f256f016dabc637",
+          "variableMap": {
+            "iHealthTaskName": "$var.job.iHealthTaskName",
+            "machineIdFilterValue": "$var.job.machineIdFilterValue"
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "iHealthTaskNamePreUpgrade": null,
+          "iHealthTaskNamePostUpgrade": null,
+          "reactivateLicenseLink": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -960,
+        "y": -24
+      }
+    },
+    "52a9": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1272,
+        "y": 216
+      }
+    },
+    "90d0": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3696,
+        "y": 216
+      }
+    },
+    "b992": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Check Available Disk Space BIG-IP",
+      "description": "Confirm enough disk space is available on BIG-IP device",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "650c820b8f256f016dabc63a",
+          "variableMap": {
+            "availableDiskResponse": "$var.324a.job_details"
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "enoughDiskSpaceFree": null,
+          "diskSpaceMessage": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1902,
+        "y": -24
+      }
+    },
+    "8c67": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check Enough Disk Space",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "b992",
+                    "variable": "enoughDiskSpaceFree"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": true
+                  },
+                  "operator": "==",
+                  "query": "",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2199,
+        "y": -24
+      }
+    },
+    "71db": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Disk Space Usage",
+      "description": "Display disk space usage",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Not Enough Disk Space for Upgrade",
+          "message": "The amount of disk space found on BIG-IP device is not enough for a software upgrade. See amount of disk space found below. If possible to reformat disk for more space, do so and select \"Check Disk\" to check disk space again. If not possible, select \"End Job\" to end job.\n",
+          "body": "$var.b992.diskSpaceMessage",
+          "variables": "",
+          "btn_success": "Check Disk",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2196,
+        "y": 96
+      }
+    },
+    "417e": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2196,
+        "y": 216
+      }
+    },
+    "9bcd": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Run BIG-IP Software Upgrade",
+      "description": "Run BIG-IP software upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Run BIG-IP Upgrade - F5 - BIG-IQ",
+          "variables": {
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            },
+            "softwareUpgradeTaskName": {
+              "task": "job",
+              "value": "softwareUpgradeTaskName"
+            },
+            "softwareImageName": {
+              "task": "job",
+              "value": "softwareImageName"
+            },
+            "targetVolume": {
+              "task": "job",
+              "value": "targetVolume"
+            },
+            "activeVolume": {
+              "task": "job",
+              "value": "activeVolume"
+            },
+            "machineId": {
+              "task": "3166",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2508,
+        "y": -24
+      }
+    }
+  },
+  "transitions": {
+    "3166": {
+      "6737": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "6737": {
+      "2d47": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "workflow_start": {
+      "c430": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "workflow_end": {},
+    "035d": {
+      "3166": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "2d47": {
+      "93ba": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "93ba": {
+      "ffd2": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "ffd2": {
+      "2af6": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "324a": {
+      "b992": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "2af6": {
+      "324a": {
+        "state": "success",
+        "type": "standard"
+      },
+      "52a9": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "935a": {
+      "d2d0": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "d2d0": {
+      "0f89": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "0f89": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "c430": {
+      "035d": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "52a9": {
+      "417e": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "90d0": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "b992": {
+      "8c67": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "8c67": {
+      "71db": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "9bcd": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "71db": {
+      "324a": {
+        "state": "success",
+        "type": "revert"
+      },
+      "417e": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "417e": {
+      "90d0": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "9bcd": {
+      "935a": {
+        "state": "success",
+        "type": "standard"
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "credentialsFilterValue": {
+        "$id": "filterValue",
+        "type": "string"
+      },
+      "credentialsFilterProperty": {
+        "$id": "filterProperty",
+        "type": "string"
+      },
+      "machineIdFilterProperty": {
+        "$id": "filterProperty",
+        "type": "string"
+      },
+      "machineIdFilterValue": {
+        "$id": "filterValue",
+        "type": "string"
+      },
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "deviceBackupFileName": {
+        "$id": "deviceBackupFileName",
+        "type": "string"
+      },
+      "deviceBackupLifeTime": {
+        "$id": "deviceBackupLifeTime",
+        "type": "integer",
+        "examples": [
+          30
+        ]
+      },
+      "deviceBackupDescription": {
+        "$id": "deviceBackupDescription",
+        "type": "string"
+      },
+      "importDeviceTaskName": {
+        "$id": "importDeviceTaskName",
+        "type": "string"
+      },
+      "iHealthTaskName": {
+        "$id": "iHealthTaskName",
+        "type": "string",
+        "examples": [
+          "iHealthTaskName"
+        ]
+      },
+      "softwareUpgradeTaskName": {
+        "$id": "softwareUpgradeTaskName",
+        "type": "string"
+      },
+      "softwareImageName": {
+        "$id": "softwareImageName",
+        "type": "string"
+      },
+      "targetVolume": {
+        "$id": "targetVolume",
+        "type": "string"
+      },
+      "activeVolume": {
+        "$id": "activeVolume",
+        "type": "string"
+      }
+    },
+    "required": [
+      "credentialsFilterValue",
+      "credentialsFilterProperty",
+      "machineIdFilterProperty",
+      "machineIdFilterValue",
+      "adapterId",
+      "deviceBackupFileName",
+      "deviceBackupLifeTime",
+      "deviceBackupDescription",
+      "importDeviceTaskName",
+      "iHealthTaskName",
+      "softwareUpgradeTaskName",
+      "softwareImageName",
+      "targetVolume",
+      "activeVolume"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "credentialsFilterValue": {
+        "$id": "filterValue",
+        "type": "string"
+      },
+      "credentialsFilterProperty": {
+        "$id": "filterProperty",
+        "type": "string"
+      },
+      "machineIdFilterProperty": {
+        "$id": "filterProperty",
+        "type": "string"
+      },
+      "machineIdFilterValue": {
+        "$id": "filterValue",
+        "type": "string"
+      },
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "deviceBackupFileName": {
+        "$id": "deviceBackupFileName",
+        "type": "string"
+      },
+      "deviceBackupLifeTime": {
+        "$id": "deviceBackupLifeTime",
+        "type": "integer",
+        "examples": [
+          30
+        ]
+      },
+      "deviceBackupDescription": {
+        "$id": "deviceBackupDescription",
+        "type": "string"
+      },
+      "importDeviceTaskName": {
+        "$id": "importDeviceTaskName",
+        "type": "string"
+      },
+      "iHealthTaskName": {
+        "$id": "iHealthTaskName",
+        "type": "string",
+        "examples": [
+          "iHealthTaskName"
+        ]
+      },
+      "softwareUpgradeTaskName": {
+        "$id": "softwareUpgradeTaskName",
+        "type": "string"
+      },
+      "softwareImageName": {
+        "$id": "softwareImageName",
+        "type": "string"
+      },
+      "targetVolume": {
+        "$id": "targetVolume",
+        "type": "string"
+      },
+      "activeVolume": {
+        "$id": "activeVolume",
+        "type": "string"
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      }
+    }
+  },
+  "canvasVersion": 3,
+  "type": "automation",
+  "font_size": 12,
+  "errorHandler": null,
+  "preAutomationTime": 0,
+  "sla": 0,
+  "last_updated": "2023-09-21T20:48:16.081Z",
+  "lastUpdatedVersion": "5.46.0-2023.1.19.0",
+  "created": "2023-09-20T17:55:55.770Z",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "createdVersion": "5.46.0-2023.1.19.0",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 2
+}

@@ -1,0 +1,9 @@
+{
+  "readme": "/documentation/readme.json",
+  "assets": [
+    {
+      "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
+      "path": "/documentation/Upgrade BIG-IP Device - F5 - BIG-IQ.json"
+    }
+  ]
+}

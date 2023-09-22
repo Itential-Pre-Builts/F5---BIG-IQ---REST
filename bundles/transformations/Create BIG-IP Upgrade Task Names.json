@@ -1,0 +1,195 @@
+{
+  "_id": "650c6c6b8f256f016dabc637",
+  "name": "Create BIG-IP Upgrade Task Names",
+  "description": "Create task names for BIG-IP upgrade over BIG-IQ",
+  "incoming": [
+    {
+      "$id": "iHealthTaskName",
+      "type": "string",
+      "examples": [
+        "iHealthTaskName"
+      ]
+    },
+    {
+      "$id": "machineIdFilterValue",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "iHealthTaskNamePreUpgrade",
+      "type": "string",
+      "examples": [
+        "iHealthTask-Pre-Upgrade"
+      ]
+    },
+    {
+      "$id": "iHealthTaskNamePostUpgrade",
+      "type": "string",
+      "examples": [
+        "iHealthTask-Post-Upgrade"
+      ]
+    },
+    {
+      "$id": "reactivateLicenseLink",
+      "type": "string"
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "${iHealthTaskName}-Pre-Upgrade",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "iHealthTaskName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "${iHealthTaskName}-Post-Upgrade",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "iHealthTaskName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 3,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "iHealthTaskNamePostUpgrade",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "iHealthTaskNamePreUpgrade",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "https://${machineIdFilterValue}:8443/tmui/Control/jspmap/tmui/system/licensing/license.jsp?",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineIdFilterValue",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 7,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 7,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "reactivateLicenseLink",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2023-09-21T16:16:43.326Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-21T16:22:20.210Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

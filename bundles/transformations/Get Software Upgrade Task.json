@@ -1,0 +1,336 @@
+{
+  "_id": "650c74d68f256f016dabc639",
+  "name": "Get Software Upgrade Task",
+  "description": "Get software upgrade task",
+  "incoming": [
+    {
+      "$id": "softwareUpgradeTasks",
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "examples": [
+                      "28219010-bbf9-4ea8-acd7-3069736b00a9"
+                    ],
+                    "format": "uuid"
+                  },
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "serialUpgradeTest"
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "examples": [
+                      "FINISHED"
+                    ]
+                  },
+                  "currentStep": {
+                    "type": "string",
+                    "examples": [
+                      "WAITING_TO_START"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "startSoftwareUpgradeResponse",
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "examples": [
+                "edb16ff2-852b-4b62-a660-32ee5df302f8"
+              ],
+              "format": "uuid"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "currentSoftwareUpgradeTask",
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "softwareUpgradeTasks",
+        "ptr": "/response/items"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "startSoftwareUpgradeResponse",
+        "ptr": "/response/id"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "find",
+      "args": [
+        null,
+        "findSoftwareUpgradeTask",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "currentSoftwareUpgradeTask",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "examples": [
+                "28219010-bbf9-4ea8-acd7-3069736b00a9"
+              ],
+              "format": "uuid"
+            },
+            "name": {
+              "type": "string",
+              "examples": [
+                "serialUpgradeTest"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "examples": [
+                "FINISHED"
+              ]
+            },
+            "currentStep": {
+              "type": "string",
+              "examples": [
+                "WAITING_TO_START"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "examples": [
+                  "28219010-bbf9-4ea8-acd7-3069736b00a9"
+                ],
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "serialUpgradeTest"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "examples": [
+                  "FINISHED"
+                ]
+              },
+              "currentStep": {
+                "type": "string",
+                "examples": [
+                  "WAITING_TO_START"
+                ]
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {
+            "0_id": {
+              "type": "string",
+              "examples": [
+                "edb16ff2-852b-4b62-a660-32ee5df302f8"
+              ],
+              "format": "uuid"
+            }
+          },
+          "isContext": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/id"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/0_id"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "findSoftwareUpgradeTask",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "findSoftwareUpgradeTask",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 1,
+    "row": 5
+  },
+  "created": "2023-09-21T16:52:38.802Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-21T17:11:03.613Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

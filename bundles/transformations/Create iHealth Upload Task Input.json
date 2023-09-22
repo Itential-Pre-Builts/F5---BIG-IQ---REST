@@ -1,0 +1,301 @@
+{
+  "_id": "650af2719b3b3a0148b40593",
+  "name": "Create iHealth Upload Task Input",
+  "description": "Creates input for iHealth upload task in BIG-IQ",
+  "incoming": [
+    {
+      "$id": "iHealthTaskName",
+      "type": "string"
+    },
+    {
+      "$id": "machineId",
+      "type": "string"
+    },
+    {
+      "$id": "credentialsId",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "iHealthTaskInput",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "examples": [
+            "name"
+          ]
+        },
+        "deviceReferences": {
+          "type": "array"
+        },
+        "credentialsReference": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        },
+        "uploadLocalQkView": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "iHealthTaskName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "iHealthTaskInput",
+        "ptr": "/name"
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "credentialsId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 3,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 14,
+      "type": "declaration",
+      "library": "Boolean",
+      "method": "new Boolean",
+      "args": [
+        false
+      ],
+      "view": {
+        "row": 3,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "https://localhost/mgmt/cm/device/ihealth/credentials/${credentialsId}",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 5,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        {
+          "link": ""
+        },
+        "link",
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        {
+          "link": ""
+        },
+        "link",
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 9,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 3
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 15,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 14,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "iHealthTaskInput",
+        "ptr": "/uploadLocalQkView"
+      },
+      "context": "#"
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 5,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "iHealthTaskInput",
+        "ptr": "/credentialsReference"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 9,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "iHealthTaskInput",
+        "ptr": "/deviceReferences"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2023-09-20T13:24:01.156Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-20T13:34:32.312Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.8",
+  "tags": []
+}

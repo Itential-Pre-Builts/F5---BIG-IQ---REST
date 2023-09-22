@@ -1,0 +1,275 @@
+{
+  "_id": "650b03528f256f016dabc632",
+  "name": "Create BIG-IQ Device Backup Input",
+  "description": "Create input for device backup over BIG-IQ",
+  "incoming": [
+    {
+      "$id": "deviceBackupFileName",
+      "type": "string"
+    },
+    {
+      "$id": "deviceBackupLifeTime",
+      "type": "integer",
+      "examples": [
+        30
+      ]
+    },
+    {
+      "$id": "deviceBackupDescription",
+      "type": "string"
+    },
+    {
+      "$id": "machineId",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "deviceBackupInput",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "examples": [
+            "testing-task.ucs"
+          ]
+        },
+        "includePrivateKeys": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "isEncrypted": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "deviceReference": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        },
+        "backupLifeTime": {
+          "type": "integer",
+          "examples": [
+            2
+          ]
+        },
+        "description": {
+          "type": "string",
+          "examples": [
+            "Test backup of device from api"
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        {
+          "link": ""
+        },
+        "link",
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 2,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 2,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBackupFileName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceBackupInput",
+        "ptr": "/name"
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "declaration",
+      "library": "Boolean",
+      "method": "new Boolean",
+      "args": [
+        false
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "declaration",
+      "library": "Boolean",
+      "method": "new Boolean",
+      "args": [
+        true
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceBackupInput",
+        "ptr": "/isEncrypted"
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceBackupInput",
+        "ptr": "/includePrivateKeys"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceBackupInput",
+        "ptr": "/deviceReference"
+      },
+      "context": "#"
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBackupDescription",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceBackupInput",
+        "ptr": "/description"
+      },
+      "context": "#"
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBackupLifeTime",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceBackupInput",
+        "ptr": "/backupLifeTime"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2023-09-20T14:36:02.405Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-20T14:43:26.719Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

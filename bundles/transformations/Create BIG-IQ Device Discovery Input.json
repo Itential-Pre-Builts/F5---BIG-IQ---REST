@@ -1,0 +1,224 @@
+{
+  "_id": "650c5b428f256f016dabc635",
+  "name": "Create BIG-IQ Device Discovery Input",
+  "description": "Create input for device discovery over BIG-IQ",
+  "incoming": [
+    {
+      "$id": "machineId",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "deviceDiscoveryInput",
+      "type": "object",
+      "properties": {
+        "deviceReference": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        },
+        "moduleList": {
+          "type": "array"
+        },
+        "status": {
+          "type": "string",
+          "examples": [
+            "STARTED"
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 2,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "STARTED"
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "declaration",
+      "library": "Object",
+      "method": "new Object",
+      "args": [
+        {
+          "module": "adc_core"
+        }
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "https://localhost/mgmt/cm/system/machineid-resolver/${machineId}",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 7,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 8,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 2,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        {
+          "link": ""
+        },
+        "link",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 5,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceDiscoveryInput",
+        "ptr": "/status"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceDiscoveryInput",
+        "ptr": "/moduleList"
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceDiscoveryInput",
+        "ptr": "/deviceReference"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2023-09-21T15:03:30.599Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-21T15:06:24.360Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

@@ -1,0 +1,100 @@
+{
+  "_id": "64b846f740807f01aa8d2446",
+  "name": "Build BIG-IQ Device Filter",
+  "description": "Builds filter to search for device by property and value equal to property",
+  "incoming": [
+    {
+      "$id": "filterProperty",
+      "type": "string"
+    },
+    {
+      "$id": "filterValue",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "deviceFilter",
+      "type": "string"
+    }
+  ],
+  "steps": [
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "filterProperty",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "filterValue",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 1,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "('${property}'+eq+'${value}')",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceFilter",
+        "ptr": ""
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 1,
+    "row": 5
+  },
+  "created": "2023-09-20T04:49:23.662Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-20T05:04:21.272Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.8",
+  "tags": []
+}

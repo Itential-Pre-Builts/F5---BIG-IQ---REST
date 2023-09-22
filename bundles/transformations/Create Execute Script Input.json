@@ -1,0 +1,326 @@
+{
+  "_id": "650b29cf8f256f016dabc633",
+  "name": "Create Execute Script Input",
+  "description": "Creates input to execute a script over BIG-IQ",
+  "incoming": [
+    {
+      "$id": "machineId",
+      "type": "string"
+    },
+    {
+      "$id": "scriptExecutionName",
+      "type": "string"
+    },
+    {
+      "$id": "scriptTimeout",
+      "type": "integer",
+      "examples": [
+        30
+      ]
+    },
+    {
+      "$id": "createScriptResult",
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "examples": [
+                "b0e491cf-6a65-452e-9da0-1bf077f546c1"
+              ],
+              "format": "uuid"
+            },
+            "name": {
+              "type": "string",
+              "examples": [
+                "test 1"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "examples": [
+                "test script"
+              ]
+            },
+            "script": {
+              "type": "string",
+              "examples": [
+                "tmsh show sys"
+              ]
+            },
+            "generation": {
+              "type": "integer",
+              "examples": [
+                1
+              ]
+            },
+            "lastUpdateMicros": {
+              "type": "integer",
+              "examples": [
+                1695230797774835
+              ]
+            },
+            "kind": {
+              "type": "string",
+              "examples": [
+                "shared:user-scripts:userscriptstate"
+              ]
+            },
+            "selfLink": {
+              "type": "string",
+              "examples": [
+                "https://localhost/mgmt/shared/user-scripts/id"
+              ]
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "executeScriptInput",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "examples": [
+            "name"
+          ]
+        },
+        "deviceReferences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        "timeout": {
+          "type": "integer",
+          "examples": [
+            30
+          ]
+        },
+        "scriptReference": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "scriptExecutionName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "executeScriptInput",
+        "ptr": "/name"
+      },
+      "context": "#"
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "scriptTimeout",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "executeScriptInput",
+        "ptr": "/timeout"
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "createScriptResult",
+        "ptr": "/response/selfLink"
+      },
+      "to": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        {
+          "link": ""
+        },
+        "link",
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        {
+          "link": ""
+        },
+        "link",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 5,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 3
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "executeScriptInput",
+        "ptr": "/scriptReference"
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 5,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "executeScriptInput",
+        "ptr": "/deviceReferences"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2023-09-20T17:20:15.987Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-20T17:32:54.438Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

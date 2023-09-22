@@ -1,0 +1,188 @@
+{
+  "bundleName": "F5 - BIG-IQ - REST",
+  "version": "0.0.1",
+  "fingerprint": "650da486cb8bed00e707d464",
+  "createdEpoch": "1695392902766",
+  "artifacts": [
+    {
+      "id": "Upgrade BIG-IP Device - F5 - BIG-IQ",
+      "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Upgrade BIG-IP Device - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Retrieve iHealth Credentials Id - F5 - BIG-IQ",
+      "name": "Retrieve iHealth Credentials Id - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Retrieve iHealth Credentials Id - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Retrieve Device MachineId - F5 - BIG-IQ",
+      "name": "Retrieve Device MachineId - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Retrieve Device MachineId - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Create iHealth Upload Task - F5 - BIG-IQ",
+      "name": "Create iHealth Upload Task - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Create iHealth Upload Task - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Create Device Backup - F5 - BIG-IQ",
+      "name": "Create Device Backup - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Create Device Backup - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Run Script on BIG-IP Unmasked - F5 - BIG-IQ",
+      "name": "Run Script on BIG-IP Unmasked - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Run Script on BIG-IP Unmasked - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Discover BIG-IP Device - F5 - BIG-IQ",
+      "name": "Discover BIG-IP Device - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Discover BIG-IP Device - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Import BIG-IP Device - F5 - BIG-IQ",
+      "name": "Import BIG-IP Device - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Import BIG-IP Device - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Run BIG-IP Upgrade - F5 - BIG-IQ",
+      "name": "Run BIG-IP Upgrade - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Run BIG-IP Upgrade - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c6c6b8f256f016dabc637",
+      "name": "Create BIG-IP Upgrade Task Names",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IP Upgrade Task Names.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c820b8f256f016dabc63a",
+      "name": "Check Available Disk Space BIG-IP",
+      "type": "transformation",
+      "location": "/bundles/transformations/Check Available Disk Space BIG-IP.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650a81249b3b3a0148b40592",
+      "name": "Search BIG-IQ iHealth Credentials",
+      "type": "transformation",
+      "location": "/bundles/transformations/Search BIG-IQ iHealth Credentials.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "64b846f740807f01aa8d2446",
+      "name": "Build BIG-IQ Device Filter",
+      "type": "transformation",
+      "location": "/bundles/transformations/Build BIG-IQ Device Filter.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650af2719b3b3a0148b40593",
+      "name": "Create iHealth Upload Task Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create iHealth Upload Task Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650b03528f256f016dabc632",
+      "name": "Create BIG-IQ Device Backup Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IQ Device Backup Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650b29cf8f256f016dabc633",
+      "name": "Create Execute Script Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create Execute Script Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c5b428f256f016dabc635",
+      "name": "Create BIG-IQ Device Discovery Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IQ Device Discovery Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c60458f256f016dabc636",
+      "name": "Create BIG-IQ Device Import Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IQ Device Import Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c721e8f256f016dabc638",
+      "name": "Create BIG-IP Software Upgrade Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IP Software Upgrade Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c74d68f256f016dabc639",
+      "name": "Get Software Upgrade Task",
+      "type": "transformation",
+      "location": "/bundles/transformations/Get Software Upgrade Task.json",
+      "properties": {
+        "entryPoint": false
+      }
+    }
+  ]
+}

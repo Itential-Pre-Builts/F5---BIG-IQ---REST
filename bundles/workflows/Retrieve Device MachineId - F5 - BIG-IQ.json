@@ -1,0 +1,271 @@
+{
+  "name": "Retrieve Device MachineId - F5 - BIG-IQ",
+  "description": "Retrieve device machine ID with filter inputs provided",
+  "tasks": {
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -0.05709992486851991,
+      "y": 0.5006165228113441,
+      "nodeLocation": {
+        "x": -24,
+        "y": 996
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 0.3569682151589242,
+      "y": 0.4981549815498155,
+      "nodeLocation": {
+        "x": 1140,
+        "y": 996
+      }
+    },
+    "1cc9": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Build BIG-IQ Device Filter",
+      "description": "Builds filter to search for device by property and value equal to property",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "64b846f740807f01aa8d2446",
+          "variableMap": {
+            "filterProperty": "$var.job.filterProperty",
+            "filterValue": "$var.job.filterValue"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "deviceFilter": null
+        },
+        "decorators": []
+      },
+      "groups": [],
+      "x": 0.06010518407212622,
+      "y": 0.5055487053020962,
+      "task_name": "Build Hostname Filter",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 228,
+        "y": 996
+      }
+    },
+    "ead9": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query MachineId Data",
+      "description": "Query MachineId Data",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.items[0].machineId",
+          "obj": "$var.f15b.result"
+        },
+        "outgoing": {
+          "return_data": "$var.job.machineId"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "x": 0.2921760391198044,
+      "y": 0.48954489544895446,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 888,
+        "y": 996
+      }
+    },
+    "f15b": {
+      "name": "getResolveMachineId",
+      "canvasName": "getResolveMachineId",
+      "summary": "Retrieve Machine Id",
+      "description": "Resolve machineId given device filter",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "F5BigIQ",
+      "variables": {
+        "incoming": {
+          "filter": "$var.1cc9.deviceFilter",
+          "adapter_id": "$var.job.adapterId"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.BIGIQError",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.19682151589242053,
+      "y": 0.4883148831488315,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 552,
+        "y": 996
+      }
+    }
+  },
+  "transitions": {
+    "workflow_start": {
+      "1cc9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "1cc9": {
+      "f15b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ead9": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f15b": {
+      "ead9": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "filterProperty": {
+        "$id": "filterProperty",
+        "type": "string"
+      },
+      "filterValue": {
+        "$id": "filterValue",
+        "type": "string"
+      },
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    },
+    "required": [
+      "filterProperty",
+      "filterValue",
+      "adapterId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "filterProperty": {
+        "$id": "filterProperty",
+        "type": "string"
+      },
+      "filterValue": {
+        "$id": "filterValue",
+        "type": "string"
+      },
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "machineId": {
+        "title": "return_data",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "type": "array"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "examples": [
+          "value"
+        ]
+      },
+      "BIGIQError": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    }
+  },
+  "type": "automation",
+  "font_size": 12,
+  "last_updated": "2023-09-20T05:07:02.863Z",
+  "lastUpdatedVersion": "5.46.0-2023.1.15.0",
+  "created": "2023-07-19T20:20:09.772Z",
+  "createdVersion": "5.40.5-2021.1.72.0",
+  "preAutomationTime": 0,
+  "sla": 0,
+  "canvasVersion": 1.5,
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 2
+}

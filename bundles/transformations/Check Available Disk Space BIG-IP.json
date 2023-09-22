@@ -1,0 +1,626 @@
+{
+  "_id": "650c820b8f256f016dabc63a",
+  "name": "Check Available Disk Space BIG-IP",
+  "description": "Confirm enough disk space is available on BIG-IP device",
+  "incoming": [
+    {
+      "$id": "availableDiskResponse",
+      "type": "object",
+      "properties": {
+        "scriptResult": {
+          "type": "object",
+          "properties": {
+            "response": {
+              "type": "object",
+              "properties": {
+                "userScriptTaskStatuses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "output": {
+                        "type": "string",
+                        "examples": [
+                          "  \"vg-db-vda\" 39.79 GiB [27.30 GiB used / 12.49 GiB free]\n"
+                        ]
+                      }
+                    },
+                    "required": []
+                  }
+                }
+              },
+              "required": []
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "enoughDiskSpaceFree",
+      "type": "boolean",
+      "examples": [
+        true,
+        false
+      ]
+    },
+    {
+      "$id": "diskSpaceMessage",
+      "type": "string"
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "availableDiskResponse",
+        "ptr": "/scriptResult/response/userScriptTaskStatuses"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "declaration",
+      "library": "RegExp",
+      "method": "new RegExp",
+      "args": [
+        "\\/.*free",
+        "gm"
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "pop",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 5,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return/value"
+      },
+      "to": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "output"
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "method",
+      "library": "RegExp",
+      "method": "exec",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 10,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "method",
+      "library": "Array",
+      "method": "pop",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 10,
+        "ptr": "/return/value"
+      },
+      "to": {
+        "location": "method",
+        "name": 12,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 12,
+      "type": "method",
+      "library": "String",
+      "method": "split",
+      "args": [
+        null,
+        " ",
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 16,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 12,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "function",
+        "name": 15,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 15,
+      "type": "function",
+      "function": "checkIfEnoughDiskSpace",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 17,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 15,
+        "ptr": "/return/isEnoughDiskSpace"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "enoughDiskSpaceFree",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 18,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 15,
+        "ptr": "/return/diskMessage"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "diskSpaceMessage",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "$id": "amountDiskFree",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "/",
+              "12.49",
+              "GiB",
+              "free"
+            ]
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "isEnoughDiskSpace",
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        },
+        {
+          "$id": "diskMessage",
+          "type": "string"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "amountDiskFree",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "amountDiskFree",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            1
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            2
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "declaration",
+            "name": 7,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 16,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "template",
+            "name": 15,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 17,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "template",
+            "name": 15,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            "GiB"
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "declaration",
+          "library": "Number",
+          "method": "new Number",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 9,
+          "type": "method",
+          "library": "Relational",
+          "method": "greaterThanOrEqual",
+          "args": [
+            null,
+            15
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 15,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "Disk has ${amount} ${measure} free. Disk must have at least 15 GiB free.",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 11,
+          "type": "method",
+          "library": "Logical",
+          "method": "and",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 15,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "diskMessage",
+            "ptr": ""
+          },
+          "context": "#"
+        },
+        {
+          "id": 14,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "isEnoughDiskSpace",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "checkIfEnoughDiskSpace",
+      "view": {
+        "col": 4,
+        "row": 4
+      },
+      "id": "checkIfEnoughDiskSpace",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2023-09-21T17:48:59.784Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-21T18:03:23.727Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

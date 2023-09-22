@@ -1,7 +1,6 @@
 {
-  "name": "@itentialopensource/artifact-template",
-  "version": "0.0.0",
-  "description": "Template for creating new artifacts",
+  "version": "0.0.1",
+  "description": "Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.",
   "scripts": {
     "setup-hooks": "sh ./scripts/setup-hooks.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,16 +12,12 @@
     "test:integration": "cypress run --config-file ./test/cypress.json --spec \"./test/cypress/integration/cypressTests.spec.js\"",
     "cypress:open": "cypress open --config-file ./test/cypress.json"
   },
-  "repository": {
-    "type": "gitlab",
-    "hostname": "gitlab.com",
-    "path": "itentialopensource/pre-built-automations"
-  },
   "keywords": [
     "Itential",
     "IAP"
   ],
   "contributors": [
+    "Itential",
     "Itential"
   ],
   "author": "Itential",
@@ -41,6 +36,16 @@
     "mocha-junit-reporter": "^2.0.2",
     "r2": "^2.0.1"
   },
+  "IAPCategories": [],
+  "repository": {
+    "type": "gitlab",
+    "hostname": "gitlab.com",
+    "path": "itentialopensource/pre-built-automations"
+  },
   "IAPDependencies": {
-  }
+    "@itential/app-workflow_engine": "",
+    "@itential/app-json_forms": "",
+    "@itentialopensource/adapter-f5_bigiq": ""
+  },
+  "name": "@itentialopensource/f5-big-iq-rest"
 }

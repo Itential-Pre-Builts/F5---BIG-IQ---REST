@@ -1,0 +1,678 @@
+{
+  "name": "Import BIG-IP Device - F5 - BIG-IQ",
+  "description": "Create iHealth upload task",
+  "tasks": {
+    "1692": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2160,
+        "y": 1368
+      }
+    },
+    "2288": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 864,
+        "y": 1368
+      }
+    },
+    "2947": {
+      "name": "performBIGIPDeviceImportusingmachineId",
+      "canvasName": "performBIGIPDeviceImportusingmachineId",
+      "summary": "Import BIG-IP Device",
+      "description": "Perform BIG-IP Device Import using machineId",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "F5-BIG-IQ",
+      "variables": {
+        "incoming": {
+          "body": "$var.1c3e.deviceImportInput",
+          "adapter_id": "$var.job.adapterId"
+        },
+        "outgoing": {
+          "result": ""
+        },
+        "error": "$var.job.BIGIQError"
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 516,
+        "y": 996
+      }
+    },
+    "8388": {
+      "name": "reattempt",
+      "canvasName": "reattempt",
+      "summary": "Delay and Query Device Import Task Status",
+      "description": "Delay and query device backup task status",
+      "location": "Application",
+      "locationType": null,
+      "app": "MOP",
+      "type": "automatic",
+      "displayName": "MOP",
+      "variables": {
+        "incoming": {
+          "job_id": "$var.job._id",
+          "attemptID": "queryTaskStatus",
+          "minutes": 1,
+          "attempts": 10
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1872,
+        "y": 1104
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -0.05709992486851991,
+      "y": 0.5006165228113441,
+      "nodeLocation": {
+        "x": -96,
+        "y": 996
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 0.3569682151589242,
+      "y": 0.4981549815498155,
+      "nodeLocation": {
+        "x": 2160,
+        "y": 996
+      }
+    },
+    "1d60": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Device Import Task Id",
+      "description": "Query device import task Id",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.id",
+          "obj": "$var.2947.result"
+        },
+        "outgoing": {
+          "return_data": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 852,
+        "y": 996
+      }
+    },
+    "62ed": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check If Device Import Task Failed",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "1a74",
+                    "variable": "result"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "FAILED"
+                  },
+                  "operator": "==",
+                  "query": "response.status",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1536,
+        "y": 996
+      }
+    },
+    "ff7c": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Failure Result",
+      "description": "Show failure result and option for next step",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Device Import Task Failed",
+          "message": "Failed device import, see error response below. Select \"End Job\" to end this job.\n",
+          "body": "$var.1a74.result",
+          "variables": "",
+          "btn_success": "End Job",
+          "btn_failure": ""
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1536,
+        "y": 1236
+      }
+    },
+    "c704": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check If Device Import Task Finished",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "1a74",
+                    "variable": "result"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "FINISHED"
+                  },
+                  "operator": "==",
+                  "query": "response.status",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1872,
+        "y": 996
+      }
+    },
+    "15b4": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Failure Result",
+      "description": "Show failure result and option for next step",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Number of Reattempts Exceeded",
+          "message": "The number of reattempts to query device import task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+          "body": "$var.1a74.result",
+          "variables": "",
+          "btn_success": "Query Task",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1872,
+        "y": 1236
+      }
+    },
+    "9ea3": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1716,
+        "y": 1368
+      }
+    },
+    "1c3e": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create BIG-IQ Device Import Input",
+      "description": "Create input for device backup over BIG-IQ",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "650c60458f256f016dabc636",
+          "variableMap": {
+            "importDeviceTaskName": "$var.job.importDeviceTaskName",
+            "machineId": "$var.job.machineId"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "deviceImportInput": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 192,
+        "y": 996
+      }
+    },
+    "f580": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show BIG-IQ Error",
+      "description": "Show error result and options for next steps",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Performing Device Import Failed",
+          "message": "Failed to import the device, see error response below. Select \"Retry\" to retry call to import device or select \"End Job\" to end this job.\n",
+          "body": "$var.2947.error",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 516,
+        "y": 1236
+      }
+    },
+    "6d6e": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show BIG-IQ Error",
+      "description": "Show error result and options for next steps",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Getting Device Import Task Status Failed",
+          "message": "Failed to get task status of device import. See error response below. Select \"Retry\" to retry call to get task status of device import or select \"End Job\" to end this job.\n",
+          "body": "$var.1a74.result",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1200,
+        "y": 1236
+      }
+    },
+    "1a74": {
+      "name": "monitorImportTask",
+      "canvasName": "monitorImportTask",
+      "summary": "Get Device Import Task",
+      "description": "Get device import task status",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "F5-BIG-IQ",
+      "variables": {
+        "incoming": {
+          "deviceImportId": "$var.1d60.return_data",
+          "adapter_id": "$var.job.adapterId"
+        },
+        "outgoing": {
+          "result": "$var.job.deviceImportResult"
+        },
+        "error": "$var.job.BIGIQError"
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1200,
+        "y": 996
+      }
+    }
+  },
+  "transitions": {
+    "1692": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "2288": {
+      "9ea3": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "2947": {
+      "1d60": {
+        "state": "success",
+        "type": "standard"
+      },
+      "f580": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "8388": {
+      "15b4": {
+        "type": "standard",
+        "state": "error"
+      },
+      "1a74": {
+        "state": "success",
+        "type": "revert"
+      }
+    },
+    "workflow_start": {
+      "1c3e": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "workflow_end": {},
+    "1d60": {
+      "1a74": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "62ed": {
+      "ff7c": {
+        "type": "standard",
+        "state": "success"
+      },
+      "c704": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "ff7c": {
+      "9ea3": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "c704": {
+      "8388": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "15b4": {
+      "9ea3": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "1a74": {
+        "state": "success",
+        "type": "revert"
+      }
+    },
+    "9ea3": {
+      "1692": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "1c3e": {
+      "2947": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "f580": {
+      "2288": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "2947": {
+        "state": "success",
+        "type": "revert"
+      }
+    },
+    "6d6e": {
+      "2288": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "1a74": {
+        "state": "success",
+        "type": "revert"
+      }
+    },
+    "1a74": {
+      "62ed": {
+        "state": "success",
+        "type": "standard"
+      },
+      "6d6e": {
+        "type": "standard",
+        "state": "error"
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "_id": {
+        "title": "job_id",
+        "type": "string",
+        "examples": [
+          "test"
+        ]
+      },
+      "importDeviceTaskName": {
+        "$id": "importDeviceTaskName",
+        "type": "string"
+      },
+      "machineId": {
+        "$id": "machineId",
+        "type": "string"
+      }
+    },
+    "required": [
+      "adapterId",
+      "_id",
+      "importDeviceTaskName",
+      "machineId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "importDeviceTaskName": {
+        "$id": "importDeviceTaskName",
+        "type": "string"
+      },
+      "machineId": {
+        "$id": "machineId",
+        "type": "string"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "BIGIQError": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "deviceImportResult": {
+        "title": "result",
+        "type": "object"
+      }
+    }
+  },
+  "type": "automation",
+  "font_size": 12,
+  "lastUpdatedVersion": "5.46.0-2023.1.19.0",
+  "createdVersion": "5.46.0-2023.1.19.0",
+  "preAutomationTime": 0,
+  "sla": 0,
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "canvasVersion": 1.5,
+  "last_updated": "2023-09-21T15:40:18.925Z",
+  "created": "2023-09-21T15:13:03.753Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 2
+}

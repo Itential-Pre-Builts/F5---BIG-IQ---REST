@@ -1,0 +1,58 @@
+{
+  "iapVersions": [
+    "2023.1"
+  ],
+  "adapters": [
+    {
+      "isDependency": true,
+      "name": "adapter-f5_bigiq",
+      "overview": "Adapter that integrates with F5 BIG-IQ",
+      "webName": "F5 BIG-IQ",
+      "version": "^0.3.3",
+      "repoLink": "https://gitlab.com/itentialopensource/adapters/controller-orchestrator/adapter-f5_bigiq",
+      "webLink": "https://www.itential.com/adapters/f5-big-iq/",
+      "docLink": "https://docs.itential.com/opensource/docs/f5-big-iq?highlight=big-iq"
+    }
+  ],
+  "externalDependencyList": [
+    {
+      "name": "F5 BIG-IQ",
+      "osVersion": "8.3"
+    }
+  ],
+  "capabilities": [
+    {
+      "capability": "Upgrades F5 BIG-IP device over BIG-IQ API"
+    },
+    {
+      "capability": "Provides option to upload iHealth task before and after upgrade"
+    },
+    {
+      "capability": "Verify sufficient disk space exists on BIG-IP for upgrade"
+    }
+  ],
+  "entryPoint": {
+    "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
+    "type": "Workflow"
+  },
+  "inputs": [
+    {
+      "name": "adapterId",
+      "type": "string",
+      "required": "yes",
+      "description": "IAP adapter to use to send requests to F5 BIG-IQ for automation",
+      "exampleValue": "F5-BIG-IQ"
+    }
+  ],
+  "exampleInputsAndOutputs": [
+    {
+      "exampleInput": "{\n  \"credentialsFilterValue\": \"iHealth Account\",\n  \"credentialsFilterProperty\": \"displayName\",\n  \"machineIdFilterProperty\": \"address\",\n  \"machineIdFilterValue\": \"10.0.0.8\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupFileName\": \"device_backup.ucs\",\n  \"deviceBackupLifeTime\": 1,\n  \"deviceBackupDescription\": \"Backup over for software upgrade\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"iHealth Upload Task for Software Upgrade\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"targetVolume\": \"HD1.2\"\n}\n",
+      "exampleOutput": "{}"
+    }
+  ],
+  "queryOutput": {},
+  "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
+  "overview": "Upgrades BIG-IP device over F5 BIG-IQ",
+  "webName": "Upgrade F5 BIG-IP Device over BIG-IQ",
+  "assetType": "Workflow"
+}

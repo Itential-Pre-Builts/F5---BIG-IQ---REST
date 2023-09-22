@@ -1,0 +1,688 @@
+{
+  "name": "Create iHealth Upload Task - F5 - BIG-IQ",
+  "description": "Create iHealth upload task",
+  "tasks": {
+    "1692": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2148,
+        "y": 1368
+      }
+    },
+    "8388": {
+      "name": "reattempt",
+      "canvasName": "reattempt",
+      "summary": "Delay and Query iHealth Task Status",
+      "description": "Delay and query iHealth task status",
+      "location": "Application",
+      "locationType": null,
+      "app": "MOP",
+      "type": "automatic",
+      "displayName": "MOP",
+      "variables": {
+        "incoming": {
+          "job_id": "$var.job._id",
+          "attemptID": "queryTaskStatus",
+          "minutes": 1,
+          "attempts": 10
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1872,
+        "y": 1104
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -0.05709992486851991,
+      "y": 0.5006165228113441,
+      "nodeLocation": {
+        "x": -60,
+        "y": 996
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 0.3569682151589242,
+      "y": 0.4981549815498155,
+      "nodeLocation": {
+        "x": 2148,
+        "y": 996
+      }
+    },
+    "f70d": {
+      "name": "createBIGIPiHealthUploadTask",
+      "canvasName": "createBIGIPiHealthUploadTask",
+      "summary": "Create BIG-IP iHealth Upload Task",
+      "description": "Create BIG-IP iHealth Upload Task",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "F5-BIG-IQ",
+      "variables": {
+        "incoming": {
+          "body": "$var.2c87.iHealthTaskInput",
+          "adapter_id": "$var.job.adapterId"
+        },
+        "outgoing": {
+          "result": ""
+        },
+        "error": "$var.job.BIGIQError"
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 540,
+        "y": 996
+      }
+    },
+    "2c87": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create iHealth Upload Task Input",
+      "description": "Creates input for iHealth upload task in BIG-IQ",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "650af2719b3b3a0148b40593",
+          "variableMap": {
+            "iHealthTaskName": "$var.job.iHealthTaskName",
+            "machineId": "$var.job.machineId",
+            "credentialsId": "$var.job.credentialsId"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "iHealthTaskInput": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 204,
+        "y": 996
+      }
+    },
+    "1d60": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query iHealth Task Id",
+      "description": "Query iHealth task Id",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.id",
+          "obj": "$var.f70d.result"
+        },
+        "outgoing": {
+          "return_data": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 876,
+        "y": 996
+      }
+    },
+    "714d": {
+      "name": "queryUploadTaskStatus",
+      "canvasName": "queryUploadTaskStatus",
+      "summary": "Get iHealth Upload Task Status",
+      "description": "Get iHealth Upload Task Status",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "F5-BIG-IQ",
+      "variables": {
+        "incoming": {
+          "iHealthUploadTaskId": "$var.1d60.return_data",
+          "adapter_id": "$var.job.adapterId"
+        },
+        "outgoing": {
+          "result": "$var.job.createiHealthTaskResponse"
+        },
+        "error": "$var.job.BIGIQError"
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1212,
+        "y": 996
+      }
+    },
+    "62ed": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check If Upload Task Failed",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "714d",
+                    "variable": "result"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "FAILED"
+                  },
+                  "operator": "==",
+                  "query": "response.status",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1536,
+        "y": 996
+      }
+    },
+    "ff7c": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Failure Result",
+      "description": "Show failure result and option for next step",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed to Create iHealth Upload Task",
+          "message": "Failed to create the iHealth upload task, see error response. Select \"End Job\" to end this job.",
+          "body": "$var.714d.result",
+          "variables": "",
+          "btn_success": "End Job",
+          "btn_failure": ""
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1536,
+        "y": 1236
+      }
+    },
+    "c704": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check If Upload Task Finished",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "714d",
+                    "variable": "result"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "FINISHED"
+                  },
+                  "operator": "==",
+                  "query": "response.status",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1872,
+        "y": 996
+      }
+    },
+    "15b4": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Failure Result",
+      "description": "Show failure result and option for next step",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Number of Reattempts Exceeded",
+          "message": "The number of reattempts to query iHealth task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+          "body": "$var.714d.result",
+          "variables": "",
+          "btn_success": "Query Task",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1872,
+        "y": 1236
+      }
+    },
+    "9ea3": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1716,
+        "y": 1368
+      }
+    },
+    "9e84": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Error Result",
+      "description": "Show failure result and options for next steps",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed to Create iHealth Upload Task",
+          "message": "Failed to create the iHealth upload task, see error response. Select \"Retry\" to retry call to create iHealth upload task or select \"End Job\" to end this job.\n",
+          "body": "$var.f70d.error",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 540,
+        "y": 1236
+      }
+    },
+    "4e62": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 864,
+        "y": 1368
+      }
+    },
+    "5c4a": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Error Result",
+      "description": "Show failure result and options for next steps",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed to Get iHealth Upload Task Status",
+          "message": "Failed to get the iHealth upload task status, see error response below. Select \"Retry\" to retry call to get iHealth upload task status or select \"End Job\" to end this job.\n",
+          "body": "$var.714d.error",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1212,
+        "y": 1236
+      }
+    }
+  },
+  "transitions": {
+    "1692": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "8388": {
+      "714d": {
+        "state": "success",
+        "type": "revert"
+      },
+      "15b4": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "workflow_start": {
+      "2c87": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "workflow_end": {},
+    "f70d": {
+      "1d60": {
+        "state": "success",
+        "type": "standard"
+      },
+      "9e84": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "2c87": {
+      "f70d": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "1d60": {
+      "714d": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "714d": {
+      "62ed": {
+        "state": "success",
+        "type": "standard"
+      },
+      "5c4a": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "62ed": {
+      "ff7c": {
+        "type": "standard",
+        "state": "success"
+      },
+      "c704": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "ff7c": {
+      "9ea3": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "c704": {
+      "8388": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "15b4": {
+      "9ea3": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "714d": {
+        "state": "success",
+        "type": "revert"
+      }
+    },
+    "9ea3": {
+      "1692": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "9e84": {
+      "4e62": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "f70d": {
+        "state": "success",
+        "type": "revert"
+      }
+    },
+    "4e62": {
+      "9ea3": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "5c4a": {
+      "714d": {
+        "state": "success",
+        "type": "revert"
+      },
+      "4e62": {
+        "type": "standard",
+        "state": "failure"
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "title": "job_id",
+        "type": "string",
+        "examples": [
+          "test"
+        ]
+      },
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "iHealthTaskName": {
+        "$id": "iHealthTaskName",
+        "type": "string"
+      },
+      "machineId": {
+        "$id": "machineId",
+        "type": "string"
+      },
+      "credentialsId": {
+        "$id": "credentialsId",
+        "type": "string"
+      }
+    },
+    "required": [
+      "_id",
+      "adapterId",
+      "iHealthTaskName",
+      "machineId",
+      "credentialsId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "iHealthTaskName": {
+        "$id": "iHealthTaskName",
+        "type": "string"
+      },
+      "machineId": {
+        "$id": "machineId",
+        "type": "string"
+      },
+      "credentialsId": {
+        "$id": "credentialsId",
+        "type": "string"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "BIGIQError": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "createiHealthTaskResponse": {
+        "title": "result",
+        "type": "object"
+      }
+    }
+  },
+  "type": "automation",
+  "font_size": 12,
+  "lastUpdatedVersion": "5.46.0-2023.1.19.0",
+  "createdVersion": "5.46.0-2023.1.15.0",
+  "preAutomationTime": 0,
+  "sla": 0,
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "last_updated": "2023-09-20T20:46:50.265Z",
+  "created": "2023-09-20T13:19:21.052Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "canvasVersion": 1.5,
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 2
+}
