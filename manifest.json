@@ -1,8 +1,8 @@
 {
   "bundleName": "F5 - BIG-IQ - REST",
   "version": "0.0.1",
-  "fingerprint": "650da486cb8bed00e707d464",
-  "createdEpoch": "1695392902766",
+  "fingerprint": "650dc290163eb400c61225ac",
+  "createdEpoch": "1695400592948",
   "artifacts": [
     {
       "id": "Upgrade BIG-IP Device - F5 - BIG-IQ",
@@ -117,6 +117,15 @@
       "name": "Build BIG-IQ Device Filter",
       "type": "transformation",
       "location": "/bundles/transformations/Build BIG-IQ Device Filter.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650db9fbb5c9df0151074b02",
+      "name": "Query Machine Id and Active Volume",
+      "type": "transformation",
+      "location": "/bundles/transformations/Query Machine Id and Active Volume.json",
       "properties": {
         "entryPoint": false
       }

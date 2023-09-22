@@ -18,7 +18,7 @@
       "x": 0.3569682151589242,
       "y": 0.4981549815498155,
       "nodeLocation": {
-        "x": 1140,
+        "x": 1176,
         "y": 996
       }
     },
@@ -60,37 +60,6 @@
         "y": 996
       }
     },
-    "ead9": {
-      "name": "query",
-      "canvasName": "query",
-      "summary": "Query MachineId Data",
-      "description": "Query MachineId Data",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "pass_on_null": false,
-          "query": "response.items[0].machineId",
-          "obj": "$var.f15b.result"
-        },
-        "outgoing": {
-          "return_data": "$var.job.machineId"
-        },
-        "error": "",
-        "decorators": []
-      },
-      "groups": [],
-      "x": 0.2921760391198044,
-      "y": 0.48954489544895446,
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 888,
-        "y": 996
-      }
-    },
     "f15b": {
       "name": "getResolveMachineId",
       "canvasName": "getResolveMachineId",
@@ -121,6 +90,44 @@
         "x": 552,
         "y": 996
       }
+    },
+    "4b7d": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Query Machine Id and Active Volume",
+      "description": "Query machine Id and active volume of BIG-IP device to upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "650db9fbb5c9df0151074b02",
+          "variableMap": {
+            "foundMachine": "$var.f15b.result"
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "machineId": "$var.job.machineId",
+          "activeVolume": "$var.job.activeVolume"
+        },
+        "decorators": []
+      },
+      "groups": [],
+      "x": 0.06010518407212622,
+      "y": 0.5055487053020962,
+      "task_name": "Build Hostname Filter",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 900,
+        "y": 996
+      }
     }
   },
   "transitions": {
@@ -137,16 +144,16 @@
         "state": "success"
       }
     },
-    "ead9": {
-      "workflow_end": {
-        "type": "standard",
-        "state": "success"
+    "f15b": {
+      "4b7d": {
+        "state": "success",
+        "type": "standard"
       }
     },
-    "f15b": {
-      "ead9": {
-        "type": "standard",
-        "state": "success"
+    "4b7d": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
       }
     }
   },
@@ -206,32 +213,6 @@
       "initiator": {
         "type": "string"
       },
-      "machineId": {
-        "title": "return_data",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "object"
-          },
-          {
-            "type": "array"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "null"
-          }
-        ],
-        "examples": [
-          "value"
-        ]
-      },
       "BIGIQError": {
         "type": [
           "array",
@@ -241,13 +222,21 @@
           "object",
           "string"
         ]
+      },
+      "machineId": {
+        "$id": "machineId",
+        "type": "string"
+      },
+      "activeVolume": {
+        "$id": "activeVolume",
+        "type": "string"
       }
     }
   },
   "type": "automation",
   "font_size": 12,
-  "last_updated": "2023-09-20T05:07:02.863Z",
-  "lastUpdatedVersion": "5.46.0-2023.1.15.0",
+  "last_updated": "2023-09-22T16:04:40.174Z",
+  "lastUpdatedVersion": "5.46.0-2023.1.19.0",
   "created": "2023-07-19T20:20:09.772Z",
   "createdVersion": "5.40.5-2021.1.72.0",
   "preAutomationTime": 0,

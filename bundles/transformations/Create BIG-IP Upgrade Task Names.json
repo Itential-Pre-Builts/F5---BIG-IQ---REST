@@ -11,7 +11,15 @@
       ]
     },
     {
-      "$id": "machineIdFilterValue",
+      "$id": "deviceManagementAddress",
+      "type": "string"
+    },
+    {
+      "$id": "deviceManagementPort",
+      "type": "string"
+    },
+    {
+      "$id": "deviceManagementHostname",
       "type": "string"
     }
   ],
@@ -37,21 +45,6 @@
   ],
   "steps": [
     {
-      "id": 1,
-      "type": "template",
-      "library": "String",
-      "method": "templateLiteral",
-      "template": "${iHealthTaskName}-Pre-Upgrade",
-      "args": [
-        null
-      ],
-      "view": {
-        "row": 1,
-        "col": 1
-      },
-      "context": "#"
-    },
-    {
       "id": 2,
       "type": "assign",
       "from": {
@@ -63,6 +56,96 @@
         "location": "template",
         "name": 1,
         "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "iHealthTaskName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 3,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceManagementAddress",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 7,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceManagementPort",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 7,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceManagementHostname",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 12,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 20,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceManagementHostname",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 19,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "${iHealthTaskName}-Pre-Upgrade",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
       },
       "context": "#"
     },
@@ -82,17 +165,138 @@
       "context": "#"
     },
     {
-      "id": 4,
+      "id": 12,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "https://${deviceManagementHostname}/tmui/Control/jspmap/tmui/system/licensing/license.jsp?",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 19,
+      "type": "method",
+      "library": "String",
+      "method": "length",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "https://${deviceManagementAddress}:${deviceManagementPort}/tmui/Control/jspmap/tmui/system/licensing/license.jsp?",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 21,
       "type": "assign",
       "from": {
-        "location": "incoming",
-        "name": "iHealthTaskName",
-        "ptr": ""
+        "location": "method",
+        "name": 19,
+        "ptr": "/return"
       },
       "to": {
-        "location": "template",
-        "name": 3,
+        "location": "method",
+        "name": 15,
         "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 23,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 12,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 14,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 15,
+      "type": "method",
+      "library": "Equality",
+      "method": "equality",
+      "args": [
+        null,
+        0
+      ],
+      "view": {
+        "row": 3,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 22,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 7,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 14,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 17,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 15,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 14,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 14,
+      "type": "method",
+      "library": "Conditional",
+      "method": "ternary",
+      "args": [
+        null,
+        null,
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 4
       },
       "context": "#"
     },
@@ -127,41 +331,11 @@
       "context": "#"
     },
     {
-      "id": 7,
-      "type": "template",
-      "library": "String",
-      "method": "templateLiteral",
-      "template": "https://${machineIdFilterValue}:8443/tmui/Control/jspmap/tmui/system/licensing/license.jsp?",
-      "args": [
-        null
-      ],
-      "view": {
-        "row": 3,
-        "col": 1
-      },
-      "context": "#"
-    },
-    {
-      "id": 8,
+      "id": 24,
       "type": "assign",
       "from": {
-        "location": "incoming",
-        "name": "machineIdFilterValue",
-        "ptr": ""
-      },
-      "to": {
-        "location": "template",
-        "name": 7,
-        "ptr": "/args/0/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 9,
-      "type": "assign",
-      "from": {
-        "location": "template",
-        "name": 7,
+        "location": "method",
+        "name": 14,
         "ptr": "/return"
       },
       "to": {
@@ -175,7 +349,7 @@
   "functions": [],
   "comments": [],
   "view": {
-    "col": 2,
+    "col": 4,
     "row": 5
   },
   "created": "2023-09-21T16:16:43.326Z",
@@ -184,7 +358,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2023-09-21T16:22:20.210Z",
+  "lastUpdated": "2023-09-22T16:23:54.961Z",
   "lastUpdatedBy": {
     "_id": "6463eeecee404876a5626a1a",
     "provenance": "local_aaa",

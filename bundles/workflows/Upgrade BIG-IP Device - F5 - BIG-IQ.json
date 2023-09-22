@@ -24,7 +24,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -324,
+        "x": -660,
         "y": -24
       }
     },
@@ -67,11 +67,38 @@
         "y": -24
       }
     },
+    "8570": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Skip iHealth Task Upload",
+      "description": "Skip iHealth task upload pre upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 960,
+        "y": -156
+      }
+    },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
       "nodeLocation": {
-        "x": -1212,
+        "x": -1848,
         "y": -24
       },
       "x": 0,
@@ -81,7 +108,7 @@
       "name": "workflow_end",
       "groups": [],
       "nodeLocation": {
-        "x": 3696,
+        "x": 4056,
         "y": -24
       },
       "x": 1,
@@ -126,7 +153,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": -636,
+        "x": -1272,
         "y": -24
       }
     },
@@ -400,7 +427,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 2808,
+        "x": 3156,
         "y": -24
       }
     },
@@ -443,7 +470,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 3120,
+        "x": 3480,
         "y": -24
       }
     },
@@ -490,7 +517,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 3444,
+        "x": 3804,
         "y": -24
       }
     },
@@ -509,7 +536,9 @@
           "tr_id": "650c6c6b8f256f016dabc637",
           "variableMap": {
             "iHealthTaskName": "$var.job.iHealthTaskName",
-            "machineIdFilterValue": "$var.job.machineIdFilterValue"
+            "deviceManagementAddress": "$var.job.deviceManagementAddress",
+            "deviceManagementPort": "$var.job.deviceManagementPort",
+            "deviceManagementHostname": "$var.job.deviceManagementHostname"
           },
           "options": {
             "extractOutput": false,
@@ -527,7 +556,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -960,
+        "x": -1596,
         "y": -24
       }
     },
@@ -581,7 +610,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 3696,
+        "x": 4056,
         "y": 216
       }
     },
@@ -755,8 +784,8 @@
               "value": "targetVolume"
             },
             "activeVolume": {
-              "task": "job",
-              "value": "activeVolume"
+              "task": "9e07",
+              "value": "return_data"
             },
             "machineId": {
               "task": "3166",
@@ -777,17 +806,194 @@
         "x": 2508,
         "y": -24
       }
+    },
+    "5b34": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check if Uploading iHealth Task Pre Upgrade",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "job",
+                    "variable": "uploadiHealthTask"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": true
+                  },
+                  "operator": "==",
+                  "query": "",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -336,
+        "y": -24
+      }
+    },
+    "61e8": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Skip iHealth Task Upload",
+      "description": "Skip iHealth task upload pre upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -336,
+        "y": -156
+      }
+    },
+    "a58e": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Skip iHealth Task Upload",
+      "description": "Skip iHealth task upload post upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3156,
+        "y": -144
+      }
+    },
+    "91c6": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check if Uploading iHealth Task Post Upgrade",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "job",
+                    "variable": "uploadiHealthTask"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": true
+                  },
+                  "operator": "==",
+                  "query": "",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2832,
+        "y": -24
+      }
+    },
+    "9e07": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Active Volume",
+      "description": "Query active volume of BIG-IP device to upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "activeVolume",
+          "obj": "$var.035d.job_details"
+        },
+        "outgoing": {
+          "return_data": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -966,
+        "y": -24
+      }
     }
   },
   "transitions": {
     "3166": {
-      "6737": {
+      "5b34": {
         "state": "success",
         "type": "standard"
       }
     },
     "6737": {
       "2d47": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "8570": {
+      "ffd2": {
         "state": "success",
         "type": "standard"
       }
@@ -800,7 +1006,7 @@
     },
     "workflow_end": {},
     "035d": {
-      "3166": {
+      "9e07": {
         "state": "success",
         "type": "standard"
       }
@@ -908,7 +1114,45 @@
       }
     },
     "9bcd": {
+      "91c6": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "5b34": {
+      "6737": {
+        "state": "success",
+        "type": "standard"
+      },
+      "61e8": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "61e8": {
+      "8570": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "a58e": {
+      "d2d0": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "91c6": {
+      "a58e": {
+        "state": "failure",
+        "type": "standard"
+      },
       "935a": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "9e07": {
+      "3166": {
         "state": "success",
         "type": "standard"
       }
@@ -969,6 +1213,18 @@
           "iHealthTaskName"
         ]
       },
+      "deviceManagementAddress": {
+        "$id": "deviceManagementAddress",
+        "type": "string"
+      },
+      "deviceManagementPort": {
+        "$id": "deviceManagementPort",
+        "type": "string"
+      },
+      "deviceManagementHostname": {
+        "$id": "deviceManagementHostname",
+        "type": "string"
+      },
       "softwareUpgradeTaskName": {
         "$id": "softwareUpgradeTaskName",
         "type": "string"
@@ -981,9 +1237,15 @@
         "$id": "targetVolume",
         "type": "string"
       },
-      "activeVolume": {
-        "$id": "activeVolume",
-        "type": "string"
+      "uploadiHealthTask": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
       }
     },
     "required": [
@@ -997,10 +1259,13 @@
       "deviceBackupDescription",
       "importDeviceTaskName",
       "iHealthTaskName",
+      "deviceManagementAddress",
+      "deviceManagementPort",
+      "deviceManagementHostname",
       "softwareUpgradeTaskName",
       "softwareImageName",
       "targetVolume",
-      "activeVolume"
+      "uploadiHealthTask"
     ]
   },
   "outputSchema": {
@@ -1058,6 +1323,18 @@
           "iHealthTaskName"
         ]
       },
+      "deviceManagementAddress": {
+        "$id": "deviceManagementAddress",
+        "type": "string"
+      },
+      "deviceManagementPort": {
+        "$id": "deviceManagementPort",
+        "type": "string"
+      },
+      "deviceManagementHostname": {
+        "$id": "deviceManagementHostname",
+        "type": "string"
+      },
       "softwareUpgradeTaskName": {
         "$id": "softwareUpgradeTaskName",
         "type": "string"
@@ -1070,9 +1347,15 @@
         "$id": "targetVolume",
         "type": "string"
       },
-      "activeVolume": {
-        "$id": "activeVolume",
-        "type": "string"
+      "uploadiHealthTask": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
       },
       "_id": {
         "type": "string",
@@ -1089,7 +1372,7 @@
   "errorHandler": null,
   "preAutomationTime": 0,
   "sla": 0,
-  "last_updated": "2023-09-21T20:48:16.081Z",
+  "last_updated": "2023-09-22T16:24:40.266Z",
   "lastUpdatedVersion": "5.46.0-2023.1.19.0",
   "created": "2023-09-20T17:55:55.770Z",
   "created_by": {

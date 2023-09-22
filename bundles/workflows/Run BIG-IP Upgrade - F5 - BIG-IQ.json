@@ -330,8 +330,7 @@
         "outgoing": {
           "softwareUpgradeInput": null
         },
-        "decorators": [],
-        "error": null
+        "decorators": []
       },
       "actor": "Pronghorn",
       "groups": [],
