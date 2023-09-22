@@ -215,11 +215,11 @@
       "variables": {
         "incoming": {
           "header": "Backup Device Task Failed",
-          "message": "Failed to backup the device, see error response below. Select \"End Job\" to end this job.\n",
+          "message": "Failed to backup the device, see error response below. Select \"Retry Task\" to retry backup of device or select \"End Job\" to end this job.\n\n",
           "body": "$var.4687.result",
           "variables": "",
-          "btn_success": "End Job",
-          "btn_failure": ""
+          "btn_success": "Retry Task",
+          "btn_failure": "End Job"
         },
         "outgoing": {}
       },
@@ -506,8 +506,12 @@
     },
     "ff7c": {
       "9ea3": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "7edb": {
         "state": "success",
-        "type": "standard"
+        "type": "revert"
       }
     },
     "c704": {
@@ -689,7 +693,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-20T20:45:15.315Z",
+  "last_updated": "2023-09-22T17:13:35.461Z",
   "created": "2023-09-20T14:28:07.192Z",
   "last_updated_by": {
     "provenance": "local_aaa",

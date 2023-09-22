@@ -97,7 +97,7 @@
           "job_id": "$var.job._id",
           "attemptID": "queryTaskStatus",
           "minutes": 1,
-          "attempts": 10
+          "attempts": 60
         },
         "outgoing": {
           "response": ""
@@ -187,11 +187,11 @@
       "variables": {
         "incoming": {
           "header": "Software Upgrade Task Failed",
-          "message": "Failed software upgrade, see error response below. Select \"End Job\" to end this job.\n",
+          "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or select \"End Job\" to end this job.\n\n",
           "body": "$var.a421.currentSoftwareUpgradeTask",
           "variables": "",
-          "btn_success": "End Job",
-          "btn_failure": ""
+          "btn_success": "Retry Upgrade",
+          "btn_failure": "End Job"
         },
         "outgoing": {}
       },
@@ -508,8 +508,12 @@
     },
     "ff7c": {
       "9ea3": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "a073": {
         "state": "success",
-        "type": "standard"
+        "type": "revert"
       }
     },
     "c704": {
@@ -703,7 +707,7 @@
     "inactive": false
   },
   "canvasVersion": 1.5,
-  "last_updated": "2023-09-21T21:15:14.611Z",
+  "last_updated": "2023-09-22T17:16:39.329Z",
   "created": "2023-09-21T16:30:45.577Z",
   "last_updated_by": {
     "provenance": "local_aaa",

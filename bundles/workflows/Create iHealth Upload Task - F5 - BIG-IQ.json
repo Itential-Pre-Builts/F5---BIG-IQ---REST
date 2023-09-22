@@ -251,11 +251,11 @@
       "variables": {
         "incoming": {
           "header": "Failed to Create iHealth Upload Task",
-          "message": "Failed to create the iHealth upload task, see error response. Select \"End Job\" to end this job.",
+          "message": "Failed to create the iHealth upload task, see error response. Select \"Retry Task\" to retry uploading iHealth Task or select \"End Job\" to end this job.",
           "body": "$var.714d.result",
           "variables": "",
-          "btn_success": "End Job",
-          "btn_failure": ""
+          "btn_success": "Retry Task",
+          "btn_failure": "End Job"
         },
         "outgoing": {}
       },
@@ -515,8 +515,12 @@
     },
     "ff7c": {
       "9ea3": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "f70d": {
         "state": "success",
-        "type": "standard"
+        "type": "revert"
       }
     },
     "c704": {
@@ -673,7 +677,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-20T20:46:50.265Z",
+  "last_updated": "2023-09-22T17:12:03.935Z",
   "created": "2023-09-20T13:19:21.052Z",
   "last_updated_by": {
     "provenance": "local_aaa",
