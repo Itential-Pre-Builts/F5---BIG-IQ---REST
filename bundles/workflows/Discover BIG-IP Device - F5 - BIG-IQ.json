@@ -188,11 +188,11 @@
       "variables": {
         "incoming": {
           "header": "Device Discovery Task Failed",
-          "message": "Failed device discovery, see error response below. Select \"End Job\" to end this job.\n",
-          "body": "$var.62ed.return_value",
+          "message": "Failed device discovery, see error response below. Select \"Retry Task\" to retry discovering device or select \"End Job\" to end this job.\n",
+          "body": "$var.6a9b.result",
           "variables": "",
-          "btn_success": "End Job",
-          "btn_failure": ""
+          "btn_success": "Retry Task",
+          "btn_failure": "End Job"
         },
         "outgoing": {}
       },
@@ -493,8 +493,12 @@
     },
     "ff7c": {
       "9ea3": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "0267": {
         "state": "success",
-        "type": "standard"
+        "type": "revert"
       }
     },
     "c704": {
@@ -654,7 +658,7 @@
     "inactive": false
   },
   "canvasVersion": 1.5,
-  "last_updated": "2023-09-21T16:01:46.279Z",
+  "last_updated": "2023-09-22T17:12:28.015Z",
   "created": "2023-09-21T14:50:23.517Z",
   "last_updated_by": {
     "provenance": "local_aaa",

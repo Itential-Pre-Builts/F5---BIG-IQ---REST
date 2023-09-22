@@ -215,11 +215,11 @@
       "variables": {
         "incoming": {
           "header": "Device Import Task Failed",
-          "message": "Failed device import, see error response below. Select \"End Job\" to end this job.\n",
+          "message": "Failed device import, see error response below. Select \"Retry Task\" to retry importing device or select \"End Job\" to end this job.\n",
           "body": "$var.1a74.result",
           "variables": "",
-          "btn_success": "End Job",
-          "btn_failure": ""
+          "btn_success": "Retry Task",
+          "btn_failure": "End Job"
         },
         "outgoing": {}
       },
@@ -503,9 +503,13 @@
       }
     },
     "ff7c": {
-      "9ea3": {
+      "2947": {
         "state": "success",
-        "type": "standard"
+        "type": "revert"
+      },
+      "9ea3": {
+        "type": "standard",
+        "state": "failure"
       }
     },
     "c704": {
@@ -664,7 +668,7 @@
     "inactive": false
   },
   "canvasVersion": 1.5,
-  "last_updated": "2023-09-21T15:40:18.925Z",
+  "last_updated": "2023-09-22T17:17:49.042Z",
   "created": "2023-09-21T15:13:03.753Z",
   "last_updated_by": {
     "provenance": "local_aaa",

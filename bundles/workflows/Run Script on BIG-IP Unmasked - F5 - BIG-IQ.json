@@ -134,11 +134,11 @@
       "variables": {
         "incoming": {
           "header": "Failure Running Script",
-          "message": "Failed to run script, see error response. Select \"End Job\" to end this job.",
+          "message": "Failed to run script, see error response. Select \"Retry Script\" to retry executing script or select \"End Job\" to end this job.\n\n",
           "body": "$var.6b06.result",
           "variables": "",
-          "btn_success": "End Job",
-          "btn_failure": ""
+          "btn_success": "Retry  Script",
+          "btn_failure": "End Job"
         },
         "outgoing": {}
       },
@@ -612,8 +612,12 @@
     },
     "ff7c": {
       "9ea3": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "2e0e": {
         "state": "success",
-        "type": "standard"
+        "type": "revert"
       }
     },
     "c704": {
@@ -899,7 +903,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-20T20:47:51.603Z",
+  "last_updated": "2023-09-22T17:15:05.601Z",
   "created": "2023-09-20T16:53:15.851Z",
   "last_updated_by": {
     "provenance": "local_aaa",
