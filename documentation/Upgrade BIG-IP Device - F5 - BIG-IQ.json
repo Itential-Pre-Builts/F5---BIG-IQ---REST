@@ -37,11 +37,123 @@
   },
   "inputs": [
     {
+      "name": "credentialsFilterValue",
+      "type": "string",
+      "required": "yes",
+      "description": "Value to use to search for credential used in iHealth task upload. If not performing iHealth task upload, assign value `\"\"`",
+      "exampleValue": "iHealth Credential Name"
+    },
+    {
+      "name": "credentialsFilterProperty",
+      "type": "string",
+      "required": "yes",
+      "description": "Property to use to search for credential used in iHealth task upload. If not performing iHealth task upload, assign value `\"\"`",
+      "exampleValue": "displayName"
+    },
+    {
+      "name": "machineIdFilterValue",
+      "type": "string",
+      "required": "yes",
+      "description": "The value to use to search for BIG-IP machine Id",
+      "exampleValue": "123.1.2.3"
+    },
+    {
+      "name": "machineIdFilterProperty",
+      "type": "string",
+      "required": "yes",
+      "description": "The property to use to search for BIG-IP machine ID",
+      "exampleValue": "address"
+    },
+    {
       "name": "adapterId",
       "type": "string",
       "required": "yes",
       "description": "IAP adapter to use to send requests to F5 BIG-IQ for automation",
       "exampleValue": "F5-BIG-IQ"
+    },
+    {
+      "name": "deviceBackupFileName",
+      "type": "string",
+      "required": "yes",
+      "description": "The name of the file for the device backup and can be used if need to rollback or recover from issue in device upgrade",
+      "exampleValue": "device_backup1.ucs"
+    },
+    {
+      "name": "deviceBackupLifeTime",
+      "type": "number",
+      "required": "yes",
+      "description": "The number of days to keep backup file on BIG-IQ",
+      "exampleValue": 30
+    },
+    {
+      "name": "deviceBackupDescription",
+      "type": "string",
+      "required": "yes",
+      "description": "Description to associate with device file backup",
+      "exampleValue": "Backup device before software upgrade"
+    },
+    {
+      "name": "importDeviceTaskName",
+      "type": "string",
+      "required": "yes",
+      "description": "Name of task for importing device to BIG-IQ",
+      "exampleValue": "Rediscover adc_core"
+    },
+    {
+      "name": "iHealthTaskName",
+      "type": "string",
+      "required": "yes",
+      "description": "The name to give to iHealth task name",
+      "exampleValue": "Upload Task for Software Upgrade"
+    },
+    {
+      "name": "deviceManagementAddress",
+      "type": "string",
+      "required": "yes",
+      "description": "IP address of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as `\"\"`",
+      "exampleValue": "1.2.3.4"
+    },
+    {
+      "name": "deviceManagementPort",
+      "type": "string",
+      "required": "yes",
+      "description": "Port of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as `\"\"`",
+      "exampleValue": "443"
+    },
+    {
+      "name": "deviceManagementHostname",
+      "type": "string",
+      "required": "yes",
+      "description": "Hostname of BIG-IP for license re-activation. If using deviceManagementAddress and deviceManagementPort for license re-activation, leave this value empty as `\"\"`",
+      "exampleValue": "device_hostname"
+    },
+    {
+      "name": "softwareUpgradeTaskName",
+      "type": "string",
+      "required": "yes",
+      "description": "Name of task for software upgrade",
+      "exampleValue": "Upgrade BIG-IP"
+    },
+    {
+      "name": "softwareImageName",
+      "type": "string",
+      "required": "yes",
+      "description": "Image on BIG-IQ to use for software upgrade",
+      "exampleValue": "BIGIP-14.1.5.4-0.0.2.iso"
+    },
+    {
+      "name": "targetVolume",
+      "type": "string",
+      "required": "yes",
+      "description": "Target volume on BIG-IP device to use for upgrade",
+      "exampleValue": "HD1.2"
+    },
+    {
+      "name": "uploadiHealthTask",
+      "type": "boolean",
+      "required": "yes",
+      "description": "Value used to determine whether or not to do iHealth upload. If `true`, performs iHealth upload before and after upgrade and if `false`, skips both iHealth upload steps.",
+      "exampleValue": true
     }
   ],
   "exampleInputsAndOutputs": [
