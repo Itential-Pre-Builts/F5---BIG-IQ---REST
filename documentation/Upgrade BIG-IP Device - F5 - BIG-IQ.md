@@ -133,6 +133,68 @@ The following table lists the inputs to the Workflow Project:
   </thead>
   <tbody>
     <tr>
+      <td>deviceAData</td>
+      <td>object</td>
+      <td>yes</td>
+      <td>Set of values for device A in HA pair to upgrade</td>
+      <td><pre lang="json">{
+  "deviceManagementAddress": "1.2.3.4",
+  "deviceManagementPort": "443",
+  "deviceManagementHostname": "",
+  "machineIdFilterProperty": "address",
+  "machineIdFilterValue": "5.6.7.8",
+  "targetVolume": "HD1.2"
+}</pre></td>
+    </tr>    <tr>
+      <td>deviceBData</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>Set of values for device A in HA pair to upgrade. If no second device, leave values as empty string</td>
+      <td><pre lang="json">{
+  "deviceManagementAddress": "",
+  "deviceManagementPort": "",
+  "deviceManagementHostname": "hostname",
+  "machineIdFilterProperty": "address",
+  "machineIdFilterValue": "9.8.7.6",
+  "targetVolume": "HD1.3"
+}</pre></td>
+    </tr>    <tr>
+      <td>deviceAData.deviceManagementAddress</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>IP address of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as ""</td>
+      <td><pre lang="json">1.2.3.4</pre></td>
+    </tr>    <tr>
+      <td>deviceAData.deviceManagementPort</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>Port of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as ""</td>
+      <td><pre lang="json">443</pre></td>
+    </tr>    <tr>
+      <td>deviceAData.deviceManagementHostname</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>Hostname of BIG-IP for license re-activation. If using deviceManagementAddress and deviceManagementPort for license re-activation, leave this value empty as ""</td>
+      <td><pre lang="json">device_hostname</pre></td>
+    </tr>    <tr>
+      <td>deviceAData.machineIdFilterProperty</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>The property to use to search for BIG-IP machine ID</td>
+      <td><pre lang="json">address</pre></td>
+    </tr>    <tr>
+      <td>deviceAData.machineIdFilterValue</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>The value to use to search for BIG-IP machine Id</td>
+      <td><pre lang="json">1.2.3.4</pre></td>
+    </tr>    <tr>
+      <td>deviceAData.targetVolume</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>Target volume on BIG-IP device to use for upgrade</td>
+      <td><pre lang="json">HD1.2</pre></td>
+    </tr>    <tr>
       <td>credentialsFilterValue</td>
       <td>string</td>
       <td>yes</td>
@@ -145,29 +207,11 @@ The following table lists the inputs to the Workflow Project:
       <td>Property to use to search for credential used in iHealth task upload. If not performing iHealth task upload, assign value ""</td>
       <td><pre lang="json">displayName</pre></td>
     </tr>    <tr>
-      <td>machineIdFilterValue</td>
-      <td>string</td>
-      <td>yes</td>
-      <td>The value to use to search for BIG-IP machine Id</td>
-      <td><pre lang="json">123.1.2.3</pre></td>
-    </tr>    <tr>
-      <td>machineIdFilterProperty</td>
-      <td>string</td>
-      <td>yes</td>
-      <td>The property to use to search for BIG-IP machine ID</td>
-      <td><pre lang="json">address</pre></td>
-    </tr>    <tr>
       <td>adapterId</td>
       <td>string</td>
       <td>yes</td>
       <td>IAP adapter to use to send requests to F5 BIG-IQ for automation</td>
       <td><pre lang="json">F5-BIG-IQ</pre></td>
-    </tr>    <tr>
-      <td>deviceBackupFileName</td>
-      <td>string</td>
-      <td>yes</td>
-      <td>The name of the file for the device backup and can be used if need to rollback or recover from issue in device upgrade</td>
-      <td><pre lang="json">device_backup1.ucs</pre></td>
     </tr>    <tr>
       <td>deviceBackupLifeTime</td>
       <td>number</td>
@@ -181,35 +225,17 @@ The following table lists the inputs to the Workflow Project:
       <td>Description to associate with device file backup</td>
       <td><pre lang="json">Backup device before software upgrade</pre></td>
     </tr>    <tr>
-      <td>importDeviceTaskName</td>
-      <td>string</td>
-      <td>yes</td>
-      <td>Name of task for importing device to BIG-IQ</td>
-      <td><pre lang="json">Rediscover adc_core</pre></td>
-    </tr>    <tr>
       <td>iHealthTaskName</td>
       <td>string</td>
       <td>yes</td>
       <td>The name to give to iHealth task name</td>
       <td><pre lang="json">Upload Task for Software Upgrade</pre></td>
     </tr>    <tr>
-      <td>deviceManagementAddress</td>
+      <td>importDeviceTaskName</td>
       <td>string</td>
       <td>yes</td>
-      <td>IP address of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as ""</td>
-      <td><pre lang="json">1.2.3.4</pre></td>
-    </tr>    <tr>
-      <td>deviceManagementPort</td>
-      <td>string</td>
-      <td>yes</td>
-      <td>Port of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as ""</td>
-      <td><pre lang="json">443</pre></td>
-    </tr>    <tr>
-      <td>deviceManagementHostname</td>
-      <td>string</td>
-      <td>yes</td>
-      <td>Hostname of BIG-IP for license re-activation. If using deviceManagementAddress and deviceManagementPort for license re-activation, leave this value empty as ""</td>
-      <td><pre lang="json">device_hostname</pre></td>
+      <td>Name of task for importing device to BIG-IQ</td>
+      <td><pre lang="json">Rediscover adc_core</pre></td>
     </tr>    <tr>
       <td>softwareUpgradeTaskName</td>
       <td>string</td>
@@ -222,12 +248,6 @@ The following table lists the inputs to the Workflow Project:
       <td>yes</td>
       <td>Image on BIG-IQ to use for software upgrade</td>
       <td><pre lang="json">BIGIP-14.1.5.4-0.0.2.iso</pre></td>
-    </tr>    <tr>
-      <td>targetVolume</td>
-      <td>string</td>
-      <td>yes</td>
-      <td>Target volume on BIG-IP device to use for upgrade</td>
-      <td><pre lang="json">HD1.2</pre></td>
     </tr>    <tr>
       <td>uploadiHealthTask</td>
       <td>boolean</td>
@@ -255,21 +275,73 @@ There are no outputs for this Workflow Project.
     
 Input:
 <pre>{
-  "credentialsFilterValue": "iHealth Account",
-  "credentialsFilterProperty": "displayName",
-  "machineIdFilterProperty": "address",
-  "machineIdFilterValue": "10.0.0.8",
-  "adapterId": "F5-BIG-IQ",
-  "deviceBackupFileName": "device_backup.ucs",
-  "deviceBackupLifeTime": 1,
-  "deviceBackupDescription": "Backup over for software upgrade",
-  "importDeviceTaskName": "Rediscover adc_core",
-  "iHealthTaskName": "iHealth Upload Task for Software Upgrade",
-  "softwareUpgradeTaskName": "Upgrade-BIG-IP",
+  "deviceAData": {
+    "deviceManagementAddress": "1.2.3.4",
+    "deviceManagementPort": "443",
+    "deviceManagementHostname": "",
+    "machineIdFilterProperty": "address",
+    "machineIdFilterValue": "5.6.7.8",
+    "targetVolume": "HD1.2"
+  },
+  "deviceBData": {
+    "deviceManagementAddress": "",
+    "deviceManagementPort": "",
+    "deviceManagementHostname": "hostname",
+    "machineIdFilterProperty": "address",
+    "machineIdFilterValue": "9.8.7.6",
+    "targetVolume": "HD1.3"
+  },
   "softwareImageName": "BIGIP-14.1.5.5-0.0.2.iso",
-  "targetVolume": "HD1.2"
-}
- </pre>
+  "softwareUpgradeTaskName": "Upgrade-BIG-IP",
+  "credentialsFilterValue": "iHealth Name",
+  "credentialsFilterProperty": "displayName",
+  "adapterId": "F5-BIG-IQ",
+  "deviceBackupLifeTime": 30,
+  "deviceBackupDescription": "Backup Device",
+  "importDeviceTaskName": "Rediscover adc_core",
+  "iHealthTaskName": "Upload iHealth task",
+  "uploadiHealthTask": true
+} </pre>
+
+    
+    
+Output:
+<pre>{} </pre>
+
+    
+  
+#### Example 2
+
+    
+Input:
+<pre>{
+  "deviceAData": {
+    "deviceManagementAddress": "1.2.3.4",
+    "deviceManagementPort": "443",
+    "deviceManagementHostname": "",
+    "machineIdFilterProperty": "address",
+    "machineIdFilterValue": "5.6.7.8",
+    "targetVolume": "HD1.2"
+  },
+  "deviceBData": {
+    "deviceManagementAddress": "",
+    "deviceManagementPort": "",
+    "deviceManagementHostname": "",
+    "machineIdFilterProperty": "",
+    "machineIdFilterValue": "",
+    "targetVolume": ""
+  },
+  "softwareImageName": "BIGIP-14.1.5.5-0.0.2.iso",
+  "softwareUpgradeTaskName": "Upgrade-BIG-IP",
+  "credentialsFilterValue": "",
+  "credentialsFilterProperty": "",
+  "adapterId": "F5-BIG-IQ",
+  "deviceBackupLifeTime": 30,
+  "deviceBackupDescription": "Backup Device",
+  "importDeviceTaskName": "Rediscover adc_core",
+  "iHealthTaskName": "",
+  "uploadiHealthTask": false
+} </pre>
 
     
     
