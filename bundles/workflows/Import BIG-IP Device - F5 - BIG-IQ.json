@@ -588,13 +588,6 @@
           "string"
         ]
       },
-      "_id": {
-        "title": "job_id",
-        "type": "string",
-        "examples": [
-          "test"
-        ]
-      },
       "importDeviceTaskName": {
         "$id": "importDeviceTaskName",
         "type": "string"
@@ -606,7 +599,6 @@
     },
     "required": [
       "adapterId",
-      "_id",
       "importDeviceTaskName",
       "machineId"
     ]
@@ -623,10 +615,6 @@
           "object",
           "string"
         ]
-      },
-      "_id": {
-        "type": "string",
-        "pattern": "^[0-9a-f]{24}$"
       },
       "importDeviceTaskName": {
         "$id": "importDeviceTaskName",
@@ -667,8 +655,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "canvasVersion": 1.5,
-  "last_updated": "2023-09-22T17:17:49.042Z",
+  "last_updated": "2023-09-25T13:41:30.073Z",
   "created": "2023-09-21T15:13:03.753Z",
   "last_updated_by": {
     "provenance": "local_aaa",
@@ -676,6 +663,7 @@
     "firstname": "admin",
     "inactive": false
   },
+  "canvasVersion": 1.5,
   "tags": [],
   "groups": [],
   "migrationVersion": 2

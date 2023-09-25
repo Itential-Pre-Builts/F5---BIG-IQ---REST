@@ -37,6 +37,62 @@
   },
   "inputs": [
     {
+      "name": "deviceAData",
+      "type": "object",
+      "required": "yes",
+      "description": "Set of values for device A in HA pair to upgrade",
+      "exampleValue": "{     \"deviceManagementAddress\": \"1.2.3.4\",     \"deviceManagementPort\": \"443\",     \"deviceManagementHostname\": \"\",     \"machineIdFilterProperty\": \"address\",     \"machineIdFilterValue\": \"5.6.7.8\",     \"targetVolume\": \"HD1.2\"   }"
+    },
+    {
+      "name": "deviceBData",
+      "type": "string",
+      "required": "yes",
+      "description": "Set of values for device A in HA pair to upgrade. If no second device, leave values as empty string",
+      "exampleValue": "{     \"deviceManagementAddress\": \"\",     \"deviceManagementPort\": \"\",     \"deviceManagementHostname\": \"hostname\",     \"machineIdFilterProperty\": \"address\",     \"machineIdFilterValue\": \"9.8.7.6\",     \"targetVolume\": \"HD1.3\"   }"
+    },
+    {
+      "name": "deviceAData.deviceManagementAddress",
+      "type": "string",
+      "required": "yes",
+      "description": "IP address of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as \"\"",
+      "exampleValue": "1.2.3.4"
+    },
+    {
+      "name": "deviceAData.deviceManagementPort",
+      "type": "string",
+      "required": "yes",
+      "description": "Port of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as \"\"",
+      "exampleValue": "443"
+    },
+    {
+      "name": "deviceAData.deviceManagementHostname",
+      "type": "string",
+      "required": "yes",
+      "description": "Hostname of BIG-IP for license re-activation. If using deviceManagementAddress and deviceManagementPort for license re-activation, leave this value empty as \"\"",
+      "exampleValue": "device_hostname"
+    },
+    {
+      "name": "deviceAData.machineIdFilterProperty",
+      "type": "string",
+      "required": "yes",
+      "description": "The property to use to search for BIG-IP machine ID",
+      "exampleValue": "address"
+    },
+    {
+      "name": "deviceAData.machineIdFilterValue",
+      "type": "string",
+      "required": "yes",
+      "description": "The value to use to search for BIG-IP machine Id",
+      "exampleValue": "1.2.3.4"
+    },
+    {
+      "name": "deviceAData.targetVolume",
+      "type": "string",
+      "required": "yes",
+      "description": "Target volume on BIG-IP device to use for upgrade",
+      "exampleValue": "HD1.2"
+    },
+    {
       "name": "credentialsFilterValue",
       "type": "string",
       "required": "yes",
@@ -51,32 +107,11 @@
       "exampleValue": "displayName"
     },
     {
-      "name": "machineIdFilterValue",
-      "type": "string",
-      "required": "yes",
-      "description": "The value to use to search for BIG-IP machine Id",
-      "exampleValue": "123.1.2.3"
-    },
-    {
-      "name": "machineIdFilterProperty",
-      "type": "string",
-      "required": "yes",
-      "description": "The property to use to search for BIG-IP machine ID",
-      "exampleValue": "address"
-    },
-    {
       "name": "adapterId",
       "type": "string",
       "required": "yes",
       "description": "IAP adapter to use to send requests to F5 BIG-IQ for automation",
       "exampleValue": "F5-BIG-IQ"
-    },
-    {
-      "name": "deviceBackupFileName",
-      "type": "string",
-      "required": "yes",
-      "description": "The name of the file for the device backup and can be used if need to rollback or recover from issue in device upgrade",
-      "exampleValue": "device_backup1.ucs"
     },
     {
       "name": "deviceBackupLifeTime",
@@ -93,13 +128,6 @@
       "exampleValue": "Backup device before software upgrade"
     },
     {
-      "name": "importDeviceTaskName",
-      "type": "string",
-      "required": "yes",
-      "description": "Name of task for importing device to BIG-IQ",
-      "exampleValue": "Rediscover adc_core"
-    },
-    {
       "name": "iHealthTaskName",
       "type": "string",
       "required": "yes",
@@ -107,25 +135,11 @@
       "exampleValue": "Upload Task for Software Upgrade"
     },
     {
-      "name": "deviceManagementAddress",
+      "name": "importDeviceTaskName",
       "type": "string",
       "required": "yes",
-      "description": "IP address of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as \"\"",
-      "exampleValue": "1.2.3.4"
-    },
-    {
-      "name": "deviceManagementPort",
-      "type": "string",
-      "required": "yes",
-      "description": "Port of BIG-IP for license re-activation. If using deviceManagementHostname for license re-activation, leave this value empty as \"\"",
-      "exampleValue": "443"
-    },
-    {
-      "name": "deviceManagementHostname",
-      "type": "string",
-      "required": "yes",
-      "description": "Hostname of BIG-IP for license re-activation. If using deviceManagementAddress and deviceManagementPort for license re-activation, leave this value empty as \"\"",
-      "exampleValue": "device_hostname"
+      "description": "Name of task for importing device to BIG-IQ",
+      "exampleValue": "Rediscover adc_core"
     },
     {
       "name": "softwareUpgradeTaskName",
@@ -142,13 +156,6 @@
       "exampleValue": "BIGIP-14.1.5.4-0.0.2.iso"
     },
     {
-      "name": "targetVolume",
-      "type": "string",
-      "required": "yes",
-      "description": "Target volume on BIG-IP device to use for upgrade",
-      "exampleValue": "HD1.2"
-    },
-    {
       "name": "uploadiHealthTask",
       "type": "boolean",
       "required": "yes",
@@ -158,7 +165,11 @@
   ],
   "exampleInputsAndOutputs": [
     {
-      "exampleInput": "{\n  \"credentialsFilterValue\": \"iHealth Account\",\n  \"credentialsFilterProperty\": \"displayName\",\n  \"machineIdFilterProperty\": \"address\",\n  \"machineIdFilterValue\": \"10.0.0.8\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupFileName\": \"device_backup.ucs\",\n  \"deviceBackupLifeTime\": 1,\n  \"deviceBackupDescription\": \"Backup over for software upgrade\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"iHealth Upload Task for Software Upgrade\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"targetVolume\": \"HD1.2\"\n}\n",
+      "exampleInput": "{\n  \"deviceAData\": {\n    \"deviceManagementAddress\": \"1.2.3.4\",\n    \"deviceManagementPort\": \"443\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"5.6.7.8\",\n    \"targetVolume\": \"HD1.2\"\n  },\n  \"deviceBData\": {\n    \"deviceManagementAddress\": \"\",\n    \"deviceManagementPort\": \"\",\n    \"deviceManagementHostname\": \"hostname\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"9.8.7.6\",\n    \"targetVolume\": \"HD1.3\"\n  },\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"credentialsFilterValue\": \"iHealth Name\",\n  \"credentialsFilterProperty\": \"displayName\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupLifeTime\": 30,\n  \"deviceBackupDescription\": \"Backup Device\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"Upload iHealth task\",\n  \"uploadiHealthTask\": true\n}",
+      "exampleOutput": "{}"
+    },
+    {
+      "exampleInput": "{\n  \"deviceAData\": {\n    \"deviceManagementAddress\": \"1.2.3.4\",\n    \"deviceManagementPort\": \"443\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"5.6.7.8\",\n    \"targetVolume\": \"HD1.2\"\n  },\n  \"deviceBData\": {\n    \"deviceManagementAddress\": \"\",\n    \"deviceManagementPort\": \"\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"\",\n    \"machineIdFilterValue\": \"\",\n    \"targetVolume\": \"\"\n  },\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"credentialsFilterValue\": \"\",\n  \"credentialsFilterProperty\": \"\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupLifeTime\": 30,\n  \"deviceBackupDescription\": \"Backup Device\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"\",\n  \"uploadiHealthTask\": false\n}",
       "exampleOutput": "{}"
     }
   ],

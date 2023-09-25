@@ -8,8 +8,8 @@
       "type": "string"
     },
     {
-      "$id": "machineId",
-      "type": "string"
+      "$id": "deviceReferences",
+      "type": "array"
     },
     {
       "$id": "credentialsId",
@@ -63,21 +63,6 @@
       "context": "#"
     },
     {
-      "id": 2,
-      "type": "assign",
-      "from": {
-        "location": "incoming",
-        "name": "machineId",
-        "ptr": ""
-      },
-      "to": {
-        "location": "template",
-        "name": 1,
-        "ptr": "/args/0/value"
-      },
-      "context": "#"
-    },
-    {
       "id": 4,
       "type": "assign",
       "from": {
@@ -103,21 +88,6 @@
       "view": {
         "row": 3,
         "col": 3
-      },
-      "context": "#"
-    },
-    {
-      "id": 1,
-      "type": "template",
-      "library": "String",
-      "method": "templateLiteral",
-      "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
-      "args": [
-        null
-      ],
-      "view": {
-        "row": 2,
-        "col": 1
       },
       "context": "#"
     },
@@ -152,21 +122,6 @@
       "context": "#"
     },
     {
-      "id": 8,
-      "type": "assign",
-      "from": {
-        "location": "template",
-        "name": 1,
-        "ptr": "/return"
-      },
-      "to": {
-        "location": "method",
-        "name": 7,
-        "ptr": "/args/2/value"
-      },
-      "context": "#"
-    },
-    {
       "id": 5,
       "type": "method",
       "library": "Object",
@@ -183,54 +138,6 @@
         "col": 2
       },
       "context": "#"
-    },
-    {
-      "id": 7,
-      "type": "method",
-      "library": "Object",
-      "method": "setProperty",
-      "args": [
-        {
-          "link": ""
-        },
-        "link",
-        null
-      ],
-      "view": {
-        "row": 2,
-        "col": 2
-      },
-      "context": "#"
-    },
-    {
-      "id": 10,
-      "type": "assign",
-      "from": {
-        "location": "method",
-        "name": 7,
-        "ptr": "/return"
-      },
-      "to": {
-        "location": "declaration",
-        "name": 9,
-        "ptr": "/args/0/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 9,
-      "type": "declaration",
-      "library": "Array",
-      "method": "new Array",
-      "args": [
-        null
-      ],
-      "view": {
-        "row": 2,
-        "col": 3
-      },
-      "context": "#",
-      "polymorphIndex": 0
     },
     {
       "id": 15,
@@ -263,12 +170,12 @@
       "context": "#"
     },
     {
-      "id": 11,
+      "id": 16,
       "type": "assign",
       "from": {
-        "location": "declaration",
-        "name": 9,
-        "ptr": "/return"
+        "location": "incoming",
+        "name": "deviceReferences",
+        "ptr": ""
       },
       "to": {
         "location": "outgoing",
@@ -290,12 +197,12 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2023-09-20T13:34:32.312Z",
+  "lastUpdated": "2023-09-25T01:03:10.932Z",
   "lastUpdatedBy": {
     "_id": "6463eeecee404876a5626a1a",
     "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "version": "4.1.2-2023.1.8",
+  "version": "4.1.2-2023.1.10",
   "tags": []
 }

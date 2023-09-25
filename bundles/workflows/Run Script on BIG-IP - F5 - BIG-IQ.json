@@ -1,6 +1,6 @@
 {
-  "name": "Run Script on BIG-IP Unmasked - F5 - BIG-IQ",
-  "description": "Creates, executes, and gets result of script run on target BIG-IP over BIG-IQ with unmasked values",
+  "name": "Run Script on BIG-IP - F5 - BIG-IQ",
+  "description": "Creates, executes, and gets result of script run on target BIG-IP over BIG-IQ",
   "tasks": {
     "1692": {
       "name": "stub",
@@ -444,7 +444,7 @@
         "incoming": {
           "tr_id": "650b29cf8f256f016dabc633",
           "variableMap": {
-            "machineId": "$var.job.machineId",
+            "deviceReferences": "$var.job.deviceReferences",
             "scriptExecutionName": "$var.job.scriptExecutionName",
             "scriptTimeout": "$var.job.scriptTimeout",
             "createScriptResult": "$var.9ab2.result"
@@ -736,13 +736,6 @@
   "inputSchema": {
     "type": "object",
     "properties": {
-      "_id": {
-        "title": "job_id",
-        "type": "string",
-        "examples": [
-          "test"
-        ]
-      },
       "adapterId": {
         "type": [
           "array",
@@ -783,9 +776,9 @@
           "string"
         ]
       },
-      "machineId": {
-        "$id": "machineId",
-        "type": "string"
+      "deviceReferences": {
+        "$id": "deviceReferences",
+        "type": "array"
       },
       "scriptExecutionName": {
         "$id": "scriptExecutionName",
@@ -800,12 +793,11 @@
       }
     },
     "required": [
-      "_id",
       "adapterId",
       "scriptName",
       "scriptDescription",
       "scriptContent",
-      "machineId",
+      "deviceReferences",
       "scriptExecutionName",
       "scriptTimeout"
     ]
@@ -813,10 +805,6 @@
   "outputSchema": {
     "type": "object",
     "properties": {
-      "_id": {
-        "type": "string",
-        "pattern": "^[0-9a-f]{24}$"
-      },
       "adapterId": {
         "type": [
           "array",
@@ -857,9 +845,9 @@
           "string"
         ]
       },
-      "machineId": {
-        "$id": "machineId",
-        "type": "string"
+      "deviceReferences": {
+        "$id": "deviceReferences",
+        "type": "array"
       },
       "scriptExecutionName": {
         "$id": "scriptExecutionName",
@@ -903,7 +891,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-22T17:15:05.601Z",
+  "last_updated": "2023-09-25T14:09:49.685Z",
   "created": "2023-09-20T16:53:15.851Z",
   "last_updated_by": {
     "provenance": "local_aaa",

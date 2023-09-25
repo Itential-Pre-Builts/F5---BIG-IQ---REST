@@ -1,0 +1,665 @@
+{
+  "_id": "6510da84b5c9df0151074b03",
+  "name": "Create Device References and Upgrade Inputs",
+  "description": "Creates device references and upgrade inputs",
+  "incoming": [
+    {
+      "$id": "machineIdReturnData",
+      "type": "object",
+      "properties": {
+        "loop": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "activeVolume": {
+                "type": "string",
+                "examples": [
+                  "HD1.1"
+                ]
+              },
+              "machineId": {
+                "type": "string",
+                "examples": [
+                  "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ],
+                "format": "uuid"
+              }
+            },
+            "required": []
+          }
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "softwareImageName",
+      "type": "string",
+      "examples": [
+        "BIGIP-14.1.5.4-0.0.2.iso"
+      ]
+    },
+    {
+      "$id": "softwareUpgradeTaskName",
+      "type": "string",
+      "examples": [
+        "Upgrade-BIG-IP"
+      ]
+    },
+    {
+      "$id": "adapterId",
+      "type": "string",
+      "examples": [
+        "F5-BIG-IQ"
+      ]
+    },
+    {
+      "$id": "deviceAData",
+      "type": "object",
+      "properties": {
+        "targetVolume": {
+          "type": "string",
+          "examples": [
+            "HD1.1"
+          ]
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "deviceBData",
+      "type": "object",
+      "properties": {
+        "targetVolume": {
+          "type": "string",
+          "examples": [
+            "HD1.1"
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "deviceReferencesWithMachineId",
+      "type": "array"
+    },
+    {
+      "$id": "deviceInputsForUpgrade",
+      "type": "array"
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineIdReturnData",
+        "ptr": "/loop"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineIdReturnData",
+        "ptr": "/loop"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceAData",
+        "ptr": "/targetVolume"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 6,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBData",
+        "ptr": "/targetVolume"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 6,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "mapDeviceReferencesWithMachineId"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "mapUpgradeDeviceInput",
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceReferencesWithMachineId",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceInputsForUpgrade",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "activeVolume": {
+              "type": "string",
+              "examples": [
+                "HD1.1"
+              ]
+            },
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              ],
+              "format": "uuid"
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "activeVolume": {
+                "type": "string",
+                "examples": [
+                  "HD1.1"
+                ]
+              },
+              "machineId": {
+                "type": "string",
+                "examples": [
+                  "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ],
+                "format": "uuid"
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/machineId"
+          },
+          "to": {
+            "location": "template",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/2/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            {
+              "link": ""
+            },
+            "link",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "mapDeviceReferencesWithMachineId",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "mapDeviceReferencesWithMachineId",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "activeVolume": {
+              "type": "string",
+              "examples": [
+                "HD1.1"
+              ]
+            },
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              ],
+              "format": "uuid"
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "activeVolume": {
+                "type": "string",
+                "examples": [
+                  "HD1.1"
+                ]
+              },
+              "machineId": {
+                "type": "string",
+                "examples": [
+                  "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ],
+                "format": "uuid"
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {
+            "0_new Array return": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "isContext": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "upgradeDeviceInput",
+          "type": "object",
+          "properties": {
+            "deviceReference": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "string",
+                  "examples": [
+                    "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/b14fc503-0fa0-4597-9042-cb43809b50e5"
+                  ]
+                }
+              },
+              "required": []
+            },
+            "targetVolume": {
+              "type": "string",
+              "examples": [
+                "HD1.2"
+              ]
+            },
+            "active": {
+              "type": "string",
+              "examples": [
+                "HD1.1"
+              ]
+            }
+          },
+          "required": []
+        }
+      ],
+      "steps": [
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/activeVolume"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "upgradeDeviceInput",
+            "ptr": "/active"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/machineId"
+          },
+          "to": {
+            "location": "template",
+            "name": 2,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/0_new Array return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "index",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 2,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "upgradeDeviceInput",
+            "ptr": "/targetVolume"
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "upgradeDeviceInput",
+            "ptr": "/deviceReference/link"
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "mapUpgradeDeviceInput",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "mapUpgradeDeviceInput",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2023-09-25T00:55:32.838Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-25T02:17:44.053Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

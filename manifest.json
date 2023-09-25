@@ -1,8 +1,8 @@
 {
   "bundleName": "F5 - BIG-IQ - REST",
   "version": "0.0.1",
-  "fingerprint": "650dce53163eb400c61225ad",
-  "createdEpoch": "1695403603551",
+  "fingerprint": "6511a958163eb400c61225af",
+  "createdEpoch": "1695656280359",
   "artifacts": [
     {
       "id": "Upgrade BIG-IP Device - F5 - BIG-IQ",
@@ -50,10 +50,10 @@
       }
     },
     {
-      "id": "Run Script on BIG-IP Unmasked - F5 - BIG-IQ",
-      "name": "Run Script on BIG-IP Unmasked - F5 - BIG-IQ",
+      "id": "Run Script on BIG-IP - F5 - BIG-IQ",
+      "name": "Run Script on BIG-IP - F5 - BIG-IQ",
       "type": "workflow",
-      "location": "/bundles/workflows/Run Script on BIG-IP Unmasked - F5 - BIG-IQ.json",
+      "location": "/bundles/workflows/Run Script on BIG-IP - F5 - BIG-IQ.json",
       "properties": {
         "entryPoint": false
       }
@@ -87,9 +87,9 @@
     },
     {
       "id": "650c6c6b8f256f016dabc637",
-      "name": "Create BIG-IP Upgrade Task Names",
+      "name": "Create BIG-IP Software Upgrade Process Inputs",
       "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IP Upgrade Task Names.json",
+      "location": "/bundles/transformations/Create BIG-IP Software Upgrade Process Inputs.json",
       "properties": {
         "entryPoint": false
       }
@@ -189,6 +189,33 @@
       "name": "Get Software Upgrade Task",
       "type": "transformation",
       "location": "/bundles/transformations/Get Software Upgrade Task.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6510f244b5c9df0151074b04",
+      "name": "Create BIG-IQ Device Backup Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IQ Device Backup Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6510da84b5c9df0151074b03",
+      "name": "Create Device References and Upgrade Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create Device References and Upgrade Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "651189abb5c9df0151074b05",
+      "name": "Create BIG-IP Device Discover and Import Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IP Device Discover and Import Inputs.json",
       "properties": {
         "entryPoint": false
       }

@@ -4,7 +4,7 @@
   "description": "Create input for device backup over BIG-IQ",
   "incoming": [
     {
-      "$id": "deviceBackupFileName",
+      "$id": "deviceIdentifier",
       "type": "string"
     },
     {
@@ -71,35 +71,17 @@
   ],
   "steps": [
     {
-      "id": 1,
-      "type": "method",
-      "library": "Object",
-      "method": "setProperty",
-      "args": [
-        {
-          "link": ""
-        },
-        "link",
-        null
-      ],
-      "view": {
-        "row": 3,
-        "col": 2
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBackupLifeTime",
+        "ptr": ""
       },
-      "context": "#"
-    },
-    {
-      "id": 2,
-      "type": "template",
-      "library": "String",
-      "method": "templateLiteral",
-      "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
-      "args": [
-        null
-      ],
-      "view": {
-        "row": 3,
-        "col": 1
+      "to": {
+        "location": "outgoing",
+        "name": "deviceBackupInput",
+        "ptr": "/backupLifeTime"
       },
       "context": "#"
     },
@@ -115,36 +97,6 @@
         "location": "template",
         "name": 2,
         "ptr": "/args/0/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 4,
-      "type": "assign",
-      "from": {
-        "location": "template",
-        "name": 2,
-        "ptr": "/return"
-      },
-      "to": {
-        "location": "method",
-        "name": 1,
-        "ptr": "/args/2/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 5,
-      "type": "assign",
-      "from": {
-        "location": "incoming",
-        "name": "deviceBackupFileName",
-        "ptr": ""
-      },
-      "to": {
-        "location": "outgoing",
-        "name": "deviceBackupInput",
-        "ptr": "/name"
       },
       "context": "#"
     },
@@ -173,6 +125,266 @@
       "view": {
         "row": 1,
         "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 15,
+      "type": "declaration",
+      "library": "Date",
+      "method": "new Date",
+      "args": [],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 18,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceIdentifier",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 17,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 25,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBackupDescription",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 24,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 26,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceIdentifier",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 24,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 22,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 15,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 21,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 2,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 21,
+      "type": "method",
+      "library": "Date",
+      "method": "toISOString",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        {
+          "link": ""
+        },
+        "link",
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 23,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 21,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "template",
+        "name": 17,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 27,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 21,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "template",
+        "name": 24,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 17,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "device_backup_${deviceIdentifer}_${date}.ucs",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 24,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "${description} - ${device} - ${date}",
+      "args": [
+        null,
+        null,
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 34,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 17,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 29,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 29,
+      "type": "method",
+      "library": "String",
+      "method": "replace",
+      "args": [
+        null,
+        ":",
+        "-"
+      ],
+      "view": {
+        "row": 3,
+        "col": 4
+      },
+      "context": "#"
+    },
+    {
+      "id": 37,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 29,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 36,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 36,
+      "type": "method",
+      "library": "String",
+      "method": "replace",
+      "args": [
+        null,
+        ":",
+        "-"
+      ],
+      "view": {
+        "row": 3,
+        "col": 5
       },
       "context": "#"
     },
@@ -222,12 +434,12 @@
       "context": "#"
     },
     {
-      "id": 12,
+      "id": 28,
       "type": "assign",
       "from": {
-        "location": "incoming",
-        "name": "deviceBackupDescription",
-        "ptr": ""
+        "location": "template",
+        "name": 24,
+        "ptr": "/return"
       },
       "to": {
         "location": "outgoing",
@@ -237,17 +449,17 @@
       "context": "#"
     },
     {
-      "id": 13,
+      "id": 38,
       "type": "assign",
       "from": {
-        "location": "incoming",
-        "name": "deviceBackupLifeTime",
-        "ptr": ""
+        "location": "method",
+        "name": 36,
+        "ptr": "/return"
       },
       "to": {
         "location": "outgoing",
         "name": "deviceBackupInput",
-        "ptr": "/backupLifeTime"
+        "ptr": "/name"
       },
       "context": "#"
     }
@@ -255,7 +467,7 @@
   "functions": [],
   "comments": [],
   "view": {
-    "col": 2,
+    "col": 5,
     "row": 5
   },
   "created": "2023-09-20T14:36:02.405Z",
@@ -264,7 +476,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2023-09-20T14:43:26.719Z",
+  "lastUpdated": "2023-09-25T03:14:28.695Z",
   "lastUpdatedBy": {
     "_id": "6463eeecee404876a5626a1a",
     "provenance": "local_aaa",

@@ -1,0 +1,490 @@
+{
+  "_id": "651189abb5c9df0151074b05",
+  "name": "Create BIG-IP Device Discover and Import Inputs",
+  "description": "Creates inputs for BIG-IP device discovery and import over BIG-IQ",
+  "incoming": [
+    {
+      "$id": "machineIdResults",
+      "type": "object",
+      "properties": {
+        "loop": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "adapterId": {
+                "type": "string",
+                "examples": [
+                  "F5-BIG-IQ"
+                ]
+              },
+              "machineId": {
+                "type": "string",
+                "examples": [
+                  "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ],
+                "format": "uuid"
+              }
+            },
+            "required": []
+          }
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "importDeviceTaskName",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "deviceDiscoveryInputs",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "adapterId": {
+            "type": "string",
+            "examples": [
+              "F5-BIG-IQ"
+            ]
+          },
+          "machineId": {
+            "type": "string"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "importDeviceInputs",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "adapterId": {
+            "type": "string",
+            "examples": [
+              "F5-BIG-IQ"
+            ]
+          },
+          "importDeviceTaskName": {
+            "type": "string",
+            "examples": [
+              "import_device_iap"
+            ]
+          },
+          "machineId": {
+            "type": "string",
+            "examples": [
+              "b14fc503-0fa0-4597-9042-cb43809b50e5"
+            ]
+          }
+        },
+        "required": []
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineIdResults",
+        "ptr": "/loop"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "importDeviceTaskName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineIdResults",
+        "ptr": "/loop"
+      },
+      "to": {
+        "location": "method",
+        "name": 5,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "mapDeviceDiscoveryInputs"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "mapInputsForDeviceImport",
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 5,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceDiscoveryInputs",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "importDeviceInputs",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "adapterId": {
+              "type": "string",
+              "examples": [
+                "F5-BIG-IQ"
+              ]
+            },
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              ],
+              "format": "uuid"
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "adapterId": {
+                "type": "string",
+                "examples": [
+                  "F5-BIG-IQ"
+                ]
+              },
+              "machineId": {
+                "type": "string",
+                "examples": [
+                  "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ],
+                "format": "uuid"
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {
+            "0_importDeviceTaskName": {
+              "$id": "importDeviceTaskName",
+              "type": "string"
+            }
+          },
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "deviceImportInput",
+          "type": "object",
+          "properties": {
+            "adapterId": {
+              "type": "string",
+              "examples": [
+                "F5-BIG-IQ"
+              ]
+            },
+            "importDeviceTaskName": {
+              "type": "string",
+              "examples": [
+                "import_device_iap"
+              ]
+            },
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "b14fc503-0fa0-4597-9042-cb43809b50e5"
+              ]
+            }
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/adapterId"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceImportInput",
+            "ptr": "/adapterId"
+          },
+          "context": "#"
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/machineId"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceImportInput",
+            "ptr": "/machineId"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/0_importDeviceTaskName"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceImportInput",
+            "ptr": "/importDeviceTaskName"
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "mapInputsForDeviceImport",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "mapInputsForDeviceImport",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "adapterId": {
+              "type": "string",
+              "examples": [
+                "F5-BIG-IQ"
+              ]
+            },
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              ],
+              "format": "uuid"
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "adapterId": {
+                "type": "string",
+                "examples": [
+                  "F5-BIG-IQ"
+                ]
+              },
+              "machineId": {
+                "type": "string",
+                "examples": [
+                  "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ],
+                "format": "uuid"
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "deviceDiscoveryInputs",
+          "type": "object",
+          "properties": {
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "b14fc503-0fa0-4597-9042-cb43809b50e5"
+              ],
+              "format": "uuid"
+            },
+            "adapterId": {
+              "type": "string",
+              "examples": [
+                "F5-BIG-IQ"
+              ]
+            }
+          },
+          "required": []
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/adapterId"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceDiscoveryInputs",
+            "ptr": "/adapterId"
+          },
+          "context": "#"
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/machineId"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceDiscoveryInputs",
+            "ptr": "/machineId"
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "mapDeviceDiscoveryInputs",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "mapDeviceDiscoveryInputs",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 1,
+    "row": 5
+  },
+  "created": "2023-09-25T13:22:51.124Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-25T14:19:12.110Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

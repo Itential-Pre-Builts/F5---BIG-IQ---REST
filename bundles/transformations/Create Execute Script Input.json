@@ -4,8 +4,8 @@
   "description": "Creates input to execute a script over BIG-IQ",
   "incoming": [
     {
-      "$id": "machineId",
-      "type": "string"
+      "$id": "deviceReferences",
+      "type": "array"
     },
     {
       "$id": "scriptExecutionName",
@@ -147,17 +147,17 @@
       "context": "#"
     },
     {
-      "id": 2,
+      "id": 13,
       "type": "assign",
       "from": {
         "location": "incoming",
-        "name": "machineId",
+        "name": "deviceReferences",
         "ptr": ""
       },
       "to": {
-        "location": "template",
-        "name": 1,
-        "ptr": "/args/0/value"
+        "location": "outgoing",
+        "name": "executeScriptInput",
+        "ptr": "/deviceReferences"
       },
       "context": "#"
     },
@@ -173,21 +173,6 @@
         "location": "method",
         "name": 3,
         "ptr": "/args/2/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 1,
-      "type": "template",
-      "library": "String",
-      "method": "templateLiteral",
-      "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
-      "args": [
-        null
-      ],
-      "view": {
-        "row": 1,
-        "col": 1
       },
       "context": "#"
     },
@@ -210,69 +195,6 @@
       "context": "#"
     },
     {
-      "id": 7,
-      "type": "assign",
-      "from": {
-        "location": "template",
-        "name": 1,
-        "ptr": "/return"
-      },
-      "to": {
-        "location": "method",
-        "name": 6,
-        "ptr": "/args/2/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 6,
-      "type": "method",
-      "library": "Object",
-      "method": "setProperty",
-      "args": [
-        {
-          "link": ""
-        },
-        "link",
-        null
-      ],
-      "view": {
-        "row": 1,
-        "col": 2
-      },
-      "context": "#"
-    },
-    {
-      "id": 8,
-      "type": "assign",
-      "from": {
-        "location": "method",
-        "name": 6,
-        "ptr": "/return"
-      },
-      "to": {
-        "location": "declaration",
-        "name": 5,
-        "ptr": "/args/0/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 5,
-      "type": "declaration",
-      "library": "Array",
-      "method": "new Array",
-      "args": [
-        null
-      ],
-      "view": {
-        "row": 1,
-        "col": 3
-      },
-      "context": "#",
-      "polymorphIndex": 0
-    },
-    {
       "id": 10,
       "type": "assign",
       "from": {
@@ -286,27 +208,12 @@
         "ptr": "/scriptReference"
       },
       "context": "#"
-    },
-    {
-      "id": 9,
-      "type": "assign",
-      "from": {
-        "location": "declaration",
-        "name": 5,
-        "ptr": "/return"
-      },
-      "to": {
-        "location": "outgoing",
-        "name": "executeScriptInput",
-        "ptr": "/deviceReferences"
-      },
-      "context": "#"
     }
   ],
   "functions": [],
   "comments": [],
   "view": {
-    "col": 3,
+    "col": 1,
     "row": 5
   },
   "created": "2023-09-20T17:20:15.987Z",
@@ -315,7 +222,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2023-09-20T17:32:54.438Z",
+  "lastUpdated": "2023-09-25T03:50:05.447Z",
   "lastUpdatedBy": {
     "_id": "6463eeecee404876a5626a1a",
     "provenance": "local_aaa",

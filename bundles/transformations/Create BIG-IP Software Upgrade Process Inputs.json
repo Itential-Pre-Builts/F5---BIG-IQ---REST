@@ -1,0 +1,1692 @@
+{
+  "_id": "650c6c6b8f256f016dabc637",
+  "name": "Create BIG-IP Software Upgrade Process Inputs",
+  "description": "Create task names, machine search queries, and re-activation license links for BIG-IP upgrade over BIG-IQ",
+  "incoming": [
+    {
+      "$id": "iHealthTaskName",
+      "type": "string",
+      "examples": [
+        "iHealthTaskName"
+      ]
+    },
+    {
+      "$id": "deviceAData",
+      "type": "object",
+      "properties": {
+        "deviceManagementAddress": {
+          "type": "string",
+          "examples": [
+            "1.2.3.4"
+          ]
+        },
+        "deviceManagementPort": {
+          "type": "string",
+          "examples": [
+            "443"
+          ]
+        },
+        "deviceManagementHostname": {
+          "type": "string"
+        },
+        "machineIdFilterProperty": {
+          "type": "string",
+          "examples": [
+            "address"
+          ]
+        },
+        "machineIdFilterValue": {
+          "type": "string",
+          "examples": [
+            "10.0.0.8"
+          ]
+        },
+        "targetVolume": {
+          "type": "string",
+          "examples": [
+            "HD1.1"
+          ]
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "deviceBData",
+      "type": "object",
+      "properties": {
+        "deviceManagementAddress": {
+          "type": "string",
+          "examples": [
+            "1.2.3.4"
+          ]
+        },
+        "deviceManagementPort": {
+          "type": "string",
+          "examples": [
+            "443"
+          ]
+        },
+        "deviceManagementHostname": {
+          "type": "string"
+        },
+        "machineIdFilterProperty": {
+          "type": "string",
+          "examples": [
+            "address"
+          ]
+        },
+        "machineIdFilterValue": {
+          "type": "string",
+          "examples": [
+            "10.0.0.8"
+          ]
+        },
+        "targetVolume": {
+          "type": "string",
+          "examples": [
+            "HD1.1"
+          ]
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "adapterId",
+      "type": "string",
+      "examples": [
+        "F5-BIG-IQ"
+      ]
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "iHealthTaskNamePreUpgrade",
+      "type": "string",
+      "examples": [
+        "iHealthTask-Pre-Upgrade"
+      ]
+    },
+    {
+      "$id": "iHealthTaskNamePostUpgrade",
+      "type": "string",
+      "examples": [
+        "iHealthTask-Post-Upgrade"
+      ]
+    },
+    {
+      "$id": "machineSearchQueries",
+      "type": "array"
+    },
+    {
+      "$id": "reactivateLicenseLinks",
+      "type": "array"
+    },
+    {
+      "$id": "reactivationLinkMessage",
+      "type": "string"
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "iHealthTaskName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "iHealthTaskName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 3,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 26,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceAData",
+        "ptr": "/deviceManagementAddress"
+      },
+      "to": {
+        "location": "function",
+        "name": 25,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 27,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceAData",
+        "ptr": "/deviceManagementPort"
+      },
+      "to": {
+        "location": "function",
+        "name": 25,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 28,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceAData",
+        "ptr": "/deviceManagementHostname"
+      },
+      "to": {
+        "location": "function",
+        "name": 25,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 31,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBData",
+        "ptr": "/deviceManagementAddress"
+      },
+      "to": {
+        "location": "function",
+        "name": 30,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 32,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBData",
+        "ptr": "/deviceManagementPort"
+      },
+      "to": {
+        "location": "function",
+        "name": 30,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 33,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBData",
+        "ptr": "/deviceManagementHostname"
+      },
+      "to": {
+        "location": "function",
+        "name": 30,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 41,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBData",
+        "ptr": "/machineIdFilterProperty"
+      },
+      "to": {
+        "location": "function",
+        "name": 40,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 42,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBData",
+        "ptr": "/machineIdFilterValue"
+      },
+      "to": {
+        "location": "function",
+        "name": 40,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 43,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "adapterId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "function",
+        "name": 40,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 45,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceAData",
+        "ptr": "/machineIdFilterProperty"
+      },
+      "to": {
+        "location": "function",
+        "name": 44,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 46,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceAData",
+        "ptr": "/machineIdFilterValue"
+      },
+      "to": {
+        "location": "function",
+        "name": 44,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 47,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "adapterId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "function",
+        "name": 44,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "${iHealthTaskName}-Pre-Upgrade",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "${iHealthTaskName}-Post-Upgrade",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 25,
+      "type": "function",
+      "function": "createReactivateLicenseLink",
+      "args": [
+        "",
+        "",
+        ""
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      }
+    },
+    {
+      "id": 30,
+      "type": "function",
+      "function": "createReactivateLicenseLink",
+      "args": [
+        "",
+        "",
+        ""
+      ],
+      "view": {
+        "row": 4,
+        "col": 1
+      }
+    },
+    {
+      "id": 40,
+      "type": "function",
+      "function": "createMachineQuery",
+      "args": [
+        "",
+        "",
+        ""
+      ],
+      "view": {
+        "row": 5,
+        "col": 1
+      }
+    },
+    {
+      "id": 44,
+      "type": "function",
+      "function": "createMachineQuery",
+      "args": [
+        "",
+        "",
+        ""
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      }
+    },
+    {
+      "id": 35,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 25,
+        "ptr": "/return/reactivateLicenseLink"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 34,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 36,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 30,
+        "ptr": "/return/reactivateLicenseLink"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 34,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 49,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 44,
+        "ptr": "/return/machineSearchQuery"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 48,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 50,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 40,
+        "ptr": "/return/machineSearchQuery"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 48,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 34,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 48,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 38,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 34,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 37,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 52,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 48,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 51,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 37,
+      "type": "method",
+      "library": "Array",
+      "method": "filter",
+      "args": [
+        null,
+        "filterEmptyString"
+      ],
+      "view": {
+        "row": 3,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 51,
+      "type": "method",
+      "library": "Array",
+      "method": "filter",
+      "args": [
+        null,
+        "filterEmptyMachineSearchQueries"
+      ],
+      "view": {
+        "row": 2,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 57,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 37,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 54,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 54,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "reduceReactivationLinkMessage",
+        "Re-Activation Link(s)\n"
+      ],
+      "view": {
+        "row": 4,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "iHealthTaskNamePostUpgrade",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "iHealthTaskNamePreUpgrade",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 53,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 51,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "machineSearchQueries",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 58,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 37,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "reactivateLicenseLinks",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 56,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 54,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "reactivationLinkMessage",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "$id": "deviceManagementHostname",
+          "type": "string",
+          "examples": [
+            "hostname"
+          ]
+        },
+        {
+          "$id": "deviceManagementAddress",
+          "type": "string",
+          "examples": [
+            "1.2.3.4"
+          ]
+        },
+        {
+          "$id": "deviceManagementPort",
+          "type": "string",
+          "examples": [
+            "443"
+          ]
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "reactivateLicenseLink",
+          "type": "string",
+          "examples": [
+            "reactivateLicenseLink"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "deviceManagementHostname",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "deviceManagementAddress",
+            "ptr": ""
+          },
+          "to": {
+            "location": "template",
+            "name": 2,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "deviceManagementHostname",
+            "ptr": ""
+          },
+          "to": {
+            "location": "template",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 17,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "deviceManagementPort",
+            "ptr": ""
+          },
+          "to": {
+            "location": "template",
+            "name": 2,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 24,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "deviceManagementAddress",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 29,
+          "type": "declaration",
+          "library": "String",
+          "method": "new String",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "https://${deviceManagementHostname}/tmui/Control/jspmap/tmui/system/licensing/license.jsp?",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "String",
+          "method": "length",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 20,
+          "type": "method",
+          "library": "String",
+          "method": "length",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 35,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 29,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 2,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "https://${deviceManagementAddress}:${deviceManagementPort}/tmui/Control/jspmap/tmui/system/licensing/license.jsp?",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 16,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/2/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 22,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 21,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 26,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 21,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            0
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 25,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            0
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 23,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 21,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 31,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 21,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 30,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 32,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 30,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 30,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 34,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 30,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 14,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 36,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/2/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 33,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 5
+          },
+          "context": "#"
+        },
+        {
+          "id": 37,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "reactivateLicenseLink",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "createReactivateLicenseLink",
+      "view": {
+        "col": 5,
+        "row": 4
+      },
+      "id": "createReactivateLicenseLink",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "String",
+          "method": "length",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Equality",
+          "method": "inequality",
+          "args": [
+            null,
+            0
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "filterEmptyString",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "filterEmptyString",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "machineIdFilterProperty",
+          "type": "string",
+          "examples": [
+            "address"
+          ]
+        },
+        {
+          "$id": "machineIdFilterValue",
+          "type": "string",
+          "examples": [
+            "9.8.7.6"
+          ]
+        },
+        {
+          "$id": "adapterId",
+          "type": "string",
+          "examples": [
+            "F5-BIG-IQ"
+          ]
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "machineSearchQuery",
+          "type": "object",
+          "properties": {
+            "filterProperty": {
+              "type": "string",
+              "examples": [
+                "address"
+              ]
+            },
+            "filterValue": {
+              "type": "string",
+              "examples": [
+                "10.0.0.8"
+              ],
+              "format": "ipv4"
+            },
+            "adapterId": {
+              "type": "string",
+              "examples": [
+                "F5-BIG-IQ"
+              ]
+            }
+          },
+          "required": []
+        }
+      ],
+      "steps": [
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "adapterId",
+            "ptr": ""
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "machineSearchQuery",
+            "ptr": "/adapterId"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "machineIdFilterProperty",
+            "ptr": ""
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "machineSearchQuery",
+            "ptr": "/filterProperty"
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "machineIdFilterValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "machineSearchQuery",
+            "ptr": "/filterValue"
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "createMachineQuery",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "createMachineQuery",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "filterProperty"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "String",
+          "method": "length",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Equality",
+          "method": "inequality",
+          "args": [
+            null,
+            0
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "filterEmptyMachineSearchQueries",
+      "view": {
+        "col": 3,
+        "row": 4
+      },
+      "id": "filterEmptyMachineSearchQueries",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ]
+        },
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "template",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "\n${reactivationLink}\n",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "String",
+          "method": "concat",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "reduceReactivationLinkMessage",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "reduceReactivationLinkMessage",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 4,
+    "row": 6
+  },
+  "created": "2023-09-21T16:16:43.326Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-25T03:44:06.728Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}
