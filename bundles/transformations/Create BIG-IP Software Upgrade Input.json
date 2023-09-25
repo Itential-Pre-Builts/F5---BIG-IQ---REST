@@ -12,16 +12,8 @@
       "type": "string"
     },
     {
-      "$id": "targetVolume",
-      "type": "string"
-    },
-    {
-      "$id": "activeVolume",
-      "type": "string"
-    },
-    {
-      "$id": "machineId",
-      "type": "string"
+      "$id": "deviceInputsForUpgrade",
+      "type": "array"
     }
   ],
   "outgoing": [
@@ -136,6 +128,21 @@
       "context": "#"
     },
     {
+      "id": 26,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceInputsForUpgrade",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "softwareUpgradeInput",
+        "ptr": "/deviceInput"
+      },
+      "context": "#"
+    },
+    {
       "id": 2,
       "type": "assign",
       "from": {
@@ -146,21 +153,6 @@
       "to": {
         "location": "template",
         "name": 1,
-        "ptr": "/args/0/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 4,
-      "type": "assign",
-      "from": {
-        "location": "incoming",
-        "name": "machineId",
-        "ptr": ""
-      },
-      "to": {
-        "location": "template",
-        "name": 3,
         "ptr": "/args/0/value"
       },
       "context": "#"
@@ -180,36 +172,6 @@
       "context": "#"
     },
     {
-      "id": 10,
-      "type": "assign",
-      "from": {
-        "location": "incoming",
-        "name": "targetVolume",
-        "ptr": ""
-      },
-      "to": {
-        "location": "function",
-        "name": 8,
-        "ptr": "/args/1/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 11,
-      "type": "assign",
-      "from": {
-        "location": "incoming",
-        "name": "activeVolume",
-        "ptr": ""
-      },
-      "to": {
-        "location": "function",
-        "name": 8,
-        "ptr": "/args/2/value"
-      },
-      "context": "#"
-    },
-    {
       "id": 1,
       "type": "template",
       "library": "String",
@@ -225,37 +187,7 @@
       "context": "#"
     },
     {
-      "id": 3,
-      "type": "template",
-      "library": "String",
-      "method": "templateLiteral",
-      "template": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/${machineId}",
-      "args": [
-        null
-      ],
-      "view": {
-        "row": 3,
-        "col": 1
-      },
-      "context": "#"
-    },
-    {
-      "id": 7,
-      "type": "assign",
-      "from": {
-        "location": "template",
-        "name": 3,
-        "ptr": "/return"
-      },
-      "to": {
-        "location": "method",
-        "name": 6,
-        "ptr": "/args/2/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 23,
+      "id": 27,
       "type": "assign",
       "from": {
         "location": "template",
@@ -266,24 +198,6 @@
         "location": "method",
         "name": 22,
         "ptr": "/args/2/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 6,
-      "type": "method",
-      "library": "Object",
-      "method": "setProperty",
-      "args": [
-        {
-          "link": ""
-        },
-        "link",
-        null
-      ],
-      "view": {
-        "row": 3,
-        "col": 2
       },
       "context": "#"
     },
@@ -304,66 +218,6 @@
         "col": 2
       },
       "context": "#"
-    },
-    {
-      "id": 9,
-      "type": "assign",
-      "from": {
-        "location": "method",
-        "name": 6,
-        "ptr": "/return"
-      },
-      "to": {
-        "location": "function",
-        "name": 8,
-        "ptr": "/args/0/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 8,
-      "type": "function",
-      "function": "createDeviceInput",
-      "args": [
-        null,
-        null,
-        null
-      ],
-      "view": {
-        "row": 3,
-        "col": 3
-      },
-      "context": "#"
-    },
-    {
-      "id": 13,
-      "type": "assign",
-      "from": {
-        "location": "function",
-        "name": 8,
-        "ptr": "/return/deviceInputObject"
-      },
-      "to": {
-        "location": "declaration",
-        "name": 12,
-        "ptr": "/args/0/value"
-      },
-      "context": "#"
-    },
-    {
-      "id": 12,
-      "type": "declaration",
-      "library": "Array",
-      "method": "new Array",
-      "args": [
-        null
-      ],
-      "view": {
-        "row": 3,
-        "col": 4
-      },
-      "context": "#",
-      "polymorphIndex": 0
     },
     {
       "id": 14,
@@ -484,21 +338,6 @@
         "ptr": "/softwareImageReference"
       },
       "context": "#"
-    },
-    {
-      "id": 21,
-      "type": "assign",
-      "from": {
-        "location": "declaration",
-        "name": 12,
-        "ptr": "/return"
-      },
-      "to": {
-        "location": "outgoing",
-        "name": "softwareUpgradeInput",
-        "ptr": "/deviceInput"
-      },
-      "context": "#"
     }
   ],
   "functions": [
@@ -613,7 +452,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2023-09-21T16:50:49.956Z",
+  "lastUpdated": "2023-09-25T05:31:32.382Z",
   "lastUpdatedBy": {
     "_id": "6463eeecee404876a5626a1a",
     "provenance": "local_aaa",

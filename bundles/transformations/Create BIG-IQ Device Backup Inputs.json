@@ -1,0 +1,530 @@
+{
+  "_id": "6510f244b5c9df0151074b04",
+  "name": "Create BIG-IQ Device Backup Inputs",
+  "description": "Create BIG-IQ device backup inputs",
+  "incoming": [
+    {
+      "$id": "machineIdReturnData",
+      "type": "object",
+      "properties": {
+        "loop": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "activeVolume": {
+                "type": "string",
+                "examples": [
+                  "HD1.1"
+                ]
+              },
+              "machineId": {
+                "type": "string",
+                "examples": [
+                  "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ],
+                "format": "uuid"
+              }
+            },
+            "required": []
+          }
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "deviceBackupDescription",
+      "type": "string"
+    },
+    {
+      "$id": "deviceBackupLifeTime",
+      "type": [
+        "integer",
+        "number"
+      ],
+      "examples": [
+        30
+      ]
+    },
+    {
+      "$id": "adapterId",
+      "type": "string",
+      "examples": [
+        "F5-BIG-IQ"
+      ]
+    },
+    {
+      "$id": "deviceAData",
+      "type": "object",
+      "properties": {
+        "machineIdFilterValue": {
+          "type": "string",
+          "examples": [
+            "10.0.0.8"
+          ]
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "deviceBData",
+      "type": "object",
+      "properties": {
+        "machineIdFilterValue": {
+          "type": "string",
+          "examples": [
+            "10.0.0.8"
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "deviceBackupInputs",
+      "type": "array"
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceAData",
+        "ptr": "/machineIdFilterValue"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBData",
+        "ptr": "/machineIdFilterValue"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 1,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "machineIdReturnData",
+        "ptr": "/loop"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBackupDescription",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceBackupLifeTime",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/3/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "adapterId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/5/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/4/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "mapDeviceBackupInputs",
+        null,
+        null,
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceBackupInputs",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "activeVolume": {
+              "type": "string",
+              "examples": [
+                "HD1.1"
+              ]
+            },
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              ],
+              "format": "uuid"
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "activeVolume": {
+                "type": "string",
+                "examples": [
+                  "HD1.1"
+                ]
+              },
+              "machineId": {
+                "type": "string",
+                "examples": [
+                  "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ],
+                "format": "uuid"
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {
+            "0_deviceBackupDescription": {
+              "$id": "deviceBackupDescription",
+              "type": "string"
+            },
+            "1_deviceBackupLifeTime": {
+              "$id": "deviceBackupLifeTime",
+              "type": [
+                "integer",
+                "number"
+              ],
+              "examples": [
+                30
+              ]
+            },
+            "2_new Array return": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "3_adapterId": {
+              "$id": "adapterId",
+              "type": "string",
+              "examples": [
+                "F5-BIG-IQ"
+              ]
+            }
+          },
+          "isContext": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "deviceBackupInput",
+          "type": "object",
+          "properties": {
+            "adapterId": {
+              "type": "string",
+              "examples": [
+                "F5-BIG-IQ"
+              ]
+            },
+            "deviceIdentifier": {
+              "type": "string",
+              "examples": [
+                "10.0.0.8"
+              ],
+              "format": "ipv4"
+            },
+            "deviceBackupLifeTime": {
+              "type": [
+                "integer",
+                "number"
+              ],
+              "examples": [
+                30
+              ]
+            },
+            "deviceBackupDescription": {
+              "type": "string",
+              "examples": [
+                "Device backup description"
+              ]
+            },
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "b14fc503-0fa0-4597-9042-cb43809b50e5"
+              ],
+              "format": "uuid"
+            }
+          },
+          "required": []
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/machineId"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceBackupInput",
+            "ptr": "/machineId"
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/3_adapterId"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceBackupInput",
+            "ptr": "/adapterId"
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/1_deviceBackupLifeTime"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceBackupInput",
+            "ptr": "/deviceBackupLifeTime"
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/0_deviceBackupDescription"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceBackupInput",
+            "ptr": "/deviceBackupDescription"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/2_new Array return"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "index",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "deviceBackupInput",
+            "ptr": "/deviceIdentifier"
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "mapDeviceBackupInputs",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "mapDeviceBackupInputs",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2023-09-25T02:36:52.370Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-25T02:45:02.144Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

@@ -370,7 +370,7 @@
         "incoming": {
           "tr_id": "650b03528f256f016dabc632",
           "variableMap": {
-            "deviceBackupFileName": "$var.job.deviceBackupFileName",
+            "deviceIdentifier": "$var.job.deviceIdentifier",
             "deviceBackupLifeTime": "$var.job.deviceBackupLifeTime",
             "deviceBackupDescription": "$var.job.deviceBackupDescription",
             "machineId": "$var.job.machineId"
@@ -597,8 +597,8 @@
           "test"
         ]
       },
-      "deviceBackupFileName": {
-        "$id": "deviceBackupFileName",
+      "deviceIdentifier": {
+        "$id": "deviceIdentifier",
         "type": "string"
       },
       "deviceBackupLifeTime": {
@@ -620,7 +620,7 @@
     "required": [
       "adapterId",
       "_id",
-      "deviceBackupFileName",
+      "deviceIdentifier",
       "deviceBackupLifeTime",
       "deviceBackupDescription",
       "machineId"
@@ -643,8 +643,8 @@
         "type": "string",
         "pattern": "^[0-9a-f]{24}$"
       },
-      "deviceBackupFileName": {
-        "$id": "deviceBackupFileName",
+      "deviceIdentifier": {
+        "$id": "deviceIdentifier",
         "type": "string"
       },
       "deviceBackupLifeTime": {
@@ -693,7 +693,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-22T17:13:35.461Z",
+  "last_updated": "2023-09-25T02:55:53.496Z",
   "created": "2023-09-20T14:28:07.192Z",
   "last_updated_by": {
     "provenance": "local_aaa",
