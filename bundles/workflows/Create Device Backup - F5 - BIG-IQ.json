@@ -5,8 +5,8 @@
     "1692": {
       "name": "stub",
       "canvasName": "stub",
-      "summary": "Failure Path",
-      "description": "Failure Path",
+      "summary": "Return Failed Status",
+      "description": "Return Failed Status",
       "location": "Application",
       "locationType": null,
       "app": "WorkFlowEngine",
@@ -16,10 +16,10 @@
         "incoming": {
           "type": "success",
           "delay": "",
-          "response": ""
+          "response": "FAILED"
         },
         "outgoing": {
-          "response": ""
+          "response": "$var.job.returnStatus"
         }
       },
       "actor": "Pronghorn",
@@ -382,7 +382,8 @@
           }
         },
         "outgoing": {
-          "deviceBackupInput": null
+          "deviceBackupInput": null,
+          "returnStatus": "$var.job.returnStatus"
         },
         "decorators": []
       },
@@ -665,6 +666,13 @@
       "initiator": {
         "type": "string"
       },
+      "returnStatus": {
+        "title": "response",
+        "type": "string",
+        "examples": [
+          "awesome"
+        ]
+      },
       "backupTaskResponse": {
         "title": "result",
         "type": "object"
@@ -693,15 +701,15 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-25T02:55:53.496Z",
+  "last_updated": "2023-09-26T18:07:37.217Z",
   "created": "2023-09-20T14:28:07.192Z",
+  "canvasVersion": 1.5,
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
     "inactive": false
   },
-  "canvasVersion": 1.5,
   "tags": [],
   "groups": [],
   "migrationVersion": 2

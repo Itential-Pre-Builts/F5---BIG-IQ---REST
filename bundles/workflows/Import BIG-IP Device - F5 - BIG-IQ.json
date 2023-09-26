@@ -5,7 +5,7 @@
     "1692": {
       "name": "stub",
       "canvasName": "stub",
-      "summary": "Failure Path",
+      "summary": "Return Failed Status",
       "description": "Failure Path",
       "location": "Application",
       "locationType": null,
@@ -16,10 +16,10 @@
         "incoming": {
           "type": "success",
           "delay": "",
-          "response": ""
+          "response": "FAILED"
         },
         "outgoing": {
-          "response": ""
+          "response": "$var.job.returnStatus"
         }
       },
       "actor": "Pronghorn",
@@ -353,7 +353,8 @@
           }
         },
         "outgoing": {
-          "deviceImportInput": null
+          "deviceImportInput": null,
+          "returnStatus": "$var.job.returnStatus"
         },
         "decorators": []
       },
@@ -588,6 +589,13 @@
           "string"
         ]
       },
+      "_id": {
+        "title": "job_id",
+        "type": "string",
+        "examples": [
+          "test"
+        ]
+      },
       "importDeviceTaskName": {
         "$id": "importDeviceTaskName",
         "type": "string"
@@ -599,6 +607,7 @@
     },
     "required": [
       "adapterId",
+      "_id",
       "importDeviceTaskName",
       "machineId"
     ]
@@ -616,6 +625,10 @@
           "string"
         ]
       },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
       "importDeviceTaskName": {
         "$id": "importDeviceTaskName",
         "type": "string"
@@ -626,6 +639,13 @@
       },
       "initiator": {
         "type": "string"
+      },
+      "returnStatus": {
+        "title": "response",
+        "type": "string",
+        "examples": [
+          "awesome"
+        ]
       },
       "BIGIQError": {
         "type": [
@@ -655,15 +675,15 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-25T13:41:30.073Z",
+  "last_updated": "2023-09-26T18:58:47.560Z",
   "created": "2023-09-21T15:13:03.753Z",
+  "canvasVersion": 1.5,
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
     "inactive": false
   },
-  "canvasVersion": 1.5,
   "tags": [],
   "groups": [],
   "migrationVersion": 2
