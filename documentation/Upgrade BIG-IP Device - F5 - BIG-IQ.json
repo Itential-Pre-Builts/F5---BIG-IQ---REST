@@ -163,17 +163,32 @@
       "exampleValue": "true"
     }
   ],
+  "outputs": [
+    {
+      "name": "returnStatus",
+      "type": "string",
+      "description": "This value is assigned \"SUCCESS\" if the device upgrade succeeded and is assigned \"FAILED\" if any step of the device upgrade failed",
+      "exampleValue": "SUCCESS"
+    }
+  ],
   "exampleInputsAndOutputs": [
     {
       "exampleInput": "{\n  \"deviceAData\": {\n    \"deviceManagementAddress\": \"1.2.3.4\",\n    \"deviceManagementPort\": \"443\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"5.6.7.8\",\n    \"targetVolume\": \"HD1.2\"\n  },\n  \"deviceBData\": {\n    \"deviceManagementAddress\": \"\",\n    \"deviceManagementPort\": \"\",\n    \"deviceManagementHostname\": \"hostname\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"9.8.7.6\",\n    \"targetVolume\": \"HD1.3\"\n  },\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"credentialsFilterValue\": \"iHealth Name\",\n  \"credentialsFilterProperty\": \"displayName\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupLifeTime\": 30,\n  \"deviceBackupDescription\": \"Backup Device\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"Upload iHealth task\",\n  \"uploadiHealthTask\": true\n}",
-      "exampleOutput": "{\n\"returnStatus\": \"SUCCESS\"\n}"
+      "exampleOutput": "{\n  \"returnStatus\": \"SUCCESS\"\n}"
     },
     {
       "exampleInput": "{\n  \"deviceAData\": {\n    \"deviceManagementAddress\": \"1.2.3.4\",\n    \"deviceManagementPort\": \"443\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"5.6.7.8\",\n    \"targetVolume\": \"HD1.2\"\n  },\n  \"deviceBData\": {\n    \"deviceManagementAddress\": \"\",\n    \"deviceManagementPort\": \"\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"\",\n    \"machineIdFilterValue\": \"\",\n    \"targetVolume\": \"\"\n  },\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"credentialsFilterValue\": \"\",\n  \"credentialsFilterProperty\": \"\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupLifeTime\": 30,\n  \"deviceBackupDescription\": \"Backup Device\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"\",\n  \"uploadiHealthTask\": false\n}",
-      "exampleOutput": "{\n\"returnStatus\": \"SUCCESS\"\n}"
+      "exampleOutput": "{\n  \"returnStatus\": \"SUCCESS\"\n}"
     }
   ],
-  "queryOutput": {},
+  "queryOutput": {
+    "success": [
+      {
+        "name": "Result of Device Upgrade",
+        "value": "returnStatus"
+      }
+    ]
+  },
   "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
   "overview": "Upgrades BIG-IP device over F5 BIG-IQ",
   "webName": "Upgrade F5 BIG-IP Device over BIG-IQ",
