@@ -1,4 +1,12 @@
 
+## 0.1.2 [09-26-2023]
+
+* Updates documentation to include output of workflow that does upgrade of BIG-IP device over BIG-IQ
+
+See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!5
+
+---
+
 ## 0.1.1 [09-26-2023]
 
 * Updates error handling with manual task and returns status of overall software upgrade
@@ -46,4 +54,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n\n
+\n\n\n\n\n\n\n

@@ -263,7 +263,42 @@ The following table lists the inputs to the Workflow Project:
 
 ### Outputs
 
-There are no outputs for this Workflow Project.
+The following table lists the outputs of the Workflow Project:
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Example Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>returnStatus</td>
+      <td>string</td>
+      <td>This value is assigned "SUCCESS" if the device upgrade succeeded and is assigned "FAILED" if any step of the device upgrade failed</td>
+      <td><pre lang="json">SUCCESS</pre></td>
+    </tr>
+  </tbody>
+</table>
+
+  
+#### Query Output
+    
+
+The following items show how to query successful results from the output:
+
+      
+##### Result of Device Upgrade
+
+`returnStatus`
+
+      
+    
+    
+  
 
 
 
@@ -307,7 +342,7 @@ Input:
     
 Output:
 <pre>{
-"returnStatus": "SUCCESS"
+  "returnStatus": "SUCCESS"
 } </pre>
 
     
@@ -349,7 +384,7 @@ Input:
     
 Output:
 <pre>{
-"returnStatus": "SUCCESS"
+  "returnStatus": "SUCCESS"
 } </pre>
 
     
