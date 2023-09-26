@@ -2,33 +2,6 @@
   "name": "Run BIG-IP Upgrade - F5 - BIG-IQ",
   "description": "Discover BIG-IP device over BIG-IQ",
   "tasks": {
-    "1692": {
-      "name": "stub",
-      "canvasName": "stub",
-      "summary": "Failure Path",
-      "description": "Failure Path",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "automatic",
-      "displayName": "Tools",
-      "variables": {
-        "incoming": {
-          "type": "success",
-          "delay": "",
-          "response": ""
-        },
-        "outgoing": {
-          "response": ""
-        }
-      },
-      "actor": "Pronghorn",
-      "groups": [],
-      "nodeLocation": {
-        "x": 2160,
-        "y": 1368
-      }
-    },
     "2053": {
       "name": "retrievaallUpgradeTasks",
       "canvasName": "retrievaallUpgradeTasks",
@@ -116,7 +89,7 @@
       "x": -0.05709992486851991,
       "y": 0.5006165228113441,
       "nodeLocation": {
-        "x": -96,
+        "x": -48,
         "y": 996
       }
     },
@@ -187,7 +160,7 @@
       "variables": {
         "incoming": {
           "header": "Software Upgrade Task Failed",
-          "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or select \"End Job\" to end this job.\n\n",
+          "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
           "body": "$var.a421.currentSoftwareUpgradeTask",
           "variables": "",
           "btn_success": "Retry Upgrade",
@@ -259,7 +232,7 @@
       "variables": {
         "incoming": {
           "header": "Number of Reattempts Exceeded",
-          "message": "The number of reattempts to query software upgrade task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+          "message": "The number of reattempts to query software upgrade task status exceeded expected number of reattempts. Select \"Query Task\" to query again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
           "body": "$var.a421.currentSoftwareUpgradeTask",
           "variables": "",
           "btn_success": "Query Task",
@@ -297,7 +270,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 1716,
+        "x": 1704,
         "y": 1368
       }
     },
@@ -326,14 +299,15 @@
           }
         },
         "outgoing": {
-          "softwareUpgradeInput": null
+          "softwareUpgradeInput": null,
+          "returnStatus": "$var.job.returnStatus"
         },
         "decorators": []
       },
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 168,
+        "x": 204,
         "y": 996
       }
     },
@@ -348,8 +322,8 @@
       "type": "manual",
       "variables": {
         "incoming": {
-          "header": "Device Discovery Failed",
-          "message": "Failed to discover device, see error response below. Select \"Retry\" to retry call to discover device or select \"End Job\" to end this job.\n",
+          "header": "Software Upgrade Failed",
+          "message": "Failed to perform software upgrade on the device, see error response below. Select \"Retry\" to retry call to attempt software upgrade again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
           "body": "",
           "variables": "",
           "btn_success": "Retry",
@@ -376,7 +350,7 @@
       "variables": {
         "incoming": {
           "header": "Getting Software Upgrade Task Status Failed",
-          "message": "Failed to get task status of software upgrade. See error response below. Select \"Retry\" to retry call to get task status of software upgrade or select \"End Job\" to end this job.\n",
+          "message": "Failed to get task status of software upgrade. See error response below. Select \"Retry\" to retry call to get task status of software upgrade or follow instructions below to rollback device if necessary and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
           "body": "",
           "variables": "",
           "btn_success": "Retry",
@@ -452,15 +426,36 @@
         "x": 1188,
         "y": 996
       }
+    },
+    "278d": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Update Upgrade Result",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "FAILED"
+        },
+        "outgoing": {
+          "response": "$var.job.returnStatus"
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2160,
+        "y": 1368
+      }
     }
   },
   "transitions": {
-    "1692": {
-      "workflow_end": {
-        "state": "success",
-        "type": "standard"
-      }
-    },
     "2053": {
       "a421": {
         "state": "success",
@@ -535,7 +530,7 @@
       }
     },
     "9ea3": {
-      "1692": {
+      "278d": {
         "state": "success",
         "type": "standard"
       }
@@ -581,11 +576,24 @@
         "state": "success",
         "type": "standard"
       }
+    },
+    "278d": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
     }
   },
   "inputSchema": {
     "type": "object",
     "properties": {
+      "_id": {
+        "title": "job_id",
+        "type": "string",
+        "examples": [
+          "test"
+        ]
+      },
       "softwareUpgradeTaskName": {
         "$id": "softwareUpgradeTaskName",
         "type": "string"
@@ -610,6 +618,7 @@
       }
     },
     "required": [
+      "_id",
       "softwareUpgradeTaskName",
       "softwareImageName",
       "deviceInputsForUpgrade",
@@ -619,6 +628,10 @@
   "outputSchema": {
     "type": "object",
     "properties": {
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
       "softwareUpgradeTaskName": {
         "$id": "softwareUpgradeTaskName",
         "type": "string"
@@ -654,6 +667,13 @@
           "string"
         ]
       },
+      "returnStatus": {
+        "title": "response",
+        "type": "string",
+        "examples": [
+          "awesome"
+        ]
+      },
       "softwareUpgradeResult": {
         "$id": "currentSoftwareUpgradeTask",
         "type": "object",
@@ -674,15 +694,15 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-25T13:51:07.261Z",
+  "last_updated": "2023-09-26T18:08:43.082Z",
   "created": "2023-09-21T16:30:45.577Z",
+  "canvasVersion": 1.5,
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
     "inactive": false
   },
-  "canvasVersion": 1.5,
   "tags": [],
   "groups": [],
   "migrationVersion": 2

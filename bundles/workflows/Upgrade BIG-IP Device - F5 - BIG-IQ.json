@@ -1,6 +1,33 @@
 {
   "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
   "tasks": {
+    "3626": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 4464,
+        "y": 204
+      }
+    },
     "6737": {
       "name": "childJob",
       "canvasName": "childJob",
@@ -36,7 +63,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": -12,
+        "x": -900,
         "y": -24
       }
     },
@@ -63,7 +90,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 960,
+        "x": 684,
         "y": -156
       }
     },
@@ -102,7 +129,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -696,
+        "x": -1560,
         "y": -24
       }
     },
@@ -110,7 +137,7 @@
       "name": "workflow_start",
       "groups": [],
       "nodeLocation": {
-        "x": -1872,
+        "x": -3036,
         "y": -24
       },
       "x": 0,
@@ -120,7 +147,7 @@
       "name": "workflow_end",
       "groups": [],
       "nodeLocation": {
-        "x": 4428,
+        "x": 5448,
         "y": -24
       },
       "x": 1,
@@ -152,7 +179,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": -1332,
+        "x": -2484,
         "y": -24
       }
     },
@@ -179,7 +206,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 312,
+        "x": -264,
         "y": -24
       }
     },
@@ -213,6 +240,10 @@
             "deviceReferences": {
               "task": "8e56",
               "value": "deviceReferencesWithMachineId"
+            },
+            "_id": {
+              "task": "2d47",
+              "value": "return_data"
             }
           },
           "data_array": "",
@@ -226,7 +257,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 636,
+        "x": 60,
         "y": -24
       }
     },
@@ -285,7 +316,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 960,
+        "x": 684,
         "y": -24
       }
     },
@@ -371,7 +402,7 @@
       "view": "/workflow_engine/task/ViewData",
       "groups": [],
       "nodeLocation": {
-        "x": 1272,
+        "x": 1296,
         "y": -24
       }
     },
@@ -457,7 +488,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 3864,
+        "x": 4152,
         "y": -24
       }
     },
@@ -500,7 +531,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 4176,
+        "x": 4800,
         "y": -24
       }
     },
@@ -534,14 +565,15 @@
           "iHealthTaskNamePostUpgrade": null,
           "machineSearchQueries": null,
           "reactivateLicenseLinks": null,
-          "reactivationLinkMessage": null
+          "reactivationLinkMessage": null,
+          "returnStatus": "$var.job.returnStatus"
         },
         "decorators": []
       },
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -1632,
+        "x": -2784,
         "y": -24
       }
     },
@@ -568,14 +600,14 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 1272,
-        "y": 216
+        "x": 1296,
+        "y": 204
       }
     },
     "90d0": {
       "name": "stub",
       "canvasName": "stub",
-      "summary": "Failure Path",
+      "summary": "Return Failed Status",
       "description": "Failure Path",
       "location": "Application",
       "locationType": null,
@@ -586,16 +618,16 @@
         "incoming": {
           "type": "success",
           "delay": "",
-          "response": ""
+          "response": "FAILED"
         },
         "outgoing": {
-          "response": ""
+          "response": "$var.job.returnStatus"
         }
       },
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 4428,
+        "x": 5448,
         "y": 204
       }
     },
@@ -703,7 +735,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 2256,
-        "y": 96
+        "y": 84
       }
     },
     "417e": {
@@ -730,7 +762,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 2256,
-        "y": 216
+        "y": 204
       }
     },
     "9bcd": {
@@ -763,6 +795,10 @@
             "deviceInputsForUpgrade": {
               "task": "8e56",
               "value": "deviceInputsForUpgrade"
+            },
+            "_id": {
+              "task": "8c67",
+              "value": "return_value"
             }
           },
           "data_array": "",
@@ -821,7 +857,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -348,
+        "x": -1236,
         "y": -24
       }
     },
@@ -848,35 +884,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -348,
+        "x": -1236,
         "y": -156
-      }
-    },
-    "a58e": {
-      "name": "stub",
-      "canvasName": "stub",
-      "summary": "Skip iHealth Task Upload",
-      "description": "Skip iHealth task upload post upgrade",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "automatic",
-      "displayName": "Tools",
-      "variables": {
-        "incoming": {
-          "type": "success",
-          "delay": "",
-          "response": ""
-        },
-        "outgoing": {
-          "response": ""
-        }
-      },
-      "actor": "Pronghorn",
-      "groups": [],
-      "nodeLocation": {
-        "x": 3216,
-        "y": -144
       }
     },
     "91c6": {
@@ -920,7 +929,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 2892,
+        "x": 2880,
         "y": -24
       }
     },
@@ -960,7 +969,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -1020,
+        "x": -1884,
         "y": -24
       }
     },
@@ -996,14 +1005,542 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 3540,
+        "x": 3840,
         "y": -24
+      }
+    },
+    "3f84": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Software Upgrade Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "9bcd",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "SUCCESS"
+                  },
+                  "operator": "==",
+                  "query": "returnStatus",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3528,
+        "y": -24
+      }
+    },
+    "107d": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3528,
+        "y": 204
+      }
+    },
+    "ec9d": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Software Upgrade Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "9bcd",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "SUCCESS"
+                  },
+                  "operator": "==",
+                  "query": "returnStatus",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3528,
+        "y": -144
+      }
+    },
+    "f99f": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Retrieving Machine Id Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "035d",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": 1
+                  },
+                  "operator": "<",
+                  "query": "loop[*returnStatus=FAILED]",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -2184,
+        "y": -24
+      }
+    },
+    "adbb": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -2184,
+        "y": 204
+      }
+    },
+    "4aa4": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Retrieving Credentials Id Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "6737",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "SUCCESS"
+                  },
+                  "operator": "==",
+                  "query": "returnStatus",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -576,
+        "y": -24
+      }
+    },
+    "6c93": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -576,
+        "y": 204
+      }
+    },
+    "c32f": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Creating iHealth Upload Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "93ba",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "SUCCESS"
+                  },
+                  "operator": "==",
+                  "query": "returnStatus",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 372,
+        "y": -24
+      }
+    },
+    "4b3f": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 372,
+        "y": 204
+      }
+    },
+    "0571": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Retrieving Machine Id Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "ffd2",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": 1
+                  },
+                  "operator": "<",
+                  "query": "loop[*returnStatus=FAILED]",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 978,
+        "y": -24
+      }
+    },
+    "a4f9": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 972,
+        "y": 204
+      }
+    },
+    "d992": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Discovering Device Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "d2d0",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": 1
+                  },
+                  "operator": "<",
+                  "query": "loop[*returnStatus=FAILED]",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 4464,
+        "y": -24
+      }
+    },
+    "ecf2": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Importing Device Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "0f89",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": 1
+                  },
+                  "operator": "<",
+                  "query": "loop[*returnStatus=FAILED]",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 5124,
+        "y": -24
+      }
+    },
+    "d616": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 5124,
+        "y": 204
       }
     }
   },
   "transitions": {
+    "3626": {
+      "d616": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
     "6737": {
-      "2d47": {
+      "4aa4": {
         "state": "success",
         "type": "standard"
       }
@@ -1028,7 +1565,7 @@
     },
     "workflow_end": {},
     "035d": {
-      "8e56": {
+      "f99f": {
         "state": "success",
         "type": "standard"
       }
@@ -1040,13 +1577,13 @@
       }
     },
     "93ba": {
-      "ffd2": {
+      "c32f": {
         "state": "success",
         "type": "standard"
       }
     },
     "ffd2": {
-      "2af6": {
+      "0571": {
         "state": "success",
         "type": "standard"
       }
@@ -1068,19 +1605,19 @@
       }
     },
     "935a": {
-      "0a2a": {
+      "3f84": {
         "state": "success",
         "type": "standard"
       }
     },
     "d2d0": {
-      "0f89": {
+      "d992": {
         "state": "success",
         "type": "standard"
       }
     },
     "0f89": {
-      "workflow_end": {
+      "ecf2": {
         "state": "success",
         "type": "standard"
       }
@@ -1130,7 +1667,7 @@
       }
     },
     "417e": {
-      "90d0": {
+      "107d": {
         "state": "success",
         "type": "standard"
       }
@@ -1157,20 +1694,14 @@
         "type": "standard"
       }
     },
-    "a58e": {
-      "0a2a": {
-        "state": "success",
-        "type": "standard"
-      }
-    },
     "91c6": {
-      "a58e": {
-        "state": "failure",
-        "type": "standard"
-      },
       "935a": {
         "state": "success",
         "type": "standard"
+      },
+      "ec9d": {
+        "type": "standard",
+        "state": "failure"
       }
     },
     "8e56": {
@@ -1181,6 +1712,122 @@
     },
     "0a2a": {
       "d2d0": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "3f84": {
+      "0a2a": {
+        "state": "success",
+        "type": "standard"
+      },
+      "107d": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "107d": {
+      "3626": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "ec9d": {
+      "107d": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "0a2a": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "f99f": {
+      "8e56": {
+        "state": "success",
+        "type": "standard"
+      },
+      "adbb": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "adbb": {
+      "6c93": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "4aa4": {
+      "2d47": {
+        "state": "success",
+        "type": "standard"
+      },
+      "6c93": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "6c93": {
+      "4b3f": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "c32f": {
+      "ffd2": {
+        "state": "success",
+        "type": "standard"
+      },
+      "4b3f": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "4b3f": {
+      "a4f9": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "0571": {
+      "2af6": {
+        "state": "success",
+        "type": "standard"
+      },
+      "a4f9": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "a4f9": {
+      "52a9": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "d992": {
+      "3626": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "0f89": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "ecf2": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      },
+      "d616": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "d616": {
+      "90d0": {
         "state": "success",
         "type": "standard"
       }
@@ -1484,6 +2131,13 @@
       },
       "initiator": {
         "type": "string"
+      },
+      "returnStatus": {
+        "title": "response",
+        "type": "string",
+        "examples": [
+          "awesome"
+        ]
       }
     }
   },
@@ -1493,7 +2147,7 @@
   "errorHandler": null,
   "preAutomationTime": 0,
   "sla": 0,
-  "last_updated": "2023-09-25T15:33:25.718Z",
+  "last_updated": "2023-09-26T19:00:56.438Z",
   "lastUpdatedVersion": "5.46.0-2023.1.19.0",
   "created": "2023-09-20T17:55:55.770Z",
   "created_by": {

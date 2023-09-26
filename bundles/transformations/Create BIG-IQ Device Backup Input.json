@@ -67,6 +67,13 @@
         }
       },
       "required": []
+    },
+    {
+      "$id": "returnStatus",
+      "type": "string",
+      "examples": [
+        "SUCCESS"
+      ]
     }
   ],
   "steps": [
@@ -462,6 +469,35 @@
         "ptr": "/name"
       },
       "context": "#"
+    },
+    {
+      "id": 39,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "SUCCESS"
+      ],
+      "view": {
+        "row": 4,
+        "col": 5
+      },
+      "context": "#"
+    },
+    {
+      "id": 40,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 39,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "returnStatus",
+        "ptr": ""
+      },
+      "context": "#"
     }
   ],
   "functions": [],
@@ -476,7 +512,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2023-09-25T03:14:28.695Z",
+  "lastUpdated": "2023-09-26T18:06:46.820Z",
   "lastUpdatedBy": {
     "_id": "6463eeecee404876a5626a1a",
     "provenance": "local_aaa",

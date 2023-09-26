@@ -5,7 +5,7 @@
     "1692": {
       "name": "stub",
       "canvasName": "stub",
-      "summary": "Failure Path",
+      "summary": "Return Failed Status",
       "description": "Failure Path",
       "location": "Application",
       "locationType": null,
@@ -16,10 +16,10 @@
         "incoming": {
           "type": "success",
           "delay": "",
-          "response": ""
+          "response": "FAILED"
         },
         "outgoing": {
-          "response": ""
+          "response": "$var.job.returnStatus"
         }
       },
       "actor": "Pronghorn",
@@ -63,7 +63,7 @@
       "x": -0.05709992486851991,
       "y": 0.5006165228113441,
       "nodeLocation": {
-        "x": -60,
+        "x": -48,
         "y": 996
       }
     },
@@ -129,14 +129,15 @@
           }
         },
         "outgoing": {
-          "iHealthTaskInput": null
+          "iHealthTaskInput": null,
+          "returnStatus": "$var.job.returnStatus"
         },
         "decorators": []
       },
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 204,
+        "x": 216,
         "y": 996
       }
     },
@@ -579,6 +580,13 @@
   "inputSchema": {
     "type": "object",
     "properties": {
+      "_id": {
+        "title": "job_id",
+        "type": "string",
+        "examples": [
+          "test"
+        ]
+      },
       "adapterId": {
         "type": [
           "array",
@@ -603,6 +611,7 @@
       }
     },
     "required": [
+      "_id",
       "adapterId",
       "iHealthTaskName",
       "deviceReferences",
@@ -612,6 +621,10 @@
   "outputSchema": {
     "type": "object",
     "properties": {
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
       "adapterId": {
         "type": [
           "array",
@@ -636,6 +649,13 @@
       },
       "initiator": {
         "type": "string"
+      },
+      "returnStatus": {
+        "title": "response",
+        "type": "string",
+        "examples": [
+          "awesome"
+        ]
       },
       "BIGIQError": {
         "type": [
@@ -665,15 +685,15 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-25T13:57:32.848Z",
+  "last_updated": "2023-09-26T18:36:05.487Z",
   "created": "2023-09-20T13:19:21.052Z",
+  "canvasVersion": 1.5,
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
     "inactive": false
   },
-  "canvasVersion": 1.5,
   "tags": [],
   "groups": [],
   "migrationVersion": 2

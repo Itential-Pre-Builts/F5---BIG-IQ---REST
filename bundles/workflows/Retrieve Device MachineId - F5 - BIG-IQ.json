@@ -18,7 +18,7 @@
       "x": 0.3569682151589242,
       "y": 0.4981549815498155,
       "nodeLocation": {
-        "x": 1176,
+        "x": 1200,
         "y": 996
       }
     },
@@ -46,7 +46,8 @@
           }
         },
         "outgoing": {
-          "deviceFilter": null
+          "deviceFilter": null,
+          "returnStatus": "$var.job.returnStatus"
         },
         "decorators": []
       },
@@ -128,6 +129,60 @@
         "x": 900,
         "y": 996
       }
+    },
+    "bab8": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show BIG-IQ Error",
+      "description": "Show BIG-IQ Error",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Getting Machine ID Failed",
+          "message": "Failed to get machine Id. See error below. Select \"Retry\" to retry getting machine Id or select \"End Job\" to end the overall job.\n\n\n\n\n\n",
+          "body": "$var.f15b.error",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 552,
+        "y": 1152
+      }
+    },
+    "3a47": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Return Failed Status",
+      "description": "Return failed status",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "FAILED"
+        },
+        "outgoing": {
+          "response": "$var.job.returnStatus"
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1200,
+        "y": 1152
+      }
     }
   },
   "transitions": {
@@ -148,9 +203,29 @@
       "4b7d": {
         "state": "success",
         "type": "standard"
+      },
+      "bab8": {
+        "type": "standard",
+        "state": "error"
       }
     },
     "4b7d": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "bab8": {
+      "f15b": {
+        "state": "success",
+        "type": "revert"
+      },
+      "3a47": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "3a47": {
       "workflow_end": {
         "state": "success",
         "type": "standard"
@@ -213,6 +288,13 @@
       "initiator": {
         "type": "string"
       },
+      "returnStatus": {
+        "title": "response",
+        "type": "string",
+        "examples": [
+          "awesome"
+        ]
+      },
       "BIGIQError": {
         "type": [
           "array",
@@ -235,7 +317,7 @@
   },
   "type": "automation",
   "font_size": 12,
-  "last_updated": "2023-09-22T16:04:40.174Z",
+  "last_updated": "2023-09-26T18:14:56.587Z",
   "lastUpdatedVersion": "5.46.0-2023.1.19.0",
   "created": "2023-07-19T20:20:09.772Z",
   "createdVersion": "5.40.5-2021.1.72.0",

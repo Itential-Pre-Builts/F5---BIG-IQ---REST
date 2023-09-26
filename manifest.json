@@ -1,8 +1,8 @@
 {
   "bundleName": "F5 - BIG-IQ - REST",
   "version": "0.0.1",
-  "fingerprint": "6511a958163eb400c61225af",
-  "createdEpoch": "1695656280359",
+  "fingerprint": "65133b19163eb400c61225b1",
+  "createdEpoch": "1695759129634",
   "artifacts": [
     {
       "id": "Upgrade BIG-IP Device - F5 - BIG-IQ",

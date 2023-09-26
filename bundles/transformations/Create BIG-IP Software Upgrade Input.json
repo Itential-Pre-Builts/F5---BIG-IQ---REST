@@ -109,6 +109,10 @@
         }
       },
       "required": []
+    },
+    {
+      "$id": "returnStatus",
+      "type": "string"
     }
   ],
   "steps": [
@@ -172,6 +176,20 @@
       "context": "#"
     },
     {
+      "id": 28,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "SUCCESS"
+      ],
+      "view": {
+        "row": 3,
+        "col": 4
+      },
+      "context": "#"
+    },
+    {
       "id": 1,
       "type": "template",
       "library": "String",
@@ -216,6 +234,21 @@
       "view": {
         "row": 2,
         "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 29,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 28,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "returnStatus",
+        "ptr": ""
       },
       "context": "#"
     },
@@ -452,7 +485,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2023-09-25T05:31:32.382Z",
+  "lastUpdated": "2023-09-26T18:05:56.651Z",
   "lastUpdatedBy": {
     "_id": "6463eeecee404876a5626a1a",
     "provenance": "local_aaa",
