@@ -1,4 +1,12 @@
 
+## 0.1.1 [09-26-2023]
+
+* Updates error handling with manual task and returns status of overall software upgrade
+
+See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!4
+
+---
+
 ## 0.1.0 [09-25-2023]
 
 * Updates inputs for HA upgrade
@@ -38,4 +46,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n
+\n\n\n\n\n\n

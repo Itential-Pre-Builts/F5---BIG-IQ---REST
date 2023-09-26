@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "@itentialopensource/f5-big-iq-rest",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.",
     "license": "Apache-2.0",
     "repository": {
@@ -23,8 +23,8 @@
   },
   "manifest": {
     "bundleName": "F5 - BIG-IQ - REST",
-    "fingerprint": "6511a958163eb400c61225af",
-    "createdEpoch": "1695656280359",
+    "fingerprint": "65133b19163eb400c61225b1",
+    "createdEpoch": "1695759129634",
     "artifacts": [
       {
         "id": "Upgrade BIG-IP Device - F5 - BIG-IQ",
@@ -250,6 +250,33 @@
       "data": {
         "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
         "tasks": {
+          "3626": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Failure Path",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": ""
+              },
+              "outgoing": {
+                "response": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 4464,
+              "y": 204
+            }
+          },
           "6737": {
             "name": "childJob",
             "canvasName": "childJob",
@@ -285,7 +312,7 @@
             "actor": "job",
             "groups": [],
             "nodeLocation": {
-              "x": -12,
+              "x": -900,
               "y": -24
             }
           },
@@ -312,7 +339,7 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 960,
+              "x": 684,
               "y": -156
             }
           },
@@ -351,7 +378,7 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": -696,
+              "x": -1560,
               "y": -24
             }
           },
@@ -359,7 +386,7 @@
             "name": "workflow_start",
             "groups": [],
             "nodeLocation": {
-              "x": -1872,
+              "x": -3036,
               "y": -24
             },
             "x": 0,
@@ -369,7 +396,7 @@
             "name": "workflow_end",
             "groups": [],
             "nodeLocation": {
-              "x": 4428,
+              "x": 5448,
               "y": -24
             },
             "x": 1,
@@ -401,7 +428,7 @@
             "actor": "job",
             "groups": [],
             "nodeLocation": {
-              "x": -1332,
+              "x": -2484,
               "y": -24
             }
           },
@@ -428,7 +455,7 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 312,
+              "x": -264,
               "y": -24
             }
           },
@@ -462,6 +489,10 @@
                   "deviceReferences": {
                     "task": "8e56",
                     "value": "deviceReferencesWithMachineId"
+                  },
+                  "_id": {
+                    "task": "2d47",
+                    "value": "return_data"
                   }
                 },
                 "data_array": "",
@@ -475,7 +506,7 @@
             "actor": "job",
             "groups": [],
             "nodeLocation": {
-              "x": 636,
+              "x": 60,
               "y": -24
             }
           },
@@ -534,7 +565,7 @@
             "actor": "job",
             "groups": [],
             "nodeLocation": {
-              "x": 960,
+              "x": 684,
               "y": -24
             }
           },
@@ -620,7 +651,7 @@
             "view": "/workflow_engine/task/ViewData",
             "groups": [],
             "nodeLocation": {
-              "x": 1272,
+              "x": 1296,
               "y": -24
             }
           },
@@ -706,7 +737,7 @@
             "actor": "job",
             "groups": [],
             "nodeLocation": {
-              "x": 3864,
+              "x": 4152,
               "y": -24
             }
           },
@@ -749,7 +780,7 @@
             "actor": "job",
             "groups": [],
             "nodeLocation": {
-              "x": 4176,
+              "x": 4800,
               "y": -24
             }
           },
@@ -783,14 +814,15 @@
                 "iHealthTaskNamePostUpgrade": null,
                 "machineSearchQueries": null,
                 "reactivateLicenseLinks": null,
-                "reactivationLinkMessage": null
+                "reactivationLinkMessage": null,
+                "returnStatus": "$var.job.returnStatus"
               },
               "decorators": []
             },
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": -1632,
+              "x": -2784,
               "y": -24
             }
           },
@@ -817,14 +849,14 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 1272,
-              "y": 216
+              "x": 1296,
+              "y": 204
             }
           },
           "90d0": {
             "name": "stub",
             "canvasName": "stub",
-            "summary": "Failure Path",
+            "summary": "Return Failed Status",
             "description": "Failure Path",
             "location": "Application",
             "locationType": null,
@@ -835,16 +867,16 @@
               "incoming": {
                 "type": "success",
                 "delay": "",
-                "response": ""
+                "response": "FAILED"
               },
               "outgoing": {
-                "response": ""
+                "response": "$var.job.returnStatus"
               }
             },
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 4428,
+              "x": 5448,
               "y": 204
             }
           },
@@ -952,7 +984,7 @@
             "groups": [],
             "nodeLocation": {
               "x": 2256,
-              "y": 96
+              "y": 84
             }
           },
           "417e": {
@@ -979,7 +1011,7 @@
             "groups": [],
             "nodeLocation": {
               "x": 2256,
-              "y": 216
+              "y": 204
             }
           },
           "9bcd": {
@@ -1012,6 +1044,10 @@
                   "deviceInputsForUpgrade": {
                     "task": "8e56",
                     "value": "deviceInputsForUpgrade"
+                  },
+                  "_id": {
+                    "task": "8c67",
+                    "value": "return_value"
                   }
                 },
                 "data_array": "",
@@ -1070,7 +1106,7 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": -348,
+              "x": -1236,
               "y": -24
             }
           },
@@ -1097,35 +1133,8 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": -348,
+              "x": -1236,
               "y": -156
-            }
-          },
-          "a58e": {
-            "name": "stub",
-            "canvasName": "stub",
-            "summary": "Skip iHealth Task Upload",
-            "description": "Skip iHealth task upload post upgrade",
-            "location": "Application",
-            "locationType": null,
-            "app": "WorkFlowEngine",
-            "type": "automatic",
-            "displayName": "Tools",
-            "variables": {
-              "incoming": {
-                "type": "success",
-                "delay": "",
-                "response": ""
-              },
-              "outgoing": {
-                "response": ""
-              }
-            },
-            "actor": "Pronghorn",
-            "groups": [],
-            "nodeLocation": {
-              "x": 3216,
-              "y": -144
             }
           },
           "91c6": {
@@ -1169,7 +1178,7 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 2892,
+              "x": 2880,
               "y": -24
             }
           },
@@ -1209,7 +1218,7 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": -1020,
+              "x": -1884,
               "y": -24
             }
           },
@@ -1245,14 +1254,542 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 3540,
+              "x": 3840,
               "y": -24
+            }
+          },
+          "3f84": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Software Upgrade Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "9bcd",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": "SUCCESS"
+                        },
+                        "operator": "==",
+                        "query": "returnStatus",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 3528,
+              "y": -24
+            }
+          },
+          "107d": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Failure Path",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": ""
+              },
+              "outgoing": {
+                "response": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 3528,
+              "y": 204
+            }
+          },
+          "ec9d": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Software Upgrade Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "9bcd",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": "SUCCESS"
+                        },
+                        "operator": "==",
+                        "query": "returnStatus",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 3528,
+              "y": -144
+            }
+          },
+          "f99f": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Retrieving Machine Id Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "035d",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": 1
+                        },
+                        "operator": "<",
+                        "query": "loop[*returnStatus=FAILED]",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": -2184,
+              "y": -24
+            }
+          },
+          "adbb": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Failure Path",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": ""
+              },
+              "outgoing": {
+                "response": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": -2184,
+              "y": 204
+            }
+          },
+          "4aa4": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Retrieving Credentials Id Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "6737",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": "SUCCESS"
+                        },
+                        "operator": "==",
+                        "query": "returnStatus",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": -576,
+              "y": -24
+            }
+          },
+          "6c93": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Failure Path",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": ""
+              },
+              "outgoing": {
+                "response": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": -576,
+              "y": 204
+            }
+          },
+          "c32f": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Creating iHealth Upload Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "93ba",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": "SUCCESS"
+                        },
+                        "operator": "==",
+                        "query": "returnStatus",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 372,
+              "y": -24
+            }
+          },
+          "4b3f": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Failure Path",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": ""
+              },
+              "outgoing": {
+                "response": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 372,
+              "y": 204
+            }
+          },
+          "0571": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Retrieving Machine Id Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "ffd2",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": 1
+                        },
+                        "operator": "<",
+                        "query": "loop[*returnStatus=FAILED]",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 978,
+              "y": -24
+            }
+          },
+          "a4f9": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Failure Path",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": ""
+              },
+              "outgoing": {
+                "response": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 972,
+              "y": 204
+            }
+          },
+          "d992": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Discovering Device Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "d2d0",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": 1
+                        },
+                        "operator": "<",
+                        "query": "loop[*returnStatus=FAILED]",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 4464,
+              "y": -24
+            }
+          },
+          "ecf2": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Importing Device Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "0f89",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": 1
+                        },
+                        "operator": "<",
+                        "query": "loop[*returnStatus=FAILED]",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 5124,
+              "y": -24
+            }
+          },
+          "d616": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Failure Path",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": ""
+              },
+              "outgoing": {
+                "response": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 5124,
+              "y": 204
             }
           }
         },
         "transitions": {
+          "3626": {
+            "d616": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
           "6737": {
-            "2d47": {
+            "4aa4": {
               "state": "success",
               "type": "standard"
             }
@@ -1277,7 +1814,7 @@
           },
           "workflow_end": {},
           "035d": {
-            "8e56": {
+            "f99f": {
               "state": "success",
               "type": "standard"
             }
@@ -1289,13 +1826,13 @@
             }
           },
           "93ba": {
-            "ffd2": {
+            "c32f": {
               "state": "success",
               "type": "standard"
             }
           },
           "ffd2": {
-            "2af6": {
+            "0571": {
               "state": "success",
               "type": "standard"
             }
@@ -1317,19 +1854,19 @@
             }
           },
           "935a": {
-            "0a2a": {
+            "3f84": {
               "state": "success",
               "type": "standard"
             }
           },
           "d2d0": {
-            "0f89": {
+            "d992": {
               "state": "success",
               "type": "standard"
             }
           },
           "0f89": {
-            "workflow_end": {
+            "ecf2": {
               "state": "success",
               "type": "standard"
             }
@@ -1379,7 +1916,7 @@
             }
           },
           "417e": {
-            "90d0": {
+            "107d": {
               "state": "success",
               "type": "standard"
             }
@@ -1406,20 +1943,14 @@
               "type": "standard"
             }
           },
-          "a58e": {
-            "0a2a": {
-              "state": "success",
-              "type": "standard"
-            }
-          },
           "91c6": {
-            "a58e": {
-              "state": "failure",
-              "type": "standard"
-            },
             "935a": {
               "state": "success",
               "type": "standard"
+            },
+            "ec9d": {
+              "type": "standard",
+              "state": "failure"
             }
           },
           "8e56": {
@@ -1430,6 +1961,122 @@
           },
           "0a2a": {
             "d2d0": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "3f84": {
+            "0a2a": {
+              "state": "success",
+              "type": "standard"
+            },
+            "107d": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "107d": {
+            "3626": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "ec9d": {
+            "107d": {
+              "type": "standard",
+              "state": "failure"
+            },
+            "0a2a": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "f99f": {
+            "8e56": {
+              "state": "success",
+              "type": "standard"
+            },
+            "adbb": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "adbb": {
+            "6c93": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "4aa4": {
+            "2d47": {
+              "state": "success",
+              "type": "standard"
+            },
+            "6c93": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "6c93": {
+            "4b3f": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "c32f": {
+            "ffd2": {
+              "state": "success",
+              "type": "standard"
+            },
+            "4b3f": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "4b3f": {
+            "a4f9": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "0571": {
+            "2af6": {
+              "state": "success",
+              "type": "standard"
+            },
+            "a4f9": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "a4f9": {
+            "52a9": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "d992": {
+            "3626": {
+              "type": "standard",
+              "state": "failure"
+            },
+            "0f89": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "ecf2": {
+            "workflow_end": {
+              "state": "success",
+              "type": "standard"
+            },
+            "d616": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "d616": {
+            "90d0": {
               "state": "success",
               "type": "standard"
             }
@@ -1733,6 +2380,13 @@
             },
             "initiator": {
               "type": "string"
+            },
+            "returnStatus": {
+              "title": "response",
+              "type": "string",
+              "examples": [
+                "awesome"
+              ]
             }
           }
         },
@@ -1742,7 +2396,7 @@
         "errorHandler": null,
         "preAutomationTime": 0,
         "sla": 0,
-        "last_updated": "2023-09-25T15:33:25.718Z",
+        "last_updated": "2023-09-26T19:00:56.438Z",
         "lastUpdatedVersion": "5.46.0-2023.1.19.0",
         "created": "2023-09-20T17:55:55.770Z",
         "created_by": {
@@ -1770,13 +2424,40 @@
         "name": "Retrieve iHealth Credentials Id - F5 - BIG-IQ",
         "description": "Retrieve device machine ID with filter inputs provided",
         "tasks": {
+          "2339": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Return Failed Status",
+            "description": "Return failed status",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": "FAILED"
+              },
+              "outgoing": {
+                "response": "$var.job.returnStatus"
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 972,
+              "y": 1152
+            }
+          },
           "workflow_start": {
             "name": "workflow_start",
             "groups": [],
             "x": -0.05709992486851991,
             "y": 0.5006165228113441,
             "nodeLocation": {
-              "x": 12,
+              "x": -72,
               "y": 996
             }
           },
@@ -1814,7 +2495,7 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 288,
+              "x": 264,
               "y": 996
             }
           },
@@ -1843,7 +2524,8 @@
                 }
               },
               "outgoing": {
-                "credentialsId": "$var.job.credentialsId"
+                "credentialsId": "$var.job.credentialsId",
+                "returnStatus": "$var.job.returnStatus"
               },
               "decorators": []
             },
@@ -1853,9 +2535,42 @@
               "x": 648,
               "y": 996
             }
+          },
+          "3f42": {
+            "name": "ViewData",
+            "canvasName": "ViewData",
+            "summary": "Show BIG-IQ Error",
+            "description": "Show BIG-IQ Error",
+            "location": "Application",
+            "app": "WorkFlowEngine",
+            "displayName": "WorkFlowEngine",
+            "type": "manual",
+            "variables": {
+              "incoming": {
+                "header": "Failed to get iHealth Credentials",
+                "message": "Failed to get iHealth Credentials. See error below. Select \"Retry\" to retry getting iHealth Credentials or select \"End Job\" to end job.\n\n\n\n\n",
+                "body": "$var.dba3.error",
+                "variables": "",
+                "btn_success": "Retry",
+                "btn_failure": "End Job"
+              },
+              "outgoing": {}
+            },
+            "view": "/workflow_engine/task/ViewData",
+            "groups": [],
+            "nodeLocation": {
+              "x": 264,
+              "y": 1152
+            }
           }
         },
         "transitions": {
+          "2339": {
+            "workflow_end": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
           "workflow_start": {
             "dba3": {
               "state": "success",
@@ -1867,12 +2582,26 @@
             "fcce": {
               "state": "success",
               "type": "standard"
+            },
+            "3f42": {
+              "type": "standard",
+              "state": "error"
             }
           },
           "fcce": {
             "workflow_end": {
               "state": "success",
               "type": "standard"
+            }
+          },
+          "3f42": {
+            "2339": {
+              "type": "standard",
+              "state": "failure"
+            },
+            "dba3": {
+              "state": "success",
+              "type": "revert"
             }
           }
         },
@@ -1911,6 +2640,13 @@
             "initiator": {
               "type": "string"
             },
+            "returnStatus": {
+              "title": "response",
+              "type": "string",
+              "examples": [
+                "awesome"
+              ]
+            },
             "BIGIQError": {
               "type": [
                 "array",
@@ -1929,7 +2665,7 @@
         },
         "type": "automation",
         "font_size": 12,
-        "lastUpdatedVersion": "5.46.0-2023.1.15.0",
+        "lastUpdatedVersion": "5.46.0-2023.1.19.0",
         "createdVersion": "5.46.0-2023.1.15.0",
         "preAutomationTime": 0,
         "sla": 0,
@@ -1940,7 +2676,7 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-20T05:31:58.660Z",
+        "last_updated": "2023-09-26T18:17:22.871Z",
         "created": "2023-09-20T05:09:23.341Z",
         "last_updated_by": {
           "provenance": "local_aaa",
@@ -1975,7 +2711,7 @@
             "x": 0.3569682151589242,
             "y": 0.4981549815498155,
             "nodeLocation": {
-              "x": 1176,
+              "x": 1200,
               "y": 996
             }
           },
@@ -2003,7 +2739,8 @@
                 }
               },
               "outgoing": {
-                "deviceFilter": null
+                "deviceFilter": null,
+                "returnStatus": "$var.job.returnStatus"
               },
               "decorators": []
             },
@@ -2085,6 +2822,60 @@
               "x": 900,
               "y": 996
             }
+          },
+          "bab8": {
+            "name": "ViewData",
+            "canvasName": "ViewData",
+            "summary": "Show BIG-IQ Error",
+            "description": "Show BIG-IQ Error",
+            "location": "Application",
+            "app": "WorkFlowEngine",
+            "displayName": "WorkFlowEngine",
+            "type": "manual",
+            "variables": {
+              "incoming": {
+                "header": "Getting Machine ID Failed",
+                "message": "Failed to get machine Id. See error below. Select \"Retry\" to retry getting machine Id or select \"End Job\" to end the overall job.\n\n\n\n\n\n",
+                "body": "$var.f15b.error",
+                "variables": "",
+                "btn_success": "Retry",
+                "btn_failure": "End Job"
+              },
+              "outgoing": {}
+            },
+            "view": "/workflow_engine/task/ViewData",
+            "groups": [],
+            "nodeLocation": {
+              "x": 552,
+              "y": 1152
+            }
+          },
+          "3a47": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Return Failed Status",
+            "description": "Return failed status",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": "FAILED"
+              },
+              "outgoing": {
+                "response": "$var.job.returnStatus"
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 1200,
+              "y": 1152
+            }
           }
         },
         "transitions": {
@@ -2105,9 +2896,29 @@
             "4b7d": {
               "state": "success",
               "type": "standard"
+            },
+            "bab8": {
+              "type": "standard",
+              "state": "error"
             }
           },
           "4b7d": {
+            "workflow_end": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "bab8": {
+            "f15b": {
+              "state": "success",
+              "type": "revert"
+            },
+            "3a47": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "3a47": {
             "workflow_end": {
               "state": "success",
               "type": "standard"
@@ -2170,6 +2981,13 @@
             "initiator": {
               "type": "string"
             },
+            "returnStatus": {
+              "title": "response",
+              "type": "string",
+              "examples": [
+                "awesome"
+              ]
+            },
             "BIGIQError": {
               "type": [
                 "array",
@@ -2192,7 +3010,7 @@
         },
         "type": "automation",
         "font_size": 12,
-        "last_updated": "2023-09-22T16:04:40.174Z",
+        "last_updated": "2023-09-26T18:14:56.587Z",
         "lastUpdatedVersion": "5.46.0-2023.1.19.0",
         "created": "2023-07-19T20:20:09.772Z",
         "createdVersion": "5.40.5-2021.1.72.0",
@@ -2225,7 +3043,7 @@
           "1692": {
             "name": "stub",
             "canvasName": "stub",
-            "summary": "Failure Path",
+            "summary": "Return Failed Status",
             "description": "Failure Path",
             "location": "Application",
             "locationType": null,
@@ -2236,10 +3054,10 @@
               "incoming": {
                 "type": "success",
                 "delay": "",
-                "response": ""
+                "response": "FAILED"
               },
               "outgoing": {
-                "response": ""
+                "response": "$var.job.returnStatus"
               }
             },
             "actor": "Pronghorn",
@@ -2283,7 +3101,7 @@
             "x": -0.05709992486851991,
             "y": 0.5006165228113441,
             "nodeLocation": {
-              "x": -60,
+              "x": -48,
               "y": 996
             }
           },
@@ -2349,14 +3167,15 @@
                 }
               },
               "outgoing": {
-                "iHealthTaskInput": null
+                "iHealthTaskInput": null,
+                "returnStatus": "$var.job.returnStatus"
               },
               "decorators": []
             },
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 204,
+              "x": 216,
               "y": 996
             }
           },
@@ -2799,6 +3618,13 @@
         "inputSchema": {
           "type": "object",
           "properties": {
+            "_id": {
+              "title": "job_id",
+              "type": "string",
+              "examples": [
+                "test"
+              ]
+            },
             "adapterId": {
               "type": [
                 "array",
@@ -2823,6 +3649,7 @@
             }
           },
           "required": [
+            "_id",
             "adapterId",
             "iHealthTaskName",
             "deviceReferences",
@@ -2832,6 +3659,10 @@
         "outputSchema": {
           "type": "object",
           "properties": {
+            "_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            },
             "adapterId": {
               "type": [
                 "array",
@@ -2856,6 +3687,13 @@
             },
             "initiator": {
               "type": "string"
+            },
+            "returnStatus": {
+              "title": "response",
+              "type": "string",
+              "examples": [
+                "awesome"
+              ]
             },
             "BIGIQError": {
               "type": [
@@ -2885,15 +3723,15 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-25T13:57:32.848Z",
+        "last_updated": "2023-09-26T18:36:05.487Z",
         "created": "2023-09-20T13:19:21.052Z",
+        "canvasVersion": 1.5,
         "last_updated_by": {
           "provenance": "local_aaa",
           "username": "admin@pronghorn",
           "firstname": "admin",
           "inactive": false
         },
-        "canvasVersion": 1.5,
         "tags": [],
         "groups": [],
         "migrationVersion": 2
@@ -2908,8 +3746,8 @@
           "1692": {
             "name": "stub",
             "canvasName": "stub",
-            "summary": "Failure Path",
-            "description": "Failure Path",
+            "summary": "Return Failed Status",
+            "description": "Return Failed Status",
             "location": "Application",
             "locationType": null,
             "app": "WorkFlowEngine",
@@ -2919,10 +3757,10 @@
               "incoming": {
                 "type": "success",
                 "delay": "",
-                "response": ""
+                "response": "FAILED"
               },
               "outgoing": {
-                "response": ""
+                "response": "$var.job.returnStatus"
               }
             },
             "actor": "Pronghorn",
@@ -3285,7 +4123,8 @@
                 }
               },
               "outgoing": {
-                "deviceBackupInput": null
+                "deviceBackupInput": null,
+                "returnStatus": "$var.job.returnStatus"
               },
               "decorators": []
             },
@@ -3568,6 +4407,13 @@
             "initiator": {
               "type": "string"
             },
+            "returnStatus": {
+              "title": "response",
+              "type": "string",
+              "examples": [
+                "awesome"
+              ]
+            },
             "backupTaskResponse": {
               "title": "result",
               "type": "object"
@@ -3596,15 +4442,15 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-25T02:55:53.496Z",
+        "last_updated": "2023-09-26T18:07:37.217Z",
         "created": "2023-09-20T14:28:07.192Z",
+        "canvasVersion": 1.5,
         "last_updated_by": {
           "provenance": "local_aaa",
           "username": "admin@pronghorn",
           "firstname": "admin",
           "inactive": false
         },
-        "canvasVersion": 1.5,
         "tags": [],
         "groups": [],
         "migrationVersion": 2
@@ -4528,8 +5374,8 @@
           "1692": {
             "name": "stub",
             "canvasName": "stub",
-            "summary": "Failure Path",
-            "description": "Failure Path",
+            "summary": "Return Failed Status",
+            "description": "Return Failed Status",
             "location": "Application",
             "locationType": null,
             "app": "WorkFlowEngine",
@@ -4539,10 +5385,10 @@
               "incoming": {
                 "type": "success",
                 "delay": "",
-                "response": ""
+                "response": "FAILED"
               },
               "outgoing": {
-                "response": ""
+                "response": "$var.job.returnStatus"
               }
             },
             "actor": "Pronghorn",
@@ -4848,7 +5694,8 @@
                 }
               },
               "outgoing": {
-                "deviceDiscoveryInput": null
+                "deviceDiscoveryInput": null,
+                "returnStatus": "$var.job.returnStatus"
               },
               "decorators": []
             },
@@ -5100,6 +5947,13 @@
         "inputSchema": {
           "type": "object",
           "properties": {
+            "_id": {
+              "title": "job_id",
+              "type": "string",
+              "examples": [
+                "test"
+              ]
+            },
             "machineId": {
               "$id": "machineId",
               "type": "string"
@@ -5116,6 +5970,7 @@
             }
           },
           "required": [
+            "_id",
             "machineId",
             "adapterId"
           ]
@@ -5123,6 +5978,10 @@
         "outputSchema": {
           "type": "object",
           "properties": {
+            "_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            },
             "machineId": {
               "$id": "machineId",
               "type": "string"
@@ -5139,6 +5998,13 @@
             },
             "initiator": {
               "type": "string"
+            },
+            "returnStatus": {
+              "title": "response",
+              "type": "string",
+              "examples": [
+                "awesome"
+              ]
             },
             "BIGIQError": {
               "type": [
@@ -5168,15 +6034,15 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-25T13:37:07.776Z",
+        "last_updated": "2023-09-26T18:56:17.352Z",
         "created": "2023-09-21T14:50:23.517Z",
+        "canvasVersion": 1.5,
         "last_updated_by": {
           "provenance": "local_aaa",
           "username": "admin@pronghorn",
           "firstname": "admin",
           "inactive": false
         },
-        "canvasVersion": 1.5,
         "tags": [],
         "groups": [],
         "migrationVersion": 2
@@ -5191,7 +6057,7 @@
           "1692": {
             "name": "stub",
             "canvasName": "stub",
-            "summary": "Failure Path",
+            "summary": "Return Failed Status",
             "description": "Failure Path",
             "location": "Application",
             "locationType": null,
@@ -5202,10 +6068,10 @@
               "incoming": {
                 "type": "success",
                 "delay": "",
-                "response": ""
+                "response": "FAILED"
               },
               "outgoing": {
-                "response": ""
+                "response": "$var.job.returnStatus"
               }
             },
             "actor": "Pronghorn",
@@ -5539,7 +6405,8 @@
                 }
               },
               "outgoing": {
-                "deviceImportInput": null
+                "deviceImportInput": null,
+                "returnStatus": "$var.job.returnStatus"
               },
               "decorators": []
             },
@@ -5774,6 +6641,13 @@
                 "string"
               ]
             },
+            "_id": {
+              "title": "job_id",
+              "type": "string",
+              "examples": [
+                "test"
+              ]
+            },
             "importDeviceTaskName": {
               "$id": "importDeviceTaskName",
               "type": "string"
@@ -5785,6 +6659,7 @@
           },
           "required": [
             "adapterId",
+            "_id",
             "importDeviceTaskName",
             "machineId"
           ]
@@ -5802,6 +6677,10 @@
                 "string"
               ]
             },
+            "_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            },
             "importDeviceTaskName": {
               "$id": "importDeviceTaskName",
               "type": "string"
@@ -5812,6 +6691,13 @@
             },
             "initiator": {
               "type": "string"
+            },
+            "returnStatus": {
+              "title": "response",
+              "type": "string",
+              "examples": [
+                "awesome"
+              ]
             },
             "BIGIQError": {
               "type": [
@@ -5841,15 +6727,15 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-25T13:41:30.073Z",
+        "last_updated": "2023-09-26T18:58:47.560Z",
         "created": "2023-09-21T15:13:03.753Z",
+        "canvasVersion": 1.5,
         "last_updated_by": {
           "provenance": "local_aaa",
           "username": "admin@pronghorn",
           "firstname": "admin",
           "inactive": false
         },
-        "canvasVersion": 1.5,
         "tags": [],
         "groups": [],
         "migrationVersion": 2
@@ -5861,33 +6747,6 @@
         "name": "Run BIG-IP Upgrade - F5 - BIG-IQ",
         "description": "Discover BIG-IP device over BIG-IQ",
         "tasks": {
-          "1692": {
-            "name": "stub",
-            "canvasName": "stub",
-            "summary": "Failure Path",
-            "description": "Failure Path",
-            "location": "Application",
-            "locationType": null,
-            "app": "WorkFlowEngine",
-            "type": "automatic",
-            "displayName": "Tools",
-            "variables": {
-              "incoming": {
-                "type": "success",
-                "delay": "",
-                "response": ""
-              },
-              "outgoing": {
-                "response": ""
-              }
-            },
-            "actor": "Pronghorn",
-            "groups": [],
-            "nodeLocation": {
-              "x": 2160,
-              "y": 1368
-            }
-          },
           "2053": {
             "name": "retrievaallUpgradeTasks",
             "canvasName": "retrievaallUpgradeTasks",
@@ -5975,7 +6834,7 @@
             "x": -0.05709992486851991,
             "y": 0.5006165228113441,
             "nodeLocation": {
-              "x": -96,
+              "x": -48,
               "y": 996
             }
           },
@@ -6046,7 +6905,7 @@
             "variables": {
               "incoming": {
                 "header": "Software Upgrade Task Failed",
-                "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or select \"End Job\" to end this job.\n\n",
+                "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                 "body": "$var.a421.currentSoftwareUpgradeTask",
                 "variables": "",
                 "btn_success": "Retry Upgrade",
@@ -6118,7 +6977,7 @@
             "variables": {
               "incoming": {
                 "header": "Number of Reattempts Exceeded",
-                "message": "The number of reattempts to query software upgrade task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+                "message": "The number of reattempts to query software upgrade task status exceeded expected number of reattempts. Select \"Query Task\" to query again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                 "body": "$var.a421.currentSoftwareUpgradeTask",
                 "variables": "",
                 "btn_success": "Query Task",
@@ -6156,7 +7015,7 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 1716,
+              "x": 1704,
               "y": 1368
             }
           },
@@ -6185,14 +7044,15 @@
                 }
               },
               "outgoing": {
-                "softwareUpgradeInput": null
+                "softwareUpgradeInput": null,
+                "returnStatus": "$var.job.returnStatus"
               },
               "decorators": []
             },
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 168,
+              "x": 204,
               "y": 996
             }
           },
@@ -6207,8 +7067,8 @@
             "type": "manual",
             "variables": {
               "incoming": {
-                "header": "Device Discovery Failed",
-                "message": "Failed to discover device, see error response below. Select \"Retry\" to retry call to discover device or select \"End Job\" to end this job.\n",
+                "header": "Software Upgrade Failed",
+                "message": "Failed to perform software upgrade on the device, see error response below. Select \"Retry\" to retry call to attempt software upgrade again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                 "body": "",
                 "variables": "",
                 "btn_success": "Retry",
@@ -6235,7 +7095,7 @@
             "variables": {
               "incoming": {
                 "header": "Getting Software Upgrade Task Status Failed",
-                "message": "Failed to get task status of software upgrade. See error response below. Select \"Retry\" to retry call to get task status of software upgrade or select \"End Job\" to end this job.\n",
+                "message": "Failed to get task status of software upgrade. See error response below. Select \"Retry\" to retry call to get task status of software upgrade or follow instructions below to rollback device if necessary and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                 "body": "",
                 "variables": "",
                 "btn_success": "Retry",
@@ -6311,15 +7171,36 @@
               "x": 1188,
               "y": 996
             }
+          },
+          "278d": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Update Upgrade Result",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": "FAILED"
+              },
+              "outgoing": {
+                "response": "$var.job.returnStatus"
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 2160,
+              "y": 1368
+            }
           }
         },
         "transitions": {
-          "1692": {
-            "workflow_end": {
-              "state": "success",
-              "type": "standard"
-            }
-          },
           "2053": {
             "a421": {
               "state": "success",
@@ -6394,7 +7275,7 @@
             }
           },
           "9ea3": {
-            "1692": {
+            "278d": {
               "state": "success",
               "type": "standard"
             }
@@ -6440,11 +7321,24 @@
               "state": "success",
               "type": "standard"
             }
+          },
+          "278d": {
+            "workflow_end": {
+              "state": "success",
+              "type": "standard"
+            }
           }
         },
         "inputSchema": {
           "type": "object",
           "properties": {
+            "_id": {
+              "title": "job_id",
+              "type": "string",
+              "examples": [
+                "test"
+              ]
+            },
             "softwareUpgradeTaskName": {
               "$id": "softwareUpgradeTaskName",
               "type": "string"
@@ -6469,6 +7363,7 @@
             }
           },
           "required": [
+            "_id",
             "softwareUpgradeTaskName",
             "softwareImageName",
             "deviceInputsForUpgrade",
@@ -6478,6 +7373,10 @@
         "outputSchema": {
           "type": "object",
           "properties": {
+            "_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            },
             "softwareUpgradeTaskName": {
               "$id": "softwareUpgradeTaskName",
               "type": "string"
@@ -6513,6 +7412,13 @@
                 "string"
               ]
             },
+            "returnStatus": {
+              "title": "response",
+              "type": "string",
+              "examples": [
+                "awesome"
+              ]
+            },
             "softwareUpgradeResult": {
               "$id": "currentSoftwareUpgradeTask",
               "type": "object",
@@ -6533,15 +7439,15 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-25T13:51:07.261Z",
+        "last_updated": "2023-09-26T18:08:43.082Z",
         "created": "2023-09-21T16:30:45.577Z",
+        "canvasVersion": 1.5,
         "last_updated_by": {
           "provenance": "local_aaa",
           "username": "admin@pronghorn",
           "firstname": "admin",
           "inactive": false
         },
-        "canvasVersion": 1.5,
         "tags": [],
         "groups": [],
         "migrationVersion": 2
@@ -6675,6 +7581,13 @@
           {
             "$id": "reactivationLinkMessage",
             "type": "string"
+          },
+          {
+            "$id": "returnStatus",
+            "type": "string",
+            "examples": [
+              "SUCCESS"
+            ]
           }
         ],
         "steps": [
@@ -7228,6 +8141,35 @@
             "to": {
               "location": "outgoing",
               "name": "reactivationLinkMessage",
+              "ptr": ""
+            },
+            "context": "#"
+          },
+          {
+            "id": 59,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "SUCCESS"
+            ],
+            "view": {
+              "row": 5,
+              "col": 4
+            },
+            "context": "#"
+          },
+          {
+            "id": 60,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 59,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "returnStatus",
               "ptr": ""
             },
             "context": "#"
@@ -8232,7 +9174,7 @@
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "lastUpdated": "2023-09-25T03:44:06.728Z",
+        "lastUpdated": "2023-09-26T18:04:10.192Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
@@ -9533,6 +10475,13 @@
           {
             "$id": "credentialsId",
             "type": "string"
+          },
+          {
+            "$id": "returnStatus",
+            "type": "string",
+            "examples": [
+              "SUCCESS"
+            ]
           }
         ],
         "steps": [
@@ -9661,6 +10610,67 @@
             "context": "#"
           },
           {
+            "id": 13,
+            "type": "assign",
+            "from": {
+              "location": "method",
+              "name": 7,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "method",
+              "name": 12,
+              "ptr": "/args/0/value"
+            },
+            "context": "#"
+          },
+          {
+            "id": 12,
+            "type": "method",
+            "library": "Equality",
+            "method": "equality",
+            "args": [
+              null,
+              "Not Found"
+            ],
+            "view": {
+              "row": 2,
+              "col": 3
+            },
+            "context": "#"
+          },
+          {
+            "id": 14,
+            "type": "assign",
+            "from": {
+              "location": "method",
+              "name": 12,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "method",
+              "name": 11,
+              "ptr": "/args/0/value"
+            },
+            "context": "#"
+          },
+          {
+            "id": 11,
+            "type": "method",
+            "library": "Conditional",
+            "method": "ternary",
+            "args": [
+              null,
+              "FAILED",
+              "SUCCESS"
+            ],
+            "view": {
+              "row": 2,
+              "col": 4
+            },
+            "context": "#"
+          },
+          {
             "id": 9,
             "type": "assign",
             "from": {
@@ -9671,6 +10681,21 @@
             "to": {
               "location": "outgoing",
               "name": "credentialsId",
+              "ptr": ""
+            },
+            "context": "#"
+          },
+          {
+            "id": 15,
+            "type": "assign",
+            "from": {
+              "location": "method",
+              "name": 11,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "returnStatus",
               "ptr": ""
             },
             "context": "#"
@@ -9956,7 +10981,7 @@
         ],
         "comments": [],
         "view": {
-          "col": 3,
+          "col": 4,
           "row": 5
         },
         "created": "2023-09-20T05:20:36.021Z",
@@ -9965,13 +10990,13 @@
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "lastUpdated": "2023-09-20T05:30:54.166Z",
+        "lastUpdated": "2023-09-26T18:16:30.613Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "version": "4.1.2-2023.1.8",
+        "version": "4.1.2-2023.1.10",
         "tags": []
       }
     },
@@ -9995,6 +11020,13 @@
           {
             "$id": "deviceFilter",
             "type": "string"
+          },
+          {
+            "$id": "returnStatus",
+            "type": "string",
+            "examples": [
+              "SUCCESS"
+            ]
           }
         ],
         "steps": [
@@ -10027,6 +11059,20 @@
             }
           },
           {
+            "id": 6,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "SUCCESS"
+            ],
+            "view": {
+              "row": 2,
+              "col": 1
+            },
+            "context": "#"
+          },
+          {
             "id": 1,
             "type": "template",
             "library": "String",
@@ -10040,6 +11086,21 @@
               "row": 1,
               "col": 1
             }
+          },
+          {
+            "id": 7,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 6,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "returnStatus",
+              "ptr": ""
+            },
+            "context": "#"
           },
           {
             "id": 3,
@@ -10068,13 +11129,13 @@
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "lastUpdated": "2023-09-20T05:04:21.272Z",
+        "lastUpdated": "2023-09-26T18:14:45.315Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "version": "4.1.2-2023.1.8",
+        "version": "4.1.2-2023.1.10",
         "tags": []
       }
     },
@@ -10574,6 +11635,13 @@
               }
             },
             "required": []
+          },
+          {
+            "$id": "returnStatus",
+            "type": "string",
+            "examples": [
+              "SUCCESS"
+            ]
           }
         ],
         "steps": [
@@ -10617,7 +11685,7 @@
             ],
             "view": {
               "row": 3,
-              "col": 3
+              "col": 2
             },
             "context": "#"
           },
@@ -10631,7 +11699,7 @@
               null
             ],
             "view": {
-              "row": 3,
+              "row": 2,
               "col": 1
             },
             "context": "#"
@@ -10664,7 +11732,7 @@
               null
             ],
             "view": {
-              "row": 3,
+              "row": 2,
               "col": 2
             },
             "context": "#"
@@ -10713,6 +11781,35 @@
               "ptr": "/deviceReferences"
             },
             "context": "#"
+          },
+          {
+            "id": 17,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "SUCCESS"
+            ],
+            "view": {
+              "row": 3,
+              "col": 3
+            },
+            "context": "#"
+          },
+          {
+            "id": 18,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 17,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "returnStatus",
+              "ptr": ""
+            },
+            "context": "#"
           }
         ],
         "functions": [],
@@ -10727,7 +11824,7 @@
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "lastUpdated": "2023-09-25T01:03:10.932Z",
+        "lastUpdated": "2023-09-26T18:35:51.605Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
@@ -10808,6 +11905,13 @@
               }
             },
             "required": []
+          },
+          {
+            "$id": "returnStatus",
+            "type": "string",
+            "examples": [
+              "SUCCESS"
+            ]
           }
         ],
         "steps": [
@@ -11203,6 +12307,35 @@
               "ptr": "/name"
             },
             "context": "#"
+          },
+          {
+            "id": 39,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "SUCCESS"
+            ],
+            "view": {
+              "row": 4,
+              "col": 5
+            },
+            "context": "#"
+          },
+          {
+            "id": 40,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 39,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "returnStatus",
+              "ptr": ""
+            },
+            "context": "#"
           }
         ],
         "functions": [],
@@ -11217,7 +12350,7 @@
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "lastUpdated": "2023-09-25T03:14:28.695Z",
+        "lastUpdated": "2023-09-26T18:06:46.820Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
@@ -11496,6 +12629,13 @@
               }
             },
             "required": []
+          },
+          {
+            "$id": "returnStatus",
+            "type": "string",
+            "examples": [
+              "SUCCESS"
+            ]
           }
         ],
         "steps": [
@@ -11666,12 +12806,41 @@
               "ptr": "/deviceReference"
             },
             "context": "#"
+          },
+          {
+            "id": 13,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "SUCCESS"
+            ],
+            "view": {
+              "row": 3,
+              "col": 3
+            },
+            "context": "#"
+          },
+          {
+            "id": 14,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 13,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "returnStatus",
+              "ptr": ""
+            },
+            "context": "#"
           }
         ],
         "functions": [],
         "comments": [],
         "view": {
-          "col": 2,
+          "col": 3,
           "row": 5
         },
         "created": "2023-09-21T15:03:30.599Z",
@@ -11680,7 +12849,7 @@
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "lastUpdated": "2023-09-21T15:06:24.360Z",
+        "lastUpdated": "2023-09-26T18:56:09.402Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
@@ -11746,6 +12915,13 @@
               }
             },
             "required": []
+          },
+          {
+            "$id": "returnStatus",
+            "type": "string",
+            "examples": [
+              "SUCCESS"
+            ]
           }
         ],
         "steps": [
@@ -11989,13 +13165,42 @@
               "ptr": "/deviceReference"
             },
             "context": "#"
+          },
+          {
+            "id": 17,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "SUCCESS"
+            ],
+            "view": {
+              "row": 4,
+              "col": 4
+            },
+            "context": "#"
+          },
+          {
+            "id": 18,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 17,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "returnStatus",
+              "ptr": ""
+            },
+            "context": "#"
           }
         ],
         "functions": [],
         "comments": [],
         "view": {
           "col": 4,
-          "row": 5
+          "row": 6
         },
         "created": "2023-09-21T15:24:53.740Z",
         "createdBy": {
@@ -12003,7 +13208,7 @@
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "lastUpdated": "2023-09-21T15:31:21.499Z",
+        "lastUpdated": "2023-09-26T18:58:38.111Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
@@ -12126,6 +13331,10 @@
               }
             },
             "required": []
+          },
+          {
+            "$id": "returnStatus",
+            "type": "string"
           }
         ],
         "steps": [
@@ -12189,6 +13398,20 @@
             "context": "#"
           },
           {
+            "id": 28,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "SUCCESS"
+            ],
+            "view": {
+              "row": 3,
+              "col": 4
+            },
+            "context": "#"
+          },
+          {
             "id": 1,
             "type": "template",
             "library": "String",
@@ -12233,6 +13456,21 @@
             "view": {
               "row": 2,
               "col": 2
+            },
+            "context": "#"
+          },
+          {
+            "id": 29,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 28,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "returnStatus",
+              "ptr": ""
             },
             "context": "#"
           },
@@ -12469,7 +13707,7 @@
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "lastUpdated": "2023-09-25T05:31:32.382Z",
+        "lastUpdated": "2023-09-26T18:05:56.651Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
@@ -14513,5 +15751,5 @@
       }
     }
   ],
-  "readme": "# F5 - BIG-IQ - REST\n\n## Overview\n\nProject with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.\n\n\n<a href='https://gitlab.com/itentialopensource/pre-built-automations/staging/f5-big-iq-rest/-/blob/master/documentation/Upgrade BIG-IP Device - F5 - BIG-IQ.md' target='_blank'>Upgrade BIG-IP Device - F5 - BIG-IQ</a>\n\n\n\n## External Dependencies\n\n<table>\n  <thead>\n    <tr>\n      <th>Name</th>\n      <th>OS Version</th>\n      <th>API Version</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>F5 BIG-IQ</td>\n      <td>8.3</td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\n## Adapters\n\n<table>\n  <thead>\n    <tr>\n      <th>Name</th>\n      <th>Version</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>adapter-f5_bigiq</td>\n      <td>^0.3.3</td>\n    </tr>\n  </tbody>\n</table>"
+  "readme": "# F5 - BIG-IQ - REST\n\n## Overview\n\nProject with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.\n\n\n<a href='https://gitlab.com/itentialopensource/pre-built-automations/staging/f5-big-iq-rest/-/blob/master/documentation/Upgrade BIG-IP Device - F5 - BIG-IQ.md' target='_blank'>Upgrade BIG-IP Device - F5 - BIG-IQ</a>\n\n\n\n## External Dependencies\n\n<table>\n  <thead>\n    <tr>\n      <th>Name</th>\n      <th>OS Version</th>\n      <th>API Version</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>F5 BIG-IQ</td>\n      <td>8.3</td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\n## Adapters\n\n<table>\n  <thead>\n    <tr>\n      <th>Name</th>\n      <th>Version</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>adapter-f5_bigiq</td>\n      <td>^0.3.4</td>\n    </tr>\n  </tbody>\n</table>"
 }

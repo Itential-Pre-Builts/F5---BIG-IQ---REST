@@ -77,7 +77,7 @@ This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
   <tbody>
     <tr>
       <td>adapter-f5_bigiq</td>
-      <td>^0.3.3</td>
+      <td>^0.3.4</td>
     </tr>
   </tbody>
 </table>
@@ -149,7 +149,7 @@ The following table lists the inputs to the Workflow Project:
       <td>deviceBData</td>
       <td>string</td>
       <td>yes</td>
-      <td>Set of values for device A in HA pair to upgrade. If no second device, leave values as empty string</td>
+      <td>Set of values for device B in HA pair to upgrade. If no second device, leave values as empty string</td>
       <td><pre lang="json">{
   "deviceManagementAddress": "",
   "deviceManagementPort": "",
@@ -306,7 +306,9 @@ Input:
     
     
 Output:
-<pre>{} </pre>
+<pre>{
+"returnStatus": "SUCCESS"
+} </pre>
 
     
   
@@ -346,7 +348,9 @@ Input:
     
     
 Output:
-<pre>{} </pre>
+<pre>{
+"returnStatus": "SUCCESS"
+} </pre>
 
     
   
