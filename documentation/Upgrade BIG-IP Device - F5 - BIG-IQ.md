@@ -26,6 +26,9 @@ Capabilities include:
 - Upgrades F5 BIG-IP device over BIG-IQ API
 - Provides option to upload iHealth task before and after upgrade
 - Verify sufficient disk space exists on BIG-IP for upgrade
+- Performs rollback to volume prior to upgrade if upgrade fails
+- Does device discovery and import after upgrade
+- Supports upgrade of HA pair of devices as well as upgrade of single device
 
 
 ## Getting Started
@@ -254,10 +257,21 @@ The following table lists the inputs to the Workflow Project:
       <td>yes</td>
       <td>Value used to determine whether or not to do iHealth upload. If true, performs iHealth upload before and after upgrade and if false, skips both iHealth upload steps.</td>
       <td><pre lang="json">true</pre></td>
+    </tr>    <tr>
+      <td>deviceRebootWait</td>
+      <td>number</td>
+      <td>yes</td>
+      <td>Amount of time in seconds to wait for device to reboot in the event a rollback is performed</td>
+      <td><pre lang="json">300</pre></td>
     </tr>
   </tbody>
 </table>
 
+  
+
+#### Vendor Input Documentation
+
+https://clouddocs.f5.com/products/big-iq/mgmt-api/v8.1.0/ApiReferences/bigiq_public_api_ref/r_public_api_references.html
   
 
 
@@ -335,7 +349,8 @@ Input:
   "deviceBackupDescription": "Backup Device",
   "importDeviceTaskName": "Rediscover adc_core",
   "iHealthTaskName": "Upload iHealth task",
-  "uploadiHealthTask": true
+  "uploadiHealthTask": true,
+  "deviceRebootWait": 300
 } </pre>
 
     
@@ -377,7 +392,8 @@ Input:
   "deviceBackupDescription": "Backup Device",
   "importDeviceTaskName": "Rediscover adc_core",
   "iHealthTaskName": "",
-  "uploadiHealthTask": false
+  "uploadiHealthTask": false,
+  "deviceRebootWait": 300
 } </pre>
 
     

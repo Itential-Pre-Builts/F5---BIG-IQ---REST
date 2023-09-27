@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "@itentialopensource/f5-big-iq-rest",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.",
     "license": "Apache-2.0",
     "repository": {
@@ -23,8 +23,8 @@
   },
   "manifest": {
     "bundleName": "F5 - BIG-IQ - REST",
-    "fingerprint": "65133b19163eb400c61225b1",
-    "createdEpoch": "1695759129634",
+    "fingerprint": "65148895163eb400c61225b3",
+    "createdEpoch": "1695844501383",
     "artifacts": [
       {
         "id": "Upgrade BIG-IP Device - F5 - BIG-IQ",
@@ -103,6 +103,24 @@
         "name": "Run BIG-IP Upgrade - F5 - BIG-IQ",
         "type": "workflow",
         "location": "/bundles/workflows/Run BIG-IP Upgrade - F5 - BIG-IQ.json",
+        "properties": {
+          "entryPoint": false
+        }
+      },
+      {
+        "id": "Rollback BIG-IP Device - F5 - BIG-IP",
+        "name": "Rollback BIG-IP Device - F5 - BIG-IP",
+        "type": "workflow",
+        "location": "/bundles/workflows/Rollback BIG-IP Device - F5 - BIG-IP.json",
+        "properties": {
+          "entryPoint": false
+        }
+      },
+      {
+        "id": "Reboot BIG-IP Device - F5 - BIG-IQ",
+        "name": "Reboot BIG-IP Device - F5 - BIG-IQ",
+        "type": "workflow",
+        "location": "/bundles/workflows/Reboot BIG-IP Device - F5 - BIG-IQ.json",
         "properties": {
           "entryPoint": false
         }
@@ -241,6 +259,24 @@
         "properties": {
           "entryPoint": false
         }
+      },
+      {
+        "id": "6514738ab5c9df0151074b08",
+        "name": "Create BIG-IP Device Rollback Inputs",
+        "type": "transformation",
+        "location": "/bundles/transformations/Create BIG-IP Device Rollback Inputs.json",
+        "properties": {
+          "entryPoint": false
+        }
+      },
+      {
+        "id": "6514618ab5c9df0151074b07",
+        "name": "Create Device Reboot Input Over BIG-IQ",
+        "type": "transformation",
+        "location": "/bundles/transformations/Create Device Reboot Input Over BIG-IQ.json",
+        "properties": {
+          "entryPoint": false
+        }
       }
     ]
   },
@@ -274,7 +310,7 @@
             "groups": [],
             "nodeLocation": {
               "x": 4464,
-              "y": 204
+              "y": 276
             }
           },
           "6737": {
@@ -396,7 +432,7 @@
             "name": "workflow_end",
             "groups": [],
             "nodeLocation": {
-              "x": 5448,
+              "x": 5460,
               "y": -24
             },
             "x": 1,
@@ -640,7 +676,7 @@
             "variables": {
               "incoming": {
                 "header": "Re-Activate License",
-                "message": "Re-Activation of license is required before proceeding with rest of this job. \n\nUse the link(s) below to navigate to page to re-activate device license. Note this should only be run during a maintenance window as re-activating the license will cause a reboot of the device.\n\nUpon completing re-activation of license, select \"Continue Job\". If error occurred re-activating license, select \"End Job\".\n",
+                "message": "Re-Activation of license is required before proceeding with rest of this job. \n\nUse the link(s) below to navigate to page to re-activate device license. Note this should only be run during a maintenance window as re-activating the license will cause a reboot of the device.\n\nUpon completing re-activation of license, select \"Continue Job\". If error occurred re-activating license, select \"End Job\".\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.c430.reactivationLinkMessage",
                 "variables": "",
                 "btn_success": "Continue Job",
@@ -850,7 +886,7 @@
             "groups": [],
             "nodeLocation": {
               "x": 1296,
-              "y": 204
+              "y": 276
             }
           },
           "90d0": {
@@ -876,8 +912,8 @@
             "actor": "Pronghorn",
             "groups": [],
             "nodeLocation": {
-              "x": 5448,
-              "y": 204
+              "x": 5460,
+              "y": 276
             }
           },
           "b992": {
@@ -972,7 +1008,7 @@
             "variables": {
               "incoming": {
                 "header": "Not Enough Disk Space for Upgrade",
-                "message": "The amount of disk space found on BIG-IP device is not enough for a software upgrade. See amount of disk space found below. If possible to reformat disk for more space, do so and select \"Check Disk\" to check disk space again. If not possible, select \"End Job\" to end job.\n",
+                "message": "The amount of disk space found on BIG-IP device is not enough for a software upgrade. See amount of disk space found below. If possible to reformat disk for more space, do so and select \"Check Disk\" to check disk space again. If not possible, select \"End Job\" to end job.\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.b992.diskSpaceMessage",
                 "variables": "",
                 "btn_success": "Check Disk",
@@ -1011,7 +1047,7 @@
             "groups": [],
             "nodeLocation": {
               "x": 2256,
-              "y": 204
+              "y": 276
             }
           },
           "9bcd": {
@@ -1327,7 +1363,7 @@
             "groups": [],
             "nodeLocation": {
               "x": 3528,
-              "y": 204
+              "y": 276
             }
           },
           "ec9d": {
@@ -1444,7 +1480,7 @@
             "groups": [],
             "nodeLocation": {
               "x": -2184,
-              "y": 204
+              "y": 276
             }
           },
           "4aa4": {
@@ -1516,7 +1552,7 @@
             "groups": [],
             "nodeLocation": {
               "x": -576,
-              "y": 204
+              "y": 276
             }
           },
           "c32f": {
@@ -1588,7 +1624,7 @@
             "groups": [],
             "nodeLocation": {
               "x": 372,
-              "y": 204
+              "y": 276
             }
           },
           "0571": {
@@ -1660,7 +1696,7 @@
             "groups": [],
             "nodeLocation": {
               "x": 972,
-              "y": 204
+              "y": 276
             }
           },
           "d992": {
@@ -1777,7 +1813,92 @@
             "groups": [],
             "nodeLocation": {
               "x": 5124,
-              "y": 204
+              "y": 276
+            }
+          },
+          "bffa": {
+            "name": "childJob",
+            "canvasName": "childJob",
+            "summary": "Rollback Device",
+            "description": "Rollback device",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "task": "",
+                "workflow": "Rollback BIG-IP Device - F5 - BIG-IP",
+                "variables": {
+                  "deviceRebootWait": {
+                    "task": "job",
+                    "value": "deviceRebootWait"
+                  },
+                  "importDeviceInputs": {
+                    "task": "2a03",
+                    "value": "importDeviceInputs"
+                  },
+                  "discoverDeviceInputs": {
+                    "task": "2a03",
+                    "value": "discoverDeviceInputs"
+                  },
+                  "rebootDeviceInputs": {
+                    "task": "2a03",
+                    "value": "rebootDeviceInputs"
+                  }
+                },
+                "data_array": "",
+                "transformation": "",
+                "loopType": ""
+              },
+              "outgoing": {
+                "job_details": ""
+              }
+            },
+            "actor": "job",
+            "groups": [],
+            "nodeLocation": {
+              "x": 3528,
+              "y": 168
+            }
+          },
+          "2a03": {
+            "name": "transformation",
+            "canvasName": "transformation",
+            "summary": "Create BIG-IP Device Rollback Inputs",
+            "description": "Perform a JSON Transformation using the JST library.",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "tr_id": "6514738ab5c9df0151074b08",
+                "variableMap": {
+                  "machineIdResults": "$var.035d.job_details",
+                  "importDeviceTaskName": "$var.job.importDeviceTaskName",
+                  "deviceUpgradeInputs": "$var.8e56.deviceInputsForUpgrade"
+                },
+                "options": {
+                  "extractOutput": false,
+                  "validateIncoming": true,
+                  "revertToDefaultValue": true
+                }
+              },
+              "outgoing": {
+                "discoverDeviceInputs": null,
+                "importDeviceInputs": null,
+                "rebootDeviceInputs": null
+              },
+              "decorators": []
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 3528,
+              "y": 72
             }
           }
         },
@@ -1970,7 +2091,7 @@
               "state": "success",
               "type": "standard"
             },
-            "107d": {
+            "2a03": {
               "type": "standard",
               "state": "failure"
             }
@@ -1982,13 +2103,13 @@
             }
           },
           "ec9d": {
-            "107d": {
-              "type": "standard",
-              "state": "failure"
-            },
             "0a2a": {
               "state": "success",
               "type": "standard"
+            },
+            "2a03": {
+              "type": "standard",
+              "state": "failure"
             }
           },
           "f99f": {
@@ -2077,6 +2198,18 @@
           },
           "d616": {
             "90d0": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "bffa": {
+            "107d": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "2a03": {
+            "bffa": {
               "state": "success",
               "type": "standard"
             }
@@ -2219,6 +2352,14 @@
                 "object",
                 "string"
               ]
+            },
+            "deviceRebootWait": {
+              "title": "time",
+              "type": "integer",
+              "minimum": 1,
+              "examples": [
+                1200
+              ]
             }
           },
           "required": [
@@ -2233,7 +2374,8 @@
             "iHealthTaskName",
             "softwareUpgradeTaskName",
             "softwareImageName",
-            "uploadiHealthTask"
+            "uploadiHealthTask",
+            "deviceRebootWait"
           ]
         },
         "outputSchema": {
@@ -2374,6 +2516,14 @@
                 "string"
               ]
             },
+            "deviceRebootWait": {
+              "title": "time",
+              "type": "integer",
+              "minimum": 1,
+              "examples": [
+                1200
+              ]
+            },
             "_id": {
               "type": "string",
               "pattern": "^[0-9a-f]{24}$"
@@ -2396,7 +2546,7 @@
         "errorHandler": null,
         "preAutomationTime": 0,
         "sla": 0,
-        "last_updated": "2023-09-26T19:00:56.438Z",
+        "last_updated": "2023-09-27T19:40:31.628Z",
         "lastUpdatedVersion": "5.46.0-2023.1.19.0",
         "created": "2023-09-20T17:55:55.770Z",
         "created_by": {
@@ -2548,7 +2698,7 @@
             "variables": {
               "incoming": {
                 "header": "Failed to get iHealth Credentials",
-                "message": "Failed to get iHealth Credentials. See error below. Select \"Retry\" to retry getting iHealth Credentials or select \"End Job\" to end job.\n\n\n\n\n",
+                "message": "Failed to get iHealth Credentials. See error below. Select \"Retry\" to retry getting iHealth Credentials or select \"End Job\" to end job.\n\n\n\n\n\n\n.",
                 "body": "$var.dba3.error",
                 "variables": "",
                 "btn_success": "Retry",
@@ -2835,7 +2985,7 @@
             "variables": {
               "incoming": {
                 "header": "Getting Machine ID Failed",
-                "message": "Failed to get machine Id. See error below. Select \"Retry\" to retry getting machine Id or select \"End Job\" to end the overall job.\n\n\n\n\n\n",
+                "message": "Failed to get machine Id. See error below. Select \"Retry\" to retry getting machine Id or select \"End Job\" to end the overall job.\n\n\n\n\n\n\n\n.",
                 "body": "$var.f15b.error",
                 "variables": "",
                 "btn_success": "Retry",
@@ -3290,7 +3440,7 @@
             "variables": {
               "incoming": {
                 "header": "Failed to Create iHealth Upload Task",
-                "message": "Failed to create the iHealth upload task, see error response. Select \"Retry Task\" to retry uploading iHealth Task or select \"End Job\" to end this job.",
+                "message": "Failed to create the iHealth upload task, see error response. Select \"Retry Task\" to retry uploading iHealth Task or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.714d.result",
                 "variables": "",
                 "btn_success": "Retry Task",
@@ -3362,7 +3512,7 @@
             "variables": {
               "incoming": {
                 "header": "Number of Reattempts Exceeded",
-                "message": "The number of reattempts to query iHealth task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+                "message": "The number of reattempts to query iHealth task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.714d.result",
                 "variables": "",
                 "btn_success": "Query Task",
@@ -3416,7 +3566,7 @@
             "variables": {
               "incoming": {
                 "header": "Failed to Create iHealth Upload Task",
-                "message": "Failed to create the iHealth upload task, see error response. Select \"Retry\" to retry call to create iHealth upload task or select \"End Job\" to end this job.\n",
+                "message": "Failed to create the iHealth upload task, see error response. Select \"Retry\" to retry call to create iHealth upload task or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.f70d.error",
                 "variables": "",
                 "btn_success": "Retry",
@@ -3470,7 +3620,7 @@
             "variables": {
               "incoming": {
                 "header": "Failed to Get iHealth Upload Task Status",
-                "message": "Failed to get the iHealth upload task status, see error response below. Select \"Retry\" to retry call to get iHealth upload task status or select \"End Job\" to end this job.\n",
+                "message": "Failed to get the iHealth upload task status, see error response below. Select \"Retry\" to retry call to get iHealth upload task status or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.714d.error",
                 "variables": "",
                 "btn_success": "Retry",
@@ -3956,7 +4106,7 @@
             "variables": {
               "incoming": {
                 "header": "Backup Device Task Failed",
-                "message": "Failed to backup the device, see error response below. Select \"Retry Task\" to retry backup of device or select \"End Job\" to end this job.\n\n",
+                "message": "Failed to backup the device, see error response below. Select \"Retry Task\" to retry backup of device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.4687.result",
                 "variables": "",
                 "btn_success": "Retry Task",
@@ -4028,7 +4178,7 @@
             "variables": {
               "incoming": {
                 "header": "Number of Reattempts Exceeded",
-                "message": "The number of reattempts to query device backup task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+                "message": "The number of reattempts to query device backup task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.4687.result",
                 "variables": "",
                 "btn_success": "Query Task",
@@ -4147,7 +4297,7 @@
             "variables": {
               "incoming": {
                 "header": "Generating Backup of Device Failed",
-                "message": "Failed to backup the device, see error response below. Select \"Retry\" to retry call to backup the device or select \"End Job\" to end this job.\n",
+                "message": "Failed to backup the device, see error response below. Select \"Retry\" to retry call to backup the device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.7edb.error",
                 "variables": "",
                 "btn_success": "Retry",
@@ -4174,7 +4324,7 @@
             "variables": {
               "incoming": {
                 "header": "Getting Backup Task Status Failed",
-                "message": "Failed to get task status of backup of the device. See error response below. Select \"Retry\" to retry call to get task status of backup of device or select \"End Job\" to end this job.\n",
+                "message": "Failed to get task status of backup of the device. See error response below. Select \"Retry\" to retry call to get task status of backup of device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.4687.error",
                 "variables": "",
                 "btn_success": "Retry",
@@ -4594,7 +4744,7 @@
             "variables": {
               "incoming": {
                 "header": "Failure Running Script",
-                "message": "Failed to run script, see error response. Select \"Retry Script\" to retry executing script or select \"End Job\" to end this job.\n\n",
+                "message": "Failed to run script, see error response. Select \"Retry Script\" to retry executing script or select \"End Job\" to end this job\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.6b06.result",
                 "variables": "",
                 "btn_success": "Retry  Script",
@@ -4666,7 +4816,7 @@
             "variables": {
               "incoming": {
                 "header": "Number of Reattempts Exceeded",
-                "message": "The number of reattempts to query script status exceeded expected number of reattempts. Select \"Query Status\" to query status again or select \"End Job\" to end the job.\n\nSee query script response below.\n",
+                "message": "The number of reattempts to query script status exceeded expected number of reattempts. Select \"Query Status\" to query status again or select \"End Job\" to end the job.\n\nSee query script response below.\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.6b06.result",
                 "variables": "",
                 "btn_success": "Query Status",
@@ -4720,7 +4870,7 @@
             "variables": {
               "incoming": {
                 "header": "Failed to Create Script",
-                "message": "Failed to create script, see error response. Select \"Retry\" to retry call to create script or select \"End Job\" to end this job.\n",
+                "message": "Failed to create script, see error response. Select \"Retry\" to retry call to create script or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n\n.",
                 "body": "",
                 "variables": "",
                 "btn_success": "Retry",
@@ -4774,7 +4924,7 @@
             "variables": {
               "incoming": {
                 "header": "Failed to Get Script Status",
-                "message": "Failed to get the script status, see error response below. Select \"Retry\" to retry call to get script status or select \"End Job\" to end this job.\n",
+                "message": "Failed to get the script status, see error response below. Select \"Retry\" to retry call to get script status or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.6b06.result",
                 "variables": "",
                 "btn_success": "Retry",
@@ -4966,7 +5116,7 @@
             "variables": {
               "incoming": {
                 "header": "Failed to Execute Script",
-                "message": "Failed to execute script, see error response below. Select \"Retry\" to retry call to execute script or select \"End Job\" to end this job.\n",
+                "message": "Failed to execute script, see error response below. Select \"Retry\" to retry call to execute script or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.2e0e.error",
                 "variables": "",
                 "btn_success": "Retry",
@@ -5557,7 +5707,7 @@
             "variables": {
               "incoming": {
                 "header": "Device Discovery Task Failed",
-                "message": "Failed device discovery, see error response below. Select \"Retry Task\" to retry discovering device or select \"End Job\" to end this job.\n",
+                "message": "Failed device discovery, see error response below. Select \"Retry Task\" to retry discovering device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n.",
                 "body": "$var.6a9b.result",
                 "variables": "",
                 "btn_success": "Retry Task",
@@ -5629,7 +5779,7 @@
             "variables": {
               "incoming": {
                 "header": "Number of Reattempts Exceeded",
-                "message": "The number of reattempts to query device discovery task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+                "message": "The number of reattempts to query device discovery task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.6a9b.result",
                 "variables": "",
                 "btn_success": "Query Task",
@@ -5718,7 +5868,7 @@
             "variables": {
               "incoming": {
                 "header": "Device Discovery Failed",
-                "message": "Failed to discover device, see error response below. Select \"Retry\" to retry call to discover device or select \"End Job\" to end this job.\n",
+                "message": "Failed to discover device, see error response below. Select \"Retry\" to retry call to discover device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n.\n",
                 "body": "$var.0267.error",
                 "variables": "",
                 "btn_success": "Retry",
@@ -5745,7 +5895,7 @@
             "variables": {
               "incoming": {
                 "header": "Getting Device Discovery Task Status Failed",
-                "message": "Failed to get task status of device discovery. See error response below. Select \"Retry\" to retry call to get task status of device discovery or select \"End Job\" to end this job.\n",
+                "message": "Failed to get task status of device discovery. See error response below. Select \"Retry\" to retry call to get task status of device discovery or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n.",
                 "body": "$var.6a9b.result",
                 "variables": "",
                 "btn_success": "Retry",
@@ -6034,7 +6184,7 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-26T18:56:17.352Z",
+        "last_updated": "2023-09-27T18:19:04.729Z",
         "created": "2023-09-21T14:50:23.517Z",
         "canvasVersion": 1.5,
         "last_updated_by": {
@@ -6267,7 +6417,7 @@
             "variables": {
               "incoming": {
                 "header": "Device Import Task Failed",
-                "message": "Failed device import, see error response below. Select \"Retry Task\" to retry importing device or select \"End Job\" to end this job.\n",
+                "message": "Failed device import, see error response below. Select \"Retry Task\" to retry importing device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.1a74.result",
                 "variables": "",
                 "btn_success": "Retry Task",
@@ -6339,7 +6489,7 @@
             "variables": {
               "incoming": {
                 "header": "Number of Reattempts Exceeded",
-                "message": "The number of reattempts to query device import task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+                "message": "The number of reattempts to query device import task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.1a74.result",
                 "variables": "",
                 "btn_success": "Query Task",
@@ -6429,7 +6579,7 @@
             "variables": {
               "incoming": {
                 "header": "Performing Device Import Failed",
-                "message": "Failed to import the device, see error response below. Select \"Retry\" to retry call to import device or select \"End Job\" to end this job.\n",
+                "message": "Failed to import the device, see error response below. Select \"Retry\" to retry call to import device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.2947.error",
                 "variables": "",
                 "btn_success": "Retry",
@@ -6456,7 +6606,7 @@
             "variables": {
               "incoming": {
                 "header": "Getting Device Import Task Status Failed",
-                "message": "Failed to get task status of device import. See error response below. Select \"Retry\" to retry call to get task status of device import or select \"End Job\" to end this job.\n",
+                "message": "Failed to get task status of device import. See error response below. Select \"Retry\" to retry call to get task status of device import or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n.",
                 "body": "$var.1a74.result",
                 "variables": "",
                 "btn_success": "Retry",
@@ -6727,7 +6877,7 @@
           "firstname": "admin",
           "inactive": false
         },
-        "last_updated": "2023-09-26T18:58:47.560Z",
+        "last_updated": "2023-09-27T18:18:52.685Z",
         "created": "2023-09-21T15:13:03.753Z",
         "canvasVersion": 1.5,
         "last_updated_by": {
@@ -6905,7 +7055,7 @@
             "variables": {
               "incoming": {
                 "header": "Software Upgrade Task Failed",
-                "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.a421.currentSoftwareUpgradeTask",
                 "variables": "",
                 "btn_success": "Retry Upgrade",
@@ -6977,7 +7127,7 @@
             "variables": {
               "incoming": {
                 "header": "Number of Reattempts Exceeded",
-                "message": "The number of reattempts to query software upgrade task status exceeded expected number of reattempts. Select \"Query Task\" to query again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                "message": "The number of reattempts to query software upgrade task status exceeded expected number of reattempts. Select \"Query Task\" to query again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.a421.currentSoftwareUpgradeTask",
                 "variables": "",
                 "btn_success": "Query Task",
@@ -7068,7 +7218,7 @@
             "variables": {
               "incoming": {
                 "header": "Software Upgrade Failed",
-                "message": "Failed to perform software upgrade on the device, see error response below. Select \"Retry\" to retry call to attempt software upgrade again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                "message": "Failed to perform software upgrade on the device, see error response below. Select \"Retry\" to retry call to attempt software upgrade again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
                 "body": "",
                 "variables": "",
                 "btn_success": "Retry",
@@ -7095,7 +7245,7 @@
             "variables": {
               "incoming": {
                 "header": "Getting Software Upgrade Task Status Failed",
-                "message": "Failed to get task status of software upgrade. See error response below. Select \"Retry\" to retry call to get task status of software upgrade or follow instructions below to rollback device if necessary and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                "message": "Failed to get task status of software upgrade. See error response below. Select \"Retry\" to retry call to get task status of software upgrade or follow instructions below to rollback device if necessary and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
                 "body": "",
                 "variables": "",
                 "btn_success": "Retry",
@@ -7442,6 +7592,935 @@
         "last_updated": "2023-09-26T18:08:43.082Z",
         "created": "2023-09-21T16:30:45.577Z",
         "canvasVersion": 1.5,
+        "last_updated_by": {
+          "provenance": "local_aaa",
+          "username": "admin@pronghorn",
+          "firstname": "admin",
+          "inactive": false
+        },
+        "tags": [],
+        "groups": [],
+        "migrationVersion": 2
+      }
+    },
+    {
+      "type": "workflow",
+      "data": {
+        "name": "Rollback BIG-IP Device - F5 - BIG-IP",
+        "tasks": {
+          "3646": {
+            "name": "childJob",
+            "canvasName": "childJob",
+            "summary": "Reboot Device",
+            "description": "Reboot device",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "task": "",
+                "workflow": "Reboot BIG-IP Device - F5 - BIG-IQ",
+                "variables": {},
+                "data_array": "$var.job.rebootDeviceInputs",
+                "transformation": "",
+                "loopType": "sequential"
+              },
+              "outgoing": {
+                "job_details": ""
+              }
+            },
+            "actor": "job",
+            "groups": [],
+            "nodeLocation": {
+              "x": -672,
+              "y": -36
+            }
+          },
+          "4002": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Return Failed Status",
+            "description": "Return failed status",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": "FAILED"
+              },
+              "outgoing": {
+                "response": "$var.job.returnStatus"
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 1620,
+              "y": 204
+            }
+          },
+          "7176": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Initialize Return Status",
+            "description": "Initialize return status",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": "SUCCESS"
+              },
+              "outgoing": {
+                "response": "$var.job.returnStatus"
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": -996,
+              "y": -36
+            }
+          },
+          "9867": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Device Import Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "a0ee",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": 1
+                        },
+                        "operator": "<",
+                        "query": "loop[*returnStatus=FAILED]",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 1296,
+              "y": -36
+            }
+          },
+          "workflow_start": {
+            "name": "workflow_start",
+            "groups": [],
+            "nodeLocation": {
+              "x": -1236,
+              "y": -36
+            },
+            "x": 0,
+            "y": 0.5
+          },
+          "workflow_end": {
+            "name": "workflow_end",
+            "groups": [],
+            "nodeLocation": {
+              "x": 1620,
+              "y": -36
+            },
+            "x": 1,
+            "y": 0.5
+          },
+          "04c8": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Reboot Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "3646",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": 1
+                        },
+                        "operator": "<",
+                        "query": "loop[*returnStatus=FAILED]",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 0,
+              "y": -36
+            }
+          },
+          "761f": {
+            "name": "childJob",
+            "canvasName": "childJob",
+            "summary": "Discover Device",
+            "description": "Discover device over BIG-IQ",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "task": "",
+                "workflow": "Discover BIG-IP Device - F5 - BIG-IQ",
+                "variables": {
+                  "adapterId": {
+                    "task": "04c8",
+                    "value": "return_value"
+                  },
+                  "_id": {
+                    "task": "static",
+                    "value": ""
+                  },
+                  "machineId": {
+                    "task": "04c8",
+                    "value": "return_value"
+                  }
+                },
+                "data_array": "$var.job.discoverDeviceInputs",
+                "transformation": "",
+                "loopType": "sequential"
+              },
+              "outgoing": {
+                "job_details": ""
+              }
+            },
+            "actor": "job",
+            "groups": [],
+            "nodeLocation": {
+              "x": 312,
+              "y": -36
+            }
+          },
+          "a341": {
+            "name": "evaluation",
+            "canvasName": "evaluation",
+            "summary": "Verify Device Discovery Succeeded",
+            "description": "Run an evaluation",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "all_true_flag": false,
+                "evaluation_groups": [
+                  {
+                    "all_true_flag": false,
+                    "evaluations": [
+                      {
+                        "operand_1": {
+                          "task": "761f",
+                          "variable": "job_details"
+                        },
+                        "operand_2": {
+                          "task": "static",
+                          "variable": 1
+                        },
+                        "operator": "<",
+                        "query": "loop[*returnStatus=FAILED]",
+                        "rightQuery": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              "outgoing": {
+                "return_value": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 624,
+              "y": -36
+            }
+          },
+          "a0ee": {
+            "name": "childJob",
+            "canvasName": "childJob",
+            "summary": "Import Device",
+            "description": "Import device",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "task": "",
+                "workflow": "Import BIG-IP Device - F5 - BIG-IQ",
+                "variables": {
+                  "machineId": {
+                    "task": "a341",
+                    "value": "return_value"
+                  },
+                  "importDeviceTaskName": {
+                    "task": "a341",
+                    "value": "return_value"
+                  }
+                },
+                "data_array": "$var.job.importDeviceInputs",
+                "transformation": "",
+                "loopType": "sequential"
+              },
+              "outgoing": {
+                "job_details": ""
+              }
+            },
+            "actor": "job",
+            "groups": [],
+            "nodeLocation": {
+              "x": 960,
+              "y": -36
+            }
+          },
+          "6dc8": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Failure Path",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": ""
+              },
+              "outgoing": {
+                "response": null
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 0,
+              "y": 204
+            }
+          },
+          "db5c": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Failure Path",
+            "description": "Failure Path",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": ""
+              },
+              "outgoing": {
+                "response": null
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 624,
+              "y": 204
+            }
+          },
+          "82ea": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Return Failed Status",
+            "description": "Return failed status",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": "FAILED"
+              },
+              "outgoing": {
+                "response": "$var.job.returnStatus"
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 1296,
+              "y": 204
+            }
+          },
+          "ee4c": {
+            "name": "delay",
+            "canvasName": "delay",
+            "summary": "Wait for device reboot",
+            "description": "Wait for device reboot",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "time": "$var.job.deviceRebootWait"
+              },
+              "outgoing": {
+                "time_in_milliseconds": ""
+              }
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": -336,
+              "y": -36
+            }
+          }
+        },
+        "transitions": {
+          "3646": {
+            "ee4c": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "4002": {
+            "workflow_end": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "7176": {
+            "3646": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "9867": {
+            "workflow_end": {
+              "state": "success",
+              "type": "standard"
+            },
+            "82ea": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "workflow_start": {
+            "7176": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "workflow_end": {},
+          "04c8": {
+            "761f": {
+              "state": "success",
+              "type": "standard"
+            },
+            "6dc8": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "761f": {
+            "a341": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "a341": {
+            "a0ee": {
+              "state": "success",
+              "type": "standard"
+            },
+            "db5c": {
+              "type": "standard",
+              "state": "failure"
+            }
+          },
+          "a0ee": {
+            "9867": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "6dc8": {
+            "db5c": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "db5c": {
+            "82ea": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "82ea": {
+            "4002": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "ee4c": {
+            "04c8": {
+              "state": "success",
+              "type": "standard"
+            }
+          }
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "rebootDeviceInputs": {
+              "type": [
+                "array"
+              ]
+            },
+            "discoverDeviceInputs": {
+              "type": [
+                "array"
+              ]
+            },
+            "importDeviceInputs": {
+              "type": [
+                "array"
+              ]
+            },
+            "deviceRebootWait": {
+              "title": "time",
+              "type": "integer",
+              "minimum": 1,
+              "examples": [
+                1200
+              ]
+            }
+          },
+          "required": [
+            "rebootDeviceInputs",
+            "discoverDeviceInputs",
+            "importDeviceInputs",
+            "deviceRebootWait"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "rebootDeviceInputs": {
+              "type": [
+                "array"
+              ]
+            },
+            "discoverDeviceInputs": {
+              "type": [
+                "array"
+              ]
+            },
+            "importDeviceInputs": {
+              "type": [
+                "array"
+              ]
+            },
+            "deviceRebootWait": {
+              "title": "time",
+              "type": "integer",
+              "minimum": 1,
+              "examples": [
+                1200
+              ]
+            },
+            "_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            },
+            "initiator": {
+              "type": "string"
+            },
+            "returnStatus": {
+              "title": "response",
+              "type": "string",
+              "examples": [
+                "awesome"
+              ]
+            }
+          }
+        },
+        "type": "automation",
+        "font_size": 12,
+        "errorHandler": null,
+        "preAutomationTime": 0,
+        "sla": 0,
+        "last_updated": "2023-09-27T18:17:19.771Z",
+        "lastUpdatedVersion": "5.46.0-2023.1.19.0",
+        "created": "2023-09-27T17:21:50.570Z",
+        "created_by": {
+          "provenance": "local_aaa",
+          "username": "admin@pronghorn",
+          "firstname": "admin",
+          "inactive": false
+        },
+        "createdVersion": "5.46.0-2023.1.19.0",
+        "canvasVersion": 3,
+        "last_updated_by": {
+          "provenance": "local_aaa",
+          "username": "admin@pronghorn",
+          "firstname": "admin",
+          "inactive": false
+        },
+        "tags": [],
+        "groups": [],
+        "migrationVersion": 2
+      }
+    },
+    {
+      "type": "workflow",
+      "data": {
+        "name": "Reboot BIG-IP Device - F5 - BIG-IQ",
+        "description": "Create iHealth upload task",
+        "tasks": {
+          "2288": {
+            "name": "stub",
+            "canvasName": "stub",
+            "summary": "Return Failed Status",
+            "description": "Return failed status",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "automatic",
+            "displayName": "Tools",
+            "variables": {
+              "incoming": {
+                "type": "success",
+                "delay": "",
+                "response": "FAILED"
+              },
+              "outgoing": {
+                "response": ""
+              },
+              "error": "$var.job.returnStatus"
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 888,
+              "y": 1236
+            }
+          },
+          "workflow_start": {
+            "name": "workflow_start",
+            "groups": [],
+            "x": -0.05709992486851991,
+            "y": 0.5006165228113441,
+            "nodeLocation": {
+              "x": -96,
+              "y": 996
+            }
+          },
+          "workflow_end": {
+            "name": "workflow_end",
+            "groups": [],
+            "x": 0.3569682151589242,
+            "y": 0.4981549815498155,
+            "nodeLocation": {
+              "x": 888,
+              "y": 996
+            }
+          },
+          "f580": {
+            "name": "ViewData",
+            "canvasName": "ViewData",
+            "summary": "Show BIG-IQ Error",
+            "description": "Show error result and options for next steps",
+            "location": "Application",
+            "app": "WorkFlowEngine",
+            "displayName": "WorkFlowEngine",
+            "type": "manual",
+            "variables": {
+              "incoming": {
+                "header": "Performing Device Reboot Failed",
+                "message": "Failed to reboot the device, see error response below. Select \"Retry\" to retry call to reboot device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
+                "body": "$var.cc77.error",
+                "variables": "",
+                "btn_success": "Retry",
+                "btn_failure": "End Job"
+              },
+              "outgoing": {}
+            },
+            "view": "/workflow_engine/task/ViewData",
+            "groups": [],
+            "nodeLocation": {
+              "x": 516,
+              "y": 1236
+            }
+          },
+          "cc77": {
+            "name": "rebootDevice",
+            "canvasName": "rebootDevice",
+            "summary": "Reboot Device",
+            "description": "Reboot Device",
+            "location": "Adapter",
+            "locationType": "F5BigIQ",
+            "app": "F5BigIQ",
+            "type": "automatic",
+            "displayName": "F5-BIG-IQ",
+            "variables": {
+              "incoming": {
+                "body": "$var.29e4.deviceRebootInput",
+                "adapter_id": "$var.job.adapterId"
+              },
+              "outgoing": {
+                "result": "$var.job.rebootResponse"
+              },
+              "error": "$var.job.BIGIQError"
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 516,
+              "y": 996
+            }
+          },
+          "29e4": {
+            "name": "transformation",
+            "canvasName": "transformation",
+            "summary": "Create Device Reboot Input Over BIG-IQ",
+            "description": "Create device reboot input over BIG-IQ",
+            "location": "Application",
+            "locationType": null,
+            "app": "WorkFlowEngine",
+            "type": "operation",
+            "displayName": "WorkFlowEngine",
+            "variables": {
+              "incoming": {
+                "tr_id": "6514618ab5c9df0151074b07",
+                "variableMap": {
+                  "targetVolume": "$var.job.targetVolume",
+                  "deviceLink": "$var.job.deviceLink"
+                },
+                "options": {
+                  "extractOutput": true,
+                  "validateIncoming": true,
+                  "revertToDefaultValue": true
+                }
+              },
+              "outgoing": {
+                "deviceRebootInput": null,
+                "returnStatus": null
+              },
+              "decorators": []
+            },
+            "actor": "Pronghorn",
+            "groups": [],
+            "nodeLocation": {
+              "x": 168,
+              "y": 996
+            }
+          }
+        },
+        "transitions": {
+          "2288": {
+            "workflow_end": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "workflow_start": {
+            "29e4": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "workflow_end": {},
+          "f580": {
+            "2288": {
+              "type": "standard",
+              "state": "failure"
+            },
+            "cc77": {
+              "state": "success",
+              "type": "revert"
+            }
+          },
+          "cc77": {
+            "f580": {
+              "type": "standard",
+              "state": "error"
+            },
+            "workflow_end": {
+              "state": "success",
+              "type": "standard"
+            }
+          },
+          "29e4": {
+            "cc77": {
+              "state": "success",
+              "type": "standard"
+            }
+          }
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "adapterId": {
+              "type": [
+                "array",
+                "boolean",
+                "null",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "targetVolume": {
+              "$id": "targetVolume",
+              "type": "string",
+              "examples": [
+                "HD1.1"
+              ]
+            },
+            "deviceLink": {
+              "$id": "deviceLink",
+              "type": "string"
+            }
+          },
+          "required": [
+            "adapterId",
+            "targetVolume",
+            "deviceLink"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "adapterId": {
+              "type": [
+                "array",
+                "boolean",
+                "null",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "targetVolume": {
+              "$id": "targetVolume",
+              "type": "string",
+              "examples": [
+                "HD1.1"
+              ]
+            },
+            "deviceLink": {
+              "$id": "deviceLink",
+              "type": "string"
+            },
+            "_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            },
+            "initiator": {
+              "type": "string"
+            },
+            "returnStatus": {
+              "type": [
+                "array",
+                "boolean",
+                "null",
+                "number",
+                "object",
+                "string"
+              ]
+            },
+            "rebootResponse": {
+              "title": "result",
+              "type": "object"
+            },
+            "BIGIQError": {
+              "type": [
+                "array",
+                "boolean",
+                "null",
+                "number",
+                "object",
+                "string"
+              ]
+            }
+          }
+        },
+        "type": "automation",
+        "font_size": 12,
+        "lastUpdatedVersion": "5.46.0-2023.1.19.0",
+        "createdVersion": "5.46.0-2023.1.19.0",
+        "preAutomationTime": 0,
+        "sla": 0,
+        "created_by": {
+          "provenance": "local_aaa",
+          "username": "admin@pronghorn",
+          "firstname": "admin",
+          "inactive": false
+        },
+        "canvasVersion": 1.5,
+        "last_updated": "2023-09-27T18:34:23.890Z",
+        "created": "2023-09-25T14:44:04.661Z",
         "last_updated_by": {
           "provenance": "local_aaa",
           "username": "admin@pronghorn",
@@ -11186,8 +12265,7 @@
                                 "type": "string",
                                 "examples": [
                                   "14.1.5.4"
-                                ],
-                                "format": "ipv4"
+                                ]
                               },
                               "build": {
                                 "type": "string",
@@ -11577,7 +12655,7 @@
           "provenance": "local_aaa",
           "username": "admin@pronghorn"
         },
-        "lastUpdated": "2023-09-22T16:03:44.901Z",
+        "lastUpdated": "2023-09-27T17:45:55.989Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
@@ -15741,6 +16819,1078 @@
           "username": "admin@pronghorn"
         },
         "lastUpdated": "2023-09-25T14:19:12.110Z",
+        "lastUpdatedBy": {
+          "_id": "6463eeecee404876a5626a1a",
+          "provenance": "local_aaa",
+          "username": "admin@pronghorn"
+        },
+        "version": "4.1.2-2023.1.10",
+        "tags": []
+      }
+    },
+    {
+      "type": "transformation",
+      "data": {
+        "_id": "6514738ab5c9df0151074b08",
+        "name": "Create BIG-IP Device Rollback Inputs",
+        "description": "Creates inputs for BIG-IP device discovery and import over BIG-IQ",
+        "incoming": [
+          {
+            "$id": "machineIdResults",
+            "type": "object",
+            "properties": {
+              "loop": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "adapterId": {
+                      "type": "string",
+                      "examples": [
+                        "F5-BIG-IQ"
+                      ]
+                    },
+                    "machineId": {
+                      "type": "string",
+                      "examples": [
+                        "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                      ],
+                      "format": "uuid"
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          },
+          {
+            "$id": "importDeviceTaskName",
+            "type": "string"
+          },
+          {
+            "$id": "deviceUpgradeInputs",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "active": {
+                  "type": "string",
+                  "examples": [
+                    "HD1.1"
+                  ]
+                },
+                "targetVolume": {
+                  "type": "string",
+                  "examples": [
+                    "HD1.2"
+                  ]
+                },
+                "deviceReference": {
+                  "type": "object",
+                  "properties": {
+                    "link": {
+                      "type": "string",
+                      "examples": [
+                        "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              },
+              "required": []
+            }
+          }
+        ],
+        "outgoing": [
+          {
+            "$id": "discoverDeviceInputs",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "adapterId": {
+                  "type": "string",
+                  "examples": [
+                    "F5-BIG-IQ"
+                  ]
+                },
+                "machineId": {
+                  "type": "string"
+                }
+              },
+              "required": []
+            }
+          },
+          {
+            "$id": "importDeviceInputs",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "adapterId": {
+                  "type": "string",
+                  "examples": [
+                    "F5-BIG-IQ"
+                  ]
+                },
+                "importDeviceTaskName": {
+                  "type": "string",
+                  "examples": [
+                    "import_device_iap"
+                  ]
+                },
+                "machineId": {
+                  "type": "string",
+                  "examples": [
+                    "b14fc503-0fa0-4597-9042-cb43809b50e5"
+                  ]
+                }
+              },
+              "required": []
+            }
+          },
+          {
+            "$id": "rebootDeviceInputs",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "adapterId": {
+                  "type": "string",
+                  "examples": [
+                    "F5-BIG-IQ"
+                  ]
+                },
+                "targetVolume": {
+                  "type": "string",
+                  "examples": [
+                    "HD1.1"
+                  ]
+                },
+                "deviceLink": {
+                  "type": "string",
+                  "examples": [
+                    "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  ],
+                  "format": "uuid"
+                }
+              },
+              "required": []
+            }
+          }
+        ],
+        "steps": [
+          {
+            "id": 2,
+            "type": "assign",
+            "from": {
+              "location": "incoming",
+              "name": "machineIdResults",
+              "ptr": "/loop"
+            },
+            "to": {
+              "location": "method",
+              "name": 1,
+              "ptr": "/args/0/value"
+            },
+            "context": "#"
+          },
+          {
+            "id": 3,
+            "type": "assign",
+            "from": {
+              "location": "incoming",
+              "name": "importDeviceTaskName",
+              "ptr": ""
+            },
+            "to": {
+              "location": "method",
+              "name": 1,
+              "ptr": "/args/2/value"
+            },
+            "context": "#"
+          },
+          {
+            "id": 6,
+            "type": "assign",
+            "from": {
+              "location": "incoming",
+              "name": "machineIdResults",
+              "ptr": "/loop"
+            },
+            "to": {
+              "location": "method",
+              "name": 5,
+              "ptr": "/args/0/value"
+            },
+            "context": "#"
+          },
+          {
+            "id": 9,
+            "type": "assign",
+            "from": {
+              "location": "incoming",
+              "name": "deviceUpgradeInputs",
+              "ptr": ""
+            },
+            "to": {
+              "location": "method",
+              "name": 8,
+              "ptr": "/args/0/value"
+            },
+            "context": "#"
+          },
+          {
+            "id": 11,
+            "type": "assign",
+            "from": {
+              "location": "incoming",
+              "name": "machineIdResults",
+              "ptr": "/loop"
+            },
+            "to": {
+              "location": "method",
+              "name": 10,
+              "ptr": "/args/0/value"
+            },
+            "context": "#"
+          },
+          {
+            "id": 5,
+            "type": "method",
+            "library": "Array",
+            "method": "map",
+            "args": [
+              null,
+              "mapDeviceDiscoveryInputs"
+            ],
+            "view": {
+              "row": 1,
+              "col": 1
+            },
+            "context": "#"
+          },
+          {
+            "id": 10,
+            "type": "method",
+            "library": "Array",
+            "method": "pop",
+            "args": [
+              null
+            ],
+            "view": {
+              "row": 4,
+              "col": 1
+            },
+            "context": "#"
+          },
+          {
+            "id": 1,
+            "type": "method",
+            "library": "Array",
+            "method": "map",
+            "args": [
+              null,
+              "mapInputsForDeviceImport",
+              null
+            ],
+            "view": {
+              "row": 2,
+              "col": 1
+            },
+            "context": "#"
+          },
+          {
+            "id": 13,
+            "type": "assign",
+            "from": {
+              "location": "method",
+              "name": 10,
+              "ptr": "/return/value"
+            },
+            "to": {
+              "location": "method",
+              "name": 12,
+              "ptr": "/args/0/value"
+            },
+            "context": "#"
+          },
+          {
+            "id": 12,
+            "type": "method",
+            "library": "Object",
+            "method": "getProperty",
+            "args": [
+              null,
+              "adapterId"
+            ],
+            "view": {
+              "row": 4,
+              "col": 2
+            },
+            "context": "#"
+          },
+          {
+            "id": 14,
+            "type": "assign",
+            "from": {
+              "location": "method",
+              "name": 12,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "method",
+              "name": 8,
+              "ptr": "/args/2/value"
+            },
+            "context": "#"
+          },
+          {
+            "id": 8,
+            "type": "method",
+            "library": "Array",
+            "method": "map",
+            "args": [
+              null,
+              "mapDeviceRebootInputs",
+              null
+            ],
+            "view": {
+              "row": 3,
+              "col": 3
+            },
+            "context": "#"
+          },
+          {
+            "id": 7,
+            "type": "assign",
+            "from": {
+              "location": "method",
+              "name": 5,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "discoverDeviceInputs",
+              "ptr": ""
+            },
+            "context": "#"
+          },
+          {
+            "id": 4,
+            "type": "assign",
+            "from": {
+              "location": "method",
+              "name": 1,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "importDeviceInputs",
+              "ptr": ""
+            },
+            "context": "#"
+          },
+          {
+            "id": 15,
+            "type": "assign",
+            "from": {
+              "location": "method",
+              "name": 8,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "rebootDeviceInputs",
+              "ptr": ""
+            },
+            "context": "#"
+          }
+        ],
+        "functions": [
+          {
+            "incoming": [
+              {
+                "type": "object",
+                "properties": {
+                  "adapterId": {
+                    "type": "string",
+                    "examples": [
+                      "F5-BIG-IQ"
+                    ]
+                  },
+                  "machineId": {
+                    "type": "string",
+                    "examples": [
+                      "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    ],
+                    "format": "uuid"
+                  }
+                },
+                "required": [],
+                "$id": "currentValue"
+              },
+              {
+                "title": "index",
+                "type": "number",
+                "optional": true,
+                "$id": "index"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "adapterId": {
+                      "type": "string",
+                      "examples": [
+                        "F5-BIG-IQ"
+                      ]
+                    },
+                    "machineId": {
+                      "type": "string",
+                      "examples": [
+                        "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                      ],
+                      "format": "uuid"
+                    }
+                  },
+                  "required": []
+                },
+                "$id": "array",
+                "optional": true
+              },
+              {
+                "$id": "thisArg",
+                "type": "object",
+                "properties": {
+                  "0_importDeviceTaskName": {
+                    "$id": "importDeviceTaskName",
+                    "type": "string"
+                  }
+                },
+                "isContext": true,
+                "isThis": true,
+                "isIndexed": true
+              }
+            ],
+            "outgoing": [
+              {
+                "$id": "deviceImportInput",
+                "type": "object",
+                "properties": {
+                  "adapterId": {
+                    "type": "string",
+                    "examples": [
+                      "F5-BIG-IQ"
+                    ]
+                  },
+                  "importDeviceTaskName": {
+                    "type": "string",
+                    "examples": [
+                      "import_device_iap"
+                    ]
+                  },
+                  "machineId": {
+                    "type": "string",
+                    "examples": [
+                      "b14fc503-0fa0-4597-9042-cb43809b50e5"
+                    ]
+                  }
+                }
+              }
+            ],
+            "steps": [
+              {
+                "id": 1,
+                "type": "assign",
+                "from": {
+                  "location": "incoming",
+                  "name": "currentValue",
+                  "ptr": "/adapterId"
+                },
+                "to": {
+                  "location": "outgoing",
+                  "name": "deviceImportInput",
+                  "ptr": "/adapterId"
+                },
+                "context": "#"
+              },
+              {
+                "id": 2,
+                "type": "assign",
+                "from": {
+                  "location": "incoming",
+                  "name": "currentValue",
+                  "ptr": "/machineId"
+                },
+                "to": {
+                  "location": "outgoing",
+                  "name": "deviceImportInput",
+                  "ptr": "/machineId"
+                },
+                "context": "#"
+              },
+              {
+                "id": 3,
+                "type": "assign",
+                "from": {
+                  "location": "incoming",
+                  "name": "thisArg",
+                  "ptr": "/0_importDeviceTaskName"
+                },
+                "to": {
+                  "location": "outgoing",
+                  "name": "deviceImportInput",
+                  "ptr": "/importDeviceTaskName"
+                },
+                "context": "#"
+              }
+            ],
+            "functions": [],
+            "name": "mapInputsForDeviceImport",
+            "view": {
+              "col": 1,
+              "row": 4
+            },
+            "id": "mapInputsForDeviceImport",
+            "comments": []
+          },
+          {
+            "incoming": [
+              {
+                "type": "object",
+                "properties": {
+                  "adapterId": {
+                    "type": "string",
+                    "examples": [
+                      "F5-BIG-IQ"
+                    ]
+                  },
+                  "machineId": {
+                    "type": "string",
+                    "examples": [
+                      "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    ],
+                    "format": "uuid"
+                  }
+                },
+                "required": [],
+                "$id": "currentValue"
+              },
+              {
+                "title": "index",
+                "type": "number",
+                "optional": true,
+                "$id": "index"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "adapterId": {
+                      "type": "string",
+                      "examples": [
+                        "F5-BIG-IQ"
+                      ]
+                    },
+                    "machineId": {
+                      "type": "string",
+                      "examples": [
+                        "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                      ],
+                      "format": "uuid"
+                    }
+                  },
+                  "required": []
+                },
+                "$id": "array",
+                "optional": true
+              },
+              {
+                "$id": "thisArg",
+                "type": "object",
+                "properties": {},
+                "isContext": true,
+                "isThis": true,
+                "isIndexed": true
+              }
+            ],
+            "outgoing": [
+              {
+                "$id": "deviceDiscoveryInputs",
+                "type": "object",
+                "properties": {
+                  "machineId": {
+                    "type": "string",
+                    "examples": [
+                      "b14fc503-0fa0-4597-9042-cb43809b50e5"
+                    ],
+                    "format": "uuid"
+                  },
+                  "adapterId": {
+                    "type": "string",
+                    "examples": [
+                      "F5-BIG-IQ"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            ],
+            "steps": [
+              {
+                "id": 1,
+                "type": "assign",
+                "from": {
+                  "location": "incoming",
+                  "name": "currentValue",
+                  "ptr": "/adapterId"
+                },
+                "to": {
+                  "location": "outgoing",
+                  "name": "deviceDiscoveryInputs",
+                  "ptr": "/adapterId"
+                },
+                "context": "#"
+              },
+              {
+                "id": 2,
+                "type": "assign",
+                "from": {
+                  "location": "incoming",
+                  "name": "currentValue",
+                  "ptr": "/machineId"
+                },
+                "to": {
+                  "location": "outgoing",
+                  "name": "deviceDiscoveryInputs",
+                  "ptr": "/machineId"
+                },
+                "context": "#"
+              }
+            ],
+            "functions": [],
+            "name": "mapDeviceDiscoveryInputs",
+            "view": {
+              "col": 1,
+              "row": 4
+            },
+            "id": "mapDeviceDiscoveryInputs",
+            "comments": []
+          },
+          {
+            "incoming": [
+              {
+                "type": "object",
+                "properties": {
+                  "active": {
+                    "type": "string",
+                    "examples": [
+                      "HD1.1"
+                    ]
+                  },
+                  "targetVolume": {
+                    "type": "string",
+                    "examples": [
+                      "HD1.2"
+                    ]
+                  },
+                  "deviceReference": {
+                    "type": "object",
+                    "properties": {
+                      "link": {
+                        "type": "string",
+                        "examples": [
+                          "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                        ]
+                      }
+                    },
+                    "required": []
+                  }
+                },
+                "required": [],
+                "$id": "currentValue"
+              },
+              {
+                "title": "index",
+                "type": "number",
+                "optional": true,
+                "$id": "index"
+              },
+              {
+                "$id": "array",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "active": {
+                      "type": "string",
+                      "examples": [
+                        "HD1.1"
+                      ]
+                    },
+                    "targetVolume": {
+                      "type": "string",
+                      "examples": [
+                        "HD1.2"
+                      ]
+                    },
+                    "deviceReference": {
+                      "type": "object",
+                      "properties": {
+                        "link": {
+                          "type": "string",
+                          "examples": [
+                            "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  },
+                  "required": []
+                },
+                "optional": true
+              },
+              {
+                "$id": "thisArg",
+                "type": "object",
+                "properties": {
+                  "0_getProperty return": {
+                    "type": [
+                      "array",
+                      "boolean",
+                      "number",
+                      "integer",
+                      "string",
+                      "object",
+                      "null"
+                    ]
+                  }
+                },
+                "isContext": true,
+                "isIndexed": true
+              }
+            ],
+            "outgoing": [
+              {
+                "$id": "rebootDeviceInputs",
+                "type": "object",
+                "properties": {
+                  "adapterId": {
+                    "type": "string",
+                    "examples": [
+                      "F5-BIG-IQ"
+                    ]
+                  },
+                  "targetVolume": {
+                    "type": "string",
+                    "examples": [
+                      "HD1.1"
+                    ]
+                  },
+                  "deviceLink": {
+                    "type": "string",
+                    "examples": [
+                      "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    ],
+                    "format": "uuid"
+                  }
+                },
+                "required": []
+              }
+            ],
+            "steps": [
+              {
+                "id": 1,
+                "type": "assign",
+                "from": {
+                  "location": "incoming",
+                  "name": "currentValue",
+                  "ptr": "/active"
+                },
+                "to": {
+                  "location": "outgoing",
+                  "name": "rebootDeviceInputs",
+                  "ptr": "/targetVolume"
+                },
+                "context": "#"
+              },
+              {
+                "id": 2,
+                "type": "assign",
+                "from": {
+                  "location": "incoming",
+                  "name": "currentValue",
+                  "ptr": "/deviceReference/link"
+                },
+                "to": {
+                  "location": "outgoing",
+                  "name": "rebootDeviceInputs",
+                  "ptr": "/deviceLink"
+                },
+                "context": "#"
+              },
+              {
+                "id": 3,
+                "type": "assign",
+                "from": {
+                  "location": "incoming",
+                  "name": "thisArg",
+                  "ptr": "/0_getProperty return"
+                },
+                "to": {
+                  "location": "outgoing",
+                  "name": "rebootDeviceInputs",
+                  "ptr": "/adapterId"
+                },
+                "context": "#"
+              }
+            ],
+            "functions": [],
+            "name": "mapDeviceRebootInputs",
+            "view": {
+              "col": 1,
+              "row": 3
+            },
+            "id": "mapDeviceRebootInputs",
+            "comments": []
+          }
+        ],
+        "comments": [],
+        "view": {
+          "col": 3,
+          "row": 5
+        },
+        "created": "2023-09-27T18:25:14.458Z",
+        "createdBy": {
+          "_id": "6463eeecee404876a5626a1a",
+          "provenance": "local_aaa",
+          "username": "admin@pronghorn"
+        },
+        "lastUpdated": "2023-09-27T18:35:54.526Z",
+        "lastUpdatedBy": {
+          "_id": "6463eeecee404876a5626a1a",
+          "provenance": "local_aaa",
+          "username": "admin@pronghorn"
+        },
+        "version": "4.1.2-2023.1.10",
+        "tags": []
+      }
+    },
+    {
+      "type": "transformation",
+      "data": {
+        "_id": "6514618ab5c9df0151074b07",
+        "name": "Create Device Reboot Input Over BIG-IQ",
+        "description": "Creates input for device reboot over BIG-IQ",
+        "incoming": [
+          {
+            "$id": "targetVolume",
+            "type": "string",
+            "examples": [
+              "HD1.1"
+            ]
+          },
+          {
+            "$id": "deviceLink",
+            "type": "string"
+          }
+        ],
+        "outgoing": [
+          {
+            "$id": "deviceRebootInput",
+            "type": "object",
+            "properties": {
+              "passthroughObject": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "examples": [
+                      "reboot"
+                    ]
+                  },
+                  "volume": {
+                    "type": "string",
+                    "examples": [
+                      "HD1.1"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "deviceGroupDeviceReference": {
+                "type": "object",
+                "properties": {
+                  "link": {
+                    "type": "string",
+                    "examples": [
+                      "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "remoteTargetReference": {
+                "type": "object",
+                "properties": {
+                  "link": {
+                    "type": "string",
+                    "examples": [
+                      "https://localhost/mgmt/tm/sys"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "required": []
+          },
+          {
+            "$id": "returnStatus",
+            "type": "string",
+            "examples": [
+              "SUCCESS"
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "id": 5,
+            "type": "assign",
+            "from": {
+              "location": "incoming",
+              "name": "targetVolume",
+              "ptr": ""
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "deviceRebootInput",
+              "ptr": "/passthroughObject/volume"
+            },
+            "context": "#"
+          },
+          {
+            "id": 11,
+            "type": "assign",
+            "from": {
+              "location": "incoming",
+              "name": "deviceLink",
+              "ptr": ""
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "deviceRebootInput",
+              "ptr": "/deviceGroupDeviceReference/link"
+            },
+            "context": "#"
+          },
+          {
+            "id": 1,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "reboot"
+            ],
+            "view": {
+              "row": 1,
+              "col": 1
+            },
+            "context": "#"
+          },
+          {
+            "id": 3,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "https://localhost/mgmt/tm/sys"
+            ],
+            "view": {
+              "row": 2,
+              "col": 1
+            },
+            "context": "#"
+          },
+          {
+            "id": 9,
+            "type": "declaration",
+            "library": "String",
+            "method": "new String",
+            "args": [
+              "SUCCESS"
+            ],
+            "view": {
+              "row": 3,
+              "col": 1
+            },
+            "context": "#"
+          },
+          {
+            "id": 10,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 9,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "returnStatus",
+              "ptr": ""
+            },
+            "context": "#"
+          },
+          {
+            "id": 2,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 1,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "deviceRebootInput",
+              "ptr": "/passthroughObject/command"
+            },
+            "context": "#"
+          },
+          {
+            "id": 4,
+            "type": "assign",
+            "from": {
+              "location": "declaration",
+              "name": 3,
+              "ptr": "/return"
+            },
+            "to": {
+              "location": "outgoing",
+              "name": "deviceRebootInput",
+              "ptr": "/remoteTargetReference/link"
+            },
+            "context": "#"
+          }
+        ],
+        "functions": [],
+        "comments": [],
+        "view": {
+          "col": 1,
+          "row": 5
+        },
+        "created": "2023-09-27T17:08:26.763Z",
+        "createdBy": {
+          "_id": "6463eeecee404876a5626a1a",
+          "provenance": "local_aaa",
+          "username": "admin@pronghorn"
+        },
+        "lastUpdated": "2023-09-27T18:34:13.822Z",
         "lastUpdatedBy": {
           "_id": "6463eeecee404876a5626a1a",
           "provenance": "local_aaa",
