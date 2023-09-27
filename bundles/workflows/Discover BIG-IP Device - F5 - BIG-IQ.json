@@ -188,7 +188,7 @@
       "variables": {
         "incoming": {
           "header": "Device Discovery Task Failed",
-          "message": "Failed device discovery, see error response below. Select \"Retry Task\" to retry discovering device or select \"End Job\" to end this job.\n",
+          "message": "Failed device discovery, see error response below. Select \"Retry Task\" to retry discovering device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n.",
           "body": "$var.6a9b.result",
           "variables": "",
           "btn_success": "Retry Task",
@@ -260,7 +260,7 @@
       "variables": {
         "incoming": {
           "header": "Number of Reattempts Exceeded",
-          "message": "The number of reattempts to query device discovery task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+          "message": "The number of reattempts to query device discovery task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.6a9b.result",
           "variables": "",
           "btn_success": "Query Task",
@@ -349,7 +349,7 @@
       "variables": {
         "incoming": {
           "header": "Device Discovery Failed",
-          "message": "Failed to discover device, see error response below. Select \"Retry\" to retry call to discover device or select \"End Job\" to end this job.\n",
+          "message": "Failed to discover device, see error response below. Select \"Retry\" to retry call to discover device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n.\n",
           "body": "$var.0267.error",
           "variables": "",
           "btn_success": "Retry",
@@ -376,7 +376,7 @@
       "variables": {
         "incoming": {
           "header": "Getting Device Discovery Task Status Failed",
-          "message": "Failed to get task status of device discovery. See error response below. Select \"Retry\" to retry call to get task status of device discovery or select \"End Job\" to end this job.\n",
+          "message": "Failed to get task status of device discovery. See error response below. Select \"Retry\" to retry call to get task status of device discovery or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n.",
           "body": "$var.6a9b.result",
           "variables": "",
           "btn_success": "Retry",
@@ -665,7 +665,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-26T18:56:17.352Z",
+  "last_updated": "2023-09-27T18:19:04.729Z",
   "created": "2023-09-21T14:50:23.517Z",
   "canvasVersion": 1.5,
   "last_updated_by": {

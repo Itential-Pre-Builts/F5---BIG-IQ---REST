@@ -142,7 +142,7 @@
       "variables": {
         "incoming": {
           "header": "Getting Machine ID Failed",
-          "message": "Failed to get machine Id. See error below. Select \"Retry\" to retry getting machine Id or select \"End Job\" to end the overall job.\n\n\n\n\n\n",
+          "message": "Failed to get machine Id. See error below. Select \"Retry\" to retry getting machine Id or select \"End Job\" to end the overall job.\n\n\n\n\n\n\n\n.",
           "body": "$var.f15b.error",
           "variables": "",
           "btn_success": "Retry",

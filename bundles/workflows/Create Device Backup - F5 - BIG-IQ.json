@@ -215,7 +215,7 @@
       "variables": {
         "incoming": {
           "header": "Backup Device Task Failed",
-          "message": "Failed to backup the device, see error response below. Select \"Retry Task\" to retry backup of device or select \"End Job\" to end this job.\n\n",
+          "message": "Failed to backup the device, see error response below. Select \"Retry Task\" to retry backup of device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.4687.result",
           "variables": "",
           "btn_success": "Retry Task",
@@ -287,7 +287,7 @@
       "variables": {
         "incoming": {
           "header": "Number of Reattempts Exceeded",
-          "message": "The number of reattempts to query device backup task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+          "message": "The number of reattempts to query device backup task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.4687.result",
           "variables": "",
           "btn_success": "Query Task",
@@ -406,7 +406,7 @@
       "variables": {
         "incoming": {
           "header": "Generating Backup of Device Failed",
-          "message": "Failed to backup the device, see error response below. Select \"Retry\" to retry call to backup the device or select \"End Job\" to end this job.\n",
+          "message": "Failed to backup the device, see error response below. Select \"Retry\" to retry call to backup the device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.7edb.error",
           "variables": "",
           "btn_success": "Retry",
@@ -433,7 +433,7 @@
       "variables": {
         "incoming": {
           "header": "Getting Backup Task Status Failed",
-          "message": "Failed to get task status of backup of the device. See error response below. Select \"Retry\" to retry call to get task status of backup of device or select \"End Job\" to end this job.\n",
+          "message": "Failed to get task status of backup of the device. See error response below. Select \"Retry\" to retry call to get task status of backup of device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.4687.error",
           "variables": "",
           "btn_success": "Retry",

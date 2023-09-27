@@ -215,7 +215,7 @@
       "variables": {
         "incoming": {
           "header": "Device Import Task Failed",
-          "message": "Failed device import, see error response below. Select \"Retry Task\" to retry importing device or select \"End Job\" to end this job.\n",
+          "message": "Failed device import, see error response below. Select \"Retry Task\" to retry importing device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.1a74.result",
           "variables": "",
           "btn_success": "Retry Task",
@@ -287,7 +287,7 @@
       "variables": {
         "incoming": {
           "header": "Number of Reattempts Exceeded",
-          "message": "The number of reattempts to query device import task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+          "message": "The number of reattempts to query device import task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n\n\n\n\n\n\n\n\n\n.",
           "body": "$var.1a74.result",
           "variables": "",
           "btn_success": "Query Task",
@@ -377,7 +377,7 @@
       "variables": {
         "incoming": {
           "header": "Performing Device Import Failed",
-          "message": "Failed to import the device, see error response below. Select \"Retry\" to retry call to import device or select \"End Job\" to end this job.\n",
+          "message": "Failed to import the device, see error response below. Select \"Retry\" to retry call to import device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.2947.error",
           "variables": "",
           "btn_success": "Retry",
@@ -404,7 +404,7 @@
       "variables": {
         "incoming": {
           "header": "Getting Device Import Task Status Failed",
-          "message": "Failed to get task status of device import. See error response below. Select \"Retry\" to retry call to get task status of device import or select \"End Job\" to end this job.\n",
+          "message": "Failed to get task status of device import. See error response below. Select \"Retry\" to retry call to get task status of device import or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n.",
           "body": "$var.1a74.result",
           "variables": "",
           "btn_success": "Retry",
@@ -675,7 +675,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-26T18:58:47.560Z",
+  "last_updated": "2023-09-27T18:18:52.685Z",
   "created": "2023-09-21T15:13:03.753Z",
   "canvasVersion": 1.5,
   "last_updated_by": {

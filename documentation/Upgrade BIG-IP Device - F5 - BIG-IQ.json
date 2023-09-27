@@ -29,6 +29,15 @@
     },
     {
       "capability": "Verify sufficient disk space exists on BIG-IP for upgrade"
+    },
+    {
+      "capability": "Performs rollback to volume prior to upgrade if upgrade fails"
+    },
+    {
+      "capability": "Does device discovery and import after upgrade"
+    },
+    {
+      "capability": "Supports upgrade of HA pair of devices as well as upgrade of single device"
     }
   ],
   "entryPoint": {
@@ -161,6 +170,13 @@
       "required": "yes",
       "description": "Value used to determine whether or not to do iHealth upload. If true, performs iHealth upload before and after upgrade and if false, skips both iHealth upload steps.",
       "exampleValue": "true"
+    },
+    {
+      "name": "deviceRebootWait",
+      "type": "number",
+      "required": "yes",
+      "description": "Amount of time in seconds to wait for device to reboot in the event a rollback is performed",
+      "exampleValue": "300"
     }
   ],
   "outputs": [
@@ -173,11 +189,11 @@
   ],
   "exampleInputsAndOutputs": [
     {
-      "exampleInput": "{\n  \"deviceAData\": {\n    \"deviceManagementAddress\": \"1.2.3.4\",\n    \"deviceManagementPort\": \"443\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"5.6.7.8\",\n    \"targetVolume\": \"HD1.2\"\n  },\n  \"deviceBData\": {\n    \"deviceManagementAddress\": \"\",\n    \"deviceManagementPort\": \"\",\n    \"deviceManagementHostname\": \"hostname\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"9.8.7.6\",\n    \"targetVolume\": \"HD1.3\"\n  },\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"credentialsFilterValue\": \"iHealth Name\",\n  \"credentialsFilterProperty\": \"displayName\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupLifeTime\": 30,\n  \"deviceBackupDescription\": \"Backup Device\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"Upload iHealth task\",\n  \"uploadiHealthTask\": true\n}",
+      "exampleInput": "{\n  \"deviceAData\": {\n    \"deviceManagementAddress\": \"1.2.3.4\",\n    \"deviceManagementPort\": \"443\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"5.6.7.8\",\n    \"targetVolume\": \"HD1.2\"\n  },\n  \"deviceBData\": {\n    \"deviceManagementAddress\": \"\",\n    \"deviceManagementPort\": \"\",\n    \"deviceManagementHostname\": \"hostname\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"9.8.7.6\",\n    \"targetVolume\": \"HD1.3\"\n  },\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"credentialsFilterValue\": \"iHealth Name\",\n  \"credentialsFilterProperty\": \"displayName\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupLifeTime\": 30,\n  \"deviceBackupDescription\": \"Backup Device\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"Upload iHealth task\",\n  \"uploadiHealthTask\": true,\n  \"deviceRebootWait\": 300\n}",
       "exampleOutput": "{\n  \"returnStatus\": \"SUCCESS\"\n}"
     },
     {
-      "exampleInput": "{\n  \"deviceAData\": {\n    \"deviceManagementAddress\": \"1.2.3.4\",\n    \"deviceManagementPort\": \"443\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"5.6.7.8\",\n    \"targetVolume\": \"HD1.2\"\n  },\n  \"deviceBData\": {\n    \"deviceManagementAddress\": \"\",\n    \"deviceManagementPort\": \"\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"\",\n    \"machineIdFilterValue\": \"\",\n    \"targetVolume\": \"\"\n  },\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"credentialsFilterValue\": \"\",\n  \"credentialsFilterProperty\": \"\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupLifeTime\": 30,\n  \"deviceBackupDescription\": \"Backup Device\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"\",\n  \"uploadiHealthTask\": false\n}",
+      "exampleInput": "{\n  \"deviceAData\": {\n    \"deviceManagementAddress\": \"1.2.3.4\",\n    \"deviceManagementPort\": \"443\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"address\",\n    \"machineIdFilterValue\": \"5.6.7.8\",\n    \"targetVolume\": \"HD1.2\"\n  },\n  \"deviceBData\": {\n    \"deviceManagementAddress\": \"\",\n    \"deviceManagementPort\": \"\",\n    \"deviceManagementHostname\": \"\",\n    \"machineIdFilterProperty\": \"\",\n    \"machineIdFilterValue\": \"\",\n    \"targetVolume\": \"\"\n  },\n  \"softwareImageName\": \"BIGIP-14.1.5.5-0.0.2.iso\",\n  \"softwareUpgradeTaskName\": \"Upgrade-BIG-IP\",\n  \"credentialsFilterValue\": \"\",\n  \"credentialsFilterProperty\": \"\",\n  \"adapterId\": \"F5-BIG-IQ\",\n  \"deviceBackupLifeTime\": 30,\n  \"deviceBackupDescription\": \"Backup Device\",\n  \"importDeviceTaskName\": \"Rediscover adc_core\",\n  \"iHealthTaskName\": \"\",\n  \"uploadiHealthTask\": false,\n  \"deviceRebootWait\": 300\n}",
       "exampleOutput": "{\n  \"returnStatus\": \"SUCCESS\"\n}"
     }
   ],
@@ -192,5 +208,6 @@
   "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
   "overview": "Upgrades BIG-IP device over F5 BIG-IQ",
   "webName": "Upgrade F5 BIG-IP Device over BIG-IQ",
-  "assetType": "Workflow"
+  "assetType": "Workflow",
+  "vendorInputDocumentation": "https://clouddocs.f5.com/products/big-iq/mgmt-api/v8.1.0/ApiReferences/bigiq_public_api_ref/r_public_api_references.html"
 }
