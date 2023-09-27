@@ -1,4 +1,12 @@
 
+## 0.2.1 [09-27-2023]
+
+* Updates failure message if upgrade fails
+
+See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!7
+
+---
+
 ## 0.2.0 [09-27-2023]
 
 * Adds rollback capability to device upgrade process in case of failure
@@ -62,4 +70,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n\n\n\n
+\n\n\n\n\n\n\n\n\n

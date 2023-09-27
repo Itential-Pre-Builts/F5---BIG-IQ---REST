@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "@itentialopensource/f5-big-iq-rest",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.",
     "license": "Apache-2.0",
     "repository": {
@@ -7055,7 +7055,7 @@
             "variables": {
               "incoming": {
                 "header": "Software Upgrade Task Failed",
-                "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
+                "message": "Failed software upgrade, see error response below. Select \"Retry Upgrade\" to retry software upgrade or select \"End Job\" to end the job and have device rollback performed.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.a421.currentSoftwareUpgradeTask",
                 "variables": "",
                 "btn_success": "Retry Upgrade",
@@ -7127,7 +7127,7 @@
             "variables": {
               "incoming": {
                 "header": "Number of Reattempts Exceeded",
-                "message": "The number of reattempts to query software upgrade task status exceeded expected number of reattempts. Select \"Query Task\" to query again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
+                "message": "The number of reattempts to query software upgrade task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job and have device rollback performed.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
                 "body": "$var.a421.currentSoftwareUpgradeTask",
                 "variables": "",
                 "btn_success": "Query Task",
@@ -7218,7 +7218,7 @@
             "variables": {
               "incoming": {
                 "header": "Software Upgrade Failed",
-                "message": "Failed to perform software upgrade on the device, see error response below. Select \"Retry\" to retry call to attempt software upgrade again or follow instructions below to rollback device if needed and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
+                "message": "Failed to perform software upgrade on the device, see error response below. Select \"Retry\" to retry call to attempt software upgrade again or select \"End Job\" to end the job and have device rollback performed.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
                 "body": "",
                 "variables": "",
                 "btn_success": "Retry",
@@ -7245,7 +7245,7 @@
             "variables": {
               "incoming": {
                 "header": "Getting Software Upgrade Task Status Failed",
-                "message": "Failed to get task status of software upgrade. See error response below. Select \"Retry\" to retry call to get task status of software upgrade or follow instructions below to rollback device if necessary and select \"End Job\" to end the job.\n\nIf the upgrade fails and a rollback to the version prior to attempting the upgrade is required, perform a device reboot using the active volume of the prior version of the device.\n\nIt may be necessary after reboot to rediscover the device for connectivity, which can be done by deleting the device's services and device from BIG-IQ and then adding back the device to BIG-IQ.\n\nFor information about managed devices in BIG-IQ, see https://techdocs.f5.com/kb/en-us/products/big-iq-centralized-mgmt/manuals/product/bigiq-central-mgmt-adc-5-1-0/2.html.\n\nFor article on removing BIG-IP device from BIG-IQ, see https://my.f5.com/manage/s/article/K42354921.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
+                "message": "Failed to get task status of software upgrade. See error response below. Select \"Retry\" to retry call to get task status of software upgrade or select \"End Job\" to end the job and have device rollback performed.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
                 "body": "",
                 "variables": "",
                 "btn_success": "Retry",
