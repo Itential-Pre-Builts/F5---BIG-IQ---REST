@@ -1,0 +1,215 @@
+{
+  "_id": "6514618ab5c9df0151074b07",
+  "name": "Create Device Reboot Input Over BIG-IQ",
+  "description": "Creates input for device reboot over BIG-IQ",
+  "incoming": [
+    {
+      "$id": "targetVolume",
+      "type": "string",
+      "examples": [
+        "HD1.1"
+      ]
+    },
+    {
+      "$id": "deviceLink",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "deviceRebootInput",
+      "type": "object",
+      "properties": {
+        "passthroughObject": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "examples": [
+                "reboot"
+              ]
+            },
+            "volume": {
+              "type": "string",
+              "examples": [
+                "HD1.1"
+              ]
+            }
+          },
+          "required": []
+        },
+        "deviceGroupDeviceReference": {
+          "type": "object",
+          "properties": {
+            "link": {
+              "type": "string",
+              "examples": [
+                "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              ]
+            }
+          },
+          "required": []
+        },
+        "remoteTargetReference": {
+          "type": "object",
+          "properties": {
+            "link": {
+              "type": "string",
+              "examples": [
+                "https://localhost/mgmt/tm/sys"
+              ]
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "returnStatus",
+      "type": "string",
+      "examples": [
+        "SUCCESS"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "targetVolume",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceRebootInput",
+        "ptr": "/passthroughObject/volume"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceLink",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceRebootInput",
+        "ptr": "/deviceGroupDeviceReference/link"
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "reboot"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "https://localhost/mgmt/tm/sys"
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "SUCCESS"
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 9,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "returnStatus",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceRebootInput",
+        "ptr": "/passthroughObject/command"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "deviceRebootInput",
+        "ptr": "/remoteTargetReference/link"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 1,
+    "row": 5
+  },
+  "created": "2023-09-27T17:08:26.763Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-27T18:34:13.822Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

@@ -43,8 +43,7 @@
                           "type": "string",
                           "examples": [
                             "14.1.5.4"
-                          ],
-                          "format": "ipv4"
+                          ]
                         },
                         "build": {
                           "type": "string",
@@ -434,7 +433,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2023-09-22T16:03:44.901Z",
+  "lastUpdated": "2023-09-27T17:45:55.989Z",
   "lastUpdatedBy": {
     "_id": "6463eeecee404876a5626a1a",
     "provenance": "local_aaa",

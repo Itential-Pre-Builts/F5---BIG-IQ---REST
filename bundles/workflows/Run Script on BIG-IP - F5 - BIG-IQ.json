@@ -134,7 +134,7 @@
       "variables": {
         "incoming": {
           "header": "Failure Running Script",
-          "message": "Failed to run script, see error response. Select \"Retry Script\" to retry executing script or select \"End Job\" to end this job.\n\n",
+          "message": "Failed to run script, see error response. Select \"Retry Script\" to retry executing script or select \"End Job\" to end this job\n\n\n\n\n\n\n\n\n\n.",
           "body": "$var.6b06.result",
           "variables": "",
           "btn_success": "Retry  Script",
@@ -206,7 +206,7 @@
       "variables": {
         "incoming": {
           "header": "Number of Reattempts Exceeded",
-          "message": "The number of reattempts to query script status exceeded expected number of reattempts. Select \"Query Status\" to query status again or select \"End Job\" to end the job.\n\nSee query script response below.\n",
+          "message": "The number of reattempts to query script status exceeded expected number of reattempts. Select \"Query Status\" to query status again or select \"End Job\" to end the job.\n\nSee query script response below.\n\n\n\n\n\n\n\n\n\n.",
           "body": "$var.6b06.result",
           "variables": "",
           "btn_success": "Query Status",
@@ -260,7 +260,7 @@
       "variables": {
         "incoming": {
           "header": "Failed to Create Script",
-          "message": "Failed to create script, see error response. Select \"Retry\" to retry call to create script or select \"End Job\" to end this job.\n",
+          "message": "Failed to create script, see error response. Select \"Retry\" to retry call to create script or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n\n.",
           "body": "",
           "variables": "",
           "btn_success": "Retry",
@@ -314,7 +314,7 @@
       "variables": {
         "incoming": {
           "header": "Failed to Get Script Status",
-          "message": "Failed to get the script status, see error response below. Select \"Retry\" to retry call to get script status or select \"End Job\" to end this job.\n",
+          "message": "Failed to get the script status, see error response below. Select \"Retry\" to retry call to get script status or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n\n.",
           "body": "$var.6b06.result",
           "variables": "",
           "btn_success": "Retry",
@@ -506,7 +506,7 @@
       "variables": {
         "incoming": {
           "header": "Failed to Execute Script",
-          "message": "Failed to execute script, see error response below. Select \"Retry\" to retry call to execute script or select \"End Job\" to end this job.\n",
+          "message": "Failed to execute script, see error response below. Select \"Retry\" to retry call to execute script or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n\n.",
           "body": "$var.2e0e.error",
           "variables": "",
           "btn_success": "Retry",

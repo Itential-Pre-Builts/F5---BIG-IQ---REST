@@ -1,8 +1,8 @@
 {
-  "name": "Retrieve iHealth Credentials Id - F5 - BIG-IQ",
-  "description": "Retrieve device machine ID with filter inputs provided",
+  "name": "Reboot BIG-IP Device - F5 - BIG-IQ",
+  "description": "Create iHealth upload task",
   "tasks": {
-    "2339": {
+    "2288": {
       "name": "stub",
       "canvasName": "stub",
       "summary": "Return Failed Status",
@@ -19,14 +19,15 @@
           "response": "FAILED"
         },
         "outgoing": {
-          "response": "$var.job.returnStatus"
-        }
+          "response": ""
+        },
+        "error": "$var.job.returnStatus"
       },
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 972,
-        "y": 1152
+        "x": 888,
+        "y": 1236
       }
     },
     "workflow_start": {
@@ -35,7 +36,7 @@
       "x": -0.05709992486851991,
       "y": 0.5006165228113441,
       "nodeLocation": {
-        "x": -72,
+        "x": -96,
         "y": 996
       }
     },
@@ -45,89 +46,24 @@
       "x": 0.3569682151589242,
       "y": 0.4981549815498155,
       "nodeLocation": {
-        "x": 972,
+        "x": 888,
         "y": 996
       }
     },
-    "dba3": {
-      "name": "retrieveBIGIPiHealthCredentials",
-      "canvasName": "retrieveBIGIPiHealthCredentials",
-      "summary": "Retrieve BIG-IP iHealth Credentials",
-      "description": "Retrieve BIG-IP iHealth Credentials",
-      "location": "Adapter",
-      "locationType": "F5BigIQ",
-      "app": "F5BigIQ",
-      "type": "automatic",
-      "displayName": "F5-BIG-IQ",
-      "variables": {
-        "incoming": {
-          "filter": "",
-          "adapter_id": "F5-BIG-IQ"
-        },
-        "outgoing": {
-          "result": ""
-        },
-        "error": "$var.job.BIGIQError",
-        "decorators": []
-      },
-      "actor": "Pronghorn",
-      "groups": [],
-      "nodeLocation": {
-        "x": 264,
-        "y": 996
-      }
-    },
-    "fcce": {
-      "name": "transformation",
-      "canvasName": "transformation",
-      "summary": "Search BIG-IQ iHealth Credentials",
-      "description": "Search for BIG-IQ iHealth credential Id with filter",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "tr_id": "650a81249b3b3a0148b40592",
-          "variableMap": {
-            "result": "$var.dba3.result",
-            "filterProperty": "$var.job.filterProperty",
-            "filterValue": "$var.job.filterValue"
-          },
-          "options": {
-            "extractOutput": true,
-            "validateIncoming": true,
-            "revertToDefaultValue": true
-          }
-        },
-        "outgoing": {
-          "credentialsId": "$var.job.credentialsId",
-          "returnStatus": "$var.job.returnStatus"
-        },
-        "decorators": []
-      },
-      "actor": "Pronghorn",
-      "groups": [],
-      "nodeLocation": {
-        "x": 648,
-        "y": 996
-      }
-    },
-    "3f42": {
+    "f580": {
       "name": "ViewData",
       "canvasName": "ViewData",
       "summary": "Show BIG-IQ Error",
-      "description": "Show BIG-IQ Error",
+      "description": "Show error result and options for next steps",
       "location": "Application",
       "app": "WorkFlowEngine",
       "displayName": "WorkFlowEngine",
       "type": "manual",
       "variables": {
         "incoming": {
-          "header": "Failed to get iHealth Credentials",
-          "message": "Failed to get iHealth Credentials. See error below. Select \"Retry\" to retry getting iHealth Credentials or select \"End Job\" to end job.\n\n\n\n\n\n\n.",
-          "body": "$var.dba3.error",
+          "header": "Performing Device Reboot Failed",
+          "message": "Failed to reboot the device, see error response below. Select \"Retry\" to retry call to reboot device or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
+          "body": "$var.cc77.error",
           "variables": "",
           "btn_success": "Retry",
           "btn_failure": "End Job"
@@ -137,78 +73,168 @@
       "view": "/workflow_engine/task/ViewData",
       "groups": [],
       "nodeLocation": {
-        "x": 264,
-        "y": 1152
+        "x": 516,
+        "y": 1236
+      }
+    },
+    "cc77": {
+      "name": "rebootDevice",
+      "canvasName": "rebootDevice",
+      "summary": "Reboot Device",
+      "description": "Reboot Device",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "F5-BIG-IQ",
+      "variables": {
+        "incoming": {
+          "body": "$var.29e4.deviceRebootInput",
+          "adapter_id": "$var.job.adapterId"
+        },
+        "outgoing": {
+          "result": "$var.job.rebootResponse"
+        },
+        "error": "$var.job.BIGIQError"
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 516,
+        "y": 996
+      }
+    },
+    "29e4": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create Device Reboot Input Over BIG-IQ",
+      "description": "Create device reboot input over BIG-IQ",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "6514618ab5c9df0151074b07",
+          "variableMap": {
+            "targetVolume": "$var.job.targetVolume",
+            "deviceLink": "$var.job.deviceLink"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "deviceRebootInput": null,
+          "returnStatus": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 168,
+        "y": 996
       }
     }
   },
   "transitions": {
-    "2339": {
+    "2288": {
       "workflow_end": {
         "state": "success",
         "type": "standard"
       }
     },
     "workflow_start": {
-      "dba3": {
+      "29e4": {
         "state": "success",
         "type": "standard"
       }
     },
     "workflow_end": {},
-    "dba3": {
-      "fcce": {
-        "state": "success",
-        "type": "standard"
-      },
-      "3f42": {
+    "f580": {
+      "2288": {
         "type": "standard",
-        "state": "error"
+        "state": "failure"
+      },
+      "cc77": {
+        "state": "success",
+        "type": "revert"
       }
     },
-    "fcce": {
+    "cc77": {
+      "f580": {
+        "type": "standard",
+        "state": "error"
+      },
       "workflow_end": {
         "state": "success",
         "type": "standard"
       }
     },
-    "3f42": {
-      "2339": {
-        "type": "standard",
-        "state": "failure"
-      },
-      "dba3": {
+    "29e4": {
+      "cc77": {
         "state": "success",
-        "type": "revert"
+        "type": "standard"
       }
     }
   },
   "inputSchema": {
     "type": "object",
     "properties": {
-      "filterProperty": {
-        "$id": "filterProperty",
-        "type": "string"
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
       },
-      "filterValue": {
-        "$id": "filterValue",
+      "targetVolume": {
+        "$id": "targetVolume",
+        "type": "string",
+        "examples": [
+          "HD1.1"
+        ]
+      },
+      "deviceLink": {
+        "$id": "deviceLink",
         "type": "string"
       }
     },
     "required": [
-      "filterProperty",
-      "filterValue"
+      "adapterId",
+      "targetVolume",
+      "deviceLink"
     ]
   },
   "outputSchema": {
     "type": "object",
     "properties": {
-      "filterProperty": {
-        "$id": "filterProperty",
-        "type": "string"
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
       },
-      "filterValue": {
-        "$id": "filterValue",
+      "targetVolume": {
+        "$id": "targetVolume",
+        "type": "string",
+        "examples": [
+          "HD1.1"
+        ]
+      },
+      "deviceLink": {
+        "$id": "deviceLink",
         "type": "string"
       },
       "_id": {
@@ -219,11 +245,18 @@
         "type": "string"
       },
       "returnStatus": {
-        "title": "response",
-        "type": "string",
-        "examples": [
-          "awesome"
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
         ]
+      },
+      "rebootResponse": {
+        "title": "result",
+        "type": "object"
       },
       "BIGIQError": {
         "type": [
@@ -234,28 +267,24 @@
           "object",
           "string"
         ]
-      },
-      "credentialsId": {
-        "$id": "credentialsId",
-        "type": "string"
       }
     }
   },
   "type": "automation",
   "font_size": 12,
   "lastUpdatedVersion": "5.46.0-2023.1.19.0",
-  "createdVersion": "5.46.0-2023.1.15.0",
+  "createdVersion": "5.46.0-2023.1.19.0",
   "preAutomationTime": 0,
   "sla": 0,
-  "canvasVersion": 1.5,
   "created_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-26T18:17:22.871Z",
-  "created": "2023-09-20T05:09:23.341Z",
+  "canvasVersion": 1.5,
+  "last_updated": "2023-09-27T18:34:23.890Z",
+  "created": "2023-09-25T14:44:04.661Z",
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",

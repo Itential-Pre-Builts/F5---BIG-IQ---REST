@@ -1,8 +1,8 @@
 {
   "bundleName": "F5 - BIG-IQ - REST",
   "version": "0.0.1",
-  "fingerprint": "65133b19163eb400c61225b1",
-  "createdEpoch": "1695759129634",
+  "fingerprint": "65148895163eb400c61225b3",
+  "createdEpoch": "1695844501383",
   "artifacts": [
     {
       "id": "Upgrade BIG-IP Device - F5 - BIG-IQ",
@@ -81,6 +81,24 @@
       "name": "Run BIG-IP Upgrade - F5 - BIG-IQ",
       "type": "workflow",
       "location": "/bundles/workflows/Run BIG-IP Upgrade - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Rollback BIG-IP Device - F5 - BIG-IP",
+      "name": "Rollback BIG-IP Device - F5 - BIG-IP",
+      "type": "workflow",
+      "location": "/bundles/workflows/Rollback BIG-IP Device - F5 - BIG-IP.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Reboot BIG-IP Device - F5 - BIG-IQ",
+      "name": "Reboot BIG-IP Device - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Reboot BIG-IP Device - F5 - BIG-IQ.json",
       "properties": {
         "entryPoint": false
       }
@@ -216,6 +234,24 @@
       "name": "Create BIG-IP Device Discover and Import Inputs",
       "type": "transformation",
       "location": "/bundles/transformations/Create BIG-IP Device Discover and Import Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6514738ab5c9df0151074b08",
+      "name": "Create BIG-IP Device Rollback Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IP Device Rollback Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6514618ab5c9df0151074b07",
+      "name": "Create Device Reboot Input Over BIG-IQ",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create Device Reboot Input Over BIG-IQ.json",
       "properties": {
         "entryPoint": false
       }

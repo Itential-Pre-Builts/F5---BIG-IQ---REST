@@ -252,7 +252,7 @@
       "variables": {
         "incoming": {
           "header": "Failed to Create iHealth Upload Task",
-          "message": "Failed to create the iHealth upload task, see error response. Select \"Retry Task\" to retry uploading iHealth Task or select \"End Job\" to end this job.",
+          "message": "Failed to create the iHealth upload task, see error response. Select \"Retry Task\" to retry uploading iHealth Task or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.714d.result",
           "variables": "",
           "btn_success": "Retry Task",
@@ -324,7 +324,7 @@
       "variables": {
         "incoming": {
           "header": "Number of Reattempts Exceeded",
-          "message": "The number of reattempts to query iHealth task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n",
+          "message": "The number of reattempts to query iHealth task status exceeded expected number of reattempts. Select \"Query Task\" to query again or select \"End Job\" to end the job.\n\nSee query task response below.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.714d.result",
           "variables": "",
           "btn_success": "Query Task",
@@ -378,7 +378,7 @@
       "variables": {
         "incoming": {
           "header": "Failed to Create iHealth Upload Task",
-          "message": "Failed to create the iHealth upload task, see error response. Select \"Retry\" to retry call to create iHealth upload task or select \"End Job\" to end this job.\n",
+          "message": "Failed to create the iHealth upload task, see error response. Select \"Retry\" to retry call to create iHealth upload task or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.f70d.error",
           "variables": "",
           "btn_success": "Retry",
@@ -432,7 +432,7 @@
       "variables": {
         "incoming": {
           "header": "Failed to Get iHealth Upload Task Status",
-          "message": "Failed to get the iHealth upload task status, see error response below. Select \"Retry\" to retry call to get iHealth upload task status or select \"End Job\" to end this job.\n",
+          "message": "Failed to get the iHealth upload task status, see error response below. Select \"Retry\" to retry call to get iHealth upload task status or select \"End Job\" to end this job.\n\n\n\n\n\n\n\n\n.",
           "body": "$var.714d.error",
           "variables": "",
           "btn_success": "Retry",

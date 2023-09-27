@@ -25,7 +25,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 4464,
-        "y": 204
+        "y": 276
       }
     },
     "6737": {
@@ -147,7 +147,7 @@
       "name": "workflow_end",
       "groups": [],
       "nodeLocation": {
-        "x": 5448,
+        "x": 5460,
         "y": -24
       },
       "x": 1,
@@ -391,7 +391,7 @@
       "variables": {
         "incoming": {
           "header": "Re-Activate License",
-          "message": "Re-Activation of license is required before proceeding with rest of this job. \n\nUse the link(s) below to navigate to page to re-activate device license. Note this should only be run during a maintenance window as re-activating the license will cause a reboot of the device.\n\nUpon completing re-activation of license, select \"Continue Job\". If error occurred re-activating license, select \"End Job\".\n",
+          "message": "Re-Activation of license is required before proceeding with rest of this job. \n\nUse the link(s) below to navigate to page to re-activate device license. Note this should only be run during a maintenance window as re-activating the license will cause a reboot of the device.\n\nUpon completing re-activation of license, select \"Continue Job\". If error occurred re-activating license, select \"End Job\".\n\n\n\n\n\n\n\n\n\n.",
           "body": "$var.c430.reactivationLinkMessage",
           "variables": "",
           "btn_success": "Continue Job",
@@ -601,7 +601,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 1296,
-        "y": 204
+        "y": 276
       }
     },
     "90d0": {
@@ -627,8 +627,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 5448,
-        "y": 204
+        "x": 5460,
+        "y": 276
       }
     },
     "b992": {
@@ -723,7 +723,7 @@
       "variables": {
         "incoming": {
           "header": "Not Enough Disk Space for Upgrade",
-          "message": "The amount of disk space found on BIG-IP device is not enough for a software upgrade. See amount of disk space found below. If possible to reformat disk for more space, do so and select \"Check Disk\" to check disk space again. If not possible, select \"End Job\" to end job.\n",
+          "message": "The amount of disk space found on BIG-IP device is not enough for a software upgrade. See amount of disk space found below. If possible to reformat disk for more space, do so and select \"Check Disk\" to check disk space again. If not possible, select \"End Job\" to end job.\n\n\n\n\n\n\n\n\n\n.",
           "body": "$var.b992.diskSpaceMessage",
           "variables": "",
           "btn_success": "Check Disk",
@@ -762,7 +762,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 2256,
-        "y": 204
+        "y": 276
       }
     },
     "9bcd": {
@@ -1078,7 +1078,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 3528,
-        "y": 204
+        "y": 276
       }
     },
     "ec9d": {
@@ -1195,7 +1195,7 @@
       "groups": [],
       "nodeLocation": {
         "x": -2184,
-        "y": 204
+        "y": 276
       }
     },
     "4aa4": {
@@ -1267,7 +1267,7 @@
       "groups": [],
       "nodeLocation": {
         "x": -576,
-        "y": 204
+        "y": 276
       }
     },
     "c32f": {
@@ -1339,7 +1339,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 372,
-        "y": 204
+        "y": 276
       }
     },
     "0571": {
@@ -1411,7 +1411,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 972,
-        "y": 204
+        "y": 276
       }
     },
     "d992": {
@@ -1528,7 +1528,92 @@
       "groups": [],
       "nodeLocation": {
         "x": 5124,
-        "y": 204
+        "y": 276
+      }
+    },
+    "bffa": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Rollback Device",
+      "description": "Rollback device",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Rollback BIG-IP Device - F5 - BIG-IP",
+          "variables": {
+            "deviceRebootWait": {
+              "task": "job",
+              "value": "deviceRebootWait"
+            },
+            "importDeviceInputs": {
+              "task": "2a03",
+              "value": "importDeviceInputs"
+            },
+            "discoverDeviceInputs": {
+              "task": "2a03",
+              "value": "discoverDeviceInputs"
+            },
+            "rebootDeviceInputs": {
+              "task": "2a03",
+              "value": "rebootDeviceInputs"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3528,
+        "y": 168
+      }
+    },
+    "2a03": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create BIG-IP Device Rollback Inputs",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "6514738ab5c9df0151074b08",
+          "variableMap": {
+            "machineIdResults": "$var.035d.job_details",
+            "importDeviceTaskName": "$var.job.importDeviceTaskName",
+            "deviceUpgradeInputs": "$var.8e56.deviceInputsForUpgrade"
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "discoverDeviceInputs": null,
+          "importDeviceInputs": null,
+          "rebootDeviceInputs": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3528,
+        "y": 72
       }
     }
   },
@@ -1721,7 +1806,7 @@
         "state": "success",
         "type": "standard"
       },
-      "107d": {
+      "2a03": {
         "type": "standard",
         "state": "failure"
       }
@@ -1733,13 +1818,13 @@
       }
     },
     "ec9d": {
-      "107d": {
-        "type": "standard",
-        "state": "failure"
-      },
       "0a2a": {
         "state": "success",
         "type": "standard"
+      },
+      "2a03": {
+        "type": "standard",
+        "state": "failure"
       }
     },
     "f99f": {
@@ -1828,6 +1913,18 @@
     },
     "d616": {
       "90d0": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "bffa": {
+      "107d": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "2a03": {
+      "bffa": {
         "state": "success",
         "type": "standard"
       }
@@ -1970,6 +2067,14 @@
           "object",
           "string"
         ]
+      },
+      "deviceRebootWait": {
+        "title": "time",
+        "type": "integer",
+        "minimum": 1,
+        "examples": [
+          1200
+        ]
       }
     },
     "required": [
@@ -1984,7 +2089,8 @@
       "iHealthTaskName",
       "softwareUpgradeTaskName",
       "softwareImageName",
-      "uploadiHealthTask"
+      "uploadiHealthTask",
+      "deviceRebootWait"
     ]
   },
   "outputSchema": {
@@ -2125,6 +2231,14 @@
           "string"
         ]
       },
+      "deviceRebootWait": {
+        "title": "time",
+        "type": "integer",
+        "minimum": 1,
+        "examples": [
+          1200
+        ]
+      },
       "_id": {
         "type": "string",
         "pattern": "^[0-9a-f]{24}$"
@@ -2147,7 +2261,7 @@
   "errorHandler": null,
   "preAutomationTime": 0,
   "sla": 0,
-  "last_updated": "2023-09-26T19:00:56.438Z",
+  "last_updated": "2023-09-27T19:40:31.628Z",
   "lastUpdatedVersion": "5.46.0-2023.1.19.0",
   "created": "2023-09-20T17:55:55.770Z",
   "created_by": {
