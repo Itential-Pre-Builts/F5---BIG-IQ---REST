@@ -29,6 +29,7 @@ Capabilities include:
 - Performs rollback to volume prior to upgrade if upgrade fails
 - Does device discovery and import after upgrade
 - Supports upgrade of HA pair of devices as well as upgrade of single device
+- Updates device upgrade task to include private keys
 
 
 ## Getting Started
@@ -80,7 +81,7 @@ This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
   <tbody>
     <tr>
       <td>adapter-f5_bigiq</td>
-      <td>^0.3.4</td>
+      <td>^0.3.5</td>
     </tr>
   </tbody>
 </table>

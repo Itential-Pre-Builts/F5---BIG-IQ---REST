@@ -75,7 +75,7 @@
         "docLink": "https://docs.itential.com/opensource/docs/f5-big-iq?highlight=big-iq",
         "webLink": "https://www.itential.com/adapters/f5-big-iq/",
         "versions": [
-          "^0.3.4"
+          "^0.3.5"
         ]
       }
     ],

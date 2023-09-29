@@ -40,7 +40,7 @@ Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP dev
   <tbody>
     <tr>
       <td>adapter-f5_bigiq</td>
-      <td>^0.3.4</td>
+      <td>^0.3.5</td>
     </tr>
   </tbody>
 </table>
