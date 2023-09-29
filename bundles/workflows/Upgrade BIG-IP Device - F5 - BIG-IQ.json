@@ -50,6 +50,10 @@
             "filterProperty": {
               "task": "job",
               "value": "credentialsFilterProperty"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
             }
           },
           "data_array": "",
@@ -391,7 +395,7 @@
       "variables": {
         "incoming": {
           "header": "Re-Activate License",
-          "message": "Re-Activation of license is required before proceeding with rest of this job. \n\nUse the link(s) below to navigate to page to re-activate device license. Note this should only be run during a maintenance window as re-activating the license will cause a reboot of the device.\n\nUpon completing re-activation of license, select \"Continue Job\". If error occurred re-activating license, select \"End Job\".\n\n\n\n\n\n\n\n\n\n.",
+          "message": "Re-Activation of license is required before proceeding with rest of this job. \n\nUse the link(s) below to navigate to page to re-activate device license. Note this should only be run during a maintenance window as re-activating the license will cause a reboot of the device.\n\nUpon completing re-activation of license, select \"Continue Job\". If error occurred re-activating license, select \"End Job\".",
           "body": "$var.c430.reactivationLinkMessage",
           "variables": "",
           "btn_success": "Continue Job",
@@ -1941,6 +1945,13 @@
         "$id": "filterProperty",
         "type": "string"
       },
+      "adapterId": {
+        "$id": "adapterId",
+        "type": "string",
+        "examples": [
+          "F5-BIG-IQ"
+        ]
+      },
       "deviceBackupDescription": {
         "$id": "deviceBackupDescription",
         "type": "string"
@@ -1950,13 +1961,6 @@
         "type": "integer",
         "examples": [
           30
-        ]
-      },
-      "adapterId": {
-        "$id": "adapterId",
-        "type": "string",
-        "examples": [
-          "F5-BIG-IQ"
         ]
       },
       "deviceAData": {
@@ -2080,9 +2084,9 @@
     "required": [
       "credentialsFilterValue",
       "credentialsFilterProperty",
+      "adapterId",
       "deviceBackupDescription",
       "deviceBackupLifeTime",
-      "adapterId",
       "deviceAData",
       "deviceBData",
       "importDeviceTaskName",
@@ -2104,6 +2108,13 @@
         "$id": "filterProperty",
         "type": "string"
       },
+      "adapterId": {
+        "$id": "adapterId",
+        "type": "string",
+        "examples": [
+          "F5-BIG-IQ"
+        ]
+      },
       "deviceBackupDescription": {
         "$id": "deviceBackupDescription",
         "type": "string"
@@ -2113,13 +2124,6 @@
         "type": "integer",
         "examples": [
           30
-        ]
-      },
-      "adapterId": {
-        "$id": "adapterId",
-        "type": "string",
-        "examples": [
-          "F5-BIG-IQ"
         ]
       },
       "deviceAData": {
@@ -2261,7 +2265,7 @@
   "errorHandler": null,
   "preAutomationTime": 0,
   "sla": 0,
-  "last_updated": "2023-09-27T19:40:31.628Z",
+  "last_updated": "2023-09-29T17:29:17.037Z",
   "lastUpdatedVersion": "5.46.0-2023.1.19.0",
   "created": "2023-09-20T17:55:55.770Z",
   "created_by": {
@@ -2271,13 +2275,13 @@
     "inactive": false
   },
   "createdVersion": "5.46.0-2023.1.19.0",
-  "canvasVersion": 3,
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
     "inactive": false
   },
+  "canvasVersion": 3,
   "tags": [],
   "groups": [],
   "migrationVersion": 2

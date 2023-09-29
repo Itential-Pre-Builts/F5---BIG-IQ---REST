@@ -8,7 +8,7 @@
       "name": "adapter-f5_bigiq",
       "overview": "Adapter that integrates with F5 BIG-IQ",
       "webName": "F5 BIG-IQ",
-      "version": "^0.3.4",
+      "version": "^0.3.5",
       "repoLink": "https://gitlab.com/itentialopensource/adapters/controller-orchestrator/adapter-f5_bigiq",
       "webLink": "https://www.itential.com/adapters/f5-big-iq/",
       "docLink": "https://docs.itential.com/opensource/docs/f5-big-iq?highlight=big-iq"
@@ -38,6 +38,9 @@
     },
     {
       "capability": "Supports upgrade of HA pair of devices as well as upgrade of single device"
+    },
+    {
+      "capability": "Updates device upgrade task to include private keys"
     }
   ],
   "entryPoint": {

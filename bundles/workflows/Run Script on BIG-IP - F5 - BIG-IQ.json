@@ -881,7 +881,7 @@
   },
   "type": "automation",
   "font_size": 12,
-  "lastUpdatedVersion": "5.46.0-2023.1.19.0",
+  "lastUpdatedVersion": "4.15.0-2023.1.123.0",
   "createdVersion": "5.46.0-2023.1.19.0",
   "preAutomationTime": 0,
   "sla": 0,
@@ -891,7 +891,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-25T14:09:49.685Z",
+  "last_updated": "2023-09-29T14:18:12.719Z",
   "created": "2023-09-20T16:53:15.851Z",
   "last_updated_by": {
     "provenance": "local_aaa",
