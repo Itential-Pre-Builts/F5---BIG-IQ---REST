@@ -14,7 +14,7 @@
       "displayName": "F5-BIG-IQ",
       "variables": {
         "incoming": {
-          "adapter_id": "F5-BIG-IQ"
+          "adapter_id": "$var.job.adapterId"
         },
         "outgoing": {
           "result": ""
@@ -52,7 +52,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 672,
-        "y": 1368
+        "y": 1500
       }
     },
     "8388": {
@@ -79,8 +79,35 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 1872,
-        "y": 1116
+        "x": 3192,
+        "y": 1152
+      }
+    },
+    "9878": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Update Flag for Device Upgrade Task Update",
+      "description": "Update flag for device upgrade task update",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "yes"
+        },
+        "outgoing": {
+          "response": "$var.job.updatedUpgradeTask"
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2844,
+        "y": 1068
       }
     },
     "workflow_start": {
@@ -99,8 +126,8 @@
       "x": 0.3569682151589242,
       "y": 0.4981549815498155,
       "nodeLocation": {
-        "x": 2160,
-        "y": 996
+        "x": 3480,
+        "y": 984
       }
     },
     "62ed": {
@@ -172,13 +199,13 @@
       "groups": [],
       "nodeLocation": {
         "x": 1536,
-        "y": 1236
+        "y": 1296
       }
     },
     "c704": {
       "name": "evaluation",
       "canvasName": "evaluation",
-      "summary": "Check If Device Discovery Task Finished",
+      "summary": "Check If Software Upgrade Task Finished",
       "description": "Run an evaluation",
       "location": "Application",
       "locationType": null,
@@ -216,8 +243,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 1872,
-        "y": 996
+        "x": 3192,
+        "y": 984
       }
     },
     "15b4": {
@@ -243,8 +270,8 @@
       "view": "/workflow_engine/task/ViewData",
       "groups": [],
       "nodeLocation": {
-        "x": 1872,
-        "y": 1236
+        "x": 3192,
+        "y": 1284
       }
     },
     "9ea3": {
@@ -270,8 +297,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 1704,
-        "y": 1368
+        "x": 1536,
+        "y": 1500
       }
     },
     "1c3e": {
@@ -300,7 +327,8 @@
         },
         "outgoing": {
           "softwareUpgradeInput": null,
-          "returnStatus": "$var.job.returnStatus"
+          "returnStatus": "$var.job.returnStatus",
+          "updatedUpgradeTask": "$var.job.updatedUpgradeTask"
         },
         "decorators": []
       },
@@ -335,7 +363,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 516,
-        "y": 1236
+        "y": 1296
       }
     },
     "6d6e": {
@@ -362,7 +390,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 864,
-        "y": 1236
+        "y": 1296
       }
     },
     "a073": {
@@ -450,8 +478,167 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 2160,
+        "x": 3492,
+        "y": 1476
+      }
+    },
+    "d565": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create BIG-IQ Update Device Upgrade Input",
+      "description": "Creates input for updating device upgrade over BIG-IQ",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "6516df32b5c9df0151074b1d",
+          "variableMap": {
+            "deviceUpgradeTaskDetails": "$var.a421.currentSoftwareUpgradeTask"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "updateDeviceUpgradeInput": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2208,
+        "y": 1068
+      }
+    },
+    "e79c": {
+      "name": "updateDeviceUpgrade",
+      "canvasName": "updateDeviceUpgrade",
+      "summary": "Update Device Upgrade",
+      "description": "Update device upgrade task to include private keys",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "F5-BIG-IQ",
+      "variables": {
+        "incoming": {
+          "body": "$var.d565.updateDeviceUpgradeInput",
+          "adapter_id": "$var.job.adapterId"
+        },
+        "outgoing": {
+          "result": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2532,
+        "y": 1068
+      }
+    },
+    "f72c": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Device Upgrade Task Updated",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "job",
+                    "variable": "updatedUpgradeTask"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "yes"
+                  },
+                  "operator": "==",
+                  "query": "",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1848,
+        "y": 996
+      }
+    },
+    "55b2": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Failure Result",
+      "description": "Show failure result and option for next step",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Updating Device Upgrade Task Failed",
+          "message": "Failed to update device upgrade task, see error response below. Select \"Retry\" to retry updating device upgrade task or select \"End Job\" to end the job and have device rollback performed.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.",
+          "body": "$var.e79c.error",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2532,
         "y": 1368
+      }
+    },
+    "806b": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2532,
+        "y": 1488
       }
     }
   },
@@ -482,6 +669,12 @@
         "state": "error"
       }
     },
+    "9878": {
+      "c704": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
     "workflow_start": {
       "1c3e": {
         "state": "success",
@@ -494,9 +687,9 @@
         "type": "standard",
         "state": "success"
       },
-      "c704": {
-        "type": "standard",
-        "state": "failure"
+      "f72c": {
+        "state": "failure",
+        "type": "standard"
       }
     },
     "ff7c": {
@@ -524,13 +717,13 @@
         "state": "success",
         "type": "revert"
       },
-      "9ea3": {
+      "278d": {
         "type": "standard",
         "state": "failure"
       }
     },
     "9ea3": {
-      "278d": {
+      "806b": {
         "state": "success",
         "type": "standard"
       }
@@ -582,11 +775,63 @@
         "state": "success",
         "type": "standard"
       }
+    },
+    "d565": {
+      "e79c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e79c": {
+      "9878": {
+        "state": "success",
+        "type": "standard"
+      },
+      "55b2": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "f72c": {
+      "d565": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "c704": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "55b2": {
+      "806b": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "e79c": {
+        "state": "success",
+        "type": "revert"
+      }
+    },
+    "806b": {
+      "278d": {
+        "state": "success",
+        "type": "standard"
+      }
     }
   },
   "inputSchema": {
     "type": "object",
     "properties": {
+      "adapterId": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
       "_id": {
         "title": "job_id",
         "type": "string",
@@ -605,7 +850,19 @@
       "deviceInputsForUpgrade": {
         "$id": "deviceInputsForUpgrade",
         "type": "array"
-      },
+      }
+    },
+    "required": [
+      "adapterId",
+      "_id",
+      "softwareUpgradeTaskName",
+      "softwareImageName",
+      "deviceInputsForUpgrade"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
       "adapterId": {
         "type": [
           "array",
@@ -615,19 +872,7 @@
           "object",
           "string"
         ]
-      }
-    },
-    "required": [
-      "_id",
-      "softwareUpgradeTaskName",
-      "softwareImageName",
-      "deviceInputsForUpgrade",
-      "adapterId"
-    ]
-  },
-  "outputSchema": {
-    "type": "object",
-    "properties": {
+      },
       "_id": {
         "type": "string",
         "pattern": "^[0-9a-f]{24}$"
@@ -644,16 +889,6 @@
         "$id": "deviceInputsForUpgrade",
         "type": "array"
       },
-      "adapterId": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
       "initiator": {
         "type": "string"
       },
@@ -665,6 +900,13 @@
           "number",
           "object",
           "string"
+        ]
+      },
+      "updatedUpgradeTask": {
+        "title": "response",
+        "type": "string",
+        "examples": [
+          "awesome"
         ]
       },
       "returnStatus": {
@@ -694,7 +936,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-26T18:08:43.082Z",
+  "last_updated": "2023-09-29T17:11:14.725Z",
   "created": "2023-09-21T16:30:45.577Z",
   "canvasVersion": 1.5,
   "last_updated_by": {
