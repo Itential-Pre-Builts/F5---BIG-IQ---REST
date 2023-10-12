@@ -1,0 +1,264 @@
+{
+  "_id": "6516df32b5c9df0151074b1d",
+  "name": "Create BIG-IQ Update Device Upgrade Input",
+  "description": "Creates input for updating device upgrade over BIG-IQ",
+  "incoming": [
+    {
+      "$id": "deviceUpgradeTaskDetails",
+      "type": "object",
+      "properties": {
+        "selfLink": {
+          "type": "string",
+          "examples": [
+            "https://localhost/mgmt/cm/device/upgrades/4d6d1426-50e9-4652-81f4-7f2e308a3ce0"
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "updateDeviceUpgradeInput",
+      "type": "object",
+      "properties": {
+        "hasPostBackup": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "hasPreBackup": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "needPostBackup": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "needPreBackup": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "includePrivateKeys": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "obsfuscatedPassword": {
+          "type": "null"
+        },
+        "selfLink": {
+          "type": "null"
+        },
+        "taskReference": {
+          "type": "object",
+          "properties": {
+            "link": {
+              "type": "string",
+              "examples": [
+                "https://localhost/mgmt/cm/device/upgrades/774a7160-1920-4ff6-b2fc-30c586fc12c8"
+              ]
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceUpgradeTaskDetails",
+        "ptr": "/selfLink"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateDeviceUpgradeInput",
+        "ptr": "/taskReference/link"
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "declaration",
+      "library": "Boolean",
+      "method": "new Boolean",
+      "args": [
+        true
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "declaration",
+      "library": "Boolean",
+      "method": "new Boolean",
+      "args": [
+        false
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateDeviceUpgradeInput",
+        "ptr": "/hasPostBackup"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateDeviceUpgradeInput",
+        "ptr": "/hasPreBackup"
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateDeviceUpgradeInput",
+        "ptr": "/needPostBackup"
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 2,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateDeviceUpgradeInput",
+        "ptr": "/needPreBackup"
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 2,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateDeviceUpgradeInput",
+        "ptr": "/includePrivateKeys"
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "declaration",
+      "library": "Null",
+      "method": "new Null",
+      "args": [],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 9,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateDeviceUpgradeInput",
+        "ptr": "/obsfuscatedPassword"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 9,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateDeviceUpgradeInput",
+        "ptr": "/selfLink"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2023-09-29T14:29:06.747Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-09-29T14:32:03.987Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.10",
+  "tags": []
+}

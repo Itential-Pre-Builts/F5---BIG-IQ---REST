@@ -239,6 +239,15 @@
       }
     },
     {
+      "id": "6516df32b5c9df0151074b1d",
+      "name": "Create BIG-IQ Update Device Upgrade Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IQ Update Device Upgrade Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
       "id": "650c820b8f256f016dabc63a",
       "name": "Check Available Disk Space BIG-IP",
       "type": "transformation",
