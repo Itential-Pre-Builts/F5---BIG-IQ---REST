@@ -95,8 +95,6 @@ To install the Workflow Project:
 - Verify you are running a supported version of the Itential Automation Platform (IAP) as listed above in the [Supported IAP Versions](#supported-iap-versions) section in order to install the Workflow Project.
 - Import the Workflow Project in [Admin Essentials](https://docs.itential.com/docs/importing-a-prebuilt-4). 
 
-Alternatively, you may clone this repository and run `npm pack` to create a tarball which can then be installed via the offline installer in App-Artifacts. Please consult the documentation for App-Artifacts for further information.
-
 ### Testing
 
 While Itential tests this Workflow Project and its capabilities, it is often the case the customer environments offer their own unique circumstances. Therefore, it is our recommendation that you deploy this Workflow Project into a development/testing environment in which you can test the Workflow Project.

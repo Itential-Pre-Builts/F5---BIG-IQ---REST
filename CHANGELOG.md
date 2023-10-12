@@ -1,4 +1,12 @@
 
+## 0.4.0 [10-12-2023]
+
+* minor/2023-09-29T12-59-48
+
+See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!8
+
+---
+
 ## 0.3.0 [09-29-2023]
 
 * minor/2023-09-29T12-59-48
@@ -78,4 +86,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n\n\n\n\n\n
+\n\n\n\n\n\n\n\n\n\n\n
