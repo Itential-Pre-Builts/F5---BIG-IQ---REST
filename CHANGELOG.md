@@ -1,4 +1,12 @@
 
+## 0.5.1 [10-19-2023]
+
+* Updates capabilities of Pre-Built
+
+See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!10
+
+---
+
 ## 0.5.0 [10-19-2023]
 
 * Adds check for current device version compared to target prior to upgrade as well as adds check for active volume compared to target volume prior to performing device reboot
@@ -94,4 +102,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n\n\n\n\n\n\n\n
+\n\n\n\n\n\n\n\n\n\n\n\n\n

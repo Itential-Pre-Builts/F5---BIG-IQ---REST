@@ -30,6 +30,8 @@ Capabilities include:
 - Does device discovery and import after upgrade
 - Supports upgrade of HA pair of devices as well as upgrade of single device
 - Updates device upgrade task to include private keys
+- Checks BIG-IP device version compared to target software image version prior to upgrade
+- Checks active volume compared to target volume of BIG-IP device during rollback to see if different and to perform reboot if so
 
 
 ## Getting Started
