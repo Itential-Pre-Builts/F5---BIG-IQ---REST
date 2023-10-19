@@ -1,0 +1,361 @@
+{
+  "name": "Check BIG-IP Current Software Version - F5 - BIG-IQ",
+  "tasks": {
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "nodeLocation": {
+        "x": -264,
+        "y": -120
+      },
+      "x": 0,
+      "y": 0.5
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "nodeLocation": {
+        "x": 768,
+        "y": -120
+      },
+      "x": 1,
+      "y": 0.5
+    },
+    "ef68": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Check BIG-IP Software Version from BIG-IQ",
+      "description": "Check BIG-IP software version from BIG-IQ",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "65303d7838c4c401873707d5",
+          "variableMap": {
+            "currentDeviceInformation": "$var.job.currentDeviceInformation",
+            "targetSoftwareImageName": "$var.job.targetSoftwareImageName"
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "deviceResults": "$var.job.deviceResults",
+          "result": "$var.job.result"
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -24,
+        "y": -120
+      }
+    },
+    "8e26": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check if Any Devices Have Target Image as Active",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "ef68",
+                    "variable": "result"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "SUCCESS"
+                  },
+                  "operator": "==",
+                  "query": "",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 288,
+        "y": -120
+      }
+    },
+    "5a4a": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Devices with Target Image",
+      "description": "Show devices with target image as active and present options to operator",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Device Found to Have Target Image as Active",
+          "message": "One or more devices have been found to have the target image for upgrade already active. See devices below where current image version is seen assigned to \"currentVersionBuild\".\n\nIt might be intended to upgrade BIG-IP device with same image version as already found as its active version.\n\nSelect \"Upgrade\" to upgrade all devices regardless of whether or not target image for upgrade is already found to be active for one or more devices.\n\nSelect \"Do Not Upgrade\" to not upgrade any devices and end the job.\n\n\n\n\n",
+          "body": "$var.ef68.deviceResults",
+          "variables": "",
+          "btn_success": "Upgrade",
+          "btn_failure": "Do Not Upgrade"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 288,
+        "y": 84
+      }
+    },
+    "551e": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Update Result to Failed",
+      "description": "Update Result to FAILED",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "FAILED"
+        },
+        "outgoing": {
+          "response": "$var.job.result"
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 516,
+        "y": 192
+      }
+    },
+    "ce34": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Update Result to Success",
+      "description": "Update Result to SUCCESS",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "SUCCESS"
+        },
+        "outgoing": {
+          "response": "$var.job.result"
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 516,
+        "y": -24
+      }
+    }
+  },
+  "transitions": {
+    "workflow_start": {
+      "ef68": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "workflow_end": {},
+    "ef68": {
+      "8e26": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "8e26": {
+      "5a4a": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "5a4a": {
+      "551e": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "ce34": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "551e": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "ce34": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "currentDeviceInformation": {
+        "$id": "currentDeviceInformation",
+        "type": "object",
+        "properties": {
+          "loop": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "currentVersionBuild": {
+                  "type": "string",
+                  "examples": [
+                    "15.1.8-0.0.6"
+                  ]
+                }
+              },
+              "required": []
+            }
+          }
+        },
+        "required": []
+      },
+      "targetSoftwareImageName": {
+        "$id": "targetSoftwareImageName",
+        "type": "string",
+        "examples": [
+          "BIGIP-15.1.10-0.0.6.iso"
+        ]
+      }
+    },
+    "required": [
+      "currentDeviceInformation",
+      "targetSoftwareImageName"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "currentDeviceInformation": {
+        "$id": "currentDeviceInformation",
+        "type": "object",
+        "properties": {
+          "loop": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "currentVersionBuild": {
+                  "type": "string",
+                  "examples": [
+                    "15.1.8-0.0.6"
+                  ]
+                }
+              },
+              "required": []
+            }
+          }
+        },
+        "required": []
+      },
+      "targetSoftwareImageName": {
+        "$id": "targetSoftwareImageName",
+        "type": "string",
+        "examples": [
+          "BIGIP-15.1.10-0.0.6.iso"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "deviceResults": {
+        "$id": "deviceResults",
+        "type": "object",
+        "properties": {
+          "foundDevicesWithoutTargetImage": {
+            "type": "array"
+          },
+          "foundDevicesWithTargetImage": {
+            "type": "array"
+          },
+          "targetSoftwareImageName": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "result": {
+        "title": "response",
+        "type": "string",
+        "examples": [
+          "awesome"
+        ]
+      }
+    }
+  },
+  "canvasVersion": 3,
+  "type": "automation",
+  "font_size": 12,
+  "errorHandler": null,
+  "preAutomationTime": 0,
+  "sla": 0,
+  "last_updated": "2023-10-18T21:33:15.485Z",
+  "lastUpdatedVersion": "5.46.0-2023.1.21.0",
+  "created": "2023-10-18T20:12:22.066Z",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "createdVersion": "5.46.0-2023.1.21.0",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 2
+}

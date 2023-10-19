@@ -926,7 +926,7 @@
   },
   "type": "automation",
   "font_size": 12,
-  "lastUpdatedVersion": "5.46.0-2023.1.19.0",
+  "lastUpdatedVersion": "4.15.0-2023.1.132.0",
   "createdVersion": "5.46.0-2023.1.19.0",
   "preAutomationTime": 0,
   "sla": 0,
@@ -936,7 +936,7 @@
     "firstname": "admin",
     "inactive": false
   },
-  "last_updated": "2023-09-29T17:11:14.725Z",
+  "last_updated": "2023-10-17T19:54:48.492Z",
   "created": "2023-09-21T16:30:45.577Z",
   "canvasVersion": 1.5,
   "last_updated_by": {

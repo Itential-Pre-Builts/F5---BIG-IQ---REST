@@ -1,0 +1,465 @@
+{
+  "_id": "652ef1db38c4c401873707d4",
+  "name": "Compare Active Volume to Target Volume for BIG-IP Rollback",
+  "description": "Checks active volume on BIG-IP device(s) and compares to target volume and returns devices for reboot where active volume does not equal target volume",
+  "incoming": [
+    {
+      "$id": "rebootDeviceInputs",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "targetVolume": {
+            "type": "string",
+            "examples": [
+              "HD1.1"
+            ]
+          },
+          "deviceLink": {
+            "type": "string",
+            "examples": [
+              "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+            ]
+          },
+          "adapterId": {
+            "type": "string",
+            "examples": [
+              "F5-BIG-IQ"
+            ]
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "activeVolumeFound",
+      "type": "object",
+      "properties": {
+        "loop": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "activeVolume": {
+                "type": "string",
+                "examples": [
+                  "HD1.1"
+                ]
+              }
+            },
+            "required": []
+          }
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "filteredRebootDeviceInputs",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "targetVolume": {
+            "type": "string",
+            "examples": [
+              "HD1.1"
+            ]
+          },
+          "deviceLink": {
+            "type": "string",
+            "examples": [
+              "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+            ]
+          },
+          "adapterId": {
+            "type": "string",
+            "examples": [
+              "F5-BIG-IQ"
+            ]
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "numberOfDevicesToReboot",
+      "type": [
+        "integer",
+        "number"
+      ],
+      "examples": [
+        1
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "rebootDeviceInputs",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "activeVolumeFound",
+        "ptr": "/loop"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "Array",
+      "method": "filter",
+      "args": [
+        null,
+        "filterActiveVolumeNotEqualTargetVolume",
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "method",
+      "library": "Array",
+      "method": "length",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "filteredRebootDeviceInputs",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "numberOfDevicesToReboot",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "targetVolume": {
+              "type": "string",
+              "examples": [
+                "HD1.1"
+              ]
+            },
+            "deviceLink": {
+              "type": "string",
+              "examples": [
+                "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              ]
+            },
+            "adapterId": {
+              "type": "string",
+              "examples": [
+                "F5-BIG-IQ"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "targetVolume": {
+                "type": "string",
+                "examples": [
+                  "HD1.1"
+                ]
+              },
+              "deviceLink": {
+                "type": "string",
+                "examples": [
+                  "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ]
+              },
+              "adapterId": {
+                "type": "string",
+                "examples": [
+                  "F5-BIG-IQ"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {
+            "0_loop": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "activeVolume": {
+                    "type": "string",
+                    "examples": [
+                      "HD1.1"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "isContext": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/0_loop"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "index",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/targetVolume"
+          },
+          "to": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "activeVolume"
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "method",
+          "library": "Equality",
+          "method": "inequality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "filterActiveVolumeNotEqualTargetVolume",
+      "view": {
+        "col": 3,
+        "row": 4
+      },
+      "id": "filterActiveVolumeNotEqualTargetVolume",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2023-10-17T20:43:07.625Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2023-10-18T15:17:56.336Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.11",
+  "tags": []
+}
