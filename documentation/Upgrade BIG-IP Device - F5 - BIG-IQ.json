@@ -41,6 +41,12 @@
     },
     {
       "capability": "Updates device upgrade task to include private keys"
+    },
+    {
+      "capability": "Checks BIG-IP device version compared to target software image version prior to upgrade"
+    },
+    {
+      "capability": "Checks active volume compared to target volume of BIG-IP device during rollback to see if different and to perform reboot if so"
     }
   ],
   "entryPoint": {
