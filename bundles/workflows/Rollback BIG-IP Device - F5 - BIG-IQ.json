@@ -1,0 +1,1071 @@
+{
+  "name": "Rollback BIG-IP Device - F5 - BIG-IQ",
+  "tasks": {
+    "3646": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Reboot Device",
+      "description": "Reboot device",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Reboot BIG-IP Device - F5 - BIG-IQ",
+          "variables": {},
+          "data_array": "$var.5f1c.filteredRebootDeviceInputs",
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": -672,
+        "y": -36
+      }
+    },
+    "4002": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Return Failed Status",
+      "description": "Return failed status",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "FAILED"
+        },
+        "outgoing": {
+          "response": "$var.job.returnStatus"
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1512,
+        "y": 72
+      }
+    },
+    "7176": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Initialize Return Status",
+      "description": "Initialize return status",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "SUCCESS"
+        },
+        "outgoing": {
+          "response": "$var.job.returnStatus"
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -2232,
+        "y": -36
+      }
+    },
+    "9271": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Error Message",
+      "description": "Show error message and select options",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed to Reboot Device",
+          "message": "Failed to reboot one or more BIG-IP devices. See details below. Select \"Retry\" retry rebooting the BIG-IP devices. Select \"Continue\" to continue to attempt device discovery and import of devices.\n\n\n\n\n\n\n\n",
+          "body": "$var.3646.job_details",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "Continue"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": -48,
+        "y": 180
+      }
+    },
+    "9867": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Device Import Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "a0ee",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": 1
+                  },
+                  "operator": "<",
+                  "query": "loop[*returnStatus=FAILED]",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1200,
+        "y": -36
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "nodeLocation": {
+        "x": -2472,
+        "y": -36
+      },
+      "x": 0,
+      "y": 0.5
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1512,
+        "y": -36
+      },
+      "x": 1,
+      "y": 0.5
+    },
+    "04c8": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Reboot Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "3646",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": 1
+                  },
+                  "operator": "<",
+                  "query": "loop[*returnStatus=FAILED]",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -48,
+        "y": -36
+      }
+    },
+    "761f": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Discover Device",
+      "description": "Discover device over BIG-IQ",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Discover BIG-IP Device - F5 - BIG-IQ",
+          "variables": {
+            "adapterId": {
+              "task": "04c8",
+              "value": "return_value"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            },
+            "machineId": {
+              "task": "04c8",
+              "value": "return_value"
+            }
+          },
+          "data_array": "$var.job.discoverDeviceInputs",
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 264,
+        "y": -36
+      }
+    },
+    "a341": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Device Discovery Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "761f",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": 1
+                  },
+                  "operator": "<",
+                  "query": "loop[*returnStatus=FAILED]",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 576,
+        "y": -36
+      }
+    },
+    "a0ee": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Import Device",
+      "description": "Import device",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Import BIG-IP Device - F5 - BIG-IQ",
+          "variables": {
+            "machineId": {
+              "task": "a341",
+              "value": "return_value"
+            },
+            "importDeviceTaskName": {
+              "task": "a341",
+              "value": "return_value"
+            }
+          },
+          "data_array": "$var.job.importDeviceInputs",
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 888,
+        "y": -36
+      }
+    },
+    "ee4c": {
+      "name": "delay",
+      "canvasName": "delay",
+      "summary": "Wait for device reboot",
+      "description": "Wait for device reboot",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "time": "$var.job.deviceRebootWait"
+        },
+        "outgoing": {
+          "time_in_milliseconds": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -360,
+        "y": -36
+      }
+    },
+    "0fcc": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Get Active Volumes",
+      "description": "Get active volumes of BIG-IP device(s)",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Retrieve Device MachineId - F5 - BIG-IQ",
+          "variables": {
+            "adapterId": {
+              "task": "7176",
+              "value": "response"
+            }
+          },
+          "data_array": "$var.job.getActiveVolumeInputs",
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": -1920,
+        "y": -36
+      }
+    },
+    "68b3": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify Getting Active Volumes Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "0fcc",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": 1
+                  },
+                  "operator": "<",
+                  "query": "loop[*returnStatus=FAILED]",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -1608,
+        "y": -36
+      }
+    },
+    "e368": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Error Message",
+      "description": "Show error message and select options",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed to Get Active Volume",
+          "message": "Failed to get active volume of one or more BIG-IP devices. See target volume to rollback to in data below. Select \"Retry\" retry getting active volume of the BIG-IP devices. Select \"Skip Reboot\" to continue to attempt device discovery and import of devices.\n\n\n\n\n\n\n\n",
+          "body": "$var.job.rebootDeviceInputs",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "Skip Reboot"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": -1608,
+        "y": -144
+      }
+    },
+    "5f1c": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Compare Active Volume to Target Volume for BIG-IP Rollback",
+      "description": "Checks active volume on BIG-IP device(s) and compares to target volume and returns devices for reboot where active volume does not equal target volume",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "652ef1db38c4c401873707d4",
+          "variableMap": {
+            "rebootDeviceInputs": "$var.job.rebootDeviceInputs",
+            "activeVolumeFound": "$var.0fcc.job_details"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "filteredRebootDeviceInputs": null,
+          "numberOfDevicesToReboot": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -1296,
+        "y": -36
+      }
+    },
+    "b67f": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check if Any Devices Need to Reboot",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "5f1c",
+                    "variable": "numberOfDevicesToReboot"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": 0
+                  },
+                  "operator": ">",
+                  "query": "",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -984,
+        "y": -36
+      }
+    },
+    "8dd8": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Skip Reboot",
+      "description": "Skip Reboot",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -672,
+        "y": -144
+      }
+    },
+    "f235": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Return Failed Status",
+      "description": "Return failed status",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "FAILED"
+        },
+        "outgoing": {
+          "response": "$var.job.returnStatus"
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -1296,
+        "y": -144
+      }
+    },
+    "6bcf": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Return Failed Status",
+      "description": "Return failed status",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "FAILED"
+        },
+        "outgoing": {
+          "response": "$var.job.returnStatus"
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 264,
+        "y": 180
+      }
+    },
+    "1b75": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Error Message",
+      "description": "Show error message and select options",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed to Discover Device",
+          "message": "Failed to discover one or more BIG-IP devices. See details below. Select \"Retry\" retry discovering the BIG-IP devices. Select \"Continue\" to continue to end job.\n\n\n\n\n\n\n\n",
+          "body": "$var.761f.job_details",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "Continue"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 576,
+        "y": 180
+      }
+    },
+    "f1f8": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Error Message",
+      "description": "Show error message and select options",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed to Import Device",
+          "message": "Failed to import one or more BIG-IP devices. See details below. Select \"Retry\" retry importing the BIG-IP devices. Select \"Continue\" to continue to end the job.\n\n\n\n\n\n",
+          "body": "$var.a0ee.job_details",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "Continue"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1200,
+        "y": 72
+      }
+    },
+    "2ec8": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1512,
+        "y": 180
+      }
+    }
+  },
+  "transitions": {
+    "3646": {
+      "ee4c": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "4002": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "7176": {
+      "0fcc": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "9271": {
+      "3646": {
+        "state": "success",
+        "type": "revert"
+      },
+      "6bcf": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "9867": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      },
+      "f1f8": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "workflow_start": {
+      "7176": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "workflow_end": {},
+    "04c8": {
+      "9271": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "761f": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "761f": {
+      "a341": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "a341": {
+      "a0ee": {
+        "state": "success",
+        "type": "standard"
+      },
+      "1b75": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "a0ee": {
+      "9867": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "ee4c": {
+      "04c8": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "0fcc": {
+      "68b3": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "68b3": {
+      "e368": {
+        "state": "failure",
+        "type": "standard"
+      },
+      "5f1c": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "e368": {
+      "0fcc": {
+        "state": "success",
+        "type": "revert"
+      },
+      "f235": {
+        "state": "failure",
+        "type": "standard"
+      }
+    },
+    "5f1c": {
+      "b67f": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "b67f": {
+      "3646": {
+        "state": "success",
+        "type": "standard"
+      },
+      "8dd8": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "8dd8": {
+      "761f": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "f235": {
+      "8dd8": {
+        "state": "failure",
+        "type": "standard"
+      }
+    },
+    "6bcf": {
+      "761f": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "1b75": {
+      "761f": {
+        "state": "success",
+        "type": "revert"
+      },
+      "2ec8": {
+        "state": "failure",
+        "type": "standard"
+      }
+    },
+    "f1f8": {
+      "4002": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "a0ee": {
+        "state": "success",
+        "type": "revert"
+      }
+    },
+    "2ec8": {
+      "4002": {
+        "state": "failure",
+        "type": "standard"
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "discoverDeviceInputs": {
+        "type": [
+          "array"
+        ]
+      },
+      "importDeviceInputs": {
+        "type": [
+          "array"
+        ]
+      },
+      "deviceRebootWait": {
+        "title": "time",
+        "type": "integer",
+        "minimum": 1,
+        "examples": [
+          1200
+        ]
+      },
+      "getActiveVolumeInputs": {
+        "type": [
+          "array"
+        ]
+      },
+      "rebootDeviceInputs": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$id": "rebootDeviceInputs",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "targetVolume": {
+                  "type": "string",
+                  "examples": [
+                    "HD1.1"
+                  ]
+                },
+                "deviceLink": {
+                  "type": "string",
+                  "examples": [
+                    "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  ]
+                },
+                "adapterId": {
+                  "type": "string",
+                  "examples": [
+                    "F5-BIG-IQ"
+                  ]
+                }
+              },
+              "required": []
+            }
+          }
+        ]
+      }
+    },
+    "required": [
+      "discoverDeviceInputs",
+      "importDeviceInputs",
+      "deviceRebootWait",
+      "getActiveVolumeInputs",
+      "rebootDeviceInputs"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "discoverDeviceInputs": {
+        "type": [
+          "array"
+        ]
+      },
+      "importDeviceInputs": {
+        "type": [
+          "array"
+        ]
+      },
+      "deviceRebootWait": {
+        "title": "time",
+        "type": "integer",
+        "minimum": 1,
+        "examples": [
+          1200
+        ]
+      },
+      "getActiveVolumeInputs": {
+        "type": [
+          "array"
+        ]
+      },
+      "rebootDeviceInputs": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$id": "rebootDeviceInputs",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "targetVolume": {
+                  "type": "string",
+                  "examples": [
+                    "HD1.1"
+                  ]
+                },
+                "deviceLink": {
+                  "type": "string",
+                  "examples": [
+                    "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  ]
+                },
+                "adapterId": {
+                  "type": "string",
+                  "examples": [
+                    "F5-BIG-IQ"
+                  ]
+                }
+              },
+              "required": []
+            }
+          }
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "returnStatus": {
+        "title": "response",
+        "type": "string",
+        "examples": [
+          "awesome"
+        ]
+      }
+    }
+  },
+  "type": "automation",
+  "font_size": 12,
+  "errorHandler": null,
+  "preAutomationTime": 0,
+  "sla": 0,
+  "last_updated": "2023-10-18T15:30:24.934Z",
+  "lastUpdatedVersion": "5.46.0-2023.1.21.0",
+  "created": "2023-09-27T17:21:50.570Z",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "createdVersion": "5.46.0-2023.1.19.0",
+  "canvasVersion": 3,
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 2
+}

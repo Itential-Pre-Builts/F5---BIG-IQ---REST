@@ -25,7 +25,37 @@
       "groups": [],
       "nodeLocation": {
         "x": 4464,
-        "y": 276
+        "y": 408
+      }
+    },
+    "5569": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Retrieve BIG-IP Machine Id",
+      "description": "Retrieve machine Id value of BIG-IP device to upgrade",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Retrieve Device MachineId - F5 - BIG-IQ",
+          "variables": {},
+          "data_array": "$var.c430.machineSearchQueries",
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 3528,
+        "y": 84
       }
     },
     "6737": {
@@ -141,7 +171,7 @@
       "name": "workflow_start",
       "groups": [],
       "nodeLocation": {
-        "x": -3036,
+        "x": -4008,
         "y": -24
       },
       "x": 0,
@@ -183,7 +213,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": -2484,
+        "x": -3444,
         "y": -24
       }
     },
@@ -390,7 +420,7 @@
       "description": "Displays a message and runtime data to an operator. This can be used to request a decision, or used for acknowledgement only.",
       "location": "Application",
       "app": "WorkFlowEngine",
-      "displayName": "WorkFlowEngine",
+      "displayName": "Tools",
       "type": "manual",
       "variables": {
         "incoming": {
@@ -577,7 +607,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -2784,
+        "x": -3756,
         "y": -24
       }
     },
@@ -605,7 +635,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 1296,
-        "y": 276
+        "y": 408
       }
     },
     "90d0": {
@@ -632,7 +662,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 5460,
-        "y": 276
+        "y": 408
       }
     },
     "b992": {
@@ -722,7 +752,7 @@
       "description": "Display disk space usage",
       "location": "Application",
       "app": "WorkFlowEngine",
-      "displayName": "WorkFlowEngine",
+      "displayName": "Tools",
       "type": "manual",
       "variables": {
         "incoming": {
@@ -766,7 +796,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 2256,
-        "y": 276
+        "y": 408
       }
     },
     "9bcd": {
@@ -1082,7 +1112,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 3528,
-        "y": 276
+        "y": 408
       }
     },
     "ec9d": {
@@ -1127,7 +1157,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 3528,
-        "y": -144
+        "y": -132
       }
     },
     "f99f": {
@@ -1171,7 +1201,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -2184,
+        "x": -3132,
         "y": -24
       }
     },
@@ -1198,8 +1228,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": -2184,
-        "y": 276
+        "x": -3132,
+        "y": 408
       }
     },
     "4aa4": {
@@ -1271,7 +1301,7 @@
       "groups": [],
       "nodeLocation": {
         "x": -576,
-        "y": 276
+        "y": 408
       }
     },
     "c32f": {
@@ -1343,13 +1373,13 @@
       "groups": [],
       "nodeLocation": {
         "x": 372,
-        "y": 276
+        "y": 408
       }
     },
     "0571": {
       "name": "evaluation",
       "canvasName": "evaluation",
-      "summary": "Verify Retrieving Machine Id Succeeded",
+      "summary": "Verify Back-Up Succeeded",
       "description": "Run an evaluation",
       "location": "Application",
       "locationType": null,
@@ -1387,7 +1417,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 978,
+        "x": 984,
         "y": -24
       }
     },
@@ -1414,8 +1444,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 972,
-        "y": 276
+        "x": 984,
+        "y": 408
       }
     },
     "d992": {
@@ -1532,7 +1562,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 5124,
-        "y": 276
+        "y": 408
       }
     },
     "bffa": {
@@ -1548,7 +1578,7 @@
       "variables": {
         "incoming": {
           "task": "",
-          "workflow": "Rollback BIG-IP Device - F5 - BIG-IP",
+          "workflow": "Rollback BIG-IP Device - F5 - BIG-IQ",
           "variables": {
             "deviceRebootWait": {
               "task": "job",
@@ -1565,6 +1595,10 @@
             "rebootDeviceInputs": {
               "task": "2a03",
               "value": "rebootDeviceInputs"
+            },
+            "getActiveVolumeInputs": {
+              "task": "c430",
+              "value": "machineSearchQueries"
             }
           },
           "data_array": "",
@@ -1579,7 +1613,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 3528,
-        "y": 168
+        "y": 300
       }
     },
     "2a03": {
@@ -1617,13 +1651,157 @@
       "groups": [],
       "nodeLocation": {
         "x": 3528,
-        "y": 72
+        "y": 192
+      }
+    },
+    "206f": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check if Continue Upgrade",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "3c9b",
+                    "variable": "job_details"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": "SUCCESS"
+                  },
+                  "operator": "==",
+                  "query": "result",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -2196,
+        "y": -24
+      }
+    },
+    "3c9b": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Check Current Version against Target",
+      "description": "Check current version against rarget",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Check BIG-IP Current Software Version - F5 - BIG-IQ",
+          "variables": {
+            "targetSoftwareImageName": {
+              "task": "job",
+              "value": "softwareImageName"
+            },
+            "currentDeviceInformation": {
+              "task": "da95",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": -2508,
+        "y": -24
+      }
+    },
+    "30a5": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -2196,
+        "y": 408
+      }
+    },
+    "da95": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Current Device Information",
+      "description": "Query current device information",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "",
+          "obj": "$var.035d.job_details"
+        },
+        "outgoing": {
+          "return_data": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": -2820,
+        "y": -24
       }
     }
   },
   "transitions": {
     "3626": {
       "d616": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "5569": {
+      "2a03": {
         "state": "success",
         "type": "standard"
       }
@@ -1806,13 +1984,13 @@
       }
     },
     "3f84": {
+      "5569": {
+        "type": "standard",
+        "state": "failure"
+      },
       "0a2a": {
         "state": "success",
         "type": "standard"
-      },
-      "2a03": {
-        "type": "standard",
-        "state": "failure"
       }
     },
     "107d": {
@@ -1822,27 +2000,27 @@
       }
     },
     "ec9d": {
+      "5569": {
+        "type": "standard",
+        "state": "failure"
+      },
       "0a2a": {
         "state": "success",
         "type": "standard"
-      },
-      "2a03": {
-        "type": "standard",
-        "state": "failure"
       }
     },
     "f99f": {
-      "8e56": {
-        "state": "success",
-        "type": "standard"
-      },
       "adbb": {
         "type": "standard",
         "state": "failure"
+      },
+      "da95": {
+        "state": "success",
+        "type": "standard"
       }
     },
     "adbb": {
-      "6c93": {
+      "30a5": {
         "state": "success",
         "type": "standard"
       }
@@ -1929,6 +2107,34 @@
     },
     "2a03": {
       "bffa": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "206f": {
+      "8e56": {
+        "state": "success",
+        "type": "standard"
+      },
+      "30a5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "3c9b": {
+      "206f": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "30a5": {
+      "6c93": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "da95": {
+      "3c9b": {
         "state": "success",
         "type": "standard"
       }
@@ -2265,8 +2471,8 @@
   "errorHandler": null,
   "preAutomationTime": 0,
   "sla": 0,
-  "last_updated": "2023-09-29T17:29:17.037Z",
-  "lastUpdatedVersion": "5.46.0-2023.1.19.0",
+  "last_updated": "2023-10-18T21:20:29.471Z",
+  "lastUpdatedVersion": "5.46.0-2023.1.21.0",
   "created": "2023-09-20T17:55:55.770Z",
   "created_by": {
     "provenance": "local_aaa",
@@ -2275,13 +2481,13 @@
     "inactive": false
   },
   "createdVersion": "5.46.0-2023.1.19.0",
+  "canvasVersion": 3,
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
     "inactive": false
   },
-  "canvasVersion": 3,
   "tags": [],
   "groups": [],
   "migrationVersion": 2
