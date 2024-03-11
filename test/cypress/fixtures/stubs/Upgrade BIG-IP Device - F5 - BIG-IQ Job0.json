@@ -1,0 +1,1403 @@
+{
+  "input": {
+    "description": "It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "deviceAData": {
+        "deviceManagementAddress": "34.194.174.240",
+        "deviceManagementPort": "8443",
+        "deviceManagementHostname": "",
+        "machineIdFilterProperty": "address",
+        "machineIdFilterValue": "1.2.3.4",
+        "targetVolume": "HD1.2"
+      },
+      "deviceBData": {
+        "deviceManagementAddress": "",
+        "deviceManagementPort": "",
+        "deviceManagementHostname": "",
+        "machineIdFilterProperty": "",
+        "machineIdFilterValue": "",
+        "targetVolume": ""
+      },
+      "softwareImageName": "BIGIP-15.1.9-0.0.6.iso",
+      "softwareUpgradeTaskName": "Upgrade_10_0_0_8_15_1_9",
+      "credentialsFilterValue": "Chris Calloway iHealth",
+      "credentialsFilterProperty": "displayName",
+      "adapterId": "F5-BIG-IQ",
+      "deviceBackupLifeTime": 1,
+      "deviceBackupDescription": "Backup Device",
+      "importDeviceTaskName": "Rediscover adc_core",
+      "iHealthTaskName": "Upload iHealth task",
+      "uploadiHealthTask": true,
+      "deviceRebootWait": 300
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "deviceAData": {
+        "deviceManagementAddress": "34.194.174.240",
+        "deviceManagementPort": "8443",
+        "deviceManagementHostname": "",
+        "machineIdFilterProperty": "address",
+        "machineIdFilterValue": "1.2.3.4",
+        "targetVolume": "HD1.2"
+      },
+      "deviceBData": {
+        "deviceManagementAddress": "",
+        "deviceManagementPort": "",
+        "deviceManagementHostname": "",
+        "machineIdFilterProperty": "",
+        "machineIdFilterValue": "",
+        "targetVolume": ""
+      },
+      "softwareImageName": "BIGIP-15.1.9-0.0.6.iso",
+      "softwareUpgradeTaskName": "Upgrade_10_0_0_8_15_1_9",
+      "credentialsFilterValue": "Chris Calloway iHealth",
+      "credentialsFilterProperty": "displayName",
+      "adapterId": "F5-BIG-IQ",
+      "deviceBackupLifeTime": 1,
+      "deviceBackupDescription": "Backup Device",
+      "importDeviceTaskName": "Rediscover adc_core",
+      "iHealthTaskName": "Upload iHealth task",
+      "uploadiHealthTask": true,
+      "deviceRebootWait": 300,
+      "returnStatus": "SUCCESS"
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "6737",
+      "variables": {
+        "incoming": {
+          "task": "6737",
+          "workflow": "Retrieve iHealth Credentials Id - F5 - BIG-IQ",
+          "variables": {
+            "filterValue": {
+              "task": "job",
+              "value": "credentialsFilterValue"
+            },
+            "filterProperty": {
+              "task": "job",
+              "value": "credentialsFilterProperty"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "filterValue": "Chris Calloway iHealth",
+            "filterProperty": "displayName",
+            "adapterId": "F5-BIG-IQ",
+            "_id": "fe136fd77933483882191de6",
+            "initiator": "admin@pronghorn",
+            "credentialsId": "e4b74c82-2d47-2a4c-aa58-b0972e8057b1",
+            "returnStatus": "SUCCESS"
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": -900,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "035d",
+      "variables": {
+        "incoming": {
+          "task": "035d",
+          "workflow": "Retrieve Device MachineId - F5 - BIG-IQ",
+          "variables": {},
+          "data_array": [
+            {
+              "adapterId": "F5-BIG-IQ",
+              "filterProperty": "address",
+              "filterValue": "1.2.3.4"
+            }
+          ],
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "loop": [
+              {
+                "adapterId": "F5-BIG-IQ",
+                "filterProperty": "address",
+                "filterValue": "1.2.3.4",
+                "childJobLoopIndex": 0,
+                "_id": "ea4302c3db304f62af3c7c5b",
+                "initiator": "admin@pronghorn",
+                "returnStatus": "SUCCESS",
+                "activeVolume": "HD1.1",
+                "currentVersionBuild": "15.1.7-0.0.6",
+                "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              }
+            ]
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": -3444,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "93ba",
+      "variables": {
+        "incoming": {
+          "task": "93ba",
+          "workflow": "Create iHealth Upload Task - F5 - BIG-IQ",
+          "variables": {
+            "credentialsId": {
+              "task": "2d47",
+              "value": "return_data"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "iHealthTaskName": {
+              "task": "c430",
+              "value": "iHealthTaskNamePreUpgrade"
+            },
+            "deviceReferences": {
+              "task": "8e56",
+              "value": "deviceReferencesWithMachineId"
+            },
+            "_id": {
+              "task": "2d47",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "adapterId": "F5-BIG-IQ",
+            "credentialsId": "e4b74c82-2d47-2a4c-aa58-b0972e8057b1",
+            "iHealthTaskName": "Upload iHealth task-Pre-Upgrade",
+            "deviceReferences": [
+              {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              }
+            ],
+            "_id": "b67003edc15b4c64bc9ce484",
+            "initiator": "admin@pronghorn",
+            "returnStatus": "SUCCESS",
+            "createiHealthTaskResponse": {
+              "icode": "AD.200",
+              "response": {
+                "id": "ba0708e7-0820-4609-9b6a-43daf921d9e6",
+                "kind": "cm:device:ihealth:uploads:ihealthuploadstate",
+                "name": "Upload iHealth task-Pre-Upgrade",
+                "status": "FINISHED",
+                "progress": "All Done",
+                "selfLink": "https://localhost/mgmt/cm/device/ihealth/uploads/ba0708e7-0820-4609-9b6a-43daf921d9e6",
+                "username": "admin",
+                "generation": 78,
+                "endDateTime": "2024-03-08T12:05:55.637-0800",
+                "startDateTime": "2024-03-08T12:02:42.059-0800",
+                "userReference": {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                },
+                "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                "deviceReferences": [
+                  {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                ],
+                "lastUpdateMicros": 1709928355687809,
+                "uploadLocalQkView": false,
+                "deviceTaskStatuses": [
+                  {
+                    "status": "FINISHED",
+                    "message": "Completed",
+                    "reportUri": "https://ihealth-api.f5.com/qkview-analyzer/api/qkviews/22219688/diagnostics",
+                    "deviceReference": {
+                      "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    },
+                    "uploadedByteCount": 43261282,
+                    "reportExpirationDateTime": "2024-04-07T20:03:43.000Z"
+                  }
+                ],
+                "identityReferences": [
+                  {
+                    "link": "https://localhost/mgmt/shared/authz/users/admin"
+                  }
+                ],
+                "credentialsReference": {
+                  "link": "https://localhost/mgmt/cm/device/ihealth/credentials/e4b74c82-2d47-2a4c-aa58-b0972e8057b1"
+                },
+                "totalUploadedByteCount": 43261282
+              },
+              "headers": {
+                "server": "webd",
+                "date": "Fri, 08 Mar 2024 20:06:45 GMT",
+                "content-type": "application/json; charset=UTF-8",
+                "content-length": "1388",
+                "connection": "close",
+                "pragma": "no-cache",
+                "cache-control": "no-store, no-cache, must-revalidate",
+                "expires": "-1"
+              },
+              "metrics": {
+                "code": 200,
+                "timeouts": 0,
+                "redirects": 0,
+                "retries": 0,
+                "tripTime": 488,
+                "isThrottling": false,
+                "capabilityTime": "499ms"
+              }
+            },
+            "queryTaskStatus": 4
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 60,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "ffd2",
+      "variables": {
+        "incoming": {
+          "task": "ffd2",
+          "workflow": "Create Device Backup - F5 - BIG-IQ",
+          "variables": {
+            "machineId": {
+              "task": "2d47",
+              "value": "return_data"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            },
+            "deviceBackupLifeTime": {
+              "task": "job",
+              "value": "deviceBackupLifeTime"
+            },
+            "deviceBackupDescription": {
+              "task": "job",
+              "value": "deviceBackupDescription"
+            },
+            "deviceIdentifer": {
+              "task": "8570",
+              "value": "response"
+            },
+            "deviceIdentifier": {
+              "task": "8570",
+              "value": "response"
+            }
+          },
+          "data_array": [
+            {
+              "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+              "adapterId": "F5-BIG-IQ",
+              "deviceBackupLifeTime": 1,
+              "deviceBackupDescription": "Backup Device",
+              "deviceIdentifier": "1.2.3.4"
+            }
+          ],
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "loop": [
+              {
+                "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                "adapterId": "F5-BIG-IQ",
+                "deviceBackupLifeTime": 1,
+                "deviceBackupDescription": "Backup Device",
+                "deviceIdentifier": "1.2.3.4",
+                "childJobLoopIndex": 0,
+                "_id": "c3c7b1e55d224853a1d885e8",
+                "initiator": "admin@pronghorn",
+                "returnStatus": "SUCCESS",
+                "backupTaskResponse": {
+                  "icode": "AD.200",
+                  "response": {
+                    "id": "4d721574-08a5-44d0-8733-6d2197cf2640",
+                    "kind": "cm:system:backup-restore:ucsbackuprestoretaskstate",
+                    "name": "device_backup_1.2.3.4_2024-03-08T20-06-46.599Z.ucs",
+                    "device": {
+                      "kind": "shared:resolver:device-groups:restdeviceresolverdevicestate",
+                      "address": "1.2.3.4",
+                      "product": "BIG-IP",
+                      "version": "15.1.7",
+                      "hostname": "ip-10-0-0-8.ec2.internal",
+                      "deviceUri": "https://1.2.3.4:8443",
+                      "httpsPort": 8443,
+                      "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                      "generation": 0,
+                      "lastUpdateMicros": 0
+                    },
+                    "status": "FINISHED",
+                    "ownerId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                    "ownerUri": "https://10.0.0.125:443",
+                    "selfLink": "https://localhost/mgmt/cm/system/backup-restore/4d721574-08a5-44d0-8733-6d2197cf2640",
+                    "generation": 8,
+                    "description": "Backup Device - 1.2.3.4 - 2024-03-08T20:06:46.599Z",
+                    "endDateTime": "2024-03-08T12:07:00.293-0800",
+                    "isEncrypted": false,
+                    "errorMessage": "",
+                    "sourceDevice": {
+                      "kind": "shared:resolver:device-groups:restdeviceresolverdevicestate",
+                      "address": "1.2.3.4",
+                      "product": "BIG-IP",
+                      "version": "15.1.7",
+                      "hostname": "ip-10-0-0-8.ec2.internal",
+                      "deviceUri": "https://1.2.3.4:8443",
+                      "httpsPort": 8443,
+                      "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                      "generation": 0,
+                      "lastUpdateMicros": 0
+                    },
+                    "startDateTime": "2024-03-08T12:06:47.481-0800",
+                    "userReference": {
+                      "link": "https://localhost/mgmt/shared/authz/users/admin"
+                    },
+                    "backupLifeTime": 1,
+                    "archiveFileName": "/shared/ucs_backups/device_backup_1.2.3.4_2024-03-08T20-06-46.599Z.ucs",
+                    "deviceReference": {
+                      "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    },
+                    "lastUpdateMicros": 1709928420343732,
+                    "refererReference": {
+                      "link": "12.139.182.194"
+                    },
+                    "expirationDateTime": "2024-03-09T12:06:47.474-0800",
+                    "identityReferences": [
+                      {
+                        "link": "https://localhost/mgmt/shared/authz/users/admin"
+                      }
+                    ],
+                    "includePrivateKeys": true,
+                    "backupRestoreStatus": "BACKUP_FINISHED"
+                  },
+                  "headers": {
+                    "server": "webd",
+                    "date": "Fri, 08 Mar 2024 20:07:49 GMT",
+                    "content-type": "application/json; charset=UTF-8",
+                    "content-length": "1841",
+                    "connection": "close",
+                    "pragma": "no-cache",
+                    "cache-control": "no-store, no-cache, must-revalidate",
+                    "expires": "-1"
+                  },
+                  "metrics": {
+                    "code": 200,
+                    "timeouts": 0,
+                    "redirects": 0,
+                    "retries": 0,
+                    "tripTime": 838,
+                    "isThrottling": false,
+                    "capabilityTime": "852ms"
+                  }
+                },
+                "queryTaskStatus": 1
+              }
+            ]
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 684,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "324a",
+      "variables": {
+        "incoming": {
+          "task": "324a",
+          "workflow": "Run Script on BIG-IP - F5 - BIG-IQ",
+          "variables": {
+            "scriptTimeout": {
+              "task": "static",
+              "value": 30
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "scriptName": {
+              "task": "static",
+              "value": "Get Available Disk Space"
+            },
+            "scriptDescription": {
+              "task": "static",
+              "value": "Gets available disk space"
+            },
+            "scriptContent": {
+              "task": "static",
+              "value": "vgdisplay --short"
+            },
+            "scriptExecutionName": {
+              "task": "static",
+              "value": "Run Get Available Disk Space"
+            },
+            "deviceReferences": {
+              "task": "8e56",
+              "value": "deviceReferencesWithMachineId"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "scriptTimeout": 30,
+            "adapterId": "F5-BIG-IQ",
+            "scriptName": "Get Available Disk Space",
+            "scriptDescription": "Gets available disk space",
+            "scriptContent": "vgdisplay --short",
+            "scriptExecutionName": "Run Get Available Disk Space",
+            "_id": "7e82341f24fc464cb5aaee3a",
+            "deviceReferences": [
+              {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              }
+            ],
+            "initiator": "admin@pronghorn",
+            "scriptResult": {
+              "icode": "AD.200",
+              "response": {
+                "id": "e06e2b55-7b72-4331-81e5-eb090d5af73f",
+                "kind": "shared:user-script-execution:userscripttaskstate",
+                "name": "Run Get Available Disk Space",
+                "status": "FINISHED",
+                "selfLink": "https://localhost/mgmt/shared/user-script-execution/e06e2b55-7b72-4331-81e5-eb090d5af73f",
+                "username": "admin",
+                "generation": 7,
+                "currentStep": "CLEAN_UP",
+                "deviceCount": 1,
+                "endDateTime": "2024-03-08T12:13:00.160-0800",
+                "startDateTime": "2024-03-08T12:12:39.745-0800",
+                "userReference": {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                },
+                "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                "scriptReference": {
+                  "link": "https://localhost/mgmt/shared/user-scripts/e1f288fa-e87a-4f40-bacc-387f02559f4b"
+                },
+                "deviceReferences": [
+                  {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                ],
+                "lastUpdateMicros": 1709928780210115,
+                "timeoutInSeconds": 600,
+                "identityReferences": [
+                  {
+                    "link": "https://localhost/mgmt/shared/authz/users/admin"
+                  }
+                ],
+                "userScriptTaskStatuses": [
+                  {
+                    "output": "  \"vg-db-vda\" 39.79 GiB [19.54 GiB used / 20.24 GiB free]\n",
+                    "status": "FINISHED",
+                    "address": "1.2.3.4",
+                    "message": "Finished executing script.",
+                    "exitCode": "0",
+                    "hostname": "ip-10-0-0-8.ec2.internal",
+                    "httpsPort": 8443,
+                    "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                    "startTime": 29489293532746,
+                    "deviceReference": {
+                      "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    }
+                  }
+                ]
+              },
+              "headers": {
+                "server": "webd",
+                "date": "Fri, 08 Mar 2024 20:13:41 GMT",
+                "content-type": "application/json; charset=UTF-8",
+                "content-length": "1448",
+                "connection": "close",
+                "pragma": "no-cache",
+                "cache-control": "no-store, no-cache, must-revalidate",
+                "expires": "-1"
+              },
+              "metrics": {
+                "code": 200,
+                "timeouts": 0,
+                "redirects": 0,
+                "retries": 0,
+                "tripTime": 805,
+                "isThrottling": false,
+                "capabilityTime": "815ms"
+              }
+            },
+            "queryScriptStatus": 1
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 2232,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "935a",
+      "variables": {
+        "incoming": {
+          "task": "935a",
+          "workflow": "Create iHealth Upload Task - F5 - BIG-IQ",
+          "variables": {
+            "credentialsId": {
+              "task": "2d47",
+              "value": "return_data"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "iHealthTaskName": {
+              "task": "c430",
+              "value": "iHealthTaskNamePostUpgrade"
+            },
+            "deviceReferences": {
+              "task": "8e56",
+              "value": "deviceReferencesWithMachineId"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "adapterId": "F5-BIG-IQ",
+            "_id": "a0d6dd3c99d648e9a6e2a1b5",
+            "credentialsId": "e4b74c82-2d47-2a4c-aa58-b0972e8057b1",
+            "iHealthTaskName": "Upload iHealth task-Post-Upgrade",
+            "deviceReferences": [
+              {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              }
+            ],
+            "initiator": "admin@pronghorn",
+            "returnStatus": "SUCCESS",
+            "createiHealthTaskResponse": {
+              "icode": "AD.200",
+              "response": {
+                "id": "d1d8cee7-66f2-405e-b14c-1d5aee0cb769",
+                "kind": "cm:device:ihealth:uploads:ihealthuploadstate",
+                "name": "Upload iHealth task-Post-Upgrade",
+                "status": "FINISHED",
+                "progress": "All Done",
+                "selfLink": "https://localhost/mgmt/cm/device/ihealth/uploads/d1d8cee7-66f2-405e-b14c-1d5aee0cb769",
+                "username": "admin",
+                "generation": 80,
+                "endDateTime": "2024-03-08T12:33:34.492-0800",
+                "startDateTime": "2024-03-08T12:30:13.454-0800",
+                "userReference": {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                },
+                "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                "deviceReferences": [
+                  {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                ],
+                "lastUpdateMicros": 1709930014542793,
+                "uploadLocalQkView": false,
+                "deviceTaskStatuses": [
+                  {
+                    "status": "FINISHED",
+                    "message": "Completed",
+                    "reportUri": "https://ihealth-api.f5.com/qkview-analyzer/api/qkviews/22219792/diagnostics",
+                    "deviceReference": {
+                      "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    },
+                    "uploadedByteCount": 43188588,
+                    "reportExpirationDateTime": "2024-04-07T20:31:16.000Z"
+                  }
+                ],
+                "identityReferences": [
+                  {
+                    "link": "https://localhost/mgmt/shared/authz/users/admin"
+                  }
+                ],
+                "credentialsReference": {
+                  "link": "https://localhost/mgmt/cm/device/ihealth/credentials/e4b74c82-2d47-2a4c-aa58-b0972e8057b1"
+                },
+                "totalUploadedByteCount": 43188588
+              },
+              "headers": {
+                "server": "webd",
+                "date": "Fri, 08 Mar 2024 20:34:18 GMT",
+                "content-type": "application/json; charset=UTF-8",
+                "content-length": "1389",
+                "connection": "close",
+                "pragma": "no-cache",
+                "cache-control": "no-store, no-cache, must-revalidate",
+                "expires": "-1"
+              },
+              "metrics": {
+                "code": 200,
+                "timeouts": 0,
+                "redirects": 0,
+                "retries": 0,
+                "tripTime": 804,
+                "isThrottling": false,
+                "capabilityTime": "816ms"
+              }
+            },
+            "queryTaskStatus": 4
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 3816,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "d2d0",
+      "variables": {
+        "incoming": {
+          "task": "d2d0",
+          "workflow": "Discover BIG-IP Device - F5 - BIG-IQ",
+          "variables": {
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "machineId": {
+              "task": "static",
+              "value": ""
+            }
+          },
+          "data_array": [
+            {
+              "adapterId": "F5-BIG-IQ",
+              "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+            }
+          ],
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "loop": [
+              {
+                "adapterId": "F5-BIG-IQ",
+                "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                "childJobLoopIndex": 0,
+                "_id": "4e1152bf49ec4bc3b1f87992",
+                "initiator": "admin@pronghorn",
+                "returnStatus": "SUCCESS",
+                "deviceDiscoveryResult": {
+                  "icode": "AD.200",
+                  "response": {
+                    "id": "99e68767-9302-434d-a3c3-a9782e29f5c7",
+                    "kind": "cm:global:tasks:device-discovery:discoverysupertaskitemstate",
+                    "status": "FINISHED",
+                    "selfLink": "https://localhost/mgmt/cm/global/tasks/device-discovery/99e68767-9302-434d-a3c3-a9782e29f5c7",
+                    "username": "admin",
+                    "generation": 8,
+                    "moduleList": [
+                      {
+                        "module": "adc_core",
+                        "status": "FINISHED",
+                        "endTime": "2024-03-08T20:34:32.809Z",
+                        "startTime": "2024-03-08T20:34:20.731Z",
+                        "taskReference": {
+                          "link": "https://localhost/mgmt/cm/adc-core/tasks/discover-config/669b35af-aaa1-41c0-abf1-173b1ca321aa"
+                        }
+                      }
+                    ],
+                    "currentStep": "DONE",
+                    "endDateTime": "2024-03-08T12:34:33.911-0800",
+                    "startDateTime": "2024-03-08T12:34:20.417-0800",
+                    "userReference": {
+                      "link": "https://localhost/mgmt/shared/authz/users/admin"
+                    },
+                    "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                    "allModuleStatus": [
+                      {
+                        "module": "adc_core",
+                        "status": "FINISHED",
+                        "endTime": "2024-03-08T20:34:32.809Z",
+                        "startTime": "2024-03-08T20:34:20.731Z",
+                        "taskReference": {
+                          "link": "https://localhost/mgmt/cm/adc-core/tasks/discover-config/669b35af-aaa1-41c0-abf1-173b1ca321aa"
+                        }
+                      }
+                    ],
+                    "deviceReference": {
+                      "link": "https://localhost/mgmt/cm/system/machineid-resolver/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    },
+                    "lastUpdateMicros": 1709930073961662,
+                    "identityReferences": [
+                      {
+                        "link": "https://localhost/mgmt/shared/authz/users/admin"
+                      }
+                    ],
+                    "currentConfigConsistencyCheckReference": {
+                      "link": "https://localhost/mgmt/cm/global/tasks/current-config-consistency-check/5dc11af3-67b4-46b5-9f77-d5af25140116"
+                    }
+                  },
+                  "headers": {
+                    "server": "webd",
+                    "date": "Fri, 08 Mar 2024 20:35:21 GMT",
+                    "content-type": "application/json; charset=UTF-8",
+                    "content-length": "1429",
+                    "connection": "close",
+                    "pragma": "no-cache",
+                    "cache-control": "no-store, no-cache, must-revalidate",
+                    "expires": "-1"
+                  },
+                  "metrics": {
+                    "code": 200,
+                    "timeouts": 0,
+                    "redirects": 0,
+                    "retries": 0,
+                    "tripTime": 691,
+                    "isThrottling": false,
+                    "capabilityTime": "703ms"
+                  }
+                },
+                "queryTaskStatus": 1
+              }
+            ]
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 4752,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "0f89",
+      "variables": {
+        "incoming": {
+          "task": "0f89",
+          "workflow": "Import BIG-IP Device - F5 - BIG-IQ",
+          "variables": {
+            "machineId": {
+              "task": "static",
+              "value": ""
+            },
+            "importDeviceTaskName": {
+              "task": "job",
+              "value": "importDeviceTaskName"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            }
+          },
+          "data_array": [
+            {
+              "adapterId": "F5-BIG-IQ",
+              "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+              "importDeviceTaskName": "Rediscover adc_core"
+            }
+          ],
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "loop": [
+              {
+                "adapterId": "F5-BIG-IQ",
+                "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                "importDeviceTaskName": "Rediscover adc_core",
+                "childJobLoopIndex": 0,
+                "_id": "0df0686e197847be824d0680",
+                "initiator": "admin@pronghorn",
+                "returnStatus": "SUCCESS",
+                "deviceImportResult": {
+                  "icode": "AD.200",
+                  "response": {
+                    "id": "ed1596c6-08d0-475e-9c96-7add0390e7ef",
+                    "kind": "cm:global:tasks:device-import:importsupertaskitemstate",
+                    "name": "Rediscover adc_core",
+                    "status": "FINISHED",
+                    "selfLink": "https://localhost/mgmt/cm/global/tasks/device-import/ed1596c6-08d0-475e-9c96-7add0390e7ef",
+                    "username": "admin",
+                    "generation": 6,
+                    "moduleList": [
+                      {
+                        "module": "adc_core",
+                        "status": "FINISHED",
+                        "endTime": "2024-03-08T20:35:29.757Z",
+                        "startTime": "2024-03-08T20:35:23.689Z",
+                        "taskReference": {
+                          "link": "https://localhost/mgmt/cm/adc-core/tasks/declare-mgmt-authority/2fac65fe-33ab-42c3-902c-24992d65184b"
+                        }
+                      }
+                    ],
+                    "currentStep": "DONE",
+                    "endDateTime": "2024-03-08T12:35:29.813-0800",
+                    "startDateTime": "2024-03-08T12:35:23.509-0800",
+                    "userReference": {
+                      "link": "https://localhost/mgmt/shared/authz/users/admin"
+                    },
+                    "conflictPolicy": "USE_BIGIQ",
+                    "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                    "allModuleStatus": [
+                      {
+                        "module": "adc_core",
+                        "status": "FINISHED",
+                        "endTime": "2024-03-08T20:35:29.757Z",
+                        "startTime": "2024-03-08T20:35:23.689Z",
+                        "taskReference": {
+                          "link": "https://localhost/mgmt/cm/adc-core/tasks/declare-mgmt-authority/2fac65fe-33ab-42c3-902c-24992d65184b"
+                        }
+                      }
+                    ],
+                    "deviceReference": {
+                      "link": "https://localhost/mgmt/cm/system/machineid-resolver/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    },
+                    "lastUpdateMicros": 1709930129863846,
+                    "identityReferences": [
+                      {
+                        "link": "https://localhost/mgmt/shared/authz/users/admin"
+                      }
+                    ],
+                    "deviceConflictPolicy": "USE_BIGIP",
+                    "versionedConflictPolicy": "USE_BIGIQ"
+                  },
+                  "headers": {
+                    "server": "webd",
+                    "date": "Fri, 08 Mar 2024 20:36:24 GMT",
+                    "content-type": "application/json; charset=UTF-8",
+                    "content-length": "1404",
+                    "connection": "close",
+                    "pragma": "no-cache",
+                    "cache-control": "no-store, no-cache, must-revalidate",
+                    "expires": "-1"
+                  },
+                  "metrics": {
+                    "code": 200,
+                    "timeouts": 0,
+                    "redirects": 0,
+                    "retries": 0,
+                    "tripTime": 648,
+                    "isThrottling": false,
+                    "capabilityTime": "666ms"
+                  }
+                },
+                "queryTaskStatus": 1
+              }
+            ]
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 5400,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "9bcd",
+      "variables": {
+        "incoming": {
+          "task": "9bcd",
+          "workflow": "Run BIG-IP Upgrade - F5 - BIG-IQ",
+          "variables": {
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "softwareUpgradeTaskName": {
+              "task": "job",
+              "value": "softwareUpgradeTaskName"
+            },
+            "softwareImageName": {
+              "task": "job",
+              "value": "softwareImageName"
+            },
+            "deviceInputsForUpgrade": {
+              "task": "8e56",
+              "value": "deviceInputsForUpgrade"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "adapterId": "F5-BIG-IQ",
+            "softwareUpgradeTaskName": "Upgrade_10_0_0_8_15_1_9",
+            "softwareImageName": "BIGIP-15.1.9-0.0.6.iso",
+            "_id": "f47daee9585a4f6c9feec162",
+            "deviceInputsForUpgrade": [
+              {
+                "active": "HD1.1",
+                "targetVolume": "HD1.2",
+                "deviceReference": {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              }
+            ],
+            "initiator": "admin@pronghorn",
+            "returnStatus": "SUCCESS",
+            "updatedUpgradeTask": "yes",
+            "softwareUpgradeResult": {
+              "id": "d9229e1c-265c-4df6-b3bd-224f12074b6a",
+              "kind": "cm:device:upgrades:bulkupgradestate",
+              "name": "Upgrade_10_0_0_8_15_1_9",
+              "status": "FINISHED",
+              "selfLink": "https://localhost/mgmt/cm/device/upgrades/d9229e1c-265c-4df6-b3bd-224f12074b6a",
+              "username": "admin",
+              "generation": 344,
+              "serialMode": false,
+              "deviceInput": [
+                {
+                  "targetVolume": "HD1.2",
+                  "deviceReference": {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                }
+              ],
+              "endDateTime": "2024-03-08T12:29:12.682-0800",
+              "deviceStatus": [
+                {
+                  "status": "FINISHED",
+                  "message": "Installation completed",
+                  "originalVolume": "HD1.1",
+                  "deviceReference": {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                }
+              ],
+              "stopToReview": false,
+              "startDateTime": "2024-03-08T12:13:43.729-0800",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "selectByDevice": false,
+              "stopForBackups": false,
+              "lastUpdateMicros": 1709929752732393,
+              "stopBeforeReboot": false,
+              "stopBeforeInstall": false,
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "stopForAssessments": false,
+              "syncEnabledDnsDevices": [],
+              "currentDeviceReference": {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              },
+              "softwareImageReference": {
+                "link": "https://localhost/mgmt/cm/autodeploy/software-images/BIGIP-15.1.9-0.0.6.iso"
+              }
+            },
+            "queryTaskStatus": 16
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 3156,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "3c9b",
+      "variables": {
+        "incoming": {
+          "task": "3c9b",
+          "workflow": "Check BIG-IP Current Software Version - F5 - BIG-IQ",
+          "variables": {
+            "targetSoftwareImageName": {
+              "task": "job",
+              "value": "softwareImageName"
+            },
+            "currentDeviceInformation": {
+              "task": "da95",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "targetSoftwareImageName": "BIGIP-15.1.9-0.0.6.iso",
+            "currentDeviceInformation": {
+              "status": "complete",
+              "loop": [
+                {
+                  "status": "complete",
+                  "adapterId": "F5-BIG-IQ",
+                  "filterProperty": "address",
+                  "filterValue": "1.2.3.4",
+                  "childJobLoopIndex": 0,
+                  "_id": "ea4302c3db304f62af3c7c5b",
+                  "initiator": "admin@pronghorn",
+                  "returnStatus": "SUCCESS",
+                  "activeVolume": "HD1.1",
+                  "currentVersionBuild": "15.1.7-0.0.6",
+                  "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ]
+            },
+            "_id": "00f0c8c7fe13460694630468",
+            "initiator": "admin@pronghorn",
+            "deviceResults": {
+              "foundDevicesWithoutTargetImage": [
+                {
+                  "status": "complete",
+                  "adapterId": "F5-BIG-IQ",
+                  "filterProperty": "address",
+                  "filterValue": "1.2.3.4",
+                  "childJobLoopIndex": 0,
+                  "_id": "ea4302c3db304f62af3c7c5b",
+                  "initiator": "admin@pronghorn",
+                  "returnStatus": "SUCCESS",
+                  "activeVolume": "HD1.1",
+                  "currentVersionBuild": "15.1.7-0.0.6",
+                  "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "foundDevicesWithTargetImage": [],
+              "targetSoftwareImageName": "BIGIP-15.1.9-0.0.6.iso"
+            },
+            "result": "SUCCESS"
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": -2508,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "b43d",
+      "variables": {
+        "incoming": {
+          "task": "b43d",
+          "workflow": "Run Script on BIG-IP - F5 - BIG-IQ",
+          "variables": {
+            "scriptTimeout": {
+              "task": "static",
+              "value": 30
+            },
+            "_id": {
+              "task": "static",
+              "value": "id"
+            },
+            "scriptExecutionName": {
+              "task": "static",
+              "value": "Run Get License Service Check"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "deviceReferences": {
+              "task": "8e56",
+              "value": "deviceReferencesWithMachineId"
+            },
+            "scriptName": {
+              "task": "static",
+              "value": "Get License Service Check"
+            },
+            "scriptDescription": {
+              "task": "static",
+              "value": "Returns the service check date from the license"
+            },
+            "scriptContent": {
+              "task": "static",
+              "value": "tmsh show sys license | grep 'Service Check Date'"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "scriptTimeout": 30,
+            "_id": "d78bcabe3a3f4df48e7dd555",
+            "scriptExecutionName": "Run Get License Service Check",
+            "adapterId": "F5-BIG-IQ",
+            "scriptName": "Get License Service Check",
+            "scriptDescription": "Returns the service check date from the license",
+            "scriptContent": "tmsh show sys license | grep 'Service Check Date'",
+            "deviceReferences": [
+              {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              }
+            ],
+            "initiator": "admin@pronghorn",
+            "scriptResult": {
+              "icode": "AD.200",
+              "response": {
+                "id": "3e6fa58e-a44f-4d8b-98a0-1f1f9fe0b797",
+                "kind": "shared:user-script-execution:userscripttaskstate",
+                "name": "Run Get License Service Check",
+                "status": "FINISHED",
+                "selfLink": "https://localhost/mgmt/shared/user-script-execution/3e6fa58e-a44f-4d8b-98a0-1f1f9fe0b797",
+                "username": "admin",
+                "generation": 7,
+                "currentStep": "CLEAN_UP",
+                "deviceCount": 1,
+                "endDateTime": "2024-03-08T12:08:12.152-0800",
+                "startDateTime": "2024-03-08T12:07:51.722-0800",
+                "userReference": {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                },
+                "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                "scriptReference": {
+                  "link": "https://localhost/mgmt/shared/user-scripts/64fe9340-7354-4824-b7ac-10304ffb24ed"
+                },
+                "deviceReferences": [
+                  {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                ],
+                "lastUpdateMicros": 1709928492202247,
+                "timeoutInSeconds": 600,
+                "identityReferences": [
+                  {
+                    "link": "https://localhost/mgmt/shared/authz/users/admin"
+                  }
+                ],
+                "userScriptTaskStatuses": [
+                  {
+                    "output": "Service Check Date               2023/05/16\n",
+                    "status": "FINISHED",
+                    "address": "1.2.3.4",
+                    "message": "Finished executing script.",
+                    "exitCode": "0",
+                    "hostname": "ip-10-0-0-8.ec2.internal",
+                    "httpsPort": 8443,
+                    "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                    "startTime": 29201278718355,
+                    "deviceReference": {
+                      "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                    }
+                  }
+                ]
+              },
+              "headers": {
+                "server": "webd",
+                "date": "Fri, 08 Mar 2024 20:08:53 GMT",
+                "content-type": "application/json; charset=UTF-8",
+                "content-length": "1433",
+                "connection": "close",
+                "pragma": "no-cache",
+                "cache-control": "no-store, no-cache, must-revalidate",
+                "expires": "-1"
+              },
+              "metrics": {
+                "code": 200,
+                "timeouts": 0,
+                "redirects": 0,
+                "retries": 1,
+                "tripTime": 296,
+                "isThrottling": false,
+                "capabilityTime": "1118ms"
+              }
+            },
+            "queryScriptStatus": 1
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1296,
+        "y": -24
+      }
+    },
+    {
+      "taskId": "adee",
+      "variables": {
+        "incoming": {
+          "task": "adee",
+          "workflow": "Run Script on BIG-IP - F5 - BIG-IQ",
+          "variables": {},
+          "data_array": [
+            {
+              "adapterId": "F5-BIG-IQ",
+              "scriptTimeout": 30,
+              "scriptDescription": "Re-activates license",
+              "deviceReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "scriptName": "Re-Activate License Device 1",
+              "scriptExecutionName": "Run Re-Activate License Device 1",
+              "scriptContent": "tmsh install sys license registration-key PAWHT-ETKXA-OUIZI-VQSMO-JMBOKPS add-on-keys {  QZUTTXP-STCZPNX }"
+            }
+          ],
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": {
+            "status": "complete",
+            "loop": [
+              {
+                "adapterId": "F5-BIG-IQ",
+                "scriptTimeout": 30,
+                "scriptDescription": "Re-activates license",
+                "deviceReferences": [
+                  {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                ],
+                "scriptName": "Re-Activate License Device 1",
+                "scriptExecutionName": "Run Re-Activate License Device 1",
+                "scriptContent": "tmsh install sys license registration-key PAWHT-ETKXA-OUIZI-VQSMO-JMBOKPS add-on-keys {  QZUTTXP-STCZPNX }",
+                "childJobLoopIndex": 0,
+                "_id": "28ba0ec83cb8470c91141632",
+                "initiator": "admin@pronghorn",
+                "scriptResult": {
+                  "icode": "AD.200",
+                  "response": {
+                    "id": "8d7ff823-c102-4783-bd8e-461f66366372",
+                    "kind": "shared:user-script-execution:userscripttaskstate",
+                    "name": "Run Re-Activate License Device 1",
+                    "status": "FINISHED",
+                    "selfLink": "https://localhost/mgmt/shared/user-script-execution/8d7ff823-c102-4783-bd8e-461f66366372",
+                    "username": "admin",
+                    "generation": 7,
+                    "currentStep": "CLEAN_UP",
+                    "deviceCount": 1,
+                    "endDateTime": "2024-03-08T12:12:15.762-0800",
+                    "startDateTime": "2024-03-08T12:11:35.355-0800",
+                    "userReference": {
+                      "link": "https://localhost/mgmt/shared/authz/users/admin"
+                    },
+                    "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                    "scriptReference": {
+                      "link": "https://localhost/mgmt/shared/user-scripts/dfbae1a5-c8c8-40b8-8e59-d19129e7fef0"
+                    },
+                    "deviceReferences": [
+                      {
+                        "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                      }
+                    ],
+                    "lastUpdateMicros": 1709928735813076,
+                    "timeoutInSeconds": 600,
+                    "identityReferences": [
+                      {
+                        "link": "https://localhost/mgmt/shared/authz/users/admin"
+                      }
+                    ],
+                    "userScriptTaskStatuses": [
+                      {
+                        "output": "New license installed\n",
+                        "status": "FINISHED",
+                        "address": "1.2.3.4",
+                        "message": "Finished executing script.",
+                        "exitCode": "0\nKey and matching certificate not found, skipping phonehome_upload.",
+                        "hostname": "ip-10-0-0-8.ec2.internal",
+                        "httpsPort": 8443,
+                        "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                        "startTime": 29424908236262,
+                        "deviceReference": {
+                          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                        }
+                      }
+                    ]
+                  },
+                  "headers": {
+                    "server": "webd",
+                    "date": "Fri, 08 Mar 2024 20:12:36 GMT",
+                    "content-type": "application/json; charset=UTF-8",
+                    "content-length": "1482",
+                    "connection": "close",
+                    "pragma": "no-cache",
+                    "cache-control": "no-store, no-cache, must-revalidate",
+                    "expires": "-1"
+                  },
+                  "metrics": {
+                    "code": 200,
+                    "timeouts": 0,
+                    "redirects": 0,
+                    "retries": 0,
+                    "tripTime": 718,
+                    "isThrottling": false,
+                    "capabilityTime": "729ms"
+                  }
+                },
+                "queryScriptStatus": 1
+              }
+            ]
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1920,
+        "y": 240
+      }
+    },
+    {
+      "taskId": "fb1b",
+      "variables": {
+        "incoming": {
+          "form_id": "Provide BIG-IP Device License Key(s)",
+          "instance_data": {}
+        },
+        "outgoing": {
+          "export": {
+            "deviceAAddOnKeys": [
+              {
+                "addOnKey": "QZUTTXP-STCZPNX"
+              }
+            ],
+            "deviceALicenseKey": "PAWHT-ETKXA-OUIZI-VQSMO-JMBOKPS"
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1920,
+        "y": 60
+      }
+    }
+  ]
+}

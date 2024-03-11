@@ -1,0 +1,299 @@
+{
+  "input": {
+    "description": "Run BIG-IP Upgrade - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "_id": "f47daee9585a4f6c9feec162",
+      "softwareUpgradeTaskName": "Upgrade_10_0_0_8_15_1_9",
+      "softwareImageName": "BIGIP-15.1.9-0.0.6.iso",
+      "deviceInputsForUpgrade": [
+        {
+          "active": "HD1.1",
+          "targetVolume": "HD1.2",
+          "deviceReference": {
+            "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+          }
+        }
+      ],
+      "updatedUpgradeTask": "yes"
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "softwareUpgradeTaskName": "Upgrade_10_0_0_8_15_1_9",
+      "softwareImageName": "BIGIP-15.1.9-0.0.6.iso",
+      "deviceInputsForUpgrade": [
+        {
+          "active": "HD1.1",
+          "targetVolume": "HD1.2",
+          "deviceReference": {
+            "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+          }
+        }
+      ],
+      "updatedUpgradeTask": "yes",
+      "returnStatus": "SUCCESS",
+      "softwareUpgradeResult": {
+        "id": "d9229e1c-265c-4df6-b3bd-224f12074b6a",
+        "kind": "cm:device:upgrades:bulkupgradestate",
+        "name": "Upgrade_10_0_0_8_15_1_9",
+        "status": "FINISHED",
+        "selfLink": "https://localhost/mgmt/cm/device/upgrades/d9229e1c-265c-4df6-b3bd-224f12074b6a",
+        "username": "admin",
+        "generation": 344,
+        "serialMode": false,
+        "deviceInput": [
+          {
+            "targetVolume": "HD1.2",
+            "deviceReference": {
+              "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+            }
+          }
+        ],
+        "endDateTime": "2024-03-08T12:29:12.682-0800",
+        "deviceStatus": [
+          {
+            "status": "FINISHED",
+            "message": "Installation completed",
+            "originalVolume": "HD1.1",
+            "deviceReference": {
+              "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+            }
+          }
+        ],
+        "stopToReview": false,
+        "startDateTime": "2024-03-08T12:13:43.729-0800",
+        "userReference": {
+          "link": "https://localhost/mgmt/shared/authz/users/admin"
+        },
+        "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+        "selectByDevice": false,
+        "stopForBackups": false,
+        "lastUpdateMicros": 1709929752732393,
+        "stopBeforeReboot": false,
+        "stopBeforeInstall": false,
+        "identityReferences": [
+          {
+            "link": "https://localhost/mgmt/shared/authz/users/admin"
+          }
+        ],
+        "stopForAssessments": false,
+        "syncEnabledDnsDevices": [],
+        "currentDeviceReference": {
+          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+        },
+        "softwareImageReference": {
+          "link": "https://localhost/mgmt/cm/autodeploy/software-images/BIGIP-15.1.9-0.0.6.iso"
+        }
+      }
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "2053",
+      "variables": {
+        "incoming": {},
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "items": [
+                {
+                  "id": "d9229e1c-265c-4df6-b3bd-224f12074b6a",
+                  "kind": "cm:device:upgrades:bulkupgradestate",
+                  "name": "Upgrade_10_0_0_8_15_1_9",
+                  "status": "FINISHED",
+                  "selfLink": "https://localhost/mgmt/cm/device/upgrades/d9229e1c-265c-4df6-b3bd-224f12074b6a",
+                  "username": "admin",
+                  "generation": 344,
+                  "serialMode": false,
+                  "deviceInput": [
+                    {
+                      "targetVolume": "HD1.2",
+                      "deviceReference": {
+                        "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                      }
+                    }
+                  ],
+                  "endDateTime": "2024-03-08T12:29:12.682-0800",
+                  "deviceStatus": [
+                    {
+                      "status": "FINISHED",
+                      "message": "Installation completed",
+                      "originalVolume": "HD1.1",
+                      "deviceReference": {
+                        "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                      }
+                    }
+                  ],
+                  "stopToReview": false,
+                  "startDateTime": "2024-03-08T12:13:43.729-0800",
+                  "userReference": {
+                    "link": "https://localhost/mgmt/shared/authz/users/admin"
+                  },
+                  "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                  "selectByDevice": false,
+                  "stopForBackups": false,
+                  "lastUpdateMicros": 1709929752732393,
+                  "stopBeforeReboot": false,
+                  "stopBeforeInstall": false,
+                  "identityReferences": [
+                    {
+                      "link": "https://localhost/mgmt/shared/authz/users/admin"
+                    }
+                  ],
+                  "stopForAssessments": false,
+                  "syncEnabledDnsDevices": [],
+                  "currentDeviceReference": {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  },
+                  "softwareImageReference": {
+                    "link": "https://localhost/mgmt/cm/autodeploy/software-images/BIGIP-15.1.9-0.0.6.iso"
+                  }
+                },
+                {
+                  "id": "743aa34f-8750-4c7c-b2c7-5dc175125f5c",
+                  "kind": "cm:device:upgrades:bulkupgradestate",
+                  "name": "Upgrade_10_0_0_8_15_1_9",
+                  "status": "FINISHED",
+                  "selfLink": "https://localhost/mgmt/cm/device/upgrades/743aa34f-8750-4c7c-b2c7-5dc175125f5c",
+                  "username": "admin",
+                  "generation": 327,
+                  "serialMode": false,
+                  "deviceInput": [
+                    {
+                      "targetVolume": "HD1.2",
+                      "deviceReference": {
+                        "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                      }
+                    }
+                  ],
+                  "endDateTime": "2023-09-29T10:45:06.156-0700",
+                  "deviceStatus": [
+                    {
+                      "status": "FINISHED",
+                      "message": "Installation completed",
+                      "originalVolume": "HD1.1",
+                      "deviceReference": {
+                        "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                      }
+                    }
+                  ],
+                  "stopToReview": false,
+                  "startDateTime": "2023-09-29T10:30:24.741-0700",
+                  "userReference": {
+                    "link": "https://localhost/mgmt/shared/authz/users/admin"
+                  },
+                  "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                  "selectByDevice": false,
+                  "stopForBackups": false,
+                  "lastUpdateMicros": 1696009506207085,
+                  "stopBeforeReboot": false,
+                  "stopBeforeInstall": false,
+                  "identityReferences": [
+                    {
+                      "link": "https://localhost/mgmt/shared/authz/users/admin"
+                    }
+                  ],
+                  "stopForAssessments": false,
+                  "syncEnabledDnsDevices": [],
+                  "currentDeviceReference": {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  },
+                  "softwareImageReference": {
+                    "link": "https://localhost/mgmt/cm/autodeploy/software-images/BIGIP-15.1.9-0.0.6.iso"
+                  }
+                }
+              ],
+              "generation": 345,
+              "kind": "cm:device:upgrades:bulkupgradescollectionstate",
+              "lastUpdateMicros": 1709929752737002,
+              "selfLink": "https://localhost/mgmt/cm/device/upgrades"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 864,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "a073",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "Upgrade_10_0_0_8_15_1_9",
+            "softwareImageReference": {
+              "link": "https://localhost/mgmt/cm/autodeploy/software-images/BIGIP-15.1.9-0.0.6.iso"
+            },
+            "stopForBackups": false,
+            "stopBeforeInstall": false,
+            "stopBeforeReboot": false,
+            "stopToReview": false,
+            "serialMode": false,
+            "stopForAssessments": false,
+            "selectByDevice": false,
+            "deviceInput": [
+              {
+                "active": "HD1.1",
+                "targetVolume": "HD1.2",
+                "deviceReference": {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              }
+            ]
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.202",
+            "response": {
+              "softwareImageReference": {
+                "link": "https://localhost/mgmt/cm/autodeploy/software-images/BIGIP-15.1.9-0.0.6.iso"
+              },
+              "stopToReview": false,
+              "stopBeforeInstall": false,
+              "stopBeforeReboot": false,
+              "stopForAssessments": false,
+              "stopForBackups": false,
+              "selectByDevice": false,
+              "deviceInput": [
+                {
+                  "deviceReference": {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  },
+                  "targetVolume": "HD1.2"
+                }
+              ],
+              "serialMode": false,
+              "id": "d9229e1c-265c-4df6-b3bd-224f12074b6a",
+              "status": "STARTED",
+              "name": "Upgrade_10_0_0_8_15_1_9",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "taskWorkerGeneration": 1,
+              "generation": 1,
+              "lastUpdateMicros": 1709928823711956,
+              "kind": "cm:device:upgrades:bulkupgradestate",
+              "selfLink": "https://localhost/mgmt/cm/device/upgrades/d9229e1c-265c-4df6-b3bd-224f12074b6a"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 516,
+        "y": 996
+      }
+    }
+  ]
+}

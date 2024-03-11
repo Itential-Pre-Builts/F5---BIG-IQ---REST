@@ -1,0 +1,215 @@
+{
+  "input": {
+    "description": "Run Script on BIG-IP - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "_id": "7e82341f24fc464cb5aaee3a",
+      "adapterId": "F5-BIG-IQ",
+      "scriptName": "Get Available Disk Space",
+      "scriptDescription": "Gets available disk space",
+      "scriptContent": "vgdisplay --short",
+      "deviceReferences": [
+        {
+          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+        }
+      ],
+      "scriptExecutionName": "Run Get Available Disk Space",
+      "scriptTimeout": 30
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "scriptName": "Get Available Disk Space",
+      "scriptDescription": "Gets available disk space",
+      "scriptContent": "vgdisplay --short",
+      "deviceReferences": [
+        {
+          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+        }
+      ],
+      "scriptExecutionName": "Run Get Available Disk Space",
+      "scriptTimeout": 30
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "9ab2",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "Get Available Disk Space",
+            "description": "Gets available disk space",
+            "script": "vgdisplay --short"
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "e1f288fa-e87a-4f40-bacc-387f02559f4b",
+              "name": "Get Available Disk Space",
+              "description": "Gets available disk space",
+              "script": "vgdisplay --short",
+              "generation": 1,
+              "lastUpdateMicros": 1709928758971892,
+              "kind": "shared:user-scripts:userscriptstate",
+              "selfLink": "https://localhost/mgmt/shared/user-scripts/e1f288fa-e87a-4f40-bacc-387f02559f4b"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": -48,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "2e0e",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "Run Get Available Disk Space",
+            "deviceReferences": [
+              {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              }
+            ],
+            "timeout": 30,
+            "scriptReference": {
+              "link": "https://localhost/mgmt/shared/user-scripts/e1f288fa-e87a-4f40-bacc-387f02559f4b"
+            }
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.202",
+            "response": {
+              "deviceReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "scriptReference": {
+                "link": "https://localhost/mgmt/shared/user-scripts/e1f288fa-e87a-4f40-bacc-387f02559f4b"
+              },
+              "id": "e06e2b55-7b72-4331-81e5-eb090d5af73f",
+              "status": "STARTED",
+              "name": "Run Get Available Disk Space",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "taskWorkerGeneration": 1,
+              "generation": 1,
+              "lastUpdateMicros": 1709928759727427,
+              "kind": "shared:user-script-execution:userscripttaskstate",
+              "selfLink": "https://localhost/mgmt/shared/user-script-execution/e06e2b55-7b72-4331-81e5-eb090d5af73f"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 888,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "6b06",
+      "variables": {
+        "incoming": {
+          "scriptTaskId": "e06e2b55-7b72-4331-81e5-eb090d5af73f"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "e06e2b55-7b72-4331-81e5-eb090d5af73f",
+              "kind": "shared:user-script-execution:userscripttaskstate",
+              "name": "Run Get Available Disk Space",
+              "status": "FINISHED",
+              "selfLink": "https://localhost/mgmt/shared/user-script-execution/e06e2b55-7b72-4331-81e5-eb090d5af73f",
+              "username": "admin",
+              "generation": 7,
+              "currentStep": "CLEAN_UP",
+              "deviceCount": 1,
+              "endDateTime": "2024-03-08T12:13:00.160-0800",
+              "startDateTime": "2024-03-08T12:12:39.745-0800",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "scriptReference": {
+                "link": "https://localhost/mgmt/shared/user-scripts/e1f288fa-e87a-4f40-bacc-387f02559f4b"
+              },
+              "deviceReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "lastUpdateMicros": 1709928780210115,
+              "timeoutInSeconds": 600,
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "userScriptTaskStatuses": [
+                {
+                  "output": "  \"vg-db-vda\" 39.79 GiB [19.54 GiB used / 20.24 GiB free]\n",
+                  "status": "FINISHED",
+                  "address": "1.2.3.4",
+                  "message": "Finished executing script.",
+                  "exitCode": "0",
+                  "hostname": "ip-10-0-0-8.ec2.internal",
+                  "httpsPort": 8443,
+                  "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                  "startTime": 29489293532746,
+                  "deviceReference": {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1512,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "8c79",
+      "variables": {
+        "incoming": {
+          "scriptId": "e1f288fa-e87a-4f40-bacc-387f02559f4b"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "e1f288fa-e87a-4f40-bacc-387f02559f4b",
+              "name": "Get Available Disk Space",
+              "description": "Gets available disk space",
+              "script": "vgdisplay --short",
+              "generation": 1,
+              "lastUpdateMicros": 1709928822079435,
+              "kind": "shared:user-scripts:userscriptstate",
+              "selfLink": "https://localhost/mgmt/shared/user-scripts/e1f288fa-e87a-4f40-bacc-387f02559f4b"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 2460,
+        "y": 996
+      }
+    }
+  ]
+}

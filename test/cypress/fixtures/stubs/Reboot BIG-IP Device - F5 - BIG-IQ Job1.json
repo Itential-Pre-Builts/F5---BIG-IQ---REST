@@ -1,0 +1,53 @@
+{
+  "input": {
+    "description": "Reboot BIG-IP Device - F5 - BIG-IQ: It should successfuly perform rollback of BIG-IP device over BIG-IQ",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "targetVolume": "HD1.1",
+      "deviceLink": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "targetVolume": "HD1.1",
+      "deviceLink": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "cc77",
+      "variables": {
+        "incoming": {
+          "body": {
+            "passthroughObject": {
+              "command": "reboot",
+              "volume": "HD1.1"
+            },
+            "deviceGroupDeviceReference": {
+              "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+            },
+            "remoteTargetReference": {
+              "link": "https://localhost/mgmt/tm/sys"
+            }
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "kind": "tm:sys:rebootstate",
+              "command": "reboot",
+              "volume": "HD1.1"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 516,
+        "y": 996
+      }
+    }
+  ]
+}

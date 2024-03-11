@@ -1,0 +1,205 @@
+{
+  "input": {
+    "description": "Retrieve Device MachineId - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "filterProperty": "address",
+      "filterValue": "1.2.3.4",
+      "adapterId": "F5-BIG-IQ"
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "filterProperty": "address",
+      "filterValue": "1.2.3.4",
+      "adapterId": "F5-BIG-IQ",
+      "returnStatus": "SUCCESS",
+      "activeVolume": "HD1.1",
+      "currentVersionBuild": "15.1.7-0.0.6",
+      "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "f15b",
+      "variables": {
+        "incoming": {
+          "filter": "('address'+eq+'1.2.3.4')"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "items": [
+                {
+                  "uuid": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                  "deviceUri": "https://1.2.3.4:8443",
+                  "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                  "state": "ACTIVE",
+                  "address": "1.2.3.4",
+                  "httpsPort": 8443,
+                  "hostname": "ip-10-0-0-8.ec2.internal",
+                  "version": "15.1.7",
+                  "product": "BIG-IP",
+                  "edition": "Final",
+                  "build": "0.0.6",
+                  "restFrameworkVersion": "15.1.7-0.0.6",
+                  "managementAddress": "1.2.3.4",
+                  "mcpDeviceName": "/Common/bigip1",
+                  "properties": {
+                    "cm:gui:module": [
+                      "adc",
+                      "BigIPDevice"
+                    ],
+                    "modules": [],
+                    "cm-bigip-allBigIpDevices": {
+                      "cm:gui:module": [
+                        "adc",
+                        "BigIPDevice"
+                      ],
+                      "shared:resolver:device-groups:discoverer": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                      "modules": []
+                    },
+                    "cm-bigip-allDevices": {
+                      "shared:resolver:device-groups:discoverer": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+                      "cm:gui:module": [],
+                      "modules": []
+                    },
+                    "cm-adccore-allDevices": {
+                      "cm:gui:module": [],
+                      "modules": []
+                    },
+                    "cm-adccore-allbigipDevices": {
+                      "importedDateTime": "2023-10-18T15:53:28.079Z",
+                      "supportsAlpineDosDeviceConfig": true,
+                      "supportsServerTechnologies": true,
+                      "supportsAfmSubscribers": true,
+                      "supportsAlpineDosProfileEnhs": true,
+                      "supportsBadgerEnhs": true,
+                      "supportsRuleLogging": true,
+                      "supportsPortMisusePolicy": true,
+                      "supportsDualStackMgmtPort": true,
+                      "supportsWhitelistIpBlockRequestAlways": true,
+                      "supportsFlowInspector": true,
+                      "supportsThreatCampaigns": true,
+                      "supportsSendToVirtual": true,
+                      "supportsVirtualServerDestinationAddressList": true,
+                      "supportsBruteForceAttackPreventionsCascadeFeatures": true,
+                      "supportUdpPortList": true,
+                      "supportsNestedAddressLists": true,
+                      "supportsAddressRange": true,
+                      "supportsHeaderSignaturesOverride": true,
+                      "importStatus": "FINISHED",
+                      "supports_15_0_Enhs": true,
+                      "supports_13_0_Enhs": true,
+                      "supports_17_0_Enhs": false,
+                      "supportsGeoLocation": true,
+                      "supportsAlpineDosDeviceWhitelistIpProcotol": true,
+                      "supportsCsrfProtection": true,
+                      "supportsSshProfile": true,
+                      "supportsSessionTracking": true,
+                      "supportsZone": true,
+                      "supportsWebScraping": false,
+                      "supportsLoginPagesCascadeFeatures": true,
+                      "restrictsFirewallInlineRules": true,
+                      "supportsBotDefense": true,
+                      "supportsXmlProfiles": true,
+                      "supports_14_1_Enhs": true,
+                      "supportsDataProtection": true,
+                      "supports_16_1_Enhs": false,
+                      "supportsUserIdentity": true,
+                      "supportsUrlSignaturesOverride": true,
+                      "supportsHostNameEnforcementMode": true,
+                      "discovered": true,
+                      "supportsFlowIdleTimers": true,
+                      "supportsCpb": true,
+                      "lastDiscoveredDateTime": "2023-10-18T15:52:31.876Z",
+                      "requiresDhcpProfileInDhcpVirtualServer": true,
+                      "supportsAlpineEnhs": true,
+                      "discoveryStatus": "FINISHED",
+                      "supportsProtectedZone": false,
+                      "supportsUrlCascadeFeatures": true,
+                      "restrictsPortTranslationStatelessVirtual": true,
+                      "supportsCompatibilityLevel": true,
+                      "supportsSessionTrackingAllLoginPagesUsernameSource": true,
+                      "supportsDatasafe": true,
+                      "supportsLoginEnforcementCascadeFeatures": true,
+                      "supportsExtractions": true,
+                      "supportsNestedPortLists": true,
+                      "supportsWebSocketSecurity": true,
+                      "suppportsXmlValidationFiles": true,
+                      "supportsFqdn": true,
+                      "supportsSessionTrackingSessionHijackingByDeviceId": true,
+                      "supportsIruleAction": true,
+                      "supportsNatPolicy": true,
+                      "imported": true,
+                      "lastUserDiscoveredDateTime": "2023-10-18T15:52:31.876Z",
+                      "supportsLoginPagesHeaderOmits": true,
+                      "supportsCascadeEnhs": true,
+                      "supportsHopoptProtocol": true,
+                      "supportsPlainTextProfile": true,
+                      "supportsIncrementalDiscovery": true,
+                      "supportsRedirectionProtection": true,
+                      "supports_12_1_2_Enhs": true,
+                      "supports_14_0_Enhs": true,
+                      "supports_16_0_Enhs": false,
+                      "supportsIpIntelligence": true,
+                      "supportsServicePolicy": true,
+                      "supportsFirewallRuleIdentifiers": true,
+                      "supportsSessionTrackingDeviceIdThresholds": true,
+                      "supportsLoginEnforcement": true,
+                      "supportsJsonProfiles": true,
+                      "supportsBruteForceAttackPreventions": true,
+                      "supportsFwPolicy": true,
+                      "supportsAfm": true,
+                      "supportsPacketTester": true,
+                      "supportsAlpineLogProfileEnhs": true,
+                      "supportsGwtProfiles": true,
+                      "supports_15_1_Enhs": true,
+                      "supportsClassification": true,
+                      "supportsIruleSampleRate": true,
+                      "supportsCsrfUrls": true,
+                      "supportsAsmDisallowedGeolocation": true,
+                      "supportsLoginPages": true,
+                      "supports_13_1_Enhs": true,
+                      "supports_17_1_Enhs": false,
+                      "supportsBruteForceAttackPreventionsBadgerFeatures": true,
+                      "cm:gui:module": [
+                        "adc"
+                      ],
+                      "modules": []
+                    }
+                  },
+                  "isClustered": false,
+                  "isVirtual": true,
+                  "isLicenseExpired": false,
+                  "platformMarketingName": "BIG-IP Virtual Edition",
+                  "slots": [
+                    {
+                      "volume": "HD1.1",
+                      "product": "BIG-IP",
+                      "version": "15.1.7",
+                      "build": "0.0.6",
+                      "isActive": true
+                    }
+                  ],
+                  "generation": 22404,
+                  "lastUpdateMicros": 1709899393875672,
+                  "kind": "shared:resolver:device-groups:restdeviceresolverdevicestate",
+                  "selfLink": "https://localhost/mgmt/cm/system/machineid-resolver/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "generation": 0,
+              "lastUpdateMicros": 0,
+              "selfLink": "http://localhost:8100/cm/system/machineid-resolver?$filter=%28%27address%27+eq+%271.2.3.4%27%29"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 552,
+        "y": 996
+      }
+    }
+  ]
+}

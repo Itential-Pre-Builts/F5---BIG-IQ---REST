@@ -1,8 +1,8 @@
 {
   "bundleName": "F5 - BIG-IQ - REST",
   "version": "0.0.1",
-  "fingerprint": "6530556af2981000fe2c32ba",
-  "createdEpoch": "1697666410877",
+  "fingerprint": "65ef324f9df1fb00f8bd0327",
+  "createdEpoch": "1710174799415",
   "artifacts": [
     {
       "id": "Retrieve iHealth Credentials Id - F5 - BIG-IQ",
@@ -113,163 +113,19 @@
       }
     },
     {
-      "id": "650c6c6b8f256f016dabc637",
-      "name": "Create BIG-IP Software Upgrade Process Inputs",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IP Software Upgrade Process Inputs.json",
+      "id": "Provide BIG-IP Device License Key(s)",
+      "name": "Provide BIG-IP Device License Key(s)",
+      "type": "json-forms",
+      "location": "/bundles/json_forms/Provide BIG-IP Device License Key(s).json",
       "properties": {
         "entryPoint": false
       }
     },
     {
-      "id": "650c820b8f256f016dabc63a",
-      "name": "Check Available Disk Space BIG-IP",
+      "id": "65303d7838c4c401873707d5",
+      "name": "Check BIG-IP Software Version from BIG-IQ",
       "type": "transformation",
-      "location": "/bundles/transformations/Check Available Disk Space BIG-IP.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "6516df32b5c9df0151074b1d",
-      "name": "Create BIG-IQ Update Device Upgrade Input",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IQ Update Device Upgrade Input.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "650a81249b3b3a0148b40592",
-      "name": "Search BIG-IQ iHealth Credentials",
-      "type": "transformation",
-      "location": "/bundles/transformations/Search BIG-IQ iHealth Credentials.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "64b846f740807f01aa8d2446",
-      "name": "Build BIG-IQ Device Filter",
-      "type": "transformation",
-      "location": "/bundles/transformations/Build BIG-IQ Device Filter.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "650db9fbb5c9df0151074b02",
-      "name": "Query Machine Id and Active Volume",
-      "type": "transformation",
-      "location": "/bundles/transformations/Query Machine Id and Active Volume.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "650af2719b3b3a0148b40593",
-      "name": "Create iHealth Upload Task Input",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create iHealth Upload Task Input.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "650b03528f256f016dabc632",
-      "name": "Create BIG-IQ Device Backup Input",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IQ Device Backup Input.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "650b29cf8f256f016dabc633",
-      "name": "Create Execute Script Input",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create Execute Script Input.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "650c60458f256f016dabc636",
-      "name": "Create BIG-IQ Device Import Input",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IQ Device Import Input.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "650c721e8f256f016dabc638",
-      "name": "Create BIG-IP Software Upgrade Input",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IP Software Upgrade Input.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "650c74d68f256f016dabc639",
-      "name": "Get Software Upgrade Task",
-      "type": "transformation",
-      "location": "/bundles/transformations/Get Software Upgrade Task.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "6510f244b5c9df0151074b04",
-      "name": "Create BIG-IQ Device Backup Inputs",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IQ Device Backup Inputs.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "6510da84b5c9df0151074b03",
-      "name": "Create Device References and Upgrade Inputs",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create Device References and Upgrade Inputs.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "651189abb5c9df0151074b05",
-      "name": "Create BIG-IP Device Discover and Import Inputs",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IP Device Discover and Import Inputs.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "6514738ab5c9df0151074b08",
-      "name": "Create BIG-IP Device Rollback Inputs",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IP Device Rollback Inputs.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "6514618ab5c9df0151074b07",
-      "name": "Create Device Reboot Input Over BIG-IQ",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create Device Reboot Input Over BIG-IQ.json",
-      "properties": {
-        "entryPoint": false
-      }
-    },
-    {
-      "id": "650c5b428f256f016dabc635",
-      "name": "Create BIG-IQ Device Discovery Input",
-      "type": "transformation",
-      "location": "/bundles/transformations/Create BIG-IQ Device Discovery Input.json",
+      "location": "/bundles/transformations/Check BIG-IP Software Version from BIG-IQ.json",
       "properties": {
         "entryPoint": false
       }
@@ -284,10 +140,190 @@
       }
     },
     {
-      "id": "65303d7838c4c401873707d5",
-      "name": "Check BIG-IP Software Version from BIG-IQ",
+      "id": "650c5b428f256f016dabc635",
+      "name": "Create BIG-IQ Device Discovery Input",
       "type": "transformation",
-      "location": "/bundles/transformations/Check BIG-IP Software Version from BIG-IQ.json",
+      "location": "/bundles/transformations/Create BIG-IQ Device Discovery Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6514618ab5c9df0151074b07",
+      "name": "Create Device Reboot Input Over BIG-IQ",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create Device Reboot Input Over BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6514738ab5c9df0151074b08",
+      "name": "Create BIG-IP Device Rollback Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IP Device Rollback Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "651189abb5c9df0151074b05",
+      "name": "Create BIG-IP Device Discover and Import Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IP Device Discover and Import Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6510da84b5c9df0151074b03",
+      "name": "Create Device References and Upgrade Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create Device References and Upgrade Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6510f244b5c9df0151074b04",
+      "name": "Create BIG-IQ Device Backup Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IQ Device Backup Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c74d68f256f016dabc639",
+      "name": "Get Software Upgrade Task",
+      "type": "transformation",
+      "location": "/bundles/transformations/Get Software Upgrade Task.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c721e8f256f016dabc638",
+      "name": "Create BIG-IP Software Upgrade Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IP Software Upgrade Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c60458f256f016dabc636",
+      "name": "Create BIG-IQ Device Import Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IQ Device Import Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650b29cf8f256f016dabc633",
+      "name": "Create Execute Script Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create Execute Script Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650b03528f256f016dabc632",
+      "name": "Create BIG-IQ Device Backup Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IQ Device Backup Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650af2719b3b3a0148b40593",
+      "name": "Create iHealth Upload Task Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create iHealth Upload Task Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650db9fbb5c9df0151074b02",
+      "name": "Query Machine Id and Active Volume",
+      "type": "transformation",
+      "location": "/bundles/transformations/Query Machine Id and Active Volume.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "64b846f740807f01aa8d2446",
+      "name": "Build BIG-IQ Device Filter",
+      "type": "transformation",
+      "location": "/bundles/transformations/Build BIG-IQ Device Filter.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650a81249b3b3a0148b40592",
+      "name": "Search BIG-IQ iHealth Credentials",
+      "type": "transformation",
+      "location": "/bundles/transformations/Search BIG-IQ iHealth Credentials.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6516df32b5c9df0151074b1d",
+      "name": "Create BIG-IQ Update Device Upgrade Input",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IQ Update Device Upgrade Input.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c820b8f256f016dabc63a",
+      "name": "Check Available Disk Space BIG-IP",
+      "type": "transformation",
+      "location": "/bundles/transformations/Check Available Disk Space BIG-IP.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "650c6c6b8f256f016dabc637",
+      "name": "Create BIG-IP Software Upgrade Process Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IP Software Upgrade Process Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "65df62dbe646b4018cac3d81",
+      "name": "Compare BIG-IP License Service Check Date",
+      "type": "transformation",
+      "location": "/bundles/transformations/Compare BIG-IP License Service Check Date.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "65df4a21e646b4018cac3d80",
+      "name": "Create BIG-IP License Activation Inputs",
+      "type": "transformation",
+      "location": "/bundles/transformations/Create BIG-IP License Activation Inputs.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "65eb26790e2858018be1d3a5",
+      "name": "Evaluate License Activation - BIG-IQ",
+      "type": "transformation",
+      "location": "/bundles/transformations/Evaluate License Activation - BIG-IQ.json",
       "properties": {
         "entryPoint": false
       }

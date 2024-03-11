@@ -333,14 +333,13 @@
       }
     }
   },
-  "canvasVersion": 3,
   "type": "automation",
   "font_size": 12,
   "errorHandler": null,
   "preAutomationTime": 0,
   "sla": 0,
-  "last_updated": "2023-10-18T21:33:15.485Z",
-  "lastUpdatedVersion": "5.46.0-2023.1.21.0",
+  "last_updated": "2024-03-11T16:17:20.568Z",
+  "lastUpdatedVersion": "4.15.0-2023.1.149.0",
   "created": "2023-10-18T20:12:22.066Z",
   "created_by": {
     "provenance": "local_aaa",
@@ -355,6 +354,7 @@
     "firstname": "admin",
     "inactive": false
   },
+  "canvasVersion": 3,
   "tags": [],
   "groups": [],
   "migrationVersion": 2

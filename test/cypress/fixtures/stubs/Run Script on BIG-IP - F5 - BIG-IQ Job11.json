@@ -1,0 +1,215 @@
+{
+  "input": {
+    "description": "Run Script on BIG-IP - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "_id": "d78bcabe3a3f4df48e7dd555",
+      "adapterId": "F5-BIG-IQ",
+      "scriptName": "Get License Service Check",
+      "scriptDescription": "Returns the service check date from the license",
+      "scriptContent": "tmsh show sys license | grep 'Service Check Date'",
+      "deviceReferences": [
+        {
+          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+        }
+      ],
+      "scriptExecutionName": "Run Get License Service Check",
+      "scriptTimeout": 30
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "scriptName": "Get License Service Check",
+      "scriptDescription": "Returns the service check date from the license",
+      "scriptContent": "tmsh show sys license | grep 'Service Check Date'",
+      "deviceReferences": [
+        {
+          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+        }
+      ],
+      "scriptExecutionName": "Run Get License Service Check",
+      "scriptTimeout": 30
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "9ab2",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "Get License Service Check",
+            "description": "Returns the service check date from the license",
+            "script": "tmsh show sys license | grep 'Service Check Date'"
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "64fe9340-7354-4824-b7ac-10304ffb24ed",
+              "name": "Get License Service Check",
+              "description": "Returns the service check date from the license",
+              "script": "tmsh show sys license | grep 'Service Check Date'",
+              "generation": 1,
+              "lastUpdateMicros": 1709928470938104,
+              "kind": "shared:user-scripts:userscriptstate",
+              "selfLink": "https://localhost/mgmt/shared/user-scripts/64fe9340-7354-4824-b7ac-10304ffb24ed"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": -48,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "2e0e",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "Run Get License Service Check",
+            "deviceReferences": [
+              {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              }
+            ],
+            "timeout": 30,
+            "scriptReference": {
+              "link": "https://localhost/mgmt/shared/user-scripts/64fe9340-7354-4824-b7ac-10304ffb24ed"
+            }
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.202",
+            "response": {
+              "deviceReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "scriptReference": {
+                "link": "https://localhost/mgmt/shared/user-scripts/64fe9340-7354-4824-b7ac-10304ffb24ed"
+              },
+              "id": "3e6fa58e-a44f-4d8b-98a0-1f1f9fe0b797",
+              "status": "STARTED",
+              "name": "Run Get License Service Check",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "taskWorkerGeneration": 1,
+              "generation": 1,
+              "lastUpdateMicros": 1709928471704031,
+              "kind": "shared:user-script-execution:userscripttaskstate",
+              "selfLink": "https://localhost/mgmt/shared/user-script-execution/3e6fa58e-a44f-4d8b-98a0-1f1f9fe0b797"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 888,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "6b06",
+      "variables": {
+        "incoming": {
+          "scriptTaskId": "3e6fa58e-a44f-4d8b-98a0-1f1f9fe0b797"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "3e6fa58e-a44f-4d8b-98a0-1f1f9fe0b797",
+              "kind": "shared:user-script-execution:userscripttaskstate",
+              "name": "Run Get License Service Check",
+              "status": "FINISHED",
+              "selfLink": "https://localhost/mgmt/shared/user-script-execution/3e6fa58e-a44f-4d8b-98a0-1f1f9fe0b797",
+              "username": "admin",
+              "generation": 7,
+              "currentStep": "CLEAN_UP",
+              "deviceCount": 1,
+              "endDateTime": "2024-03-08T12:08:12.152-0800",
+              "startDateTime": "2024-03-08T12:07:51.722-0800",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "scriptReference": {
+                "link": "https://localhost/mgmt/shared/user-scripts/64fe9340-7354-4824-b7ac-10304ffb24ed"
+              },
+              "deviceReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "lastUpdateMicros": 1709928492202247,
+              "timeoutInSeconds": 600,
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "userScriptTaskStatuses": [
+                {
+                  "output": "Service Check Date               2023/05/16\n",
+                  "status": "FINISHED",
+                  "address": "1.2.3.4",
+                  "message": "Finished executing script.",
+                  "exitCode": "0",
+                  "hostname": "ip-10-0-0-8.ec2.internal",
+                  "httpsPort": 8443,
+                  "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                  "startTime": 29201278718355,
+                  "deviceReference": {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1512,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "8c79",
+      "variables": {
+        "incoming": {
+          "scriptId": "64fe9340-7354-4824-b7ac-10304ffb24ed"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "64fe9340-7354-4824-b7ac-10304ffb24ed",
+              "name": "Get License Service Check",
+              "description": "Returns the service check date from the license",
+              "script": "tmsh show sys license | grep 'Service Check Date'",
+              "generation": 1,
+              "lastUpdateMicros": 1709928534120416,
+              "kind": "shared:user-scripts:userscriptstate",
+              "selfLink": "https://localhost/mgmt/shared/user-scripts/64fe9340-7354-4824-b7ac-10304ffb24ed"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 2460,
+        "y": 996
+      }
+    }
+  ]
+}
