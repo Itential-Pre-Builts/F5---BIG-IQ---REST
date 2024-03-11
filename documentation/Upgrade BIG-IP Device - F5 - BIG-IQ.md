@@ -15,6 +15,7 @@
     - [Entry Point IAP Component](#entry-point-iap-component)
     - [Inputs](#inputs)
     - [Outputs](#outputs)
+    - [API Links](#api-links)
     - [Example Inputs and Outputs](#example-inputs-and-outputs)
   - [Support](#support)
 
@@ -78,12 +79,14 @@ This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
     <tr>
       <th>Name</th>
       <th>Version</th>
+      <th>Configuration Notes</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>adapter-f5_bigiq</td>
-      <td>^0.3.5</td>
+      <td><a href="https://gitlab.com/itentialopensource/adapters/controller-orchestrator/adapter-f5_bigiq">adapter-f5_bigiq</a></td>
+      <td>^0.4.6</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -95,13 +98,14 @@ This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
 To install the Workflow Project:
 
 - Verify you are running a supported version of the Itential Automation Platform (IAP) as listed above in the [Supported IAP Versions](#supported-iap-versions) section in order to install the Workflow Project.
-- Import the Workflow Project in [Admin Essentials](https://docs.itential.com/docs/importing-a-prebuilt-4). 
+- Import the Workflow Project in [Admin Essentials](https://docs.itential.com/docs/importing-a-prebuilt-4).
 
 ### Testing
 
 While Itential tests this Workflow Project and its capabilities, it is often the case the customer environments offer their own unique circumstances. Therefore, it is our recommendation that you deploy this Workflow Project into a development/testing environment in which you can test the Workflow Project.
 
 ## Using this Workflow Project
+
 
 ### Entry Point IAP Component
 
@@ -268,12 +272,6 @@ The following table lists the inputs to the Workflow Project:
   </tbody>
 </table>
 
-  
-
-#### Vendor Input Documentation
-
-https://clouddocs.f5.com/products/big-iq/mgmt-api/v8.1.0/ApiReferences/bigiq_public_api_ref/r_public_api_references.html
-  
 
 
 ### Outputs
@@ -315,6 +313,12 @@ The following items show how to query successful results from the output:
     
   
 
+
+### API Links
+
+
+No API Links provided.
+ 
 
 
 ### Example Inputs and Outputs
