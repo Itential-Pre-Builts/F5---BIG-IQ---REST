@@ -1,0 +1,139 @@
+{
+  "input": {
+    "description": "Discover BIG-IP Device - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "_id": "4e1152bf49ec4bc3b1f87992",
+      "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+      "adapterId": "F5-BIG-IQ"
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+      "adapterId": "F5-BIG-IQ",
+      "returnStatus": "SUCCESS"
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "0267",
+      "variables": {
+        "incoming": {
+          "body": {
+            "deviceReference": {
+              "link": "https://localhost/mgmt/cm/system/machineid-resolver/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+            },
+            "moduleList": [
+              {
+                "module": "adc_core"
+              }
+            ],
+            "status": "STARTED"
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.202",
+            "response": {
+              "moduleList": [
+                {
+                  "module": "adc_core"
+                }
+              ],
+              "deviceReference": {
+                "link": "https://localhost/mgmt/cm/system/machineid-resolver/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              },
+              "id": "99e68767-9302-434d-a3c3-a9782e29f5c7",
+              "status": "STARTED",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "taskWorkerGeneration": 1,
+              "generation": 1,
+              "lastUpdateMicros": 1709930060394814,
+              "kind": "cm:global:tasks:device-discovery:discoverysupertaskitemstate",
+              "selfLink": "https://localhost/mgmt/cm/global/tasks/device-discovery/99e68767-9302-434d-a3c3-a9782e29f5c7"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 516,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "6a9b",
+      "variables": {
+        "incoming": {
+          "objectId": "99e68767-9302-434d-a3c3-a9782e29f5c7"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "99e68767-9302-434d-a3c3-a9782e29f5c7",
+              "kind": "cm:global:tasks:device-discovery:discoverysupertaskitemstate",
+              "status": "FINISHED",
+              "selfLink": "https://localhost/mgmt/cm/global/tasks/device-discovery/99e68767-9302-434d-a3c3-a9782e29f5c7",
+              "username": "admin",
+              "generation": 8,
+              "moduleList": [
+                {
+                  "module": "adc_core",
+                  "status": "FINISHED",
+                  "endTime": "2024-03-08T20:34:32.809Z",
+                  "startTime": "2024-03-08T20:34:20.731Z",
+                  "taskReference": {
+                    "link": "https://localhost/mgmt/cm/adc-core/tasks/discover-config/669b35af-aaa1-41c0-abf1-173b1ca321aa"
+                  }
+                }
+              ],
+              "currentStep": "DONE",
+              "endDateTime": "2024-03-08T12:34:33.911-0800",
+              "startDateTime": "2024-03-08T12:34:20.417-0800",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "allModuleStatus": [
+                {
+                  "module": "adc_core",
+                  "status": "FINISHED",
+                  "endTime": "2024-03-08T20:34:32.809Z",
+                  "startTime": "2024-03-08T20:34:20.731Z",
+                  "taskReference": {
+                    "link": "https://localhost/mgmt/cm/adc-core/tasks/discover-config/669b35af-aaa1-41c0-abf1-173b1ca321aa"
+                  }
+                }
+              ],
+              "deviceReference": {
+                "link": "https://localhost/mgmt/cm/system/machineid-resolver/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              },
+              "lastUpdateMicros": 1709930073961662,
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "currentConfigConsistencyCheckReference": {
+                "link": "https://localhost/mgmt/cm/global/tasks/current-config-consistency-check/5dc11af3-67b4-46b5-9f77-d5af25140116"
+              }
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1188,
+        "y": 996
+      }
+    }
+  ]
+}

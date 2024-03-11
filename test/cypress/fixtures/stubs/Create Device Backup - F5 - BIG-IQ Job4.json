@@ -1,0 +1,159 @@
+{
+  "input": {
+    "description": "Create Device Backup - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "_id": "c3c7b1e55d224853a1d885e8",
+      "deviceIdentifier": "1.2.3.4",
+      "deviceBackupLifeTime": 1,
+      "deviceBackupDescription": "Backup Device",
+      "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "deviceIdentifier": "1.2.3.4",
+      "deviceBackupLifeTime": 1,
+      "deviceBackupDescription": "Backup Device",
+      "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+      "returnStatus": "SUCCESS"
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "4687",
+      "variables": {
+        "incoming": {
+          "backupTaskId": "4d721574-08a5-44d0-8733-6d2197cf2640"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "4d721574-08a5-44d0-8733-6d2197cf2640",
+              "kind": "cm:system:backup-restore:ucsbackuprestoretaskstate",
+              "name": "device_backup_1.2.3.4_2024-03-08T20-06-46.599Z.ucs",
+              "device": {
+                "kind": "shared:resolver:device-groups:restdeviceresolverdevicestate",
+                "address": "1.2.3.4",
+                "product": "BIG-IP",
+                "version": "15.1.7",
+                "hostname": "ip-10-0-0-8.ec2.internal",
+                "deviceUri": "https://1.2.3.4:8443",
+                "httpsPort": 8443,
+                "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                "generation": 0,
+                "lastUpdateMicros": 0
+              },
+              "status": "FINISHED",
+              "ownerId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "ownerUri": "https://10.0.0.125:443",
+              "selfLink": "https://localhost/mgmt/cm/system/backup-restore/4d721574-08a5-44d0-8733-6d2197cf2640",
+              "generation": 8,
+              "description": "Backup Device - 1.2.3.4 - 2024-03-08T20:06:46.599Z",
+              "endDateTime": "2024-03-08T12:07:00.293-0800",
+              "isEncrypted": false,
+              "errorMessage": "",
+              "sourceDevice": {
+                "kind": "shared:resolver:device-groups:restdeviceresolverdevicestate",
+                "address": "1.2.3.4",
+                "product": "BIG-IP",
+                "version": "15.1.7",
+                "hostname": "ip-10-0-0-8.ec2.internal",
+                "deviceUri": "https://1.2.3.4:8443",
+                "httpsPort": 8443,
+                "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                "generation": 0,
+                "lastUpdateMicros": 0
+              },
+              "startDateTime": "2024-03-08T12:06:47.481-0800",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "backupLifeTime": 1,
+              "archiveFileName": "/shared/ucs_backups/device_backup_1.2.3.4_2024-03-08T20-06-46.599Z.ucs",
+              "deviceReference": {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              },
+              "lastUpdateMicros": 1709928420343732,
+              "refererReference": {
+                "link": "12.139.182.194"
+              },
+              "expirationDateTime": "2024-03-09T12:06:47.474-0800",
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "includePrivateKeys": true,
+              "backupRestoreStatus": "BACKUP_FINISHED"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1188,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "7edb",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "device_backup_1.2.3.4_2024-03-08T20-06-46.599Z.ucs",
+            "includePrivateKeys": true,
+            "isEncrypted": false,
+            "deviceReference": {
+              "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+            },
+            "backupLifeTime": 1,
+            "description": "Backup Device - 1.2.3.4 - 2024-03-08T20:06:46.599Z"
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.202",
+            "response": {
+              "backupLifeTime": 1,
+              "expirationDateTime": "2024-03-09T12:06:47.474-0800",
+              "deviceReference": {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              },
+              "includePrivateKeys": true,
+              "isEncrypted": false,
+              "ownerId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "ownerUri": "https://10.0.0.125:443",
+              "refererReference": {
+                "link": "12.139.182.194"
+              },
+              "id": "4d721574-08a5-44d0-8733-6d2197cf2640",
+              "status": "STARTED",
+              "name": "device_backup_1.2.3.4_2024-03-08T20-06-46.599Z.ucs",
+              "description": "Backup Device - 1.2.3.4 - 2024-03-08T20:06:46.599Z",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "taskWorkerGeneration": 1,
+              "generation": 1,
+              "lastUpdateMicros": 1709928407473726,
+              "kind": "cm:system:backup-restore:ucsbackuprestoretaskstate",
+              "selfLink": "https://localhost/mgmt/cm/system/backup-restore/4d721574-08a5-44d0-8733-6d2197cf2640"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 516,
+        "y": 996
+      }
+    }
+  ]
+}

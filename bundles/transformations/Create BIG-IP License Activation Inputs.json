@@ -1,0 +1,1338 @@
+{
+  "_id": "65df4a21e646b4018cac3d80",
+  "name": "Create BIG-IP License Activation Inputs",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "deviceReferencesWithLink",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "link": {
+            "type": "string"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "adapterId",
+      "type": "string"
+    },
+    {
+      "$id": "deviceLicenseKeys",
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "licenseActivationInputs",
+      "type": "array"
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceReferencesWithLink",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "adapterId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/3/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceLicenseKeys",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 9,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceLicenseKeys",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 10,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 15,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 25,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceLicenseKeys",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 24,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 28,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [],
+      "view": {
+        "row": 3,
+        "col": 2
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 31,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "deviceLicenseKeys",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 30,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "deviceALicenseKey"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "deviceBLicenseKey"
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 16,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 15,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 13,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 19,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 15,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 17,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 24,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "deviceAAddOnKeys"
+      ],
+      "view": {
+        "row": 4,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 29,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 28,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 26,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 30,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "deviceBAddOnKeys"
+      ],
+      "view": {
+        "row": 5,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 34,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 28,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 32,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 37,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 15,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 35,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 40,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 15,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 38,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 14,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 9,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 13,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 18,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 10,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 17,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 27,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 24,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 26,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 33,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 30,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 32,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 13,
+      "type": "method",
+      "library": "Logical",
+      "method": "nullish",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 17,
+      "type": "method",
+      "library": "Logical",
+      "method": "nullish",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 26,
+      "type": "method",
+      "library": "Logical",
+      "method": "nullish",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 32,
+      "type": "method",
+      "library": "Logical",
+      "method": "nullish",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 5,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 22,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 13,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 3,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 23,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 17,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 3,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 36,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 26,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 35,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 39,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 32,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 38,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 35,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "createSpaceDelimitedAddOnKeys",
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 4
+      },
+      "context": "#"
+    },
+    {
+      "id": 38,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "createSpaceDelimitedAddOnKeys",
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 4
+      },
+      "context": "#"
+    },
+    {
+      "id": 42,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 35,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 41,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 43,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 38,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 41,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 4
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 41,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 5
+      },
+      "context": "#",
+      "polymorphIndex": 0
+    },
+    {
+      "id": 44,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 41,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/4/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "mapDevicesToInputs",
+        null,
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 6
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "licenseActivationInputs",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {
+            "0_new Array return": {
+              "type": "array"
+            },
+            "1_adapterId": {
+              "$id": "adapterId",
+              "type": "string"
+            },
+            "2_new Array return": {
+              "type": "array",
+              "items": {
+                "type": [
+                  "array",
+                  "boolean",
+                  "number",
+                  "integer",
+                  "string",
+                  "object",
+                  "null"
+                ]
+              }
+            }
+          },
+          "isContext": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "mappedValue",
+          "type": "object",
+          "properties": {
+            "scriptTimeout": {
+              "type": "number",
+              "examples": [
+                30
+              ]
+            },
+            "adapterId": {
+              "type": "string",
+              "examples": [
+                "F5-BIG-IQ"
+              ]
+            },
+            "scriptName": {
+              "type": "string",
+              "examples": [
+                "Re-Activate Device License"
+              ]
+            },
+            "scriptDescription": {
+              "type": "string",
+              "examples": [
+                "Re-activates license on BIG-IP device"
+              ]
+            },
+            "scriptContent": {
+              "type": "string",
+              "examples": [
+                "tmsh install sys license registration-key"
+              ]
+            },
+            "scriptExecutionName": {
+              "type": "string",
+              "examples": [
+                "Run Re-Activate Device License"
+              ]
+            },
+            "deviceReferences": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "link": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": []
+        }
+      ],
+      "steps": [
+        {
+          "id": 20,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/1_adapterId"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "mappedValue",
+            "ptr": "/adapterId"
+          },
+          "context": "#"
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "declaration",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/0_new Array return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "index",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 18,
+          "type": "declaration",
+          "library": "Number",
+          "method": "new Number",
+          "args": [
+            30
+          ],
+          "view": {
+            "row": 1,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 21,
+          "type": "declaration",
+          "library": "String",
+          "method": "new String",
+          "args": [
+            "Re-activates license"
+          ],
+          "view": {
+            "row": 2,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 23,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "index",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 25,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "thisArg",
+            "ptr": "/2_new Array return"
+          },
+          "to": {
+            "location": "method",
+            "name": 24,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 26,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "index",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 24,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "declaration",
+          "library": "Array",
+          "method": "new Array",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#",
+          "polymorphIndex": 0
+        },
+        {
+          "id": 11,
+          "type": "method",
+          "library": "Math",
+          "method": "add",
+          "args": [
+            null,
+            1
+          ],
+          "view": {
+            "row": 4,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "template",
+            "name": 10,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 24,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "template",
+            "name": 4,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 10,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "Re-Activate License Device ${indexOffset}",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 27,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 24,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "template",
+            "name": 4,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 16,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 10,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "template",
+            "name": 15,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 15,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "Run ${scriptName}",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "tmsh install sys license registration-key ${deviceLicenseKey} add-on-keys { ${addOnKeys} }",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 19,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 18,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "mappedValue",
+            "ptr": "/scriptTimeout"
+          },
+          "context": "#"
+        },
+        {
+          "id": 22,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 21,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "mappedValue",
+            "ptr": "/scriptDescription"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "mappedValue",
+            "ptr": "/deviceReferences"
+          },
+          "context": "#"
+        },
+        {
+          "id": 14,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 10,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "mappedValue",
+            "ptr": "/scriptName"
+          },
+          "context": "#"
+        },
+        {
+          "id": 17,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 15,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "mappedValue",
+            "ptr": "/scriptExecutionName"
+          },
+          "context": "#"
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "mappedValue",
+            "ptr": "/scriptContent"
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "mapDevicesToInputs",
+      "view": {
+        "col": 5,
+        "row": 5
+      },
+      "id": "mapDevicesToInputs",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ]
+        },
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "template",
+            "name": 3,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "addOnKey"
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "template",
+            "name": 3,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "template",
+          "library": "String",
+          "method": "templateLiteral",
+          "template": "${accumulator} ${currentValue}",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "template",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "createSpaceDelimitedAddOnKeys",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "createSpaceDelimitedAddOnKeys",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 6,
+    "row": 6
+  },
+  "created": "2024-02-28T14:58:41.178Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2024-02-29T00:02:59.593Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.14",
+  "tags": []
+}

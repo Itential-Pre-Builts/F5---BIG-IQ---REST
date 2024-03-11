@@ -1,11 +1,10 @@
 {
   "name": "F5 - BIG-IQ - REST",
   "overview": "Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.",
-  "domains": [
-    "Security (SASE)"
-  ],
+  "domains": [],
   "tags": [
-    "Configuration Management"
+    "Domain Name Service",
+    "DNS"
   ],
   "productLink": "https://www.f5.com/products/big-ip-services/big-iq",
   "apiLinks": [],
@@ -13,17 +12,7 @@
   "docLink": "",
   "issueLink": "https://itential.atlassian.net/servicedesk/customer/portals",
   "deprecated": {
-    "isDeprecated": false,
-    "deprecatedOn": "",
-    "endOfLife": "",
-    "replacedBy": {
-      "name": "",
-      "overview": "",
-      "repoLink": "",
-      "docLink": "",
-      "webLink": "",
-      "isProductFeature": false
-    }
+    "isDeprecated": false
   },
   "type": "Workflow Project",
   "vendorLink": "https://www.f5.com/",
@@ -31,7 +20,7 @@
   "contributeLink": "",
   "webName": "F5 BIG-IQ Automations",
   "useCases": [
-    "Software Upgrade"
+    "Perform a software upgrade on Device"
   ],
   "webLink": "",
   "demoLinks": []

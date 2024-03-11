@@ -1,0 +1,71 @@
+{
+  "input": {
+    "description": "Check BIG-IP Current Software Version - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "currentDeviceInformation": {
+        "status": "complete",
+        "loop": [
+          {
+            "status": "complete",
+            "adapterId": "F5-BIG-IQ",
+            "filterProperty": "address",
+            "filterValue": "1.2.3.4",
+            "childJobLoopIndex": 0,
+            "_id": "ea4302c3db304f62af3c7c5b",
+            "initiator": "admin@pronghorn",
+            "returnStatus": "SUCCESS",
+            "activeVolume": "HD1.1",
+            "currentVersionBuild": "15.1.7-0.0.6",
+            "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+          }
+        ]
+      },
+      "targetSoftwareImageName": "BIGIP-15.1.9-0.0.6.iso"
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "targetSoftwareImageName": "BIGIP-15.1.9-0.0.6.iso",
+      "currentDeviceInformation": {
+        "status": "complete",
+        "loop": [
+          {
+            "status": "complete",
+            "adapterId": "F5-BIG-IQ",
+            "filterProperty": "address",
+            "filterValue": "1.2.3.4",
+            "childJobLoopIndex": 0,
+            "_id": "ea4302c3db304f62af3c7c5b",
+            "initiator": "admin@pronghorn",
+            "returnStatus": "SUCCESS",
+            "activeVolume": "HD1.1",
+            "currentVersionBuild": "15.1.7-0.0.6",
+            "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+          }
+        ]
+      },
+      "deviceResults": {
+        "foundDevicesWithoutTargetImage": [
+          {
+            "status": "complete",
+            "adapterId": "F5-BIG-IQ",
+            "filterProperty": "address",
+            "filterValue": "1.2.3.4",
+            "childJobLoopIndex": 0,
+            "_id": "ea4302c3db304f62af3c7c5b",
+            "initiator": "admin@pronghorn",
+            "returnStatus": "SUCCESS",
+            "activeVolume": "HD1.1",
+            "currentVersionBuild": "15.1.7-0.0.6",
+            "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+          }
+        ],
+        "foundDevicesWithTargetImage": [],
+        "targetSoftwareImageName": "BIGIP-15.1.9-0.0.6.iso"
+      },
+      "result": "SUCCESS"
+    }
+  },
+  "stubTasks": []
+}

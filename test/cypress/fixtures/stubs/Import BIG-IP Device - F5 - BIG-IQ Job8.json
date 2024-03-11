@@ -1,0 +1,147 @@
+{
+  "input": {
+    "description": "Import BIG-IP Device - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "_id": "0df0686e197847be824d0680",
+      "importDeviceTaskName": "Rediscover adc_core",
+      "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "importDeviceTaskName": "Rediscover adc_core",
+      "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+      "returnStatus": "SUCCESS"
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "2947",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "Rediscover adc_core",
+            "conflictPolicy": "USE_BIGIQ",
+            "deviceReference": {
+              "link": "https://localhost/mgmt/cm/system/machineid-resolver/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+            },
+            "failImportOnConflict": true,
+            "moduleList": [
+              {
+                "module": "adc_core"
+              }
+            ],
+            "status": "STARTED"
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.202",
+            "response": {
+              "conflictPolicy": "USE_BIGIQ",
+              "moduleList": [
+                {
+                  "module": "adc_core"
+                }
+              ],
+              "deviceReference": {
+                "link": "https://localhost/mgmt/cm/system/machineid-resolver/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              },
+              "id": "ed1596c6-08d0-475e-9c96-7add0390e7ef",
+              "status": "STARTED",
+              "name": "Rediscover adc_core",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "taskWorkerGeneration": 1,
+              "generation": 1,
+              "lastUpdateMicros": 1709930123488884,
+              "kind": "cm:global:tasks:device-import:importsupertaskitemstate",
+              "selfLink": "https://localhost/mgmt/cm/global/tasks/device-import/ed1596c6-08d0-475e-9c96-7add0390e7ef"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 516,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "1a74",
+      "variables": {
+        "incoming": {
+          "deviceImportId": "ed1596c6-08d0-475e-9c96-7add0390e7ef"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "ed1596c6-08d0-475e-9c96-7add0390e7ef",
+              "kind": "cm:global:tasks:device-import:importsupertaskitemstate",
+              "name": "Rediscover adc_core",
+              "status": "FINISHED",
+              "selfLink": "https://localhost/mgmt/cm/global/tasks/device-import/ed1596c6-08d0-475e-9c96-7add0390e7ef",
+              "username": "admin",
+              "generation": 6,
+              "moduleList": [
+                {
+                  "module": "adc_core",
+                  "status": "FINISHED",
+                  "endTime": "2024-03-08T20:35:29.757Z",
+                  "startTime": "2024-03-08T20:35:23.689Z",
+                  "taskReference": {
+                    "link": "https://localhost/mgmt/cm/adc-core/tasks/declare-mgmt-authority/2fac65fe-33ab-42c3-902c-24992d65184b"
+                  }
+                }
+              ],
+              "currentStep": "DONE",
+              "endDateTime": "2024-03-08T12:35:29.813-0800",
+              "startDateTime": "2024-03-08T12:35:23.509-0800",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "conflictPolicy": "USE_BIGIQ",
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "allModuleStatus": [
+                {
+                  "module": "adc_core",
+                  "status": "FINISHED",
+                  "endTime": "2024-03-08T20:35:29.757Z",
+                  "startTime": "2024-03-08T20:35:23.689Z",
+                  "taskReference": {
+                    "link": "https://localhost/mgmt/cm/adc-core/tasks/declare-mgmt-authority/2fac65fe-33ab-42c3-902c-24992d65184b"
+                  }
+                }
+              ],
+              "deviceReference": {
+                "link": "https://localhost/mgmt/cm/system/machineid-resolver/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              },
+              "lastUpdateMicros": 1709930129863846,
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "deviceConflictPolicy": "USE_BIGIP",
+              "versionedConflictPolicy": "USE_BIGIQ"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1200,
+        "y": 996
+      }
+    }
+  ]
+}

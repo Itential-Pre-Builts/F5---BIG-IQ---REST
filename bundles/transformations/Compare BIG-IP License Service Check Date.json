@@ -1,0 +1,905 @@
+{
+  "_id": "65df62dbe646b4018cac3d81",
+  "name": "Compare BIG-IP License Service Check Date",
+  "description": "Compares BIG-IP license service check date to current date to determine if re-activation of license is required",
+  "incoming": [
+    {
+      "$id": "licenseCheckResults",
+      "type": "object",
+      "properties": {
+        "scriptResult": {
+          "type": "object",
+          "properties": {
+            "response": {
+              "type": "object",
+              "properties": {
+                "userScriptTaskStatuses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "output": {
+                        "type": "string",
+                        "examples": [
+                          "Service Check Date               2023/05/16\n"
+                        ]
+                      },
+                      "status": {
+                        "type": "string",
+                        "examples": [
+                          "FINISHED"
+                        ]
+                      },
+                      "address": {
+                        "type": "string",
+                        "examples": [
+                          "1.2.3.4"
+                        ],
+                        "format": "ipv4"
+                      },
+                      "machineId": {
+                        "type": "string",
+                        "examples": [
+                          "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                        ],
+                        "format": "uuid"
+                      }
+                    },
+                    "required": []
+                  }
+                }
+              },
+              "required": []
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "licenseDatesValid",
+      "type": "boolean",
+      "examples": [
+        true,
+        false
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "licenseCheckResults",
+        "ptr": "/scriptResult/response/userScriptTaskStatuses"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "declaration",
+      "library": "Boolean",
+      "method": "new Boolean",
+      "args": [
+        true
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "compareServiceCheckDates"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 5,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "confirmAllLicenseDatesCurrent",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "licenseDatesValid",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "output": {
+              "type": "string",
+              "examples": [
+                "Service Check Date               2023/05/16\n"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "examples": [
+                "FINISHED"
+              ]
+            },
+            "address": {
+              "type": "string",
+              "examples": [
+                "1.2.3.4"
+              ],
+              "format": "ipv4"
+            },
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              ],
+              "format": "uuid"
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "output": {
+                "type": "string",
+                "examples": [
+                  "Service Check Date               2023/05/16\n"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "examples": [
+                  "FINISHED"
+                ]
+              },
+              "address": {
+                "type": "string",
+                "examples": [
+                  "1.2.3.4"
+                ],
+                "format": "ipv4"
+              },
+              "machineId": {
+                "type": "string",
+                "examples": [
+                  "3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                ],
+                "format": "uuid"
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "output",
+          "type": [
+            "string",
+            "array",
+            "boolean"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "declaration",
+          "library": "RegExp",
+          "method": "new RegExp",
+          "args": [
+            "(?<=Service Check Date\\s).*",
+            "gm"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/output"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 30,
+          "type": "method",
+          "library": "Date",
+          "method": "now",
+          "args": [],
+          "view": {
+            "row": 2,
+            "col": 9
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 35,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 30,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "RegExp",
+          "method": "exec",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            0
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "method",
+          "library": "String",
+          "method": "trim",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 11,
+          "type": "method",
+          "library": "String",
+          "method": "split",
+          "args": [
+            null,
+            "/",
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 14,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 13,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 16,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 15,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 13,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            0
+          ],
+          "view": {
+            "row": 1,
+            "col": 5
+          },
+          "context": "#"
+        },
+        {
+          "id": 15,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            1
+          ],
+          "view": {
+            "row": 2,
+            "col": 5
+          },
+          "context": "#"
+        },
+        {
+          "id": 17,
+          "type": "method",
+          "library": "Array",
+          "method": "getIndex",
+          "args": [
+            null,
+            2
+          ],
+          "view": {
+            "row": 3,
+            "col": 5
+          },
+          "context": "#"
+        },
+        {
+          "id": 20,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 13,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "declaration",
+            "name": 19,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 22,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "declaration",
+            "name": 19,
+            "ptr": "/args/2/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 27,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 15,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 26,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 26,
+          "type": "method",
+          "library": "Math",
+          "method": "subtract",
+          "args": [
+            null,
+            1
+          ],
+          "view": {
+            "row": 2,
+            "col": 6
+          },
+          "context": "#"
+        },
+        {
+          "id": 28,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 26,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "declaration",
+            "name": 19,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 19,
+          "type": "declaration",
+          "library": "Date",
+          "method": "new Date",
+          "args": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 7
+          },
+          "context": "#",
+          "polymorphIndex": 3
+        },
+        {
+          "id": 24,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 19,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 23,
+          "type": "method",
+          "library": "Date",
+          "method": "toDateString",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 8
+          },
+          "context": "#"
+        },
+        {
+          "id": 32,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 31,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 31,
+          "type": "method",
+          "library": "Date",
+          "method": "parse",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 9
+          },
+          "context": "#"
+        },
+        {
+          "id": 34,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 31,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 33,
+          "type": "method",
+          "library": "Relational",
+          "method": "greaterThanOrEqual",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 10
+          },
+          "context": "#"
+        },
+        {
+          "id": 36,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "output",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "compareServiceCheckDates",
+      "view": {
+        "col": 10,
+        "row": 5
+      },
+      "id": "compareServiceCheckDates",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ]
+        },
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Logical",
+          "method": "and",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "confirmAllLicenseDatesCurrent",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "confirmAllLicenseDatesCurrent",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2024-02-28T16:44:11.082Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2024-02-28T22:53:39.587Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.14",
+  "tags": []
+}

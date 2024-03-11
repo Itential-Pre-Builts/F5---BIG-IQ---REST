@@ -1,0 +1,904 @@
+{
+  "_id": "65eb26790e2858018be1d3a5",
+  "name": "Evaluate License Activation - BIG-IQ",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "licenseActivationResult",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "examples": [
+            "complete"
+          ]
+        },
+        "loop": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "examples": [
+                  "complete"
+                ]
+              },
+              "scriptResult": {
+                "type": "object",
+                "properties": {
+                  "response": {
+                    "type": "object",
+                    "properties": {
+                      "userScriptTaskStatuses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "output": {
+                              "type": "string",
+                              "examples": [
+                                "New license installed\n"
+                              ]
+                            },
+                            "status": {
+                              "type": "string",
+                              "examples": [
+                                "FINISHED"
+                              ]
+                            },
+                            "exitCode": {
+                              "type": "string"
+                            }
+                          },
+                          "required": []
+                        }
+                      }
+                    },
+                    "required": []
+                  }
+                },
+                "required": []
+              }
+            },
+            "required": []
+          }
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "licenseActivationMappedResults",
+      "type": "array"
+    },
+    {
+      "$id": "licenseActivationResult",
+      "type": "boolean",
+      "examples": [
+        true,
+        false
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "licenseActivationResult",
+        "ptr": "/loop"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "declaration",
+      "library": "Boolean",
+      "method": "new Boolean",
+      "args": [
+        true
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "mapActivationResults"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 5,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "evaluateLicenseActivationResults",
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "licenseActivationMappedResults",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "licenseActivationResult",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "examples": [
+                "complete"
+              ]
+            },
+            "scriptResult": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "object",
+                  "properties": {
+                    "userScriptTaskStatuses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "output": {
+                            "type": "string",
+                            "examples": [
+                              "New license installed\n"
+                            ]
+                          },
+                          "status": {
+                            "type": "string",
+                            "examples": [
+                              "FINISHED"
+                            ]
+                          },
+                          "exitCode": {
+                            "type": "string"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  },
+                  "required": []
+                }
+              },
+              "required": []
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "examples": [
+                  "complete"
+                ]
+              },
+              "scriptResult": {
+                "type": "object",
+                "properties": {
+                  "response": {
+                    "type": "object",
+                    "properties": {
+                      "userScriptTaskStatuses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "output": {
+                              "type": "string",
+                              "examples": [
+                                "New license installed\n"
+                              ]
+                            },
+                            "status": {
+                              "type": "string",
+                              "examples": [
+                                "FINISHED"
+                              ]
+                            },
+                            "exitCode": {
+                              "type": "string"
+                            }
+                          },
+                          "required": []
+                        }
+                      }
+                    },
+                    "required": []
+                  }
+                },
+                "required": []
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "newValue",
+          "type": "object",
+          "properties": {
+            "output": {
+              "type": "string",
+              "examples": [
+                "output"
+              ]
+            },
+            "exitCode": {
+              "type": "string",
+              "examples": [
+                "exitCode"
+              ]
+            },
+            "machineId": {
+              "type": "string",
+              "examples": [
+                "machineId"
+              ]
+            },
+            "hostname": {
+              "type": "string",
+              "examples": [
+                "hostname"
+              ]
+            },
+            "address": {
+              "type": "string",
+              "examples": [
+                "address"
+              ]
+            }
+          },
+          "required": []
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/scriptResult/response/userScriptTaskStatuses"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "pop",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return/value"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return/value"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 14,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return/value"
+          },
+          "to": {
+            "location": "method",
+            "name": 13,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 17,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return/value"
+          },
+          "to": {
+            "location": "method",
+            "name": 16,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 20,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return/value"
+          },
+          "to": {
+            "location": "method",
+            "name": 19,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "output"
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "exitCode"
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 13,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "hostname"
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 16,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "machineId"
+          ],
+          "view": {
+            "row": 4,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 19,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "address"
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 10,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Logical",
+          "method": "nullish",
+          "args": [
+            null,
+            "failed"
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 10,
+          "type": "method",
+          "library": "Logical",
+          "method": "nullish",
+          "args": [
+            null,
+            "failed"
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 15,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 13,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": "/hostname"
+          },
+          "context": "#"
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 16,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": "/machineId"
+          },
+          "context": "#"
+        },
+        {
+          "id": 21,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 19,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": "/address"
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": "/output"
+          },
+          "context": "#"
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 10,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": "/exitCode"
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "mapActivationResults",
+      "view": {
+        "col": 3,
+        "row": 4
+      },
+      "id": "mapActivationResults",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        },
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "output"
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "String",
+          "method": "includes",
+          "args": [
+            null,
+            "New license installed",
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Logical",
+          "method": "and",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "evaluateLicenseActivationResults",
+      "view": {
+        "col": 3,
+        "row": 4
+      },
+      "id": "evaluateLicenseActivationResults",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2024-03-08T14:53:45.148Z",
+  "createdBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2024-03-08T15:36:31.103Z",
+  "lastUpdatedBy": {
+    "_id": "6463eeecee404876a5626a1a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.14",
+  "tags": []
+}

@@ -1,6 +1,76 @@
 {
   "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
   "tasks": {
+    "2546": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Compare BIG-IP License Service Check Date",
+      "description": "Compares BIG-IP license service check date to current date to determine if re-activation of license is required",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "65df62dbe646b4018cac3d81",
+          "variableMap": {
+            "licenseCheckResults": "$var.b43d.job_details"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "licenseDatesValid": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1608,
+        "y": -24
+      }
+    },
+    "3180": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create BIG-IP License Activation Inputs",
+      "description": "Creates BIG-IP license activation inputs",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "65df4a21e646b4018cac3d80",
+          "variableMap": {
+            "deviceReferencesWithLink": "$var.8e56.deviceReferencesWithMachineId",
+            "adapterId": "$var.job.adapterId",
+            "deviceLicenseKeys": "$var.fb1b.export"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "licenseActivationInputs": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1920,
+        "y": 144
+      }
+    },
     "3626": {
       "name": "stub",
       "canvasName": "stub",
@@ -24,8 +94,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 4464,
-        "y": 408
+        "x": 5064,
+        "y": 504
       }
     },
     "5569": {
@@ -54,7 +124,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 3528,
+        "x": 4128,
         "y": 84
       }
     },
@@ -171,7 +241,7 @@
       "name": "workflow_start",
       "groups": [],
       "nodeLocation": {
-        "x": -4008,
+        "x": -3996,
         "y": -24
       },
       "x": 0,
@@ -181,7 +251,7 @@
       "name": "workflow_end",
       "groups": [],
       "nodeLocation": {
-        "x": 5460,
+        "x": 6060,
         "y": -24
       },
       "x": 1,
@@ -396,6 +466,10 @@
             "deviceReferences": {
               "task": "8e56",
               "value": "deviceReferencesWithMachineId"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
             }
           },
           "data_array": "",
@@ -409,34 +483,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 1608,
-        "y": -24
-      }
-    },
-    "2af6": {
-      "name": "ViewData",
-      "canvasName": "ViewData",
-      "summary": "Re-Activate License",
-      "description": "Displays a message and runtime data to an operator. This can be used to request a decision, or used for acknowledgement only.",
-      "location": "Application",
-      "app": "WorkFlowEngine",
-      "displayName": "Tools",
-      "type": "manual",
-      "variables": {
-        "incoming": {
-          "header": "Re-Activate License",
-          "message": "Re-Activation of license is required before proceeding with rest of this job. \n\nUse the link(s) below to navigate to page to re-activate device license. Note this should only be run during a maintenance window as re-activating the license will cause a reboot of the device.\n\nUpon completing re-activation of license, select \"Continue Job\". If error occurred re-activating license, select \"End Job\".",
-          "body": "$var.c430.reactivationLinkMessage",
-          "variables": "",
-          "btn_success": "Continue Job",
-          "btn_failure": "End Job"
-        },
-        "outgoing": {}
-      },
-      "view": "/workflow_engine/task/ViewData",
-      "groups": [],
-      "nodeLocation": {
-        "x": 1296,
+        "x": 2232,
         "y": -24
       }
     },
@@ -470,6 +517,10 @@
             "deviceReferences": {
               "task": "8e56",
               "value": "deviceReferencesWithMachineId"
+            },
+            "_id": {
+              "task": "static",
+              "value": ""
             }
           },
           "data_array": "",
@@ -483,7 +534,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 3216,
+        "x": 3804,
         "y": -24
       }
     },
@@ -522,7 +573,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 4152,
+        "x": 4752,
         "y": -24
       }
     },
@@ -565,7 +616,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 4800,
+        "x": 5400,
         "y": -24
       }
     },
@@ -635,7 +686,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 1296,
-        "y": 408
+        "y": 504
       }
     },
     "90d0": {
@@ -661,8 +712,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 5460,
-        "y": 408
+        "x": 6060,
+        "y": 504
       }
     },
     "b992": {
@@ -696,7 +747,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 1944,
+        "x": 2544,
         "y": -24
       }
     },
@@ -741,7 +792,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 2256,
+        "x": 2856,
         "y": -24
       }
     },
@@ -768,7 +819,7 @@
       "view": "/workflow_engine/task/ViewData",
       "groups": [],
       "nodeLocation": {
-        "x": 2256,
+        "x": 2856,
         "y": 84
       }
     },
@@ -795,8 +846,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 2256,
-        "y": 408
+        "x": 2856,
+        "y": 504
       }
     },
     "9bcd": {
@@ -831,8 +882,8 @@
               "value": "deviceInputsForUpgrade"
             },
             "_id": {
-              "task": "8c67",
-              "value": "return_value"
+              "task": "static",
+              "value": ""
             }
           },
           "data_array": "",
@@ -846,7 +897,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 2556,
+        "x": 3156,
         "y": -24
       }
     },
@@ -963,7 +1014,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 2880,
+        "x": 3480,
         "y": -24
       }
     },
@@ -1039,7 +1090,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 3840,
+        "x": 4440,
         "y": -24
       }
     },
@@ -1084,7 +1135,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 3528,
+        "x": 4128,
         "y": -24
       }
     },
@@ -1111,8 +1162,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 3528,
-        "y": 408
+        "x": 4128,
+        "y": 504
       }
     },
     "ec9d": {
@@ -1156,7 +1207,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 3528,
+        "x": 4128,
         "y": -132
       }
     },
@@ -1229,7 +1280,7 @@
       "groups": [],
       "nodeLocation": {
         "x": -3132,
-        "y": 408
+        "y": 504
       }
     },
     "4aa4": {
@@ -1301,7 +1352,7 @@
       "groups": [],
       "nodeLocation": {
         "x": -576,
-        "y": 408
+        "y": 504
       }
     },
     "c32f": {
@@ -1373,7 +1424,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 372,
-        "y": 408
+        "y": 504
       }
     },
     "0571": {
@@ -1445,7 +1496,7 @@
       "groups": [],
       "nodeLocation": {
         "x": 984,
-        "y": 408
+        "y": 504
       }
     },
     "d992": {
@@ -1489,7 +1540,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 4464,
+        "x": 5064,
         "y": -24
       }
     },
@@ -1534,7 +1585,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 5124,
+        "x": 5724,
         "y": -24
       }
     },
@@ -1561,8 +1612,8 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 5124,
-        "y": 408
+        "x": 5724,
+        "y": 504
       }
     },
     "bffa": {
@@ -1612,7 +1663,7 @@
       "actor": "job",
       "groups": [],
       "nodeLocation": {
-        "x": 3528,
+        "x": 4128,
         "y": 300
       }
     },
@@ -1650,7 +1701,7 @@
       "actor": "Pronghorn",
       "groups": [],
       "nodeLocation": {
-        "x": 3528,
+        "x": 4128,
         "y": 192
       }
     },
@@ -1762,7 +1813,7 @@
       "groups": [],
       "nodeLocation": {
         "x": -2196,
-        "y": 408
+        "y": 504
       }
     },
     "da95": {
@@ -1791,9 +1842,291 @@
         "x": -2820,
         "y": -24
       }
+    },
+    "b43d": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Get License Service Check Date",
+      "description": "Get License Service Check Date",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Run Script on BIG-IP - F5 - BIG-IQ",
+          "variables": {
+            "scriptTimeout": {
+              "task": "static",
+              "value": 30
+            },
+            "_id": {
+              "task": "static",
+              "value": "id"
+            },
+            "scriptExecutionName": {
+              "task": "static",
+              "value": "Run Get License Service Check"
+            },
+            "adapterId": {
+              "task": "job",
+              "value": "adapterId"
+            },
+            "deviceReferences": {
+              "task": "8e56",
+              "value": "deviceReferencesWithMachineId"
+            },
+            "scriptName": {
+              "task": "static",
+              "value": "Get License Service Check"
+            },
+            "scriptDescription": {
+              "task": "static",
+              "value": "Returns the service check date from the license"
+            },
+            "scriptContent": {
+              "task": "static",
+              "value": "tmsh show sys license | grep 'Service Check Date'"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1296,
+        "y": -24
+      }
+    },
+    "d935": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Verify License Service Check Date",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "2546",
+                    "variable": "licenseDatesValid"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": true
+                  },
+                  "operator": "==",
+                  "query": "",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1920,
+        "y": -24
+      }
+    },
+    "adee": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Re-activate License",
+      "description": "Performs License Re-activation against device(s)",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Run Script on BIG-IP - F5 - BIG-IQ",
+          "variables": {},
+          "data_array": "$var.3180.licenseActivationInputs",
+          "transformation": "",
+          "loopType": "sequential"
+        },
+        "outgoing": {
+          "job_details": ""
+        }
+      },
+      "actor": "job",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1920,
+        "y": 240
+      }
+    },
+    "fb1b": {
+      "name": "ShowJsonForm",
+      "canvasName": "ShowJsonForm",
+      "summary": "Show Form to Input License Keys",
+      "description": "Show Form to Input License Keys",
+      "location": "Application",
+      "app": "JsonForms",
+      "displayName": "JsonForms",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "form_id": "Provide BIG-IP Device License Key(s)",
+          "instance_data": {}
+        },
+        "outgoing": {
+          "export": ""
+        }
+      },
+      "view": "/json-forms/task/ShowJsonForm",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1920,
+        "y": 60
+      }
+    },
+    "f235": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Evaluate License Activation - BIG-IQ",
+      "description": "Evaluate results of license activation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "65eb26790e2858018be1d3a5",
+          "variableMap": {
+            "licenseActivationResult": "$var.adee.job_details"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "licenseActivationMappedResults": null,
+          "licenseActivationResult": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 1920,
+        "y": 336
+      }
+    },
+    "fdb0": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check if License Activation Succeeded",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "operand_1": {
+                    "task": "f235",
+                    "variable": "licenseActivationResult"
+                  },
+                  "operand_2": {
+                    "task": "static",
+                    "variable": true
+                  },
+                  "operator": "==",
+                  "query": "",
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2232,
+        "y": 336
+      }
+    },
+    "9b15": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "License Activation Failed",
+      "description": "Display license activation result and options for next step",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "License Activation Failed",
+          "message": "License activation failed see response below. Select \"Retry\" to input license key(s) again and re-attempt activation or select \"End Job\" to not continue upgrade and end job.\n\n\n\n\n\n",
+          "body": "$var.f235.licenseActivationMappedResults",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "End Job"
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 2232,
+        "y": 444
+      }
     }
   },
   "transitions": {
+    "2546": {
+      "d935": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "3180": {
+      "adee": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
     "3626": {
       "d616": {
         "state": "success",
@@ -1859,16 +2192,6 @@
       "b992": {
         "state": "success",
         "type": "standard"
-      }
-    },
-    "2af6": {
-      "324a": {
-        "state": "success",
-        "type": "standard"
-      },
-      "52a9": {
-        "type": "standard",
-        "state": "failure"
       }
     },
     "935a": {
@@ -2058,13 +2381,13 @@
       }
     },
     "0571": {
-      "2af6": {
-        "state": "success",
-        "type": "standard"
-      },
       "a4f9": {
         "type": "standard",
         "state": "failure"
+      },
+      "b43d": {
+        "state": "success",
+        "type": "standard"
       }
     },
     "a4f9": {
@@ -2138,11 +2461,69 @@
         "state": "success",
         "type": "standard"
       }
+    },
+    "b43d": {
+      "2546": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "d935": {
+      "324a": {
+        "state": "success",
+        "type": "standard"
+      },
+      "fb1b": {
+        "state": "failure",
+        "type": "standard"
+      }
+    },
+    "adee": {
+      "f235": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "fb1b": {
+      "3180": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "f235": {
+      "fdb0": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "fdb0": {
+      "324a": {
+        "state": "success",
+        "type": "standard"
+      },
+      "9b15": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "9b15": {
+      "fb1b": {
+        "state": "success",
+        "type": "revert"
+      },
+      "417e": {
+        "type": "standard",
+        "state": "failure"
+      }
     }
   },
   "inputSchema": {
     "type": "object",
     "properties": {
+      "adapterId": {
+        "$id": "adapterId",
+        "type": "string"
+      },
       "credentialsFilterValue": {
         "$id": "filterValue",
         "type": "string"
@@ -2150,13 +2531,6 @@
       "credentialsFilterProperty": {
         "$id": "filterProperty",
         "type": "string"
-      },
-      "adapterId": {
-        "$id": "adapterId",
-        "type": "string",
-        "examples": [
-          "F5-BIG-IQ"
-        ]
       },
       "deviceBackupDescription": {
         "$id": "deviceBackupDescription",
@@ -2197,7 +2571,7 @@
           "machineIdFilterValue": {
             "type": "string",
             "examples": [
-              "10.0.0.8"
+              "1.2.3.4"
             ]
           },
           "targetVolume": {
@@ -2237,7 +2611,7 @@
           "machineIdFilterValue": {
             "type": "string",
             "examples": [
-              "10.0.0.8"
+              "1.2.3.4"
             ]
           },
           "targetVolume": {
@@ -2288,9 +2662,9 @@
       }
     },
     "required": [
+      "adapterId",
       "credentialsFilterValue",
       "credentialsFilterProperty",
-      "adapterId",
       "deviceBackupDescription",
       "deviceBackupLifeTime",
       "deviceAData",
@@ -2306,6 +2680,10 @@
   "outputSchema": {
     "type": "object",
     "properties": {
+      "adapterId": {
+        "$id": "adapterId",
+        "type": "string"
+      },
       "credentialsFilterValue": {
         "$id": "filterValue",
         "type": "string"
@@ -2313,13 +2691,6 @@
       "credentialsFilterProperty": {
         "$id": "filterProperty",
         "type": "string"
-      },
-      "adapterId": {
-        "$id": "adapterId",
-        "type": "string",
-        "examples": [
-          "F5-BIG-IQ"
-        ]
       },
       "deviceBackupDescription": {
         "$id": "deviceBackupDescription",
@@ -2360,7 +2731,7 @@
           "machineIdFilterValue": {
             "type": "string",
             "examples": [
-              "10.0.0.8"
+              "1.2.3.4"
             ]
           },
           "targetVolume": {
@@ -2400,7 +2771,7 @@
           "machineIdFilterValue": {
             "type": "string",
             "examples": [
-              "10.0.0.8"
+              "1.2.3.4"
             ]
           },
           "targetVolume": {
@@ -2466,21 +2837,21 @@
     }
   },
   "decorators": [],
-  "type": "automation",
-  "font_size": 12,
-  "errorHandler": null,
-  "preAutomationTime": 0,
-  "sla": 0,
-  "last_updated": "2023-10-18T21:20:29.471Z",
-  "lastUpdatedVersion": "5.46.0-2023.1.21.0",
   "created": "2023-09-20T17:55:55.770Z",
+  "createdVersion": "5.46.0-2023.1.19.0",
   "created_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
     "inactive": false
   },
-  "createdVersion": "5.46.0-2023.1.19.0",
+  "errorHandler": null,
+  "font_size": 12,
+  "lastUpdatedVersion": "5.46.0-2023.1.30.0",
+  "last_updated": "2024-03-11T20:54:14.963Z",
+  "preAutomationTime": 0,
+  "sla": 0,
+  "type": "automation",
   "canvasVersion": 3,
   "last_updated_by": {
     "provenance": "local_aaa",

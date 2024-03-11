@@ -1,0 +1,215 @@
+{
+  "input": {
+    "description": "Run Script on BIG-IP - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "_id": "28ba0ec83cb8470c91141632",
+      "adapterId": "F5-BIG-IQ",
+      "scriptName": "Re-Activate License Device 1",
+      "scriptDescription": "Re-activates license",
+      "scriptContent": "tmsh install sys license registration-key PAWHT-ETKXA-OUIZI-VQSMO-JMBOKPS add-on-keys {  QZUTTXP-STCZPNX }",
+      "deviceReferences": [
+        {
+          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+        }
+      ],
+      "scriptExecutionName": "Run Re-Activate License Device 1",
+      "scriptTimeout": 30
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "scriptName": "Re-Activate License Device 1",
+      "scriptDescription": "Re-activates license",
+      "scriptContent": "tmsh install sys license registration-key PAWHT-ETKXA-OUIZI-VQSMO-JMBOKPS add-on-keys {  QZUTTXP-STCZPNX }",
+      "deviceReferences": [
+        {
+          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+        }
+      ],
+      "scriptExecutionName": "Run Re-Activate License Device 1",
+      "scriptTimeout": 30
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "9ab2",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "Re-Activate License Device 1",
+            "description": "Re-activates license",
+            "script": "tmsh install sys license registration-key PAWHT-ETKXA-OUIZI-VQSMO-JMBOKPS add-on-keys {  QZUTTXP-STCZPNX }"
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "dfbae1a5-c8c8-40b8-8e59-d19129e7fef0",
+              "name": "Re-Activate License Device 1",
+              "description": "Re-activates license",
+              "script": "tmsh install sys license registration-key PAWHT-ETKXA-OUIZI-VQSMO-JMBOKPS add-on-keys {  QZUTTXP-STCZPNX }",
+              "generation": 1,
+              "lastUpdateMicros": 1709928694563615,
+              "kind": "shared:user-scripts:userscriptstate",
+              "selfLink": "https://localhost/mgmt/shared/user-scripts/dfbae1a5-c8c8-40b8-8e59-d19129e7fef0"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": -48,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "2e0e",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "Run Re-Activate License Device 1",
+            "deviceReferences": [
+              {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              }
+            ],
+            "timeout": 30,
+            "scriptReference": {
+              "link": "https://localhost/mgmt/shared/user-scripts/dfbae1a5-c8c8-40b8-8e59-d19129e7fef0"
+            }
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.202",
+            "response": {
+              "deviceReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "scriptReference": {
+                "link": "https://localhost/mgmt/shared/user-scripts/dfbae1a5-c8c8-40b8-8e59-d19129e7fef0"
+              },
+              "id": "8d7ff823-c102-4783-bd8e-461f66366372",
+              "status": "STARTED",
+              "name": "Run Re-Activate License Device 1",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "taskWorkerGeneration": 1,
+              "generation": 1,
+              "lastUpdateMicros": 1709928695338746,
+              "kind": "shared:user-script-execution:userscripttaskstate",
+              "selfLink": "https://localhost/mgmt/shared/user-script-execution/8d7ff823-c102-4783-bd8e-461f66366372"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 888,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "6b06",
+      "variables": {
+        "incoming": {
+          "scriptTaskId": "8d7ff823-c102-4783-bd8e-461f66366372"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "8d7ff823-c102-4783-bd8e-461f66366372",
+              "kind": "shared:user-script-execution:userscripttaskstate",
+              "name": "Run Re-Activate License Device 1",
+              "status": "FINISHED",
+              "selfLink": "https://localhost/mgmt/shared/user-script-execution/8d7ff823-c102-4783-bd8e-461f66366372",
+              "username": "admin",
+              "generation": 7,
+              "currentStep": "CLEAN_UP",
+              "deviceCount": 1,
+              "endDateTime": "2024-03-08T12:12:15.762-0800",
+              "startDateTime": "2024-03-08T12:11:35.355-0800",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "scriptReference": {
+                "link": "https://localhost/mgmt/shared/user-scripts/dfbae1a5-c8c8-40b8-8e59-d19129e7fef0"
+              },
+              "deviceReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "lastUpdateMicros": 1709928735813076,
+              "timeoutInSeconds": 600,
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "userScriptTaskStatuses": [
+                {
+                  "output": "New license installed\n",
+                  "status": "FINISHED",
+                  "address": "1.2.3.4",
+                  "message": "Finished executing script.",
+                  "exitCode": "0\nKey and matching certificate not found, skipping phonehome_upload.",
+                  "hostname": "ip-10-0-0-8.ec2.internal",
+                  "httpsPort": 8443,
+                  "machineId": "3fd9cf87-17ff-44b3-afc8-461c115bc5c8",
+                  "startTime": 29424908236262,
+                  "deviceReference": {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1512,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "8c79",
+      "variables": {
+        "incoming": {
+          "scriptId": "dfbae1a5-c8c8-40b8-8e59-d19129e7fef0"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "dfbae1a5-c8c8-40b8-8e59-d19129e7fef0",
+              "name": "Re-Activate License Device 1",
+              "description": "Re-activates license",
+              "script": "tmsh install sys license registration-key PAWHT-ETKXA-OUIZI-VQSMO-JMBOKPS add-on-keys {  QZUTTXP-STCZPNX }",
+              "generation": 1,
+              "lastUpdateMicros": 1709928757388416,
+              "kind": "shared:user-scripts:userscriptstate",
+              "selfLink": "https://localhost/mgmt/shared/user-scripts/dfbae1a5-c8c8-40b8-8e59-d19129e7fef0"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 2460,
+        "y": 996
+      }
+    }
+  ]
+}

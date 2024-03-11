@@ -1,0 +1,149 @@
+{
+  "input": {
+    "description": "Create iHealth Upload Task - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ",
+    "variables": {
+      "_id": "a0d6dd3c99d648e9a6e2a1b5",
+      "adapterId": "F5-BIG-IQ",
+      "iHealthTaskName": "Upload iHealth task-Post-Upgrade",
+      "deviceReferences": [
+        {
+          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+        }
+      ],
+      "credentialsId": "e4b74c82-2d47-2a4c-aa58-b0972e8057b1"
+    }
+  },
+  "expectedTaskResults": {
+    "status": "complete",
+    "variables": {
+      "adapterId": "F5-BIG-IQ",
+      "credentialsId": "e4b74c82-2d47-2a4c-aa58-b0972e8057b1",
+      "iHealthTaskName": "Upload iHealth task-Post-Upgrade",
+      "deviceReferences": [
+        {
+          "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+        }
+      ],
+      "returnStatus": "SUCCESS"
+    }
+  },
+  "stubTasks": [
+    {
+      "taskId": "f70d",
+      "variables": {
+        "incoming": {
+          "body": {
+            "name": "Upload iHealth task-Post-Upgrade",
+            "deviceReferences": [
+              {
+                "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+              }
+            ],
+            "credentialsReference": {
+              "link": "https://localhost/mgmt/cm/device/ihealth/credentials/e4b74c82-2d47-2a4c-aa58-b0972e8057b1"
+            },
+            "uploadLocalQkView": false
+          }
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.202",
+            "response": {
+              "deviceReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "uploadLocalQkView": false,
+              "credentialsReference": {
+                "link": "https://localhost/mgmt/cm/device/ihealth/credentials/e4b74c82-2d47-2a4c-aa58-b0972e8057b1"
+              },
+              "id": "d1d8cee7-66f2-405e-b14c-1d5aee0cb769",
+              "status": "STARTED",
+              "name": "Upload iHealth task-Post-Upgrade",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "taskWorkerGeneration": 1,
+              "generation": 1,
+              "lastUpdateMicros": 1709929813435510,
+              "kind": "cm:device:ihealth:uploads:ihealthuploadstate",
+              "selfLink": "https://localhost/mgmt/cm/device/ihealth/uploads/d1d8cee7-66f2-405e-b14c-1d5aee0cb769"
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 540,
+        "y": 996
+      }
+    },
+    {
+      "taskId": "714d",
+      "variables": {
+        "incoming": {
+          "iHealthUploadTaskId": "d1d8cee7-66f2-405e-b14c-1d5aee0cb769"
+        },
+        "outgoing": {
+          "result": {
+            "icode": "AD.200",
+            "response": {
+              "id": "d1d8cee7-66f2-405e-b14c-1d5aee0cb769",
+              "kind": "cm:device:ihealth:uploads:ihealthuploadstate",
+              "name": "Upload iHealth task-Post-Upgrade",
+              "status": "FINISHED",
+              "progress": "All Done",
+              "selfLink": "https://localhost/mgmt/cm/device/ihealth/uploads/d1d8cee7-66f2-405e-b14c-1d5aee0cb769",
+              "username": "admin",
+              "generation": 80,
+              "endDateTime": "2024-03-08T12:33:34.492-0800",
+              "startDateTime": "2024-03-08T12:30:13.454-0800",
+              "userReference": {
+                "link": "https://localhost/mgmt/shared/authz/users/admin"
+              },
+              "ownerMachineId": "8793330f-01a4-4c41-9d4a-cb126002b54d",
+              "deviceReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                }
+              ],
+              "lastUpdateMicros": 1709930014542793,
+              "uploadLocalQkView": false,
+              "deviceTaskStatuses": [
+                {
+                  "status": "FINISHED",
+                  "message": "Completed",
+                  "reportUri": "https://ihealth-api.f5.com/qkview-analyzer/api/qkviews/22219792/diagnostics",
+                  "deviceReference": {
+                    "link": "https://localhost/mgmt/shared/resolver/device-groups/cm-bigip-allBigIpDevices/devices/3fd9cf87-17ff-44b3-afc8-461c115bc5c8"
+                  },
+                  "uploadedByteCount": 43188588,
+                  "reportExpirationDateTime": "2024-04-07T20:31:16.000Z"
+                }
+              ],
+              "identityReferences": [
+                {
+                  "link": "https://localhost/mgmt/shared/authz/users/admin"
+                }
+              ],
+              "credentialsReference": {
+                "link": "https://localhost/mgmt/cm/device/ihealth/credentials/e4b74c82-2d47-2a4c-aa58-b0972e8057b1"
+              },
+              "totalUploadedByteCount": 43188588
+            }
+          }
+        }
+      },
+      "nodeLocation": {
+        "x": 1212,
+        "y": 996
+      }
+    }
+  ]
+}
