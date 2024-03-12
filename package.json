@@ -1,5 +1,5 @@
 {
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.",
   "scripts": {
     "setup-hooks": "sh ./scripts/setup-hooks.sh",
