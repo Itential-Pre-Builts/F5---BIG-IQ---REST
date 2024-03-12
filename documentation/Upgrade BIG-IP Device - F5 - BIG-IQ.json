@@ -17,7 +17,7 @@
   "externalDependencyList": [
     {
       "name": "F5 BIG-IQ",
-      "osVersion": "8.3"
+      "osVersion": "^8.3.0"
     }
   ],
   "capabilities": [
@@ -31,10 +31,13 @@
       "capability": "Verify sufficient disk space exists on BIG-IP for upgrade"
     },
     {
+      "capability": "Verifies license key and provides form input for license key inputs if license re-activation needed and performs license re-activation"
+    },
+    {
       "capability": "Performs rollback to volume prior to upgrade if upgrade fails"
     },
     {
-      "capability": "Does device discovery and import after upgrade"
+      "capability": "Performs device discovery and import after upgrade"
     },
     {
       "capability": "Supports upgrade of HA pair of devices as well as upgrade of single device"
@@ -214,6 +217,12 @@
       }
     ]
   },
+  "apiLinks": [
+    {
+      "title": "F5 BIG-IQ API Reference",
+      "link": "https://clouddocs.f5.com/products/big-iq/mgmt-api/v0.0/ApiReferences/bigiq_public_api_ref/r_public_api_references.html"
+    }
+  ],
   "name": "Upgrade BIG-IP Device - F5 - BIG-IQ",
   "overview": "Upgrades BIG-IP device over F5 BIG-IQ",
   "webName": "Upgrade F5 BIG-IP Device over BIG-IQ",

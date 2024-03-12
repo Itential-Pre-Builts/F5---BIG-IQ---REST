@@ -1,13 +1,12 @@
 {
   "name": "F5 - BIG-IQ - REST",
-  "overview": "Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.",
+  "overview": "This contains modular workflows that operate when integrated with F5 BIG-IQ. Once installed teams will be able to quickly automate common manual tasks like software upgrade of managed BIG-IP devices, saving a significant amount of time and effort. This library can be used as modular components with other libraries and automations to build comprehensive end-to-end orchestrated workflows with Itential's low-code platform.",
   "domains": [],
   "tags": [
     "Domain Name Service",
     "DNS"
   ],
   "productLink": "https://www.f5.com/products/big-ip-services/big-iq",
-  "apiLinks": [],
   "storeLink": "",
   "docLink": "",
   "issueLink": "https://itential.atlassian.net/servicedesk/customer/portals",
@@ -18,7 +17,7 @@
   "vendorLink": "https://www.f5.com/",
   "faqLink": "",
   "contributeLink": "",
-  "webName": "F5 BIG-IQ Automations",
+  "webName": "F5 BIG-IQ - Modular Automations",
   "useCases": [
     "Perform a software upgrade on Device"
   ],
