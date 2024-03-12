@@ -61,7 +61,7 @@
       "name": "evaluation",
       "canvasName": "evaluation",
       "summary": "Check if Any Devices Have Target Image as Active",
-      "description": "Run an evaluation",
+      "description": "Check if Any Devices Have Target Image as Active",
       "location": "Application",
       "locationType": null,
       "app": "WorkFlowEngine",
