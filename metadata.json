@@ -28,7 +28,7 @@
   "brokerSince": "",
   "documentation": {
     "storeLink": "",
-    "repoLink": "https://gitlab.com/itentialopensource/pre-built-automations/staging/f5-big-iq-rest",
+    "repoLink": "https://gitlab.com/itentialopensource/pre-built-automations/f5-big-iq-rest",
     "npmLink": "https://www.npmjs.com/package/@itentialopensource/f5-big-iq-rest",
     "docLink": "",
     "demoLinks": [],
