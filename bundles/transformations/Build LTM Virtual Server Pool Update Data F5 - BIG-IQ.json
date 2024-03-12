@@ -1,0 +1,152 @@
+{
+  "_id": "65c54d6fc0474700f72c0a55",
+  "name": "Build LTM Virtual Server Pool Update Data F5 - BIG-IQ",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "virtualServerId",
+      "type": "string"
+    },
+    {
+      "$id": "poolId",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "updateURI",
+      "type": "string"
+    },
+    {
+      "$id": "updateData",
+      "type": "object",
+      "properties": {
+        "poolReference": {
+          "type": "object",
+          "properties": {
+            "link": {
+              "type": "string",
+              "examples": [
+                "https://localhost/mgmt/cm/adc-core/working-config/ltm/pool/1b921eaa-3928-6471-1c0c-a612665695a8"
+              ]
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "/mgmt/cm/adc-core/working-config/ltm/virtual/${virtualServerId}",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "virtualServerId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateURI",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "String",
+      "method": "concat",
+      "args": [
+        "https://localhost/mgmt/cm/adc-core/working-config/ltm/pool/",
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "poolId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateData",
+        "ptr": "/poolReference/link"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 1,
+    "row": 5
+  },
+  "created": "2024-02-08T21:53:51.328Z",
+  "createdBy": {
+    "_id": "65b166a3b6b498ef7e27cf7a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2024-02-08T22:00:34.526Z",
+  "lastUpdatedBy": {
+    "_id": "65b166a3b6b498ef7e27cf7a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.14",
+  "tags": []
+}

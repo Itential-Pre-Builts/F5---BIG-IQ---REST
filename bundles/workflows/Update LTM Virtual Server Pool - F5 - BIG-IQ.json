@@ -1,0 +1,243 @@
+{
+  "name": "Update LTM Virtual Server Pool - F5 - BIG-IQ",
+  "tasks": {
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -612
+      },
+      "x": 0,
+      "y": 0.5
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -180
+      },
+      "x": 1,
+      "y": 0.5
+    },
+    "3a91": {
+      "name": "genericAdapterRequest",
+      "canvasName": "genericAdapterRequest",
+      "summary": "Makes the requested generic call",
+      "description": "Makes the requested generic call",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "BigIQ",
+      "variables": {
+        "incoming": {
+          "uriPath": "$var.4ab1.updateURI",
+          "restMethod": "PATCH",
+          "queryData": "",
+          "requestBody": "$var.4ab1.updateData",
+          "addlHeaders": "",
+          "adapter_id": "BigIQ"
+        },
+        "outgoing": {
+          "result": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -288
+      }
+    },
+    "2c25": {
+      "name": "getLTMVirtualServer",
+      "canvasName": "getLTMVirtualServer",
+      "summary": "Get LTM Virtual Server",
+      "description": "Get LTM Virtual Server",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "BigIQ",
+      "variables": {
+        "incoming": {
+          "objectId": "$var.job.virtualServerId",
+          "adapter_id": "BigIQ"
+        },
+        "outgoing": {
+          "result": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -396
+      }
+    },
+    "4ab1": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Build LTM Virtual Server Update Data",
+      "description": "Build LTM Virtual Server Update Data",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "65c54d6fc0474700f72c0a55",
+          "variableMap": {
+            "virtualServerId": "$var.job.virtualServerId",
+            "poolId": "$var.job.poolId"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "updateURI": null,
+          "updateData": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -504
+      }
+    },
+    "5a93": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Error",
+      "description": "Show Error",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Error Retrieving LTM Virtual Server",
+          "message": "",
+          "body": "$var.2c25.error",
+          "variables": "",
+          "btn_success": "OK",
+          "btn_failure": ""
+        },
+        "outgoing": {}
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "nodeLocation": {
+        "x": 348,
+        "y": -396
+      }
+    }
+  },
+  "transitions": {
+    "workflow_start": {
+      "4ab1": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "workflow_end": {},
+    "3a91": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "2c25": {
+      "3a91": {
+        "state": "success",
+        "type": "standard"
+      },
+      "5a93": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "4ab1": {
+      "2c25": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "5a93": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "virtualServerId": {
+        "title": "objectId",
+        "type": "string"
+      },
+      "poolId": {
+        "$id": "poolId",
+        "type": "string"
+      }
+    },
+    "required": [
+      "virtualServerId",
+      "poolId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "virtualServerId": {
+        "title": "objectId",
+        "type": "string"
+      },
+      "poolId": {
+        "$id": "poolId",
+        "type": "string"
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      }
+    }
+  },
+  "canvasVersion": 3,
+  "type": "automation",
+  "font_size": 12,
+  "errorHandler": null,
+  "preAutomationTime": 0,
+  "sla": 0,
+  "lastUpdatedVersion": "5.46.0-2023.1.30.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "createdVersion": "5.46.0-2023.1.30.0",
+  "last_updated": "2024-02-09T14:14:53.613Z",
+  "created": "2024-02-08T21:52:59.547Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 2
+}

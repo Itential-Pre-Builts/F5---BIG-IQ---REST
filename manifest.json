@@ -59,6 +59,15 @@
       }
     },
     {
+      "id": "Get Pool Members for VS - F5 - BIG-IQ",
+      "name": "Get Pool Members for VS - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Get Pool Members for VS - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
       "id": "Import BIG-IP Device - F5 - BIG-IQ",
       "name": "Import BIG-IP Device - F5 - BIG-IQ",
       "type": "workflow",
@@ -113,10 +122,28 @@
       }
     },
     {
+      "id": "Update LTM Virtual Server Pool - F5 - BIG-IQ",
+      "name": "Update LTM Virtual Server Pool - F5 - BIG-IQ",
+      "type": "workflow",
+      "location": "/bundles/workflows/Update LTM Virtual Server Pool - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
       "id": "Provide BIG-IP Device License Key(s)",
       "name": "Provide BIG-IP Device License Key(s)",
       "type": "json-forms",
       "location": "/bundles/json_forms/Provide BIG-IP Device License Key(s).json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "65c54d6fc0474700f72c0a55",
+      "name": "Build LTM Virtual Server Pool Update Data F5 - BIG-IQ",
+      "type": "transformation",
+      "location": "/bundles/transformations/Build LTM Virtual Server Pool Update Data F5 - BIG-IQ.json",
       "properties": {
         "entryPoint": false
       }
@@ -324,6 +351,24 @@
       "name": "Evaluate License Activation - BIG-IQ",
       "type": "transformation",
       "location": "/bundles/transformations/Evaluate License Activation - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "65c4ffd1c0474700f72c0a50",
+      "name": "Filter Pool Members - F5 - BIG-IQ",
+      "type": "transformation",
+      "location": "/bundles/transformations/Filter Pool Members - F5 - BIG-IQ.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "65c4fd29c0474700f72c0a4f",
+      "name": "Get Pool Members for VS - F5 - BIG-IQ",
+      "type": "transformation",
+      "location": "/bundles/transformations/Get Pool Members for VS - F5 - BIG-IQ.json",
       "properties": {
         "entryPoint": false
       }

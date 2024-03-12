@@ -1,0 +1,251 @@
+{
+  "name": "Get Pool Members for VS - F5 - BIG-IQ",
+  "tasks": {
+    "1599": {
+      "name": "genericAdapterRequest",
+      "canvasName": "genericAdapterRequest",
+      "summary": "Get Pool Members",
+      "description": "Get Pool Members",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "BigIQ",
+      "variables": {
+        "incoming": {
+          "uriPath": "$var.9036.poolUrl",
+          "restMethod": "GET",
+          "queryData": {},
+          "requestBody": "",
+          "addlHeaders": "",
+          "adapter_id": "BigIQ"
+        },
+        "outgoing": {
+          "result": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -432
+      }
+    },
+    "9036": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Get Pool Members for VS - F5 - BIG-IQ",
+      "description": "Get Pool Members for VS - F5 - BIG-IQ",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "65c4fd29c0474700f72c0a4f",
+          "variableMap": {
+            "virtualServerId": "$var.job.virtualServerId",
+            "vsData": "$var.e2a7.result"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "poolMemberPayload": null,
+          "poolUrl": null
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -540
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -756
+      },
+      "x": 0,
+      "y": 0.5
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -216
+      },
+      "x": 1,
+      "y": 0.5
+    },
+    "1b1f": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Filter Pool Members",
+      "description": "Filter Pool Members",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "65c4ffd1c0474700f72c0a50",
+          "variableMap": {
+            "memberList": "$var.1599.result",
+            "desiredStatus": "$var.job.desiredStatus"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "filteredMembers": "$var.job.filteredMembers"
+        },
+        "decorators": []
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -324
+      }
+    },
+    "e2a7": {
+      "name": "getLTMVirtualServer",
+      "canvasName": "getLTMVirtualServer",
+      "summary": "Get LTM Virtual Server",
+      "description": "Get LTM Virtual Server",
+      "location": "Adapter",
+      "locationType": "F5BigIQ",
+      "app": "F5BigIQ",
+      "type": "automatic",
+      "displayName": "BigIQ",
+      "variables": {
+        "incoming": {
+          "objectId": "$var.job.virtualServerId",
+          "adapter_id": "BigIQ"
+        },
+        "outgoing": {
+          "result": ""
+        }
+      },
+      "actor": "Pronghorn",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": -648
+      }
+    }
+  },
+  "transitions": {
+    "1599": {
+      "1b1f": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "9036": {
+      "1599": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "workflow_start": {
+      "e2a7": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "workflow_end": {},
+    "1b1f": {
+      "workflow_end": {
+        "state": "success",
+        "type": "standard"
+      }
+    },
+    "e2a7": {
+      "9036": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "virtualServerId": {
+        "$id": "virtualServerId",
+        "type": "string"
+      },
+      "desiredStatus": {
+        "$id": "desiredStatus",
+        "type": "string"
+      }
+    },
+    "required": [
+      "virtualServerId",
+      "desiredStatus"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "virtualServerId": {
+        "$id": "virtualServerId",
+        "type": "string"
+      },
+      "desiredStatus": {
+        "$id": "desiredStatus",
+        "type": "string"
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "filteredMembers": {
+        "$id": "filteredMembers",
+        "type": "array"
+      }
+    }
+  },
+  "canvasVersion": 3,
+  "type": "automation",
+  "font_size": 12,
+  "errorHandler": null,
+  "preAutomationTime": 0,
+  "sla": 0,
+  "last_updated": "2024-02-09T16:11:29.511Z",
+  "lastUpdatedVersion": "5.46.0-2023.1.30.0",
+  "created": "2024-02-08T15:14:00.351Z",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "createdVersion": "5.46.0-2023.1.30.0",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false
+  },
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 2
+}

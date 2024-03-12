@@ -1,0 +1,316 @@
+{
+  "_id": "65c4fd29c0474700f72c0a4f",
+  "name": "Get Pool Members for VS - F5 - BIG-IQ",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "virtualServerId",
+      "type": "string"
+    },
+    {
+      "$id": "vsData",
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "poolReference": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "examples": [
+                    "1b921eaa-3928-6471-1c0c-a612665695a8"
+                  ],
+                  "format": "uuid"
+                },
+                "link": {
+                  "type": "string",
+                  "examples": [
+                    "https://localhost/mgmt/cm/adc-core/working-config/ltm/pool/1b921eaa-3928-6471-1c0c-a612665695a8"
+                  ]
+                }
+              },
+              "required": []
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "poolMemberPayload",
+      "type": "object",
+      "properties": {
+        "referenceMethod": {
+          "type": "string",
+          "examples": [
+            "resourceReferencesKind"
+          ]
+        },
+        "referenceKind": {
+          "type": "string",
+          "examples": [
+            "cm:adc-core:working-config:ltm:node:adcnodestate"
+          ]
+        },
+        "referenceLink": {
+          "type": "string",
+          "examples": [
+            "https://localhost/mgmt/cm/adc-core/working-config/ltm/virtual/139262f7-f08d-37e2-adcd-2664bcb31b06"
+          ]
+        },
+        "referenceDepth": {
+          "type": "integer",
+          "examples": [
+            3
+          ]
+        },
+        "inflate": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "poolUrl",
+      "type": "string"
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "method",
+      "library": "String",
+      "method": "concat",
+      "args": [
+        "https://localhost/mgmt/cm/adc-core/working-config/ltm/virtual/",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "virtualServerId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "poolMemberPayload",
+        "ptr": "/referenceLink"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "resourceReferencesKind"
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "poolMemberPayload",
+        "ptr": "/referenceMethod"
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "cm:adc-core:working-config:ltm:node:adcnodestate"
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "poolMemberPayload",
+        "ptr": "/referenceKind"
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "method",
+      "library": "Number",
+      "method": "parseInt",
+      "args": [
+        3,
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "poolMemberPayload",
+        "ptr": "/referenceDepth"
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "declaration",
+      "library": "Boolean",
+      "method": "new Boolean",
+      "args": [
+        true
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 10,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "poolMemberPayload",
+        "ptr": "/inflate"
+      },
+      "context": "#"
+    },
+    {
+      "id": 12,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "/mgmt/cm/adc-core/working-config/ltm/pool/${poolId}/members",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "vsData",
+        "ptr": "/response/poolReference/id"
+      },
+      "to": {
+        "location": "template",
+        "name": 12,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 14,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 12,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "poolUrl",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2024-02-08T16:11:21.059Z",
+  "createdBy": {
+    "_id": "65c240ccb4db87d163fa4ff2",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2024-02-09T16:08:36.714Z",
+  "lastUpdatedBy": {
+    "_id": "65b166a3b6b498ef7e27cf7a",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.1.2-2023.1.14",
+  "tags": []
+}
