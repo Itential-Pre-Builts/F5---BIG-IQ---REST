@@ -4,14 +4,14 @@ const RetrieveiHealthCredentialsIdF5BIGIQJob1Data = require('../fixtures/stubs/R
 const RetrieveDeviceMachineIdF5BIGIQJob2Data = require('../fixtures/stubs/Retrieve Device MachineId - F5 - BIG-IQ Job2.json');
 const CreateiHealthUploadTaskF5BIGIQJob3Data = require('../fixtures/stubs/Create iHealth Upload Task - F5 - BIG-IQ Job3.json');
 const CreateDeviceBackupF5BIGIQJob4Data = require('../fixtures/stubs/Create Device Backup - F5 - BIG-IQ Job4.json');
-const RunScriptonBIGIPF5BIGIQJob5Data = require('../fixtures/stubs/Run Script on BIG-IP - F5 - BIG-IQ Job5.json');
+const RunGetAvailableDiskSpaceBIGIPF5BIGIQJobData = require('../fixtures/stubs/Run Get Available Disk Space BIG-IP - F5 - BIG-IQ Job.json');
 const CreateiHealthUploadTaskF5BIGIQJob6Data = require('../fixtures/stubs/Create iHealth Upload Task - F5 - BIG-IQ Job6.json');
 const DiscoverBIGIPDeviceF5BIGIQJob7Data = require('../fixtures/stubs/Discover BIG-IP Device - F5 - BIG-IQ Job7.json');
 const ImportBIGIPDeviceF5BIGIQJob8Data = require('../fixtures/stubs/Import BIG-IP Device - F5 - BIG-IQ Job8.json');
 const RunBIGIPUpgradeF5BIGIQJob9Data = require('../fixtures/stubs/Run BIG-IP Upgrade - F5 - BIG-IQ Job9.json');
 const CheckBIGIPCurrentSoftwareVersionF5BIGIQJob10Data = require('../fixtures/stubs/Check BIG-IP Current Software Version - F5 - BIG-IQ Job10.json');
-const RunScriptonBIGIPF5BIGIQJob11Data = require('../fixtures/stubs/Run Script on BIG-IP - F5 - BIG-IQ Job11.json');
-const RunScriptonBIGIPF5BIGIQJob12Data = require('../fixtures/stubs/Run Script on BIG-IP - F5 - BIG-IQ Job12.json');
+const RunGetLicenseServiceCheckBIGIPF5BIGIQJobData = require('../fixtures/stubs/Run Get License Service Check BIG-IP - F5 - BIG-IQ Job.json');
+const RunReActivateLicenseBIGIPF5BIGIQJobData = require('../fixtures/stubs/Run Re-Activate License BIG-IP - F5 - BIG-IQ Job.json');
 const UpgradeBIGIPDeviceWithRollbackF5BIGIQJob0Data = require('../fixtures/stubs/Upgrade BIG-IP Device With Rollback - F5 - BIG-IQ Job0.json');
 const RollbackBIGIPDeviceF5BIGIQJob0Data = require('../fixtures/stubs/Rollback BIG-IP Device - F5 - BIG-IQ Job0.json');
 const RebootBIGIPDeviceF5BIGIQJob1Data = require('../fixtures/stubs/Reboot BIG-IP Device - F5 - BIG-IQ Job1.json');
@@ -66,14 +66,14 @@ describe('Default: Cypress Tests', function () {
   let RetrieveDeviceMachineIdF5BIGIQJob2Workflow;
   let CreateiHealthUploadTaskF5BIGIQJob3Workflow;
   let CreateDeviceBackupF5BIGIQJob4Workflow;
-  let RunScriptonBIGIPF5BIGIQJob5Workflow;
+  let RunGetAvailableDiskSpaceBIGIPF5BIGIQJobWorkflow;
   let CreateiHealthUploadTaskF5BIGIQJob6Workflow;
   let DiscoverBIGIPDeviceF5BIGIQJob7Workflow;
   let ImportBIGIPDeviceF5BIGIQJob8Workflow;
   let RunBIGIPUpgradeF5BIGIQJob9Workflow;
   let CheckBIGIPCurrentSoftwareVersionF5BIGIQJob10Workflow;
-  let RunScriptonBIGIPF5BIGIQJob11Workflow;
-  let RunScriptonBIGIPF5BIGIQJob12Workflow;
+  let RunGetLicenseServiceCheckBIGIPF5BIGIQWorkflow;
+  let RunReActivateLicenseBIGIPF5BIGIQWorkflow;
   let UpgradeBIGIPDeviceWithRollbackF5BIGIQJob0Workflow
   let RollbackBIGIPDeviceF5BIGIQJob0Workflow;
   let RebootBIGIPDeviceF5BIGIQJob1Workflow;
@@ -99,7 +99,7 @@ describe('Default: Cypress Tests', function () {
       CreateDeviceBackupF5BIGIQJob4Workflow = data;
     });
     cy.fixture(`../../../bundles/workflows/Run Script on BIG-IP - F5 - BIG-IQ.json`).then((data) => {
-      RunScriptonBIGIPF5BIGIQJob5Workflow = data;
+      RunGetAvailableDiskSpaceBIGIPF5BIGIQJobWorkflow = data;
     });
     cy.fixture(`../../../bundles/workflows/Create iHealth Upload Task - F5 - BIG-IQ.json`).then((data) => {
       CreateiHealthUploadTaskF5BIGIQJob6Workflow = data;
@@ -117,10 +117,10 @@ describe('Default: Cypress Tests', function () {
       CheckBIGIPCurrentSoftwareVersionF5BIGIQJob10Workflow = data;
     });
     cy.fixture(`../../../bundles/workflows/Run Script on BIG-IP - F5 - BIG-IQ.json`).then((data) => {
-      RunScriptonBIGIPF5BIGIQJob11Workflow = data;
+      RunGetLicenseServiceCheckBIGIPF5BIGIQWorkflow = data;
     });
     cy.fixture(`../../../bundles/workflows/Run Script on BIG-IP - F5 - BIG-IQ.json`).then((data) => {
-      RunScriptonBIGIPF5BIGIQJob12Workflow = data;
+      RunReActivateLicenseBIGIPF5BIGIQWorkflow = data;
     });
     cy.fixture(`../../../bundles/workflows/Upgrade BIG-IP Device - F5 - BIG-IQ.json`).then((data) => {
       UpgradeBIGIPDeviceWithRollbackF5BIGIQJob0Workflow = data;
@@ -265,26 +265,26 @@ describe('Default: Cypress Tests', function () {
     })
   })
 
-  describe('Run Script on BIG-IP - F5 - BIG-IQ', function() {
-    it('Run Script on BIG-IP - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ', function () {
+  describe('Run Script Get Available Disk Space on BIG-IP - F5 - BIG-IQ', function() {
+    it('Run Script Get Available Disk Space on BIG-IP - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ', function () {
       const importWorkflow = true;
       const isStub = true;
       // create the job runner so it can be used in future tests
-      const workflowRunner = initializeWorkflowRunner(RunScriptonBIGIPF5BIGIQJob5Workflow, importWorkflow, isStub, RunScriptonBIGIPF5BIGIQJob5Data.stubTasks);
+      const workflowRunner = initializeWorkflowRunner(RunGetAvailableDiskSpaceBIGIPF5BIGIQJobWorkflow, importWorkflow, isStub, RunGetAvailableDiskSpaceBIGIPF5BIGIQJobData.stubTasks);
       // this has to be customized to each IAP version.
 
       workflowRunner.job.startAndReturnResultsWhenComplete({
-        options: RunScriptonBIGIPF5BIGIQJob5Data.input,
+        options: RunGetAvailableDiskSpaceBIGIPF5BIGIQJobData.input,
         retryTime: 2000,
       }).then((jobVariableResults) => {
-        expect(jobVariableResults['status']).eql(RunScriptonBIGIPF5BIGIQJob5Data.expectedTaskResults.status);
+        expect(jobVariableResults['status']).eql(RunGetAvailableDiskSpaceBIGIPF5BIGIQJobData.expectedTaskResults.status);
         workflowRunner.job.getJobVariables(jobVariableResults._id).then(jobVariables => {
           delete jobVariables._id;
           delete jobVariables.initiator;
-          expect(jobVariables).eql(RunScriptonBIGIPF5BIGIQJob5Data.expectedTaskResults.variables);
+          expect(jobVariables).eql(RunGetAvailableDiskSpaceBIGIPF5BIGIQJobData.expectedTaskResults.variables);
         });
         /* Restore the workflow without the stub tasks */
-        replaceStubTasks(workflowRunner, RunScriptonBIGIPF5BIGIQJob5Workflow);
+        replaceStubTasks(workflowRunner, RunGetAvailableDiskSpaceBIGIPF5BIGIQJobWorkflow);
       });
     })
   })
@@ -409,50 +409,50 @@ describe('Default: Cypress Tests', function () {
     })
   })
 
-  describe('Run Script on BIG-IP - F5 - BIG-IQ', function() {
-    it('Run Script on BIG-IP - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ', function () {
+  describe('Run Script Get License Service Check on BIG-IP - F5 - BIG-IQ', function() {
+    it('Run Script Get License Service Check on BIG-IP - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ', function () {
       const importWorkflow = true;
       const isStub = true;
       // create the job runner so it can be used in future tests
-      const workflowRunner = initializeWorkflowRunner(RunScriptonBIGIPF5BIGIQJob11Workflow, importWorkflow, isStub, RunScriptonBIGIPF5BIGIQJob11Data.stubTasks);
+      const workflowRunner = initializeWorkflowRunner(RunGetLicenseServiceCheckBIGIPF5BIGIQWorkflow, importWorkflow, isStub, RunGetLicenseServiceCheckBIGIPF5BIGIQJobData.stubTasks);
       // this has to be customized to each IAP version.
 
       workflowRunner.job.startAndReturnResultsWhenComplete({
-        options: RunScriptonBIGIPF5BIGIQJob11Data.input,
+        options: RunGetLicenseServiceCheckBIGIPF5BIGIQJobData.input,
         retryTime: 2000,
       }).then((jobVariableResults) => {
-        expect(jobVariableResults['status']).eql(RunScriptonBIGIPF5BIGIQJob11Data.expectedTaskResults.status);
+        expect(jobVariableResults['status']).eql(RunGetLicenseServiceCheckBIGIPF5BIGIQJobData.expectedTaskResults.status);
         workflowRunner.job.getJobVariables(jobVariableResults._id).then(jobVariables => {
           delete jobVariables._id;
           delete jobVariables.initiator;
-          expect(jobVariables).eql(RunScriptonBIGIPF5BIGIQJob11Data.expectedTaskResults.variables);
+          expect(jobVariables).eql(RunGetLicenseServiceCheckBIGIPF5BIGIQJobData.expectedTaskResults.variables);
         });
         /* Restore the workflow without the stub tasks */
-        replaceStubTasks(workflowRunner, RunScriptonBIGIPF5BIGIQJob11Workflow);
+        replaceStubTasks(workflowRunner, RunGetLicenseServiceCheckBIGIPF5BIGIQWorkflow);
       });
     })
   })
 
-  describe('Run Script on BIG-IP - F5 - BIG-IQ', function() {
-    it('Run Script on BIG-IP - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ', function () {
+  describe('Run Script Re-Activate License on BIG-IP - F5 - BIG-IQ', function() {
+    it('Run Script Re-Activate License on BIG-IP - F5 - BIG-IQ: It should successfuly upgrade BIG-IP device over BIG-IQ', function () {
       const importWorkflow = true;
       const isStub = true;
       // create the job runner so it can be used in future tests
-      const workflowRunner = initializeWorkflowRunner(RunScriptonBIGIPF5BIGIQJob12Workflow, importWorkflow, isStub, RunScriptonBIGIPF5BIGIQJob12Data.stubTasks);
+      const workflowRunner = initializeWorkflowRunner(RunReActivateLicenseBIGIPF5BIGIQWorkflow, importWorkflow, isStub, RunReActivateLicenseBIGIPF5BIGIQJobData.stubTasks);
       // this has to be customized to each IAP version.
 
       workflowRunner.job.startAndReturnResultsWhenComplete({
-        options: RunScriptonBIGIPF5BIGIQJob12Data.input,
+        options: RunReActivateLicenseBIGIPF5BIGIQJobData.input,
         retryTime: 2000,
       }).then((jobVariableResults) => {
-        expect(jobVariableResults['status']).eql(RunScriptonBIGIPF5BIGIQJob12Data.expectedTaskResults.status);
+        expect(jobVariableResults['status']).eql(RunReActivateLicenseBIGIPF5BIGIQJobData.expectedTaskResults.status);
         workflowRunner.job.getJobVariables(jobVariableResults._id).then(jobVariables => {
           delete jobVariables._id;
           delete jobVariables.initiator;
-          expect(jobVariables).eql(RunScriptonBIGIPF5BIGIQJob12Data.expectedTaskResults.variables);
+          expect(jobVariables).eql(RunReActivateLicenseBIGIPF5BIGIQJobData.expectedTaskResults.variables);
         });
         /* Restore the workflow without the stub tasks */
-        replaceStubTasks(workflowRunner, RunScriptonBIGIPF5BIGIQJob12Workflow);
+        replaceStubTasks(workflowRunner, RunReActivateLicenseBIGIPF5BIGIQWorkflow);
       });
     })
   })
