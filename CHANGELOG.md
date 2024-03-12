@@ -1,4 +1,12 @@
 
+## 0.5.4 [03-12-2024]
+
+* Updates license activation logic and adds Cypress tests
+
+See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!11
+
+---
+
 ## 0.5.3 [03-12-2024]
 
 * Updates license activation logic and adds Cypress tests
@@ -118,4 +126,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n

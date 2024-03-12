@@ -1,12 +1,12 @@
 {
   "name": "F5 - BIG-IQ - REST",
-  "webName": "F5 BIG-IQ Automations",
+  "webName": "F5 BIG-IQ - Modular Automations",
   "type": "Workflow Project",
   "vendor": "F5",
   "product": "BIG-IQ",
   "method": "REST",
   "osVersions": [
-    "8.3"
+    "^8.3.0"
   ],
   "apiVersions": [
     ""
@@ -39,7 +39,12 @@
     "webLink": "",
     "vendorLink": "https://www.f5.com/",
     "productLink": "https://www.f5.com/products/big-ip-services/big-iq",
-    "apiLinks": []
+    "apiLinks": [
+      {
+        "title": "F5 BIG-IQ API Reference",
+        "link": "https://clouddocs.f5.com/products/big-iq/mgmt-api/v0.0/ApiReferences/bigiq_public_api_ref/r_public_api_references.html"
+      }
+    ]
   },
   "assets": [
     {

@@ -27,8 +27,9 @@ Capabilities include:
 - Upgrades F5 BIG-IP device over BIG-IQ API
 - Provides option to upload iHealth task before and after upgrade
 - Verify sufficient disk space exists on BIG-IP for upgrade
+- Verifies license key and provides form input for license key inputs if license re-activation needed and performs license re-activation
 - Performs rollback to volume prior to upgrade if upgrade fails
-- Does device discovery and import after upgrade
+- Performs device discovery and import after upgrade
 - Supports upgrade of HA pair of devices as well as upgrade of single device
 - Updates device upgrade task to include private keys
 - Checks BIG-IP device version compared to target software image version prior to upgrade
@@ -61,7 +62,7 @@ This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
   <tbody>
     <tr>
       <td>F5 BIG-IQ</td>
-      <td>8.3</td>
+      <td>^8.3.0</td>
       <td></td>
     </tr>
   </tbody>
@@ -317,7 +318,8 @@ The following items show how to query successful results from the output:
 ### API Links
 
 
-No API Links provided.
+
+- [F5 BIG-IQ API Reference](https://clouddocs.f5.com/products/big-iq/mgmt-api/v0.0/ApiReferences/bigiq_public_api_ref/r_public_api_references.html)
  
 
 

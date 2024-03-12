@@ -2,7 +2,7 @@
 
 ## Overview
 
-Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP devices.
+This contains modular workflows that operate when integrated with F5 BIG-IQ. Once installed teams will be able to quickly automate common manual tasks like software upgrade of managed BIG-IP devices, saving a significant amount of time and effort. This library can be used as modular components with other libraries and automations to build comprehensive end-to-end orchestrated workflows with Itential's low-code platform.
 
 
 ## Workflows
@@ -37,7 +37,7 @@ Project with workflows for F5 BIG-IQ using REST protocol for managing BIG-IP dev
   <tbody>
     <tr>
       <td>F5 BIG-IQ</td>
-      <td>8.3</td>
+      <td>^8.3.0</td>
       <td></td>
     </tr>
   </tbody>
