@@ -1,4 +1,12 @@
 
+## 1.0.2-2023.1.1 [03-12-2024]
+
+* Updates transition type from failure to success in Rollback workflow
+
+See merge request itentialopensource/pre-built-automations/f5-big-iq-rest!14
+
+---
+
 ## 1.0.1-2023.1.0 [03-12-2024]
 
 * Create 2023.1 release
@@ -150,4 +158,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n

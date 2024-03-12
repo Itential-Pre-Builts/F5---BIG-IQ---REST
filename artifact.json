@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "@itentialopensource/f5-big-iq-rest",
-    "version": "1.0.1-2023.1.0",
+    "version": "1.0.2-2023.1.1",
     "description": "This contains modular workflows that operate when integrated with F5 BIG-IQ. Once installed teams will be able to quickly automate common manual tasks like software upgrade of managed BIG-IP devices, saving a significant amount of time and effort. This library can be used as modular components with other libraries and automations to build comprehensive end-to-end orchestrated workflows with Itential's low-code platform.",
     "license": "Apache-2.0",
     "repository": {
@@ -9799,8 +9799,8 @@
           },
           "2ec8": {
             "4002": {
-              "state": "failure",
-              "type": "standard"
+              "type": "standard",
+              "state": "success"
             }
           }
         },
@@ -9956,8 +9956,8 @@
         "errorHandler": null,
         "preAutomationTime": 0,
         "sla": 0,
-        "last_updated": "2024-03-11T16:17:20.567Z",
-        "lastUpdatedVersion": "4.15.0-2023.1.149.0",
+        "last_updated": "2024-03-12T18:38:20.682Z",
+        "lastUpdatedVersion": "5.46.0-2023.1.30.0",
         "created": "2023-09-27T17:21:50.570Z",
         "created_by": {
           "provenance": "local_aaa",

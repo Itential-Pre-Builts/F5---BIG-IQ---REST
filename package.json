@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1-2023.1.0",
+  "version": "1.0.2-2023.1.1",
   "description": "This contains modular workflows that operate when integrated with F5 BIG-IQ. Once installed teams will be able to quickly automate common manual tasks like software upgrade of managed BIG-IP devices, saving a significant amount of time and effort. This library can be used as modular components with other libraries and automations to build comprehensive end-to-end orchestrated workflows with Itential's low-code platform.",
   "scripts": {
     "setup-hooks": "sh ./scripts/setup-hooks.sh",
