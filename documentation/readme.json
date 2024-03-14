@@ -22,5 +22,7 @@
     "Perform a software upgrade on Device"
   ],
   "webLink": "",
-  "demoLinks": []
+  "demoLinks": [],
+  "vendor": "F5",
+  "product": "BIG-IQ"
 }
