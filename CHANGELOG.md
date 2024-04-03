@@ -1,4 +1,14 @@
 
+## 1.0.3 [04-03-2024]
+
+Regenerate documentation and metadata.json files
+
+See commit 7d08194
+
+2024-03-14 15:55:20 +0000
+
+---
+
 ## 1.0.2 [03-14-2024]
 
 * Update vendor in readme.json
@@ -158,4 +168,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n

@@ -42,7 +42,8 @@
     "apiLinks": [
       {
         "title": "F5 BIG-IQ API Reference",
-        "link": "https://clouddocs.f5.com/products/big-iq/mgmt-api/v0.0/ApiReferences/bigiq_public_api_ref/r_public_api_references.html"
+        "link": "https://clouddocs.f5.com/products/big-iq/mgmt-api/v0.0/ApiReferences/bigiq_public_api_ref/r_public_api_references.html",
+        "public": true
       }
     ]
   },

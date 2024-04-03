@@ -1,59 +1,35 @@
-# Upgrade BIG-IP Device - F5 - BIG-IQ
+## Table of Contents 
 
-## Table of Contents
-
-- [Upgrade BIG-IP Device - F5 - BIG-IQ](#upgrade-big-ip-device---f5---big-iq)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
   - [Getting Started](#getting-started)
-    - [Supported IAP Versions](#supported-iap-versions)
+    - [Helpful Background Information](#helpful-background-information)
+    - [Prerequisites](#prerequisites)
     - [External Dependencies](#external-dependencies)
     - [Adapters](#adapters)
     - [How to Install](#how-to-install)
     - [Testing](#testing)
   - [Using this Workflow Project](#using-this-workflow-project)
-    - [Entry Point IAP Component](#entry-point-iap-component)
-    - [Inputs](#inputs)
-    - [Outputs](#outputs)
-    - [Query Output](#query-output)
-    - [Example Inputs and Outputs](#example-inputs-and-outputs)
-    - [API Links](#api-links)
-  - [Support](#support)
-
-## Overview
-
-Upgrades BIG-IP device over F5 BIG-IQ
-
-Capabilities include:
-- Upgrades F5 BIG-IP device over BIG-IQ API
-- Provides option to upload iHealth task before and after upgrade
-- Verify sufficient disk space exists on BIG-IP for upgrade
-- Verifies license key and provides form input for license key inputs if license re-activation needed and performs license re-activation
-- Performs rollback to volume prior to upgrade if upgrade fails
-- Performs device discovery and import after upgrade
-- Supports upgrade of HA pair of devices as well as upgrade of single device
-- Updates device upgrade task to include private keys
-- Checks BIG-IP device version compared to target software image version prior to upgrade
-- Checks active volume compared to target volume of BIG-IP device during rollback to see if different and to perform reboot if so
-
-
-
-
+    - [Upgrade BIG-IP Device - F5 - BIG-IQ](#upgrade-big-ip-device-f5-big-iq)
+  - [Additional Information](#additional-information)
+    - [Support](#support)
 
 ## Getting Started
 
-### Supported IAP Versions
+This section is helpful for deployments as it provides you with pertinent information on prerequisites and properties.
 
-Itential Workflow Projects are built and tested on particular versions of IAP. In addition, Workflow Projects are often dependent on external systems and as such, these Workflow Projects will have dependencies on these other systems. This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
+### Helpful Background Information
 
+Workflows often include logic that varies from business to business. As a result, we often find that our Workflow Projects are more useful as modular components that can be incorporated into a larger process. In addition, they often can add value as a learning tool on how we integrate with other systems and how we do things within the Itential Automation Platform.
+
+While these can be utilized, you may find more value in using them as a starting point to build around.
+
+
+### Prerequisites
+
+Itential Workflow Projects are built and tested on particular versions of IAP. In addition, Workflow Projects are often dependent on external systems and as such, these Workflow Projects will have dependencies on these other systems. This version of **F5 - BIG-IQ - REST** has been tested with:
 
 - IAP **2023.1**
 
-
-
 ### External Dependencies
-
-This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
 
 <table>
   <thead>
@@ -72,12 +48,7 @@ This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
   </tbody>
 </table>
 
-
-
-
 ### Adapters
-
-This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
 
 <table>
   <thead>
@@ -96,23 +67,46 @@ This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
   </tbody>
 </table>
 
-
-
 ### How to Install
 
 To install the Workflow Project:
 
-- Verify you are running a supported version of the Itential Automation Platform (IAP) as listed above in the [Supported IAP Versions](#supported-iap-versions) section in order to install the Workflow Project.
-- Import the Workflow Project in [Admin Essentials](https://docs.itential.com/docs/importing-a-prebuilt-4).
+- Verify you are running a supported version of the Itential Automation Platform (IAP) as listed above in the [Supported IAP Versions](#supported-iap-versions) section in order to install the Example Project.
+- Import the Example Project in [Admin Essentials](https://docs.itential.com/docs/importing-a-prebuilt-4).
 
-### Testing
+###  Testing
 
-While Itential tests this Workflow Project and its capabilities, it is often the case the customer environments offer their own unique circumstances. Therefore, it is our recommendation that you deploy this Workflow Project into a development/testing environment in which you can test the Workflow Project.
+Cypress is generally used to test all Itential Example Projects. While Cypress is an opensource tool, at Itential we have internal libraries that have been built around Cypress to allow us to test with a deployed IAP.
+
+When certifying our Example Projects for a release of IAP we run these tests against the particular version of IAP and create a release branch in GitLab. If you do not see the Example Project available in your version of IAP please contact Itential.
+
+While Itential tests this Example Project and its capabilities, it is often the case the customer environments offer their own unique circumstances. Therefore, it is our recommendation that you deploy this Example Project into a development/testing environment in which you can test the Example Project.
 
 ## Using this Workflow Project
+Workflow Projects contain 1 or more workflows. Each of these workflows have different inputs and outputs. 
+
+### Upgrade BIG-IP Device - F5 - BIG-IQ
+Upgrades BIG-IP device over F5 BIG-IQ
+
+Capabilities include:
+- Upgrades F5 BIG-IP device over BIG-IQ API
+- Provides option to upload iHealth task before and after upgrade
+- Verify sufficient disk space exists on BIG-IP for upgrade
+- Verifies license key and provides form input for license key inputs if license re-activation needed and performs license re-activation
+- Performs rollback to volume prior to upgrade if upgrade fails
+- Performs device discovery and import after upgrade
+- Supports upgrade of HA pair of devices as well as upgrade of single device
+- Updates device upgrade task to include private keys
+- Checks BIG-IP device version compared to target software image version prior to upgrade
+- Checks active volume compared to target volume of BIG-IP device during rollback to see if different and to perform reboot if so
 
 
-### Entry Point IAP Component
+
+
+
+
+
+#### Entry Point IAP Component
 
 The primary IAP component to run **Upgrade BIG-IP Device - F5 - BIG-IQ** is listed below:
 
@@ -130,7 +124,7 @@ The primary IAP component to run **Upgrade BIG-IP Device - F5 - BIG-IQ** is list
   </tbody>
 </table>
 
-### Inputs
+#### Inputs
 
 The following table lists the inputs for **Upgrade BIG-IP Device - F5 - BIG-IQ**:
 
@@ -279,7 +273,7 @@ The following table lists the inputs for **Upgrade BIG-IP Device - F5 - BIG-IQ**
 
 
 
-### Outputs
+#### Outputs
 
 The following table lists the outputs for **Upgrade BIG-IP Device - F5 - BIG-IQ**:
 
@@ -304,7 +298,7 @@ The following table lists the outputs for **Upgrade BIG-IP Device - F5 - BIG-IQ*
 
 
 
-### Query Output
+#### Query Output
 
 
   
@@ -312,7 +306,7 @@ The following table lists the outputs for **Upgrade BIG-IP Device - F5 - BIG-IQ*
 The following items show how to query successful results from the output of **Upgrade BIG-IP Device - F5 - BIG-IQ**:
 
     
-#### Result of Device Upgrade
+##### Result of Device Upgrade
 
 `returnStatus`
 
@@ -323,10 +317,10 @@ The following items show how to query successful results from the output of **Up
 
 
 
-### Example Inputs and Outputs
+#### Example Inputs and Outputs
 
   
-#### Example 1
+##### Example 1
 
     
 Input:
@@ -369,7 +363,7 @@ Output:
 
     
   
-#### Example 2
+##### Example 2
 
     
 Input:
@@ -414,7 +408,7 @@ Output:
   
 
 
-### API Links
+#### API Links
 
 
 <table>
@@ -435,6 +429,10 @@ Output:
 </table>
 
 
-## Support
+## Additional Information
 
-Please use your Itential Customer Success account if you need support when using **Upgrade BIG-IP Device - F5 - BIG-IQ**.
+### Support
+Please use your Itential Customer Success account if you need support when using this Workflow Project.
+
+
+
