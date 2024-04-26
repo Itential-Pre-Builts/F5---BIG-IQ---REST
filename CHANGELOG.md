@@ -1,4 +1,14 @@
 
+## 1.0.4 [04-26-2024]
+
+Changes made at 2024.04.26_11:07AM
+
+See merge request itentialopensource/pre-built-automations/f5-big-iq-rest!19
+
+2024-04-26 15:15:14 +0000
+
+---
+
 ## 1.0.3 [04-03-2024]
 
 Regenerate documentation and metadata.json files
@@ -168,4 +178,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
