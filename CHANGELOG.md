@@ -1,4 +1,14 @@
 
+## 1.0.5 [06-04-2024]
+
+Update IAP version in asset documentation
+
+See merge request itentialopensource/pre-built-automations/f5-big-iq-rest!23
+
+2024-06-04 19:44:17 +0000
+
+---
+
 ## 1.0.4 [04-26-2024]
 
 Changes made at 2024.04.26_11:07AM
@@ -178,4 +188,4 @@ See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-res
 See merge request itentialopensource/pre-built-automations/staging/f5-big-iq-rest!1
 
 ---
-\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
