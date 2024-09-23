@@ -17,7 +17,7 @@ This contains modular workflows that operate when integrated with F5 BIG-IQ. Onc
   </thead>
   <tbody>
     <tr>
-      <td><a href='https://gitlab.com/itentialopensource/pre-built-automations/f5-big-iq-rest/-/blob/release/2023.2/documentation/Upgrade BIG-IP Device - F5 - BIG-IQ.md' target='_blank'>Upgrade BIG-IP Device - F5 - BIG-IQ</a></td>
+      <td><a href='https://gitlab.com/itentialopensource/pre-built-automations/f5-big-iq-rest/-/blob/patch/PBLT-1523-23.2/documentation/Upgrade BIG-IP Device - F5 - BIG-IQ.md' target='_blank'>Upgrade BIG-IP Device - F5 - BIG-IQ</a></td>
       <td>Upgrades BIG-IP device over F5 BIG-IQ</td>
     </tr>
   </tbody>

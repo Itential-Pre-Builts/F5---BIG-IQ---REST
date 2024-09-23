@@ -16,16 +16,18 @@
   ],
   "domains": [],
   "tags": [
-    "Domain Name Service",
-    "DNS"
+    "Software Upgrades & Device Maintenance"
   ],
   "useCases": [
-    "Perform a software upgrade on Device"
+    "Add Device to Monitoring",
+    "Software Upgrade"
   ],
   "deprecated": {
     "isDeprecated": false
   },
   "brokerSince": "",
+  "supportLevel": "community",
+  "techAlliance": false,
   "documentation": {
     "storeLink": "",
     "repoLink": "https://gitlab.com/itentialopensource/pre-built-automations/f5-big-iq-rest",
@@ -45,7 +47,9 @@
         "link": "https://clouddocs.f5.com/products/big-iq/mgmt-api/v0.0/ApiReferences/bigiq_public_api_ref/r_public_api_references.html",
         "public": true
       }
-    ]
+    ],
+    "workshopHomePage": "https://www.itential.com/get-started/",
+    "workshopLinks": []
   },
   "assets": [
     {
