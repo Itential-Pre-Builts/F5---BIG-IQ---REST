@@ -1,28 +1,32 @@
 {
   "name": "F5 - BIG-IQ - REST",
+  "webName": "F5 BIG-IQ - Modular Automations",
+  "supportLevel": "community",
   "overview": "This contains modular workflows that operate when integrated with F5 BIG-IQ. Once installed teams will be able to quickly automate common manual tasks like software upgrade of managed BIG-IP devices, saving a significant amount of time and effort. This library can be used as modular components with other libraries and automations to build comprehensive end-to-end orchestrated workflows with Itential's low-code platform.",
+  "vendor":"F5",
+  "product":"BIG-IQ",
+  "techAlliance": false,
+  "type": "Workflow Project",
   "domains": [],
   "tags": [
-    "Domain Name Service",
-    "DNS"
+    "Software Upgrades & Device Maintenance"
   ],
+  "useCases": [
+    "Add Device to Monitoring",
+    "Software Upgrade"
+  ],
+  "deprecated": {
+    "isDeprecated": false
+  },
   "productLink": "https://www.f5.com/products/big-ip-services/big-iq",
   "storeLink": "",
   "docLink": "",
   "issueLink": "https://itential.atlassian.net/servicedesk/customer/portals",
-  "deprecated": {
-    "isDeprecated": false
-  },
-  "type": "Workflow Project",
   "vendorLink": "https://www.f5.com/",
   "faqLink": "",
   "contributeLink": "",
-  "webName": "F5 BIG-IQ - Modular Automations",
-  "useCases": [
-    "Perform a software upgrade on Device"
-  ],
   "webLink": "",
   "demoLinks": [],
-  "vendor":"F5",
-  "product":"BIG-IQ"
+  "workshopHomePage": "https://www.itential.com/get-started/",
+  "workshopLinks": []
 }

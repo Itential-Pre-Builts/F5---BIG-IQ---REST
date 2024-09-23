@@ -103,7 +103,7 @@ This version of **Upgrade BIG-IP Device - F5 - BIG-IQ** has been tested with:
 To install the Workflow Project:
 
 - Verify you are running a supported version of the Itential Automation Platform (IAP) as listed above in the [Supported IAP Versions](#supported-iap-versions) section in order to install the Workflow Project.
-- Import the Workflow Project in [Admin Essentials](https://docs.itential.com/docs/importing-a-prebuilt-4).
+- Import the Workflow Project in [Admin Essentials](https://docs.itential.com/docs/importing-pre-built-iap).
 
 ### Testing
 
